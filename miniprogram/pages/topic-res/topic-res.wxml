@@ -1,0 +1,26 @@
+<view class="topic-res">
+  <view class="header">
+    <text wx:if="{{!first}}" class="prev" bindtap="prevQuestion">上一题</text>
+    <text>第{{topicIndex + 1}}题</text>
+    <text wx:if="{{!last}}" class="next" bindtap="nextQuestion">下一题</text>
+  </view>
+  <block>
+    <view class="title">题目：{{title}}</view>
+    <rich-text nodes="{{topic}}"></rich-text>
+    <view class="difficulty">
+      <text class="level">难度：*****</text>
+      <text class="time">更新时间：2022-04-10</text>
+    </view>
+  </block>
+  <view style="margin-top: 20px;"></view>
+  <block wx:if="{{answerShow}}">
+    <view class="analysis">答案与解析</view>
+    <rich-text wx:if="{{answer}}" nodes="{{answer}}"></rich-text>
+    <view wx:else style="color: #999999;font-size: 12px;">开发中...</view>
+  </block>
+  <view class="footer">
+    <text class="collect">加入收藏</text>
+    <text class="continue" wx:if="{{answerShow}}" bindtap="nextQuestion">继续答题</text>
+    <text class="answer" wx:else bindtap="onShowAnswer">查看答案</text>
+  </view>
+</view>

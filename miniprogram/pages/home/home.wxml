@@ -1,0 +1,41 @@
+<view class="home-page">
+  <view class="home-swiper">
+    <swiper indicator-dots autoplay circular interval="3000" duration="500">
+      <block>
+        <swiper-item>
+          <view class="swiper-item">
+            <image style="width: 100%; height: 150px;" src="../../images/banner1.png"></image>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="swiper-item">
+            <image style="width: 100%; height: 150px;" src="../../images/banner2.png"></image>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="swiper-item">
+            <image style="width: 100%; height: 150px;" src="../../images/banner3.png"></image>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view class="swiper-item">
+            <image style="width: 100%; height: 150px;" src="../../images/banner4.png"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="home-notice"></view>
+  <view class="home-module"></view>
+  <view class="home-container">
+    <view class="hc-title">快捷入口</view>
+    <view class="hc-navs">
+      <block wx:for="{{navs}}" wx:key="*this">
+        <navigator class="nav-item" url="/pages/topic-list/topic-list?type={{item.type}}&name={{item.name}}" hover-class="none">
+          <text class="iconfont {{item.icon}}"></text>
+          <text class="text">{{item.name}}</text>
+        </navigator>
+      </block>
+    </view>
+  </view>
+</view>
