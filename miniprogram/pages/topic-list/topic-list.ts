@@ -1,9 +1,9 @@
 // pages/topic/topic.ts
 const localTopic = require("../../data/topicList")
 import { NAV_TYPES } from '../../utils/constant'
+import { handleTime } from '../../utils/util'
 const PAGE_SIZE = 16
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -25,14 +25,18 @@ Page({
     const key = Object.keys(NAV_TYPES)[index]
     if (key.toString() === 'all') {
       let topicList: any = []
-      Object.values(localTopic.topicList).forEach((item: any) => item.map((v: any) => topicList.push(v)))
+      Object.values(localTopic.topicList).forEach((arr: any) => arr.map((item: any) => topicList.push(
+        Object.assign({}, item, { updateAt: handleTime(item.updateAt) })
+      )))
       this.setData({
         topicList: topicList,
         topicKey: key
       })
     } else {
       this.setData({
-        topicList: localTopic.topicList[key],
+        topicList: localTopic.topicList[key].map((item: any) => {
+          return Object.assign({}, item, { updateAt: handleTime(item.updateAt) })
+        }),
         topicKey: key
       })
     }
@@ -47,20 +51,20 @@ Page({
     this.setData({
       totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
     })
-    console.log(this.data.totalPage)
     this.setCurrentPageData()
   },
   /**
    * 题目跳转
    */
   handleJump(e: any) {
-    const { exercisekey, title, index, level } = e.currentTarget.dataset
+    const { exercisekey, title, index, level, updateat } = e.currentTarget.dataset
     const queryTopic = {
       exerciseKey: exercisekey,
-      topicKey: this.data.topicKey,
       title: title,
       index: index,
-      level: level
+      level: level,
+      updateAt: updateat,
+      topicKey: this.data.topicKey
     }
     // 添加缓存
     wx.setStorageSync('queryTopic', queryTopic)

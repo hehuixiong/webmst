@@ -13,7 +13,7 @@
         <van-rate size="14px" readonly value="{{ level }}" />
       </view>
       <view class="time">
-        <text>更新时间：2022-04-10</text>
+        <text>更新时间：{{updateAt}}</text>
       </view>
     </view>
   </block>

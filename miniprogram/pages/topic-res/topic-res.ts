@@ -16,13 +16,14 @@ Page({
     topicIndex: 0,
     topicSum: 0,
     topicKey: '',
-    level: 0
+    level: 0,
+    updateAt: ''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const { exerciseKey, title, index, topicKey, level } = wx.getStorageSync('queryTopic')
+    const { exerciseKey, title, index, topicKey, level, updateAt } = wx.getStorageSync('queryTopic')
     this.setData({
       topic: localTopicRes?.topicRes[exerciseKey]?.topic,
       answer: localTopicRes?.topicRes[exerciseKey]?.answer,
@@ -30,7 +31,8 @@ Page({
       topicIndex: Number(index),
       topicKey: topicKey,
       topicSum: localTopicList.topicList[topicKey].length,
-      level: level
+      level: level,
+      updateAt: updateAt
     })
     this.setCurrentTopic(this.data.topicIndex)
     setWatcher(this)

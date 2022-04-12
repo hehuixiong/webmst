@@ -3,7 +3,7 @@
   <view class="topic-container">
     <view class="tc-list">
       <block wx:for="{{topicPageList}}" wx:key="*this">
-        <view class="tc-item" bindtap="handleJump" data-index="{{index}}" data-title="{{item.title}}" data-exerciseKey="{{item.exerciseKey}}" data-level="{{item.level}}">
+        <view class="tc-item" bindtap="handleJump" data-index="{{index}}" data-title="{{item.title}}" data-exercisekey="{{item.exerciseKey}}" data-level="{{item.level}}" data-updateat="{{item.updateAt}}">
           <view class="tc-item__title">
             <view class="title">
               <text>第{{index + 1}}题：{{item.title}}</text>
