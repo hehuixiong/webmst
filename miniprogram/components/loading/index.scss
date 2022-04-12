@@ -1,0 +1,57 @@
+/*按钮loading*/
+.btn-loading{
+  position: relative;
+  width: 36rpx;
+  height: 36rpx;
+}
+.btn-loading .outer {
+  opacity: .9;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+}
+.btn-loading .inner {
+  width: 14rpx;
+  height: 14rpx;
+  opacity: .9;
+  border-radius: 50%;
+  position: absolute;
+  left: 12rpx;
+  top: 12rpx;
+}
+.btn-loading .outer.animation{
+  animation: spin-right 0.4s linear infinite normal;
+  animation-delay: 0;
+}
+.btn-loading .inner.animation{
+  animation: spin-left 0.4s linear infinite normal;
+  animation-delay: 0;
+}
+@keyframes spin-left {
+  from {
+    transform: rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: rotate(-180deg);
+    opacity: 1.0;
+  }
+  to {
+    transform: rotate(-360deg);
+    opacity: 0.2;
+  }
+}
+@keyframes spin-right {
+  from {
+    transform: rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: rotate(180deg);
+    opacity: 1.0;
+  }
+  to {
+    transform: rotate(360deg);
+    opacity: 0.2;
+  }
+}

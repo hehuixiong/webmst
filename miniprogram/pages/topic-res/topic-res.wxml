@@ -8,8 +8,13 @@
     <view class="title">题目：{{title}}</view>
     <rich-text nodes="{{topic}}"></rich-text>
     <view class="difficulty">
-      <text class="level">难度：*****</text>
-      <text class="time">更新时间：2022-04-10</text>
+      <view class="level">
+        <text>难度：</text>
+        <van-rate size="14px" readonly value="{{ level }}" />
+      </view>
+      <view class="time">
+        <text>更新时间：2022-04-10</text>
+      </view>
     </view>
   </block>
   <view style="margin-top: 20px;"></view>

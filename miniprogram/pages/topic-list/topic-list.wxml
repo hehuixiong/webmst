@@ -2,8 +2,8 @@
   <view class="sort-container"></view>
   <view class="topic-container">
     <view class="tc-list">
-      <block wx:for="{{topicList}}" wx:key="*this">
-        <view class="tc-item" bindtap="handleJump" data-index="{{index}}" data-title="{{item.title}}" data-exerciseKey="{{item.exerciseKey}}">
+      <block wx:for="{{topicPageList}}" wx:key="*this">
+        <view class="tc-item" bindtap="handleJump" data-index="{{index}}" data-title="{{item.title}}" data-exerciseKey="{{item.exerciseKey}}" data-level="{{item.level}}">
           <view class="tc-item__title">
             <view class="title">
               <text>第{{index + 1}}题：{{item.title}}</text>
@@ -13,7 +13,7 @@
           <view class="tc-item__desc">
             <view class="level">
               <text>难度：</text>
-              <text class="star">*****</text>
+              <van-rate size="14px" readonly value="{{ item.level }}" />
             </view>
             <view class="time">
               <text>更新时间：{{item.updateAt}}</text>
@@ -21,6 +21,13 @@
           </view>
         </view>
       </block>
+      <view class="loading-container">
+        <view class="loading" wx:if="{{loading}}">
+          <loading color="#ff3d3d"></loading>
+          <text style="margin-left: 10rpx">加载中...</text>
+        </view>
+        <view wx:if="{{noMore}}">没有更多了~</view>
+      </view>
     </view>
   </view>
 </view>

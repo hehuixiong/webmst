@@ -1,6 +1,7 @@
 // pages/topic/topic.ts
 const localTopic = require("../../data/topicList")
 import { NAV_TYPES } from '../../utils/constant'
+const PAGE_SIZE = 16
 Page({
 
   /**
@@ -8,14 +9,19 @@ Page({
    */
   data: {
     topicList: [],
-    topicKey: ''
+    topicPageList: [],
+    topicKey: '',
+    page: 1,
+    totalPage: 0,
+    noMore: false,
+    loading: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ type, name }) {
-    const index = Object.values(NAV_TYPES).filter((item) => item === Number(type))[0]
+  onLoad({ type, name }: any) {
+    const index = Object.values(NAV_TYPES).filter((item: any) => item === Number(type))[0]
     const key = Object.keys(NAV_TYPES)[index]
     if (key.toString() === 'all') {
       let topicList: any = []
@@ -34,22 +40,43 @@ Page({
     wx.setNavigationBarTitle({
       title: name || ''
     })
+
+    this.setData({
+      totalPage: Math.ceil(this.data.topicList.length / PAGE_SIZE)
+    })
+    this.setData({
+      totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
+    })
+    console.log(this.data.totalPage)
+    this.setCurrentPageData()
   },
   /**
    * 题目跳转
    */
   handleJump(e: any) {
-    const { exercisekey, title, index } = e.currentTarget.dataset
+    const { exercisekey, title, index, level } = e.currentTarget.dataset
     const queryTopic = {
       exerciseKey: exercisekey,
       topicKey: this.data.topicKey,
       title: title,
-      index: index
+      index: index,
+      level: level
     }
     // 添加缓存
     wx.setStorageSync('queryTopic', queryTopic)
     wx.navigateTo({
       url: '/pages/topic-res/topic-res'
+    })
+  },
+  /**
+   * 处理分页
+   */
+  setCurrentPageData() {
+    let begin = (this.data.page - 1) * PAGE_SIZE
+    let end = this.data.page * PAGE_SIZE
+    this.setData({
+      topicPageList: [...this.data.topicPageList, ...this.data.topicList.slice(begin, end)],
+      loading: false
     })
   },
   /**
@@ -91,7 +118,21 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
+    if(this.data.page == this.data.totalPage) {
+      this.setData({
+        noMore: true
+      })
+      return
+    }
 
+    let { page } = this.data
+    this.setData({
+      page: ++page,
+      loading: true
+    })
+    setTimeout(() => {
+      this.setCurrentPageData()
+    }, 500)
   },
 
   /**

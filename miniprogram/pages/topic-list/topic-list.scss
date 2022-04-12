@@ -1,4 +1,6 @@
 .topic-page{
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
   .sort-container{}
   .topic-container{
     .tc-list{
@@ -40,10 +42,11 @@
             font-size: 24rpx;
             display: flex;
             align-items: center;
-            .star{
-              color: #d3343b;
-              font-size: 40rpx;
-              margin-top: 5px;
+            .van-rate__item{
+              padding-right: 0!important;
+              .van-rate__icon {
+                color: var(--rate-icon-full-color,#ee0a24);
+              }
             }
           }
           .time{
@@ -51,6 +54,18 @@
           }
         }
       }
+    }
+  }
+  .loading-container{
+    text-align: center;
+    margin-top: 20rpx;
+    line-height: 74rpx;
+    font-size: 26rpx;
+    color: #666666;
+    .loading{
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

@@ -1,0 +1,4 @@
+<view class="btn-loading">
+  <view class="outer {{ animation ? 'animation' : '' }}" style="border: 1px solid {{color}};border-top-color: {{animation ? 'transparent': color}};border-bottom-color: {{animation ? 'transparent': color}};"></view>
+  <view class="inner {{ animation ? 'animation' : '' }}" style="border: 1px solid {{color}};border-left-color: transparent;border-top-color: transparent;border-right-color: {{animation ? color : 'transparent' }};"></view>
+</view>

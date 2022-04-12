@@ -32,11 +32,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 24rpx;
     color: #666666;
     margin-top: 20rpx;
-    .level{}
-    .time{}
+    .level{
+      font-size: 24rpx;
+      display: flex;
+      align-items: center;
+      .van-rate__item{
+        padding-right: 0!important;
+        .van-rate__icon {
+          color: var(--rate-icon-full-color,#ee0a24);
+        }
+      }
+    }
+    .time{
+      font-size: 24rpx;
+    }
   }
   .footer{
     position: fixed;

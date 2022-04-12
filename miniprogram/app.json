@@ -6,7 +6,8 @@
     "pages/my/my",
     "pages/logs/logs",
     "pages/topic-list/topic-list",
-    "pages/topic-res/topic-res"
+    "pages/topic-res/topic-res",
+    "components/loading/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,6 +15,5 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
