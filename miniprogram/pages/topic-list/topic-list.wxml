@@ -2,7 +2,7 @@
   <view class="sort-container"></view>
   <view class="topic-container">
     <view class="tc-list">
-      <block wx:for="{{topicPageList}}" wx:key="*this">
+      <block wx:for="{{topicPageList}}" wx:key="index">
         <view class="tc-item" bindtap="handleJump" data-index="{{index}}" data-title="{{item.title}}" data-exercisekey="{{item.exerciseKey}}" data-level="{{item.level}}" data-updateat="{{item.updateAt}}">
           <view class="tc-item__title">
             <view class="title">

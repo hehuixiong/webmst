@@ -134,9 +134,10 @@ Page({
       page: ++page,
       loading: true
     })
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       this.setCurrentPageData()
-    }, 500)
+      clearTimeout(timer)
+    }, Math.floor(Math.random() * (500 - 100) + 100))
   },
 
   /**

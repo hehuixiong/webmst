@@ -17,7 +17,8 @@ Page({
     topicSum: 0,
     topicKey: '',
     level: 0,
-    updateAt: ''
+    updateAt: '',
+    loading: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -56,23 +57,29 @@ Page({
         last: false
       })
     }
-    // 设置题目
-    const { exerciseKey, title } = localTopicList?.topicList[this.data.topicKey][val]
-    this.setData({
-      topic: localTopicRes?.topicRes[exerciseKey]?.topic || '',
-      answer: localTopicRes?.topicRes[exerciseKey]?.answer || '',
-      title: title
-    })
     // 回到顶部
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 0
     })
+    this.setData({ loading: true })
+    const timer = setTimeout(() => {
+      // 设置题目
+      const { exerciseKey, title } = localTopicList?.topicList[this.data.topicKey][val]
+      this.setData({
+        topic: localTopicRes?.topicRes[exerciseKey]?.topic || '',
+        answer: localTopicRes?.topicRes[exerciseKey]?.answer || '',
+        title: title,
+        loading: false
+      })
+      clearTimeout(timer)
+    }, Math.floor(Math.random() * (500 - 100) + 100))
   },
   /**
    * 上一题
    */
   prevQuestion() {
+    if (this.data.loading) return
     let val = this.data.topicIndex
     this.setData({ topicIndex: --val, answerShow: false })
   },
@@ -80,6 +87,7 @@ Page({
    * 下一题
    */
   nextQuestion() {
+    if (this.data.loading) return
     if (this.data.last) {
       wx.showModal({
         title: '提示',

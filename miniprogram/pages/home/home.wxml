@@ -30,7 +30,7 @@
   <view class="home-container">
     <view class="hc-title">快捷入口</view>
     <view class="hc-navs">
-      <block wx:for="{{navs}}" wx:key="*this">
+      <block wx:for="{{navs}}" wx:key="index">
         <navigator class="nav-item" url="/pages/topic-list/topic-list?type={{item.type}}&name={{item.name}}" hover-class="none">
           <text class="iconfont {{item.icon}}"></text>
           <text class="text">{{item.name}}</text>

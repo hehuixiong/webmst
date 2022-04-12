@@ -74,6 +74,17 @@
       background-color: #4fc069;
     }
   }
+  .loading{
+    padding-top: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text{
+      margin-left: 20rpx;
+      font-size: 26rpx;
+      color: #666666;
+    }
+  }
 }
 .markdown-body{
   -webkit-text-size-adjust: 100%;
