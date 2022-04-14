@@ -18,7 +18,7 @@
   <view class="home-notice">
     <van-notice-bar
       left-icon="volume-o"
-      text="截止2022/04/14，共录入面试题：940 题"
+      text="截止{{currentTime}}，共录入面试题：930 题"
     />
   </view>
   <view class="home-module">

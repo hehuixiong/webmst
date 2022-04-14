@@ -108,7 +108,17 @@ Page({
         name: '计算机基础',
         type: NAV_TYPES.basis
       },
-    ]
+    ],
+    currentTime: ''
+  },
+  onLoad() {
+    let date = new Date()
+    const yyyy = date.getFullYear()
+    const mm = date.getMonth() + 1
+    const dd = date.getDate()
+    this.setData({
+      currentTime: `${yyyy}/${mm}/${dd}`
+    })
   },
   go() {
     wx.showToast({

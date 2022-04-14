@@ -46,6 +46,14 @@ Page({
     }
   },
 
+  go() {
+    wx.showToast({
+      title: '敬请期待...',
+      icon: 'none',
+      duration: 2000
+    })
+  },
+
   setCurrentTopic(val: any) {
     if (val === 0) {
       this.setData({ first: true })

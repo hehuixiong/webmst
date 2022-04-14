@@ -338,7 +338,7 @@ Page({
                     }
                   })
                   wx.showModal({
-                    title: '温馨提示',
+                    title: '提示',
                     content: '教程下载地址复制成功，请前往浏览器下载。',
                     confirmText: '我知道了',
                     showCancel: false,

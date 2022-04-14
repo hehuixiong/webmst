@@ -25,7 +25,7 @@
       <view wx:else style="color: #999999;font-size: 12px;">开发中...</view>
     </block>
     <view class="footer">
-      <text class="collect">加入收藏</text>
+      <text class="collect" bindtap="go">加入收藏</text>
       <text class="continue" wx:if="{{answerShow}}" bindtap="nextQuestion">继续答题</text>
       <text class="answer" wx:else bindtap="onShowAnswer">查看答案</text>
     </view>

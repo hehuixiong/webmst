@@ -14,7 +14,7 @@
             <text>剩余数量：</text>{{item.count}}
           </view>
           <view class="btns">
-            <van-button plain icon="share" type="danger" size="small" open-type="share" data-title="{{item.title}}" bindtap="onShare"></van-button>
+            <van-button plain icon="share-o" type="danger" size="small" open-type="share" data-title="{{item.title}}" bindtap="onShare"></van-button>
             <van-button plain type="danger" size="small" bindtap="immediatelyGet" data-title="{{index+1}}. {{item.title}}" data-course="{{item.course}}" data-index="{{index}}"><text class="text">立即领取</text></van-button>
           </view>
         </view>
