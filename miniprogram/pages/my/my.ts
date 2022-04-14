@@ -1,66 +1,63 @@
-// pages/my/my.ts
+// 获取应用实例
+const app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    userInfo: {},
+    hasUserInfo: false
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad() {
-
+    this.setUserInfo()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  getUserProfile(e: any) {
+    console.log(e)
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log(res)
+        wx.setStorageSync('userInfo', {
+          avatarUrl: res.userInfo.avatarUrl,
+          nickName: res.userInfo.nickName,
+          timeStamp: e.timeStamp,
+          hasUserInfo: true
+        })
+        this.setUserInfo()
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  setUserInfo() {
+    const { avatarUrl, nickName, timeStamp, hasUserInfo } = wx.getStorageSync('userInfo')
+    this.setData({ userInfo: { avatarUrl, nickName, timeStamp }, hasUserInfo })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  go() {
+    wx.showToast({
+      title: '敬请期待...',
+      icon: 'none',
+      duration: 2000
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  AboutUs() {
+    wx.showModal({
+      title: '提示',
+      content: '嗨！你好，非常感谢你对题材的支持，题材将会做的更好，分享更多有价值的内容，也祝你拿到大offer',
+      confirmText: '已了解',
+      showCancel: false,
+      success (res) {
+        if (res.confirm) {
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
+  onShareAppMessage(res: any) {
+    console.log(res)
+    return{
+      path:'/pages/my/my'
+    }
   }
 })

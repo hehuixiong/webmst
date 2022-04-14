@@ -1,1 +1,191 @@
-/* pages/my/my.wxss */
+.my-container{
+  height: 100vh;
+  background: #f8f8f8;
+  .userinfo-wrapper{
+    padding-top: 50px;
+    background: linear-gradient(#c2a6f9, #7e68f3);
+    position: relative;
+    overflow: hidden;
+    &::after{
+      position: absolute;
+      content: '';
+      width: 500rpx;
+      height: 300rpx;
+      border-radius: 50%;
+      background: rgba($color: #c2a6f9, $alpha: 0.6);
+      left: -256rpx;
+      bottom: -192rpx;
+    }
+    &::before{
+      position: absolute;
+      content: '';
+      width: 60rpx;
+      height: 60rpx;
+      border-radius: 50%;
+      background: rgba($color: #c2a6f9, $alpha: 0.6);
+      right: 30%;
+      top: 40%;
+    }
+  }
+  .userinfo{
+    display: flex;
+    align-items: center;
+    padding-bottom: 60rpx;
+    padding-left: 20rpx;
+    position: relative;
+    z-index: 1;
+    .userinfo-avatar {
+      overflow: hidden;
+      width: 150rpx;
+      height: 150rpx;
+      margin: 20rpx;
+      border-radius: 50%;
+      background-color: #ffffff;
+      display: flex;
+      .nologin{
+        width: 100rpx;
+        height: 120rpx;
+        margin: auto;
+      }
+    }
+    .userinfo-info{
+      display: flex;
+      flex-direction: column;
+      text{
+        color: #ffffff;
+      }
+      .nickname{
+        font-size: 38rpx;
+        font-weight: bold;
+      }
+      .desc{
+        margin-top: 10rpx;
+        font-size: 30rpx;
+      }
+      .number{
+        margin-top: 8rpx;
+        font-size: 28rpx;
+      }
+    }
+  }
+  .group-container{
+    background: #f8f8f8;
+    border-radius: 32rpx 32rpx 0 0;
+    overflow: hidden;
+    margin-top: -30rpx;
+    position: relative;
+    z-index: 1;
+    padding: 0 0 40rpx 0;
+    .communication-group{
+      display: flex;
+      margin: 32rpx;
+      margin-bottom: 20rpx;
+      background-color: #fff;
+      padding: 40rpx 32rpx;
+      border-radius: 32rpx;
+      align-items: center;
+      .text-container{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        .title{
+          font-size: 30rpx;
+          color: #666666;
+          font-weight: bold;
+        }
+        .desc{
+          font-size: 20rpx;
+          margin-top: 10rpx;
+          color: #666666;
+        }
+      }
+      .go{
+        display: flex;
+        flex: 0 0 auto;
+        background: #f5e1c0;
+        font-size: 28rpx;
+        border-radius: 30px;
+        padding: 8rpx 22rpx;
+        color: #453112;
+      }
+    }
+    .vip-group{
+      background: #f5e1c0;
+      border-radius: 32rpx 32rpx 0 0;
+      display: flex;
+      margin: 0 32rpx;
+      padding: 32rpx;
+      align-items: center;
+      .text-icon{
+        display: flex;
+        align-items: center;
+        flex: 1;
+        .icon{
+          background: #3f2c0f;
+          border-radius: 50%;
+          width: 60rpx;
+          height: 60rpx;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 18rpx;
+          .icon-vip{
+            font-size: 42rpx;
+          }
+        }
+        .text{
+          color: #453112;
+          font-size: 36rpx;
+        }
+      }
+      .understand{
+        padding: 8rpx 20rpx;
+        color: #fff;
+        background: #3f2c0f;
+        font-size: 28rpx;
+        border-radius: 30px;
+        flex: 0 0 auto;
+      }
+    }
+    .cell-groip{
+      margin: 20rpx 32rpx;
+      border-radius: 32rpx;
+      background: #fff;
+      padding: 0 32rpx;
+      .cell-item{
+        display: flex;
+        align-items: center;
+        padding: 32rpx 0;
+        border-bottom: 1rpx solid #f8f8f8;
+        &:last-child{
+          border-bottom: none;
+        }
+        .text-icon{
+          flex: 1;
+          .text{
+            color: #333333;
+            font-size: 30rpx;
+          }
+        }
+        .is-link{
+          flex: 0 0 auto;
+          .van-icon{
+            color: #999999;
+          }
+        }
+      }
+      &.cell-groip-top{
+        margin-top: 0;
+        border-top-left-radius: 0;
+      }
+    }
+    .footer{
+      text-align: center;
+      margin-top: 60rpx;
+      text{
+        font-size: 24rpx;
+        color: #999999;
+      }
+    }
+  }
+}

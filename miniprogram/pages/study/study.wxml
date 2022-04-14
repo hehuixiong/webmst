@@ -1,2 +1,25 @@
-<!--pages/study/study.wxml-->
-<text>pages/study/study.wxml</text>
+<view class="study-container">
+  <view class="study-list">
+    <view class="study-item" wx:for="{{studyList}}" wx:key="index">
+      <view class="sui-image">
+        <text class="ch">免费资源</text>
+        <text class="en">RESOURCES</text>
+      </view>
+      <view class="sui-content">
+        <view class="title">
+          <!-- <text class="tag">免费</text> -->
+          <text>{{index+1}}. {{item.title}}</text>
+        </view>
+        <view class="get-wrapper">
+          <view class="has-brought">
+            <text>剩余数量：</text>{{item.count}}
+          </view>
+          <view class="btns">
+            <van-button plain icon="share-o" type="danger" size="small" open-type="share" data-title="{{item.title}}" bindtap="onShare"></van-button>
+            <van-button plain type="danger" size="small"><text class="text">立即领取</text></van-button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

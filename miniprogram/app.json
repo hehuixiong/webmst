@@ -4,7 +4,6 @@
     "pages/study/study",
     "pages/vip/vip",
     "pages/my/my",
-    "pages/logs/logs",
     "pages/topic-list/topic-list",
     "pages/topic-res/topic-res",
     "components/loading/index"
@@ -15,5 +14,37 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#7e68f3",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/icon_home.png",
+        "selectedIconPath": "images/icon_home_active.png"
+      },
+      {
+        "pagePath": "pages/study/study",
+        "text": "学习",
+        "iconPath": "images/icon_study.png",
+        "selectedIconPath": "images/icon_study_active.png"
+      },
+      {
+        "pagePath": "pages/vip/vip",
+        "text": "增值",
+        "iconPath": "images/icon_vip.png",
+        "selectedIconPath": "images/icon_vip_active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/icon_my.png",
+        "selectedIconPath": "images/icon_my_active.png"
+      }
+    ]
+  }
 }

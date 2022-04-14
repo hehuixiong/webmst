@@ -31,6 +31,6 @@
     </view>
   </view>
   <view class="loading" wx:else>
-    <loading color="#ff3d3d"></loading><text>加载中...</text>
+    <loading color="#7e68f3"></loading><text>加载中...</text>
   </view>
 </view>

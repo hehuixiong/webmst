@@ -1,2 +1,83 @@
-<!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="my-container">
+  <view class="userinfo-wrapper">
+    <view class="userinfo">
+      <block wx:if="{{!hasUserInfo}}">
+        <view class="userinfo-avatar" bindtap="getUserProfile">
+          <image class="nologin" src="../../images/nologin.png"></image>
+        </view>
+        <view class="userinfo-info" bindtap="getUserProfile">
+          <text class="nickname">快捷登录</text>
+          <text class="desc">拼搏到无能为力 坚持到感动自己</text>
+        </view>
+      </block>
+      <block wx:else>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <view class="userinfo-info">
+          <text class="nickname">{{userInfo.nickName}}</text>
+          <text class="desc">拼搏到无能为力 坚持到感动自己</text>
+          <text class="number">用户ID：{{userInfo.timeStamp}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="group-container">
+    <view class="communication-group">
+      <view class="text-container">
+        <text class="title">面试交流群</text>
+        <text class="desc">加入交流群，分享面试经验，一起高薪就业</text>
+      </view>
+      <view class="go" bindtap="go">立即加入</view>
+    </view>
+    <view class="vip-group">
+      <view class="text-icon">
+        <text class="icon">
+          <text class="iconfont icon-vip"></text>
+        </text>
+        <text class="text">VIP专属权益</text>
+      </view>
+      <view class="understand" bindtap="go">了解详情</view>
+    </view>
+    <view class="cell-groip cell-groip-top">
+      <view class="cell-item" bindtap="go">
+        <view class="text-icon">
+          <text class="iconfont"></text>
+          <text class="text">我的收藏</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
+      </view>
+      <view class="cell-item" bindtap="go">
+        <view class="text-icon">
+          <text class="iconfont"></text>
+          <text class="text">问题反馈</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
+      </view>
+      <view class="cell-item" open-type="share">
+        <view class="text-icon">
+          <text class="iconfont"></text>
+          <text class="text">分享小程序</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
+      </view>
+    </view>
+    <view class="cell-groip">
+      <view class="cell-item" bindtap="AboutUs">
+        <view class="text-icon">
+          <text class="iconfont"></text>
+          <text class="text">关于我们</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
+      </view>
+      <view class="cell-item" bindtap="go">
+        <view class="text-icon">
+          <text class="iconfont"></text>
+          <text class="text">赞赏支持</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
+      </view>
+    </view>
+    <view class="footer">
+      <text>Copyright © 2019-2022 前端面试题材</text>
+    </view>
+  </view>
+</view>

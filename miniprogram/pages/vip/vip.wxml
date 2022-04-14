@@ -1,2 +1,3 @@
-<!--pages/vip/vip.wxml-->
-<text>pages/vip/vip.wxml</text>
+<view class="vip-container">
+  开发中...
+</view>

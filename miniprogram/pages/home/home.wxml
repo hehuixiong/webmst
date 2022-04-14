@@ -4,11 +4,6 @@
       <block>
         <swiper-item>
           <view class="swiper-item">
-            <image style="width: 100%; height: 150px;" src="../../images/banner1.png"></image>
-          </view>
-        </swiper-item>
-        <swiper-item>
-          <view class="swiper-item">
             <image style="width: 100%; height: 150px;" src="../../images/banner2.png"></image>
           </view>
         </swiper-item>
@@ -17,18 +12,28 @@
             <image style="width: 100%; height: 150px;" src="../../images/banner3.png"></image>
           </view>
         </swiper-item>
-        <swiper-item>
-          <view class="swiper-item">
-            <image style="width: 100%; height: 150px;" src="../../images/banner4.png"></image>
-          </view>
-        </swiper-item>
       </block>
     </swiper>
   </view>
   <view class="home-notice"></view>
-  <view class="home-module"></view>
+  <view class="home-module">
+    <view class="module-wrapper bg1" bindtap="go">
+      <view class="title">VIP专属权益</view>
+      <view class="btn">了解详情</view>
+      <view class="icon-wrapper">
+        <view class="iconfont icon-aixin"></view>
+      </view>
+    </view>
+    <view class="module-wrapper bg2" bindtap="go">
+      <view class="title">面试交流群</view>
+      <view class="btn">立即加入</view>
+      <view class="icon-wrapper">
+        <view class="iconfont icon-yuandianda"></view>
+      </view>
+    </view>
+  </view>
   <view class="home-container">
-    <view class="hc-title">快捷入口</view>
+    <view class="hc-title">题材分类</view>
     <view class="hc-navs">
       <block wx:for="{{navs}}" wx:key="index">
         <navigator class="nav-item" url="/pages/topic-list/topic-list?type={{item.type}}&name={{item.name}}" hover-class="none">
