@@ -15,7 +15,12 @@
       </block>
     </swiper>
   </view>
-  <view class="home-notice"></view>
+  <view class="home-notice">
+    <van-notice-bar
+      left-icon="volume-o"
+      text="截止2022/04/14，共录入面试题：940 题"
+    />
+  </view>
   <view class="home-module">
     <view class="module-wrapper bg1" bindtap="go">
       <view class="title">VIP专属权益</view>

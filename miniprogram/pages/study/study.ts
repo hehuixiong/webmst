@@ -312,7 +312,8 @@ Page({
    * 立即领取
    */
   immediatelyGet(e: any) {
-    const { title, course } = e.target.dataset
+    const { title, course, index } = e.target.dataset
+    const _this = this
     wx.showModal({
       title: '教程名称',
       content: title,
@@ -341,7 +342,17 @@ Page({
                     content: '教程下载地址复制成功，请前往浏览器下载。',
                     confirmText: '我知道了',
                     showCancel: false,
-                    confirmColor: '#57bd6a'
+                    confirmColor: '#57bd6a',
+                    success (res) {
+                      if (res.confirm) {
+                        let { count } = _this.data.studyList[index]
+                        const setKey =  `studyList[${index}].count`
+                        if (count === 0) return
+                        _this.setData({
+                          [setKey]: --count
+                        })
+                      }
+                    }
                   })
                 }
               })

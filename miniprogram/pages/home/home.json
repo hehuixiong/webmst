@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "前端面试题材"
+  "navigationBarTitleText": "前端面试题材",
+  "usingComponents": {
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
+  }
 }
