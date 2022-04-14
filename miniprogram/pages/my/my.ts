@@ -43,6 +43,7 @@ Page({
       content: '嗨！你好，非常感谢你对题材的支持，题材将会做的更好，分享更多有价值的内容，也祝你拿到大offer',
       confirmText: '已了解',
       showCancel: false,
+      confirmColor: '#57bd6a',
       success (res) {
         if (res.confirm) {
         } else if (res.cancel) {

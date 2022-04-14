@@ -2,5 +2,5 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"
   },
-  "navigationBarTitleText": "学习资料"
+  "navigationBarTitleText": "学习视频资源"
 }

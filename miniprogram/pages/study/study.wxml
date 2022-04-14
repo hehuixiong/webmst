@@ -16,7 +16,7 @@
           </view>
           <view class="btns">
             <van-button plain icon="share-o" type="danger" size="small" open-type="share" data-title="{{item.title}}" bindtap="onShare"></van-button>
-            <van-button plain type="danger" size="small"><text class="text">立即领取</text></van-button>
+            <van-button plain type="danger" size="small" bindtap="immediatelyGet" data-title="{{index+1}}. {{item.title}}" data-course="{{item.course}}"><text class="text">立即领取</text></van-button>
           </view>
         </view>
       </view>
