@@ -7,7 +7,6 @@
       </view>
       <view class="sui-content">
         <view class="title">
-          <!-- <text class="tag">免费</text> -->
           <text>{{index+1}}. {{item.title}}</text>
         </view>
         <view class="get-wrapper">
