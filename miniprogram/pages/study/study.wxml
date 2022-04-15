@@ -1,6 +1,6 @@
 <view class="study-container">
   <view class="study-list">
-    <view class="study-item" wx:for="{{studyList}}" wx:key="index">
+    <view class="study-item" wx:for="{{studyPageList}}" wx:key="index">
       <view class="sui-image">
         <text class="ch">免费资源</text>
         <text class="en">RESOURCES</text>
@@ -19,6 +19,13 @@
           </view>
         </view>
       </view>
+    </view>
+    <view class="loading-container">
+      <view class="loading" wx:if="{{loading}}">
+        <loading color="#7e68f3"></loading>
+        <text style="margin-left: 10rpx">加载中...</text>
+      </view>
+      <view wx:if="{{noMore}}">没有更多了~</view>
     </view>
   </view>
 </view>

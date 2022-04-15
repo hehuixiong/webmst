@@ -24,25 +24,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const { exerciseKey, title, index, topicKey, level, updateAt } = wx.getStorageSync('queryTopic')
+    const { index, topicKey, level, updateAt } = wx.getStorageSync('queryTopic')
     this.setData({
-      topic: localTopicRes?.topicRes[exerciseKey]?.topic,
-      answer: localTopicRes?.topicRes[exerciseKey]?.answer,
-      title: title,
       topicIndex: Number(index),
       topicKey: topicKey,
       topicSum: localTopicList.topicList[topicKey].length,
       level: level,
       updateAt: updateAt
     })
-    this.setCurrentTopic(this.data.topicIndex)
+    this.setCurrentTopic(index)
     setWatcher(this)
   },
 
   watch: {
     // 需要监听的字段
-    topicIndex(val: any) {
-      this.setCurrentTopic(val)
+    topicIndex(newIndex: any) {
+      this.setCurrentTopic(newIndex)
     }
   },
 
@@ -54,10 +51,10 @@ Page({
     })
   },
 
-  setCurrentTopic(val: any) {
-    if (val === 0) {
+  setCurrentTopic(index: any) {
+    if (index === 0) {
       this.setData({ first: true })
-    } else if (val === this.data.topicSum - 1) {
+    } else if (index === this.data.topicSum - 1) {
       this.setData({ last: true })
     } else {
       this.setData({
@@ -73,10 +70,46 @@ Page({
     this.setData({ loading: true })
     const timer = setTimeout(() => {
       // 设置题目
-      const { exerciseKey, title } = localTopicList?.topicList[this.data.topicKey][val]
+      const { exerciseKey, title } = localTopicList?.topicList[this.data.topicKey][index]
+      let topic = localTopicRes?.topicRes[exerciseKey]?.topic || ''
+      if (topic) {
+        topic = topic.replace(/<code>/gi, (match: any) => {
+          return match === '<code>' ? '<p>' : match
+        })
+        topic = topic.replace(/<\/code>/gi, (match: any) => {
+          return match === '</code>' ? '</p>' : match
+        })
+        topic = topic.replace(/<pre>/gi, (match: any) => {
+          return match === '<pre>' ? '<p>' : match
+        })
+        topic = topic.replace(/<\/pre>/gi, (match: any) => {
+          return match === '</pre>' ? '</p>' : match
+        })
+        topic = topic.replace(/(29, 31, 33)/gi, (match: any) => {
+          return match === '29, 31, 33' ? '50, 43, 8' : match
+        })
+      }
+      let answer = localTopicRes?.topicRes[exerciseKey]?.answer || ''
+      if (answer) {
+        answer = answer.replace(/<code>/gi, (match: any) => {
+          return match === '<code>' ? '<span>' : match
+        })
+        answer = answer.replace(/<\/code>/gi, (match: any) => {
+          return match === '</code>' ? '</span>' : match
+        })
+        answer = answer.replace(/<pre>/gi, (match: any) => {
+          return match === '<pre>' ? '<span>' : match
+        })
+        answer = answer.replace(/<\/pre>/gi, (match: any) => {
+          return match === '</pre>' ? '</span>' : match
+        })
+        answer = answer.replace(/(29, 31, 33)/gi, (match: any) => {
+          return match === '29, 31, 33' ? '50, 43, 8' : match
+        })
+      }
       this.setData({
-        topic: localTopicRes?.topicRes[exerciseKey]?.topic || '',
-        answer: localTopicRes?.topicRes[exerciseKey]?.answer || '',
+        topic: topic,
+        answer: answer,
         title: title,
         loading: false
       })
@@ -88,8 +121,8 @@ Page({
    */
   prevQuestion() {
     if (this.data.loading) return
-    let val = this.data.topicIndex
-    this.setData({ topicIndex: --val, answerShow: false })
+    let newIndex = this.data.topicIndex
+    this.setData({ topicIndex: --newIndex, answerShow: false })
   },
   /**
    * 下一题
@@ -114,8 +147,8 @@ Page({
       })
       return
     }
-    let val = this.data.topicIndex
-    this.setData({ topicIndex: ++val, answerShow: false })
+    let newIndex = this.data.topicIndex
+    this.setData({ topicIndex: ++newIndex, answerShow: false })
   },
 
   onShowAnswer() {

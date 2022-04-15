@@ -22,7 +22,7 @@
     <block wx:if="{{answerShow}}">
       <view class="analysis">答案与解析</view>
       <rich-text wx:if="{{answer}}" nodes="{{answer}}"></rich-text>
-      <view wx:else style="color: #999999;font-size: 12px;">开发中...</view>
+      <view wx:else style="color: #999999;font-size: 12px;">答案正在整理中...</view>
     </block>
     <view class="footer">
       <text class="collect" bindtap="go">加入收藏</text>
