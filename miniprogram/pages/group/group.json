@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "扫码加入交流群",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index"
+  }
+}

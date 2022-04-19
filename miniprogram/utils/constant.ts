@@ -1,44 +1,44 @@
 export const NAV_TYPES = {
   // 全部
-  all: 0,
+  all: 'all',
   // 选择题
-  choice: 1,
+  choice: 'choice',
   // JavaScript
-  javaScript: 2,
+  javaScript: 'javaScript',
   // CSS
-  css: 3,
+  css: 'css',
   // HTML
-  html: 4,
+  html: 'html',
   // 编程题
-  programme: 5,
+  programme: 'programme',
   // React.js
-  reactJs: 6,
+  reactJs: 'reactJs',
   // Vue.js
-  vueJs: 7,
+  vueJs: 'vueJs',
   // 趣味题,
-  interest: 8,
+  interest: 'interest',
   // LeetCode
-  leetCode: 9,
+  leetCode: 'leetCode',
   // 算法
-  algorithm: 10,
+  algorithm: 'algorithm',
   // 计算机网络
-  network: 11,
+  network: 'network',
   // Node.js
-  nodeJs: 12,
+  nodeJs: 'nodeJs',
   // TypeScript
-  typeScript: 13,
+  typeScript: 'typeScript',
   // 性能优化
-  performance: 14,
+  performance: 'performance',
   // 前端安全
-  security: 15,
+  security: 'security',
   // ES6
-  es6: 16,
+  es6: 'es6',
   // 设计模式
-  designMode: 17,
+  designMode: 'designMode',
   // 工程化
-  engineering: 18,
+  engineering: 'engineering',
   // 工具
-  tools: 19,
+  tools: 'tools',
   // 计算机基础
-  basis: 20
+  basis: 'basis'
 }

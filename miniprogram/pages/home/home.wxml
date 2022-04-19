@@ -4,7 +4,7 @@
       <block>
         <swiper-item>
           <view class="swiper-item">
-            <image style="width: 100%; height: 150px;" src="https://s-gz-2804-hero-image.oss.dogecdn.com/banner3.png"></image>
+            <image style="width: 100%; height: 150px;" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220419193836.png"></image>
           </view>
         </swiper-item>
       </block>
@@ -13,7 +13,7 @@
   <view class="home-notice">
     <van-notice-bar
       left-icon="volume-o"
-      text="截止{{currentTime}}，共录入面试题：930 题"
+      text="截止{{currentTime}}，共录入面试题：{{pageTotal}} 题"
     />
   </view>
   <view class="home-module">
@@ -24,7 +24,7 @@
         <view class="iconfont icon-aixin"></view>
       </view>
     </view>
-    <view class="module-wrapper bg2" bindtap="go">
+    <view class="module-wrapper bg2" bindtap="addGroup">
       <view class="title">面试交流群</view>
       <view class="btn">立即加入</view>
       <view class="icon-wrapper">
@@ -36,9 +36,9 @@
     <view class="hc-title">题材分类</view>
     <view class="hc-navs">
       <block wx:for="{{navs}}" wx:key="index">
-        <navigator class="nav-item" url="/pages/topic-list/topic-list?type={{item.type}}&name={{item.name}}" hover-class="none">
+        <navigator class="nav-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}" hover-class="none">
           <text class="iconfont {{item.icon}}"></text>
-          <text class="text">{{item.name}}</text>
+          <text class="text">{{item.label}}</text>
         </navigator>
       </block>
     </view>

@@ -37,6 +37,11 @@ Page({
       duration: 2000
     })
   },
+  addGroup() {
+    wx.navigateTo({
+      url: '/pages/group/group'
+    })
+  },
   AboutUs() {
     wx.showModal({
       title: '提示',

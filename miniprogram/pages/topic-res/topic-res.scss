@@ -100,4 +100,102 @@ rich-text{
   .ant-image-img{
     width: 100%!important;
   }
+  .ant-radio-wrapper {
+    box-sizing: border-box;
+    padding: 0;
+    color: rgba(0,0,0,.85);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    font-feature-settings: "tnum","tnum";
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    margin: 0 8px 0 0;
+    cursor: pointer;
+    .ant-radio {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      color: rgba(0,0,0,.85);
+      font-size: 14px;
+      font-variant: tabular-nums;
+      line-height: 1.5715;
+      list-style: none;
+      font-feature-settings: "tnum","tnum";
+      position: relative;
+      top: 0.2em;
+      display: inline-block;
+      outline: none;
+      cursor: pointer;
+      margin-right: 20rpx;
+    }
+    .ant-radio-checked {
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #1890ff;
+        border-radius: 50%;
+        visibility: hidden;
+        animation: antRadioEffect .36s ease-in-out;
+        animation-fill-mode: both;
+        content: "";
+      }
+      .ant-radio-inner {
+        border-color: #1890ff;
+        &::after{
+          transform: scale(.5);
+          opacity: 1;
+          transition: all .3s cubic-bezier(.78,.14,.15,.86);
+        }
+      }
+    }
+    .ant-radio-inner {
+      position: relative;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 16px;
+      height: 16px;
+      background-color: #fff;
+      border: 1px solid #d9d9d9;
+      border-radius: 50%;
+      transition: all .3s;
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 16px;
+        height: 16px;
+        margin-top: -8px;
+        margin-left: -8px;
+        background-color: #1890ff;
+        border-top: 0;
+        border-left: 0;
+        border-radius: 16px;
+        transform: scale(0);
+        opacity: 0;
+        transition: all .3s cubic-bezier(.78,.14,.15,.86);
+        content: " ";
+      }
+    }
+  }
+}
+
+.hljs.wxml-pre.wxml-block view:nth-child(1){
+  margin-left: 60rpx;
+}
+.wxml-li-text {
+  overflow: hidden!important;
+}
+.hljs-number {
+  display: none!important;
+}
+.wxml-pre{
+  white-space: pre-line!important;
 }

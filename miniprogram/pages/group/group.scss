@@ -1,0 +1,18 @@
+.group-container{
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .text{
+    line-height: 62rpx;
+  }
+  button{
+    margin: 40rpx 0 50rpx;
+    height:76rpx;
+    width: 300rpx;
+  }
+  image{
+    width: 500rpx;
+    height: 500rpx;
+  }
+}

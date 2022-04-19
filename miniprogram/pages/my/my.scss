@@ -42,11 +42,23 @@
       border-radius: 50%;
       background-color: #ffffff;
       display: flex;
+      position: relative;
+      &::before{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 150rpx;
+        height: 150rpx;
+        content: '';
+        border: 1px solid #f8f8f8;
+        border-radius: 50%;
+        z-index: 1;
+        box-sizing: border-box;
+      }
       .nologin{
-        width: 100rpx;
-        height: 120rpx;
-        margin: auto;
-        transform: scale(0.9);
+        width: 150rpx;
+        height: 150rpx;
+        border-radius: 50%;
       }
     }
     .userinfo-info{
@@ -188,5 +200,16 @@
         color: #999999;
       }
     }
+  }
+}
+.my-popup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0!important;
+  button{
+    border-radius: 64rpx;
+    height: 76rpx;
+    width: 300rpx;
   }
 }

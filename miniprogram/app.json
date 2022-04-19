@@ -6,7 +6,8 @@
     "pages/my/my",
     "pages/topic-list/topic-list",
     "pages/topic-res/topic-res",
-    "components/loading/index"
+    "components/loading/index",
+    "pages/group/group"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,5 +47,11 @@
         "selectedIconPath": "images/icon_my_active.png"
       }
     ]
+  },
+  "plugins": {
+    "htmltowxml": {
+      "version": "1.4.0",
+      "provider": "wxa51b9c855ae38f3c"
+    }
   }
 }

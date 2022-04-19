@@ -22,6 +22,6 @@ export const handleTime = (date: string) => {
   if (!date) {
     return ''
   }
-  const dateArr = date.split('T')
+  const dateArr = date.split(' ')
   return dateArr[0]
 }

@@ -2,13 +2,13 @@
   <view class="sort-container"></view>
   <view class="topic-container">
     <view class="tc-list">
-      <block wx:for="{{topicPageList}}" wx:key="index">
-        <view class="tc-item" bindtap="handleJump" data-index="{{index}}" data-title="{{item.title}}" data-exercisekey="{{item.exerciseKey}}" data-level="{{item.level}}" data-updateat="{{item.updateAt}}">
+      <block wx:for="{{topicList}}" wx:key="index">
+        <view class="tc-item" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-topicsum="{{topicSum}}">
           <view class="tc-item__title">
             <view class="title">
               <text>第{{index + 1}}题：{{item.title}}</text>
             </view>
-            <view class="tag">{{item.category === 'QA' ? '问答题' : '选择题'}}</view>
+            <view class="tag">{{type === 'choice' ? '选择题' : '问答题'}}</view>
           </view>
           <view class="tc-item__desc">
             <view class="level">
@@ -16,7 +16,7 @@
               <van-rate size="14px" readonly value="{{ item.level }}" />
             </view>
             <view class="time">
-              <text>更新时间：{{item.updateAt}}</text>
+              <text>更新时间：{{item.create_time}}</text>
             </view>
           </view>
         </view>

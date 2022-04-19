@@ -1,0 +1,5 @@
+<view class="group-container">
+  <view class="text">收微信加群限制，请先添加工作人员微信（微信号：NetEngine666，或者扫描下方二维码），备注“加交流群”，工作人员将邀请您入群。</view>
+  <van-button type="primary" bindtap="copyWX">一键复制微信号</van-button>
+  <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220416005755.png"></image>
+</view>

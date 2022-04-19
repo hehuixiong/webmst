@@ -1,5 +1,5 @@
-const localTopicRes = require("../../data/topicRes")
-const localTopicList = require("../../data/topicList")
+import { handleTime } from '../../utils/util'
+const { getTopicInfo } = require('../../api/index')
 import { setWatcher } from '../../utils/watch'
 Page({
 
@@ -9,28 +9,27 @@ Page({
   data: {
     title: '',
     topic: '',
+    choice: '',
     answer: '',
+    level: 0,
+    create_time: '',
     answerShow: false,
     first: false,
     last: false,
     topicIndex: 0,
     topicSum: 0,
-    topicKey: '',
-    level: 0,
-    updateAt: '',
-    loading: false
+    loading: false,
+    id: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const { index, topicKey, level, updateAt } = wx.getStorageSync('queryTopic')
+    const { index, id, topicSum } = wx.getStorageSync('queryTopic')
     this.setData({
       topicIndex: Number(index),
-      topicKey: topicKey,
-      topicSum: localTopicList.topicList[topicKey].length,
-      level: level,
-      updateAt: updateAt
+      topicSum: topicSum,
+      id: id
     })
     this.setCurrentTopic(index)
     setWatcher(this)
@@ -41,6 +40,30 @@ Page({
     topicIndex(newIndex: any) {
       this.setCurrentTopic(newIndex)
     }
+  },
+  getTopicInfo() {
+    this.setData({ loading: true })
+    getTopicInfo({id: this.data.id}).then((res: any) => {
+      if (res.data.problem) {
+        res.data.problem = res.data.problem.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, (match: any) => {
+          return match === '<button class="copyBtn___3UMAO">复制<\/button>' ? '' : match
+        })
+      }
+      if (res.data.content) {
+        res.data.content = res.data.content.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, (match: any) => {
+          return match === '<button class="copyBtn___3UMAO">复制<\/button>' ? '' : match
+        })
+      }
+      this.setData({
+        topic: res.data.problem,
+        choice: res.data.choice,
+        answer: res.data.content,
+        title: res.data.title,
+        level: res.data.level,
+        create_time: handleTime(res.data.create_time),
+        loading: false
+      })
+    })
   },
 
   go() {
@@ -67,60 +90,14 @@ Page({
       scrollTop: 0,
       duration: 0
     })
-    this.setData({ loading: true })
-    const timer = setTimeout(() => {
-      // 设置题目
-      const { exerciseKey, title } = localTopicList?.topicList[this.data.topicKey][index]
-      let topic = localTopicRes?.topicRes[exerciseKey]?.topic || ''
-      if (topic) {
-        topic = topic.replace(/<code>/gi, (match: any) => {
-          return match === '<code>' ? '<p>' : match
-        })
-        topic = topic.replace(/<\/code>/gi, (match: any) => {
-          return match === '</code>' ? '</p>' : match
-        })
-        topic = topic.replace(/<pre>/gi, (match: any) => {
-          return match === '<pre>' ? '<p>' : match
-        })
-        topic = topic.replace(/<\/pre>/gi, (match: any) => {
-          return match === '</pre>' ? '</p>' : match
-        })
-        topic = topic.replace(/(29, 31, 33)/gi, (match: any) => {
-          return match === '29, 31, 33' ? '50, 43, 8' : match
-        })
-      }
-      let answer = localTopicRes?.topicRes[exerciseKey]?.answer || ''
-      if (answer) {
-        answer = answer.replace(/<code>/gi, (match: any) => {
-          return match === '<code>' ? '<span>' : match
-        })
-        answer = answer.replace(/<\/code>/gi, (match: any) => {
-          return match === '</code>' ? '</span>' : match
-        })
-        answer = answer.replace(/<pre>/gi, (match: any) => {
-          return match === '<pre>' ? '<span>' : match
-        })
-        answer = answer.replace(/<\/pre>/gi, (match: any) => {
-          return match === '</pre>' ? '</span>' : match
-        })
-        answer = answer.replace(/(29, 31, 33)/gi, (match: any) => {
-          return match === '29, 31, 33' ? '50, 43, 8' : match
-        })
-      }
-      this.setData({
-        topic: topic,
-        answer: answer,
-        title: title,
-        loading: false
-      })
-      clearTimeout(timer)
-    }, Math.floor(Math.random() * (500 - 100) + 100))
+    this.getTopicInfo()
   },
   /**
    * 上一题
    */
   prevQuestion() {
     if (this.data.loading) return
+    this.data.id--
     let newIndex = this.data.topicIndex
     this.setData({ topicIndex: --newIndex, answerShow: false })
   },
@@ -147,6 +124,7 @@ Page({
       })
       return
     }
+    this.data.id++
     let newIndex = this.data.topicIndex
     this.setData({ topicIndex: ++newIndex, answerShow: false })
   },

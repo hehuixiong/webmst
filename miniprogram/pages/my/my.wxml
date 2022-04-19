@@ -3,10 +3,10 @@
     <view class="userinfo">
       <block wx:if="{{!hasUserInfo}}">
         <view class="userinfo-avatar" bindtap="getUserProfile">
-          <image class="nologin" src="../../images/nologin.png"></image>
+          <image class="nologin" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220419192701.png"></image>
         </view>
         <view class="userinfo-info" bindtap="getUserProfile">
-          <text class="nickname">快捷登录</text>
+          <text class="nickname">点我快捷登录</text>
           <text class="desc">拼搏到无能为力 坚持到感动自己</text>
         </view>
       </block>
@@ -26,7 +26,7 @@
         <text class="title">面试交流群</text>
         <text class="desc">加入交流群，分享面试经验，一起高薪就业</text>
       </view>
-      <view class="go" bindtap="go">立即加入</view>
+      <view class="go" bindtap="addGroup">立即加入</view>
     </view>
     <view class="vip-group">
       <view class="text-icon">

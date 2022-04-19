@@ -7,22 +7,23 @@
   <view class="topic-res-container" wx:if="{{!loading}}">
     <block>
       <view class="title">题目：{{title}}</view>
-      <rich-text nodes="{{topic}}"></rich-text>
+      <htmltowxml linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{topic}}" />
+      <htmltowxml linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{choice}}" />
       <view class="difficulty">
         <view class="level">
           <text>难度：</text>
           <van-rate size="14px" readonly value="{{ level }}" />
         </view>
         <view class="time">
-          <text>更新时间：{{updateAt}}</text>
+          <text>更新时间：{{create_time}}</text>
         </view>
       </view>
     </block>
     <view style="margin-top: 20px;"></view>
     <block wx:if="{{answerShow}}">
       <view class="analysis">答案与解析</view>
-      <rich-text wx:if="{{answer}}" nodes="{{answer}}"></rich-text>
-      <view wx:else style="color: #999999;font-size: 12px;">答案正在整理中...</view>
+      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{answer}}" />
+      <view wx:else style="color: #999999;font-size: 12px;">正在整理中...</view>
     </block>
     <view class="footer">
       <text class="collect" bindtap="go">加入收藏</text>
