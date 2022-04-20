@@ -1,13 +1,22 @@
 // 获取应用实例
 const app = getApp()
+const { getTopicCate, getTopicList } = require('../../api/index')
 
 Page({
   data: {
     userInfo: {},
-    hasUserInfo: false
+    hasUserInfo: false,
+    showgroup: false
   },
   onLoad() {
     this.setUserInfo()
+    getTopicCate().then((res: any) => {
+      for (let i = 0; i < res.data.length; i++) {
+        if (res.data[i].name === 'showgroup') {
+          this.setData({ showgroup: true })
+        }
+      }
+    })
   },
   getUserProfile(e: any) {
     console.log(e)

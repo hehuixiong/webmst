@@ -16,7 +16,7 @@
       text="截止{{currentTime}}，共录入面试题：{{pageTotal}} 题"
     />
   </view>
-  <view class="home-module">
+  <view class="home-module" wx:if="{{showgroup}}">
     <view class="module-wrapper bg1" bindtap="go">
       <view class="title">VIP专属权益</view>
       <view class="btn">了解详情</view>

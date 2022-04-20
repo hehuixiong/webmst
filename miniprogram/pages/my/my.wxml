@@ -21,14 +21,14 @@
     </view>
   </view>
   <view class="group-container">
-    <view class="communication-group">
+    <view class="communication-group" wx:if="{{showgroup}}">
       <view class="text-container">
         <text class="title">面试交流群</text>
         <text class="desc">加入交流群，分享面试经验，一起高薪就业</text>
       </view>
       <view class="go" bindtap="addGroup">立即加入</view>
     </view>
-    <view class="vip-group">
+    <view class="vip-group" wx:if="{{showgroup}}">
       <view class="text-icon">
         <text class="icon">
           <text class="iconfont icon-vip"></text>

@@ -132,7 +132,8 @@ Page({
       }
     ],
     currentTime: '',
-    pageTotal: 0
+    pageTotal: 0,
+    showgroup: false
   },
   onLoad() {
     this.getTopicCate()
@@ -150,6 +151,9 @@ Page({
   getTopicCate() {
     getTopicCate().then((res: any) => {
       for (let i = 0; i < res.data.length; i++) {
+        if (res.data[i].name === 'showgroup') {
+          this.setData({ showgroup: true })
+        }
         for (let j = 0; j < this.data.navs.length; j++) {
           if (res.data[i].name === this.data.navs[j].type) {
             let str = 'navs['+ j +'].id'
