@@ -19,7 +19,9 @@ Page({
     topicIndex: 0,
     topicSum: 0,
     loading: false,
-    id: 0
+    id: 0,
+    next_id: 0,
+    prev_id: 0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -48,10 +50,16 @@ Page({
         res.data.problem = res.data.problem.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, (match: any) => {
           return match === '<button class="copyBtn___3UMAO">复制<\/button>' ? '' : match
         })
+        res.data.problem = res.data.problem.replace(/<span class="linenumber/gi, (match: any) => {
+          return match === '<span class="linenumber' ? '\n<span class="linenumber' : match
+        })
       }
       if (res.data.content) {
         res.data.content = res.data.content.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, (match: any) => {
           return match === '<button class="copyBtn___3UMAO">复制<\/button>' ? '' : match
+        })
+        res.data.content = res.data.content.replace(/<span class="linenumber/gi, (match: any) => {
+          return match === '<span class="linenumber' ? '\n<span class="linenumber' : match
         })
       }
       this.setData({
@@ -60,6 +68,8 @@ Page({
         answer: res.data.content,
         title: res.data.title,
         level: res.data.level,
+        next_id: res.data.next_id,
+        prev_id: res.data.prev_id,
         create_time: handleTime(res.data.create_time),
         loading: false
       })
@@ -97,7 +107,7 @@ Page({
    */
   prevQuestion() {
     if (this.data.loading) return
-    this.data.id--
+    this.data.id = this.data.prev_id
     let newIndex = this.data.topicIndex
     this.setData({ topicIndex: --newIndex, answerShow: false })
   },
@@ -124,7 +134,7 @@ Page({
       })
       return
     }
-    this.data.id++
+    this.data.id = this.data.next_id
     let newIndex = this.data.topicIndex
     this.setData({ topicIndex: ++newIndex, answerShow: false })
   },

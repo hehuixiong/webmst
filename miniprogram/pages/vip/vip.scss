@@ -1,9 +1,13 @@
 .vip-container{
-  padding: 0 20rpx;
-  color: #666666;
-  font-size: 28rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  color: #24292f;
+  .text{
+    padding: 20rpx;
+  }
+  view{
+    padding-top: 20rpx;
+  }
+  image{
+    width: 100%;
+    display: block;
+  }
 }

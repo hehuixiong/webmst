@@ -7,8 +7,8 @@
   <view class="topic-res-container" wx:if="{{!loading}}">
     <block>
       <view class="title">题目：{{title}}</view>
-      <htmltowxml linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{topic}}" />
-      <htmltowxml linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{choice}}" />
+      <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{topic}}" />
+      <htmltowxml wx:if="{{choice}}" linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{choice}}" />
       <view class="difficulty">
         <view class="level">
           <text>难度：</text>
@@ -22,7 +22,7 @@
     <view style="margin-top: 20px;"></view>
     <block wx:if="{{answerShow}}">
       <view class="analysis">答案与解析</view>
-      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{answer}}" />
+      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
       <view wx:else style="color: #999999;font-size: 12px;">正在整理中...</view>
     </block>
     <view class="footer">
