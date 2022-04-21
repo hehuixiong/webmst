@@ -33,7 +33,12 @@
     </view>
   </view>
   <view class="home-container">
-    <view class="hc-title">题材分类</view>
+    <view class="hc-title">
+      <text>题材分类</text>
+      <view class="search-wrap" bindtap="goSearch">
+        <view class="search-input"><text class="iconfont icon-sousuo"></text> 请输入题目关键字</view>
+      </view>
+    </view>
     <view class="hc-navs">
       <block wx:for="{{navs}}" wx:key="index">
         <navigator class="nav-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}" hover-class="none">

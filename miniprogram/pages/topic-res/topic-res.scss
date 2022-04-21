@@ -11,6 +11,7 @@
     text-align: center;
     padding: 0 30rpx;
     box-sizing: border-box;
+    z-index: 99999;
     .prev{
       color: #7e68f3;
       position: absolute;
@@ -173,21 +174,23 @@
   }
 }
 
-.hljs.wxml-pre.wxml-block view:nth-child(1){
-  margin-left: 60rpx;
-}
-.wxml-li-text {
-  overflow: hidden!important;
-}
-.hljs-number {
-  display: none!important;
-}
-.wxml-pre{
-  margin-bottom: 20rpx!important;
-}
 .markdown-body{
   color: #24292f!important;
-}
-.wxml-li-text{
-  line-height: 46rpx!important;
+  .wxml-li-text {
+    overflow: hidden!important;
+  }
+  // .hljs-number text{
+  //   color: #676e95;
+  //   margin: 0 6rpx;
+  // }
+  .wxml-pre{
+    margin-bottom: 20rpx!important;
+  }
+  
+  .hljs-style-tomorrow{
+    color: #24292f!important;
+  }
+  .wxml-li-text{
+    line-height: 46rpx!important;
+  }
 }

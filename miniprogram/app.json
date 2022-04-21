@@ -7,7 +7,8 @@
     "pages/topic-list/topic-list",
     "pages/topic-res/topic-res",
     "components/loading/index",
-    "pages/group/group"
+    "pages/group/group",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

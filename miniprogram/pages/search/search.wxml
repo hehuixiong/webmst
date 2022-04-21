@@ -1,0 +1,27 @@
+<view class="search-container">
+  <view class="search_input_box">
+    <view class="search_box">
+      <text class="iconfont icon-sousuo"></text>
+      <input class="search_input" focus="{{ true }}" hold-keyboard="{{ true }}" value="{{ keyword }}" data-key="keyword" bindinput="bindInput" placeholder="请输入题目关键字" placeholder-class="placeholder" confirm-type="search" bindconfirm="onSearch" bindfocus="onFocus" />
+      <van-icon class="close" wx:if="{{keyword}}" bindtap="clearInput" name="cross" />
+    </view>
+    <text class="search_btn" bindtap="onSearch">搜索</text>
+  </view>
+  <view class="search-content" wx:if="{{searchList.length}}">
+    <topic-list
+      data="{{searchList}}"
+      topicSum="{{topicSum}}"
+      loading="{{loading}}"
+      noMore="{{noMore}}"
+      type="{{type}}"
+      my-class="external-topic-item"
+    ></topic-list>
+  </view>
+  <view class="loading" style="margin-top: 30rpx;" wx:if="{{searchList.length === 0 && loading}}">
+    <loading color="#7e68f3"></loading>
+  </view>
+  <view class="no_search" wx:if="{{empty && !loading}}">
+    <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/202204202357.png" mode="widthFix"></image>
+    <view>未搜到对应的题目</view>
+  </view>
+</view>

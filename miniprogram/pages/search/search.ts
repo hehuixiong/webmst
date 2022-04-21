@@ -1,58 +1,91 @@
+// pages/search/search.ts
 const { getTopicList } = require('../../api/index')
 import { handleTime } from '../../utils/util'
 const PAGE_SIZE = 20
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    topicList : [],
+    keyword: '',
+    searchList: [],
+    topicSum: 0,
     page: 1,
     pageTotal: 0,
     noMore: false,
     loading: false,
-    id: null,
-    label: null,
-    topicSum: 0
+    empty: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ label, id }: any) {
-    this.data.id = id
-    this.data.label = label
-    // 动态改变标题
-    wx.setNavigationBarTitle({
-      title: label || ''
-    })
-    this.getTopicList()
+  onLoad() {
   },
-  getTopicList() {
+
+  getSearchList() {
     this.setData({ loading: true })
     const params: any = {
-      page: this.data.page
-    }
-    if (this.data.id !== 'null') {
-      params.cate_id = this.data.id
+      page: this.data.page,
+      search: this.data.keyword
     }
     getTopicList(params).then((res: any) => {
-      for (let i = 0; i < res.data.list.length; i++) {
-        res.data.list[i].create_time = handleTime(res.data.list[i].create_time)
+      let list = res.data.list
+      list = this.removeDuplicateObj(list)
+      for (let i = 0; i < list.length; i++) {
+        list[i].create_time = handleTime(list[i].create_time)
       }
-      const topicList: any = [...this.data.topicList, ...res.data.list]
+      const searchList: any = [...this.data.searchList, ...list]
       this.setData({
         pageTotal: Math.ceil(res.data.pageTotal / PAGE_SIZE),
-        topicList: topicList,
+        searchList: searchList,
         loading: false,
-        label: this.data.label,
-        topicSum: res.data.pageTotal
+        topicSum: res.data.pageTotal,
+        empty: res.data.pageTotal === 0
       })
       this.setData({
         pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal
       })
     })
   },
+
+  removeDuplicateObj(arr: any) {
+    let obj: any = {}
+    arr = arr.reduce((newArr: any, next: any) => {
+      obj[next.resume] ? "" : (obj[next.resume] = true && newArr.push(next))
+      return newArr
+    }, [])
+    return arr
+  },
+
+  onSearch() {
+    if (!this.data.keyword) {
+      wx.showToast({
+        title: '请输入关键字',
+        icon: 'error'
+      })
+      return
+    }
+    this.setData({
+      searchList: [],
+      page: 1
+    })
+    this.getSearchList()
+  },
+
+  bindInput(e: any) {
+    this.setData({
+      [e.currentTarget.dataset.key]: e.detail.value
+    })
+  },
+
+  clearInput() {
+    this.setData({ keyword: '' })
+  },
+
+  onFocus() {},
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -92,6 +125,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
+    if (this.data.searchList.length === 0) {
+      return
+    }
     if(this.data.page == this.data.pageTotal) {
       this.setData({
         noMore: true
@@ -103,7 +139,7 @@ Page({
     this.setData({
       page: ++page
     })
-    this.getTopicList()
+    this.getSearchList()
   },
 
   /**

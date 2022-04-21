@@ -25,6 +25,11 @@ Page({
       desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
         console.log(res)
+        wx.login({
+          success: (res) => {
+            console.log(res)
+          }
+        })
         wx.setStorageSync('userInfo', {
           avatarUrl: res.userInfo.avatarUrl,
           nickName: res.userInfo.nickName,

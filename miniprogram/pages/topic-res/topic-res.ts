@@ -47,19 +47,31 @@ Page({
     this.setData({ loading: true })
     getTopicInfo({id: this.data.id}).then((res: any) => {
       if (res.data.problem) {
-        res.data.problem = res.data.problem.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, (match: any) => {
-          return match === '<button class="copyBtn___3UMAO">复制<\/button>' ? '' : match
+        res.data.problem = res.data.problem.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, () => {
+          return ''
         })
-        res.data.problem = res.data.problem.replace(/<span class="linenumber/gi, (match: any) => {
-          return match === '<span class="linenumber' ? '\n<span class="linenumber' : match
+        res.data.problem = res.data.problem.replace(/<span class="linenumber/gi, () => {
+          return '\n<span class="linenumber'
+        })
+        res.data.problem = res.data.problem.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
+          return ''
         })
       }
       if (res.data.content) {
-        res.data.content = res.data.content.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, (match: any) => {
-          return match === '<button class="copyBtn___3UMAO">复制<\/button>' ? '' : match
+        res.data.content = res.data.content.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, () => {
+          return ''
         })
-        res.data.content = res.data.content.replace(/<span class="linenumber/gi, (match: any) => {
-          return match === '<span class="linenumber' ? '\n<span class="linenumber' : match
+        res.data.content = res.data.content.replace(/<span class="linenumber/gi, () => {
+          return '\n<span class="linenumber'
+        })
+        res.data.content = res.data.content.replace(/前端面试题宝典/gi, () => {
+          return '前端面试题材'
+        })
+        res.data.content = res.data.content.replace(/https:\/\/fe.ecool.fun\//gi, () => {
+          return 'https://www.ithhx.cn'
+        })
+        res.data.content = res.data.content.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
+          return ''
         })
       }
       this.setData({

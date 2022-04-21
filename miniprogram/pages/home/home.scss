@@ -96,9 +96,11 @@
   }
   .home-container{
     .hc-title{
-      padding: 0 30rpx 0 40rpx;
+      padding: 0 36rpx 0 40rpx;
       line-height: 100rpx;
       position: relative;
+      display: flex;
+      align-items: center;
       &::before{
         position: absolute;
         content: '';
@@ -109,6 +111,24 @@
         background-color: #7e68f3;
         height: 30rpx;
         border-radius: 8rpx;
+      }
+      .search-wrap{
+        margin-left: 40rpx;
+        flex: 1;
+        .search-input{
+          border-radius: 32rpx;
+          height: 64rpx;
+          width: 100%;
+          background: #f6f6f6;
+          display: flex;
+          align-items: center;
+          padding-left: 20rpx;
+          color: #999999;
+          box-sizing: border-box;
+          .iconfont{
+            margin-right: 12rpx;
+          }
+        }
       }
     }
     .hc-navs{

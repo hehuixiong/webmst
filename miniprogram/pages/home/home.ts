@@ -1,6 +1,7 @@
 // home.ts
 const { getTopicCate, getTopicList } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
+const App = getApp()
 Page({
   data: {
     navs: [
@@ -177,6 +178,11 @@ Page({
       url: '/pages/group/group'
     })
   },
+  goSearch() {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -223,6 +229,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
+  },
+  onShareTimeline() {
   }
 })
