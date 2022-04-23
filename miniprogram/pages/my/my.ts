@@ -71,13 +71,14 @@ Page({
       }
     })
   },
+  onShare() {},
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage(res: any) {
-    console.log(res)
+  onShareAppMessage() {
     return{
-      path:'/pages/my/my'
+      title: '给你推荐一款非常好用的前端面试题小程序',
+      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220424005002.png'
     }
   }
 })

@@ -1,7 +1,6 @@
 // home.ts
 const { getTopicCate, getTopicList } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
-const App = getApp()
 Page({
   data: {
     navs: [
@@ -233,7 +232,14 @@ Page({
       withShareTicket: true,
       menus: ['shareAppMessage', 'shareTimeline']
     })
+    return{
+      title: '给你推荐一款非常好用的前端面试题小程序',
+      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220424005002.png'
+    }
   },
   onShareTimeline() {
+    return{
+      title: '给你推荐一款非常好用的前端面试题小程序'
+    }
   }
 })

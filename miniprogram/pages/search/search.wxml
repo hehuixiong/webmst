@@ -21,7 +21,7 @@
     <loading color="#7e68f3"></loading>
   </view>
   <view class="no_search" wx:if="{{empty && !loading}}">
-    <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/202204202357.png" mode="widthFix"></image>
+    <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220420235700.png" mode="widthFix"></image>
     <view>未搜到对应的题目</view>
   </view>
 </view>

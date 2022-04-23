@@ -146,6 +146,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    return{
+      title: '给你推荐一款非常好用的前端面试题小程序',
+      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220424005002.png'
+    }
   }
 })

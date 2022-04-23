@@ -165,11 +165,17 @@
       border-radius: 32rpx;
       background: #fff;
       padding: 0 32rpx;
-      .cell-item{
+      button{
         display: flex;
         align-items: center;
-        padding: 32rpx 0;
         border-bottom: 1rpx solid #ededed;
+        padding: 32rpx 0;
+        background: #fff;
+        line-height: 1;
+        text-align: left;
+        &::after{
+          display: none;
+        }
         &:last-child{
           border-bottom: none;
         }
