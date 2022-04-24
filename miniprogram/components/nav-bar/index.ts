@@ -1,9 +1,5 @@
 Component({
   properties: {
-    extClass: {
-      type: String,
-      value: "",
-    },
     background: {
       type: String,
       value: "rgba(255, 255, 255, 1)",
@@ -21,14 +17,6 @@ Component({
       type: String,
       value: "",
     },
-    back: {
-      type: Boolean,
-      value: false,
-    },
-    home: {
-      type: Boolean,
-      value: false,
-    },
     customHeight: {
       type: Number,
       value: -1
@@ -40,14 +28,10 @@ Component({
     titLoading: {
       type: Boolean,
       value: false
-    }
-  },
-  observers: {
-    back: function (val) {
-      if (val !== this.data._back) {
-        this.setData({ _back: val })
-        this.setStyle()
-      }
+    },
+    hideTip: {
+      type: Boolean,
+      value: true
     }
   },
   created: function () {
@@ -65,24 +49,14 @@ Component({
     },
     hide: function () { },
   },
-  data: {
-    _back: false // 避免内存泄露
-  },
 
   methods: {
-    // 返回事件
-    back: function () {
-      this.triggerEvent("back", { delta: this.data.delta })
-    },
-    // 返回首页
-    home: function () {
-      wx.switchTab({
-        url: '/pages/home/home'
-      })
-    },
     // 阻止滚动穿透
     preventDefault() {
       return
+    },
+    closeTip() {
+      this.triggerEvent('closeTip')
     },
     // 获取下输入框的的高度
     getPutHeight() {
@@ -181,7 +155,7 @@ Component({
         return systemInfo
       }
     },
-    setStyle(life: any) {
+    setStyle() {
       const {
         statusBarHeight,
         navBarHeight,
@@ -190,9 +164,9 @@ Component({
         ios,
         windowWidth,
       } = getApp().globalSystemInfo
-      const { _back: back, home, title } = this.data
+      const { title } = this.data
       let leftWidth = windowWidth - capsulePosition.left //胶囊按钮左侧到屏幕右侧的边距
-
+      const arrowsRight = leftWidth - Math.ceil((capsulePosition.width / 2) / 2) - 16
       let navigationbarinnerStyle = [
         `color: ${this.data.color}`,
         `background: ${this.data.background}`,
@@ -202,12 +176,7 @@ Component({
         `padding-bottom:${navBarExtendHeight}px`,
       ].join(";")
       let navBarLeft: any = []
-      if ((back && !home) && (!back && home)) {
-        navBarLeft = [
-          `width:${capsulePosition.width}px`,
-          `height:${capsulePosition.height}px`,
-        ].join(";")
-      } else if ((back && home) || title) {
+      if (title) {
         navBarLeft = [
           `width:${capsulePosition.width}px`,
           `height:${capsulePosition.height}px`
@@ -215,25 +184,15 @@ Component({
       } else {
         navBarLeft = [`width:auto`, `margin-left:0px`].join(";")
       }
-      if (life === "created") {
-        this.setData({
-          navigationbarinnerStyle,
-          navBarLeft,
-          navBarHeight,
-          capsulePosition,
-          navBarExtendHeight,
-          ios
-        })
-      } else {
-        this.setData({
-          navigationbarinnerStyle,
-          navBarLeft,
-          navBarHeight,
-          capsulePosition,
-          navBarExtendHeight,
-          ios,
-        })
-      }
+      this.setData({
+        navigationbarinnerStyle,
+        navBarLeft,
+        navBarHeight,
+        capsulePosition,
+        navBarExtendHeight,
+        ios,
+        arrowsRight
+      })
     },
     _showChange() {
       this.setStyle()

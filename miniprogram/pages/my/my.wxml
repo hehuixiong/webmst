@@ -37,7 +37,7 @@
       </view>
       <view class="understand" bindtap="go">了解详情</view>
     </view>
-    <view class="cell-groip cell-groip-top">
+    <view class="cell-groip cell-groip-top {{ showgroup ? 'is-active' : '' }}">
       <button bindtap="go">
         <view class="text-icon">
           <text class="iconfont"></text>

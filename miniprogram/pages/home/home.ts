@@ -3,12 +3,6 @@ const { getTopicCate, getTopicList } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
 Page({
   data: {
-    swiper: [
-      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
-      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png'
-    ],
-    current: 0,
-    titLoading: true,
     navs: [
       // {
       //   icon: 'icon-quanbu',
@@ -137,12 +131,20 @@ Page({
         id: null
       }
     ],
+    swiper: [
+      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
+      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png'
+    ],
+    current: 0,
+    titLoading: true,
+    hideTip: true,
     currentTime: '',
     pageTotal: 0,
     showgroup: false
   },
   onLoad() {
     this.getTopicCate()
+    const hideTip = wx.getStorageSync('hideTip')
     getTopicList().then((res: any) => {
       let date = new Date()
       const yyyy = date.getFullYear()
@@ -150,7 +152,8 @@ Page({
       const dd = date.getDate()
       this.setData({
         pageTotal: res.data.pageTotal,
-        currentTime: `${yyyy}/${mm}/${dd}`
+        currentTime: `${yyyy}/${mm}/${dd}`,
+        hideTip: hideTip
       })
       const timer = setTimeout(() => {
         this.setData({
@@ -159,6 +162,10 @@ Page({
         clearTimeout(timer)
       }, 1500)
     })
+  },
+  closeTip() {
+    this.setData({ hideTip: true })
+    wx.setStorageSync('hideTip', true)
   },
   swiperChange(e: any) {
     if (!this.data.swiper.length) {

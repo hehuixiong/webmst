@@ -133,7 +133,6 @@ Page({
         title: '提示',
         content: '已经到最后一题啦，题材不定期更新哦~',
         confirmText: '返回列表',
-        confirmColor: '#57bd6a',
         success (res) {
           if (res.confirm) {
             wx.navigateBack({
