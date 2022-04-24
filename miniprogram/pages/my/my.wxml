@@ -76,8 +76,8 @@
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>
     </view>
-    <view class="footer">
-      <text>Copyright © 2019-2022 前端面试题材</text>
+    <view class="more">
+      <text>Copyright © 2021-{{year}} 前端面试题材</text>
     </view>
   </view>
 </view>

@@ -8,6 +8,7 @@ Page({
       'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png'
     ],
     current: 0,
+    titLoading: true,
     navs: [
       // {
       //   icon: 'icon-quanbu',
@@ -151,6 +152,12 @@ Page({
         pageTotal: res.data.pageTotal,
         currentTime: `${yyyy}/${mm}/${dd}`
       })
+      const timer = setTimeout(() => {
+        this.setData({
+          titLoading: false
+        })
+        clearTimeout(timer)
+      }, 1500)
     })
   },
   swiperChange(e: any) {

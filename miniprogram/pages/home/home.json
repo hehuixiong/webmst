@@ -1,7 +1,10 @@
 {
   "navigationBarTitleText": "前端面试题材",
+  "backgroundColor": "#f6f6f6",
+  "navigationStyle":"custom",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
-    "van-notice-bar": "@vant/weapp/notice-bar/index"
-  },
-  "backgroundColor": "#f6f6f6"
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "nav-bar": "/components/nav-bar/index"
+  }
 }

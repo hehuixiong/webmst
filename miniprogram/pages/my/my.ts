@@ -6,7 +6,8 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    showgroup: false
+    showgroup: false,
+    year: null
   },
   onLoad() {
     this.setUserInfo()
@@ -17,6 +18,9 @@ Page({
         }
       }
     })
+    let date = new Date()
+    const year: any = date.getFullYear()
+    this.setData({ year })
   },
   getUserProfile(e: any) {
     console.log(e)

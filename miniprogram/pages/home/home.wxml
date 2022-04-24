@@ -1,6 +1,8 @@
 <view class="home-page">
+  <nav-bar id="navBar" title="前端面试题材" titLoading="{{titLoading}}" background='linear-gradient(#6581f6, #7e68f3)' color="#fff"></nav-bar>
   <view class="home-swiper">
-    <swiper class="swiper" indicator-dots autoplay circular interval="3000" duration="500" bindchange="swiperChange">
+    <view class="bg"></view>
+    <swiper class="swiper" indicator-dots autoplay circular interval="4000" duration="500" bindchange="swiperChange">
       <block wx:for="{{swiper}}" wx:key="index">
         <swiper-item bindtap="go">
           <view class="swiper-content">
@@ -11,10 +13,9 @@
     </swiper>
   </view>
   <view class="home-notice">
-    <van-notice-bar
-      left-icon="volume-o"
-      text="截止{{currentTime}}，共录入面试题：{{pageTotal}} 题"
-    />
+    <van-notice-bar left-icon="volume-o">
+      <text>截止{{currentTime}}，共录入面试题：{{pageTotal}}题 <text class="iconfont icon-huomiao"></text></text>
+    </van-notice-bar>
   </view>
   <view class="home-module" wx:if="{{showgroup}}">
     <view class="module-wrapper bg1" bindtap="go">
@@ -34,9 +35,14 @@
   </view>
   <view class="home-container">
     <view class="hc-title">
-      <text>题材分类</text>
+      <text>热门分类</text>
       <view class="search-wrap" bindtap="goSearch">
-        <view class="search-input"><text class="iconfont icon-sousuo"></text> 请输入题目关键字</view>
+        <view class="search-input">
+          <text class="icon-bg">
+            <text class="iconfont icon-sousuo1"></text>
+          </text>
+          <text class="text">搜索</text>
+        </view>
       </view>
     </view>
     <view class="hc-navs">

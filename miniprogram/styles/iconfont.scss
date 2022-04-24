@@ -2,9 +2,9 @@
   font-family: "iconfont"; /* Project id 3316631 */
   /* Color fonts */
   src: 
-       url('//at.alicdn.com/t/font_3316631_punpzskl3kj.woff2?t=1650467876455') format('woff2'),
-       url('//at.alicdn.com/t/font_3316631_punpzskl3kj.woff?t=1650467876455') format('woff'),
-       url('//at.alicdn.com/t/font_3316631_punpzskl3kj.ttf?t=1650467876455') format('truetype');
+       url('//at.alicdn.com/t/font_3316631_3g7lq37wj72.woff2?t=1650780549246') format('woff2'),
+       url('//at.alicdn.com/t/font_3316631_3g7lq37wj72.woff?t=1650780549246') format('woff'),
+       url('//at.alicdn.com/t/font_3316631_3g7lq37wj72.ttf?t=1650780549246') format('truetype');
 }
 
 .iconfont {
@@ -13,6 +13,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sousuo1:before {
+  content: "\e623";
+}
+
+.icon-huomiao:before {
+  content: "\e68d";
 }
 
 .icon-sousuo:before {
