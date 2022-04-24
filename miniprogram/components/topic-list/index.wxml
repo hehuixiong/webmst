@@ -1,6 +1,6 @@
 <view class="topic-list">
   <block wx:for="{{data}}" wx:key="index">
-    <view class="topic-item my-class" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-topicsum="{{topicSum}}">
+    <navigator class="topic-item my-class" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-topicsum="{{topicSum}}">
       <view class="topic-item__title">
         <view class="title">
           <text>第{{index + 1}}题：{{item.title}}</text>
@@ -16,7 +16,7 @@
           <text>更新时间：{{item.create_time}}</text>
         </view>
       </view>
-    </view>
+    </navigator>
   </block>
   <view class="loading-container">
     <view class="loading" wx:if="{{loading}}">

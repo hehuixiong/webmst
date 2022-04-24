@@ -4,17 +4,21 @@
     flex-direction: column;
     justify-content: center;
     padding: 32rpx 30rpx;
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid #f6f6f6;
+    &:nth-child(odd) {
+      background: #f6f6f6;
+    }
     .topic-item__title{
       display: flex;
       justify-content: space-between;
       align-items: center;
       .title{
         font-size: 30rpx;
-        color: #333333;
+        color: #3a3a3a;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        font-weight: bold;
       }
       .tag{
         background: #7e68f3;

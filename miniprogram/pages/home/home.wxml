@@ -1,10 +1,10 @@
 <view class="home-page">
   <view class="home-swiper">
-    <swiper indicator-dots autoplay circular interval="3000" duration="500">
-      <block>
+    <swiper class="swiper" indicator-dots autoplay circular interval="3000" duration="500" bindchange="swiperChange">
+      <block wx:for="{{swiper}}" wx:key="index">
         <swiper-item bindtap="go">
-          <view class="swiper-item">
-            <image style="width: 100%; height: 150px;" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png"></image>
+          <view class="swiper-content">
+            <image class="img {{current===index?'active':''}}" src="{{item}}"></image>
           </view>
         </swiper-item>
       </block>
@@ -41,7 +41,7 @@
     </view>
     <view class="hc-navs">
       <block wx:for="{{navs}}" wx:key="index">
-        <navigator class="nav-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}" hover-class="none">
+        <navigator class="nav-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}">
           <text class="iconfont {{item.icon}}"></text>
           <text class="text">{{item.label}}</text>
         </navigator>

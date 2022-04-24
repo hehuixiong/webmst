@@ -1,6 +1,6 @@
 .my-container{
   height: 100vh;
-  background: #f8f8f8;
+  background: #f6f6f6;
   .userinfo-wrapper{
     padding-top: 50px;
     background: linear-gradient(#c2a6f9, #7e68f3);
@@ -88,10 +88,10 @@
     margin-top: -30rpx;
     position: relative;
     z-index: 1;
-    padding: 32rpx 0 40rpx 0;
+    padding: 20rpx 0 40rpx 0;
     .communication-group{
       display: flex;
-      margin: 0 32rpx;
+      margin: 0 20rpx;
       margin-bottom: 20rpx;
       background-color: #fff;
       padding: 40rpx 32rpx;
@@ -126,7 +126,7 @@
       background: #f5e1c0;
       border-radius: 32rpx 32rpx 0 0;
       display: flex;
-      margin: 0 32rpx;
+      margin: 0 20rpx;
       padding: 32rpx;
       align-items: center;
       .text-icon{
@@ -161,14 +161,14 @@
       }
     }
     .cell-groip{
-      margin: 20rpx 32rpx;
+      margin: 20rpx 20rpx;
       border-radius: 32rpx;
-      background: #fff;
+      background: #ffffff;
       padding: 0 32rpx;
       button{
         display: flex;
         align-items: center;
-        border-bottom: 1rpx solid #ededed;
+        border-bottom: 1rpx solid #efefef;
         padding: 32rpx 0;
         background: #fff;
         line-height: 1;
@@ -195,7 +195,6 @@
       }
       &.cell-groip-top{
         margin-top: 0;
-        border-top-left-radius: 0;
       }
     }
     .footer{

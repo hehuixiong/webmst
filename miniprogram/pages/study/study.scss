@@ -3,8 +3,7 @@
   .study-list{
     .study-item{
       display: flex;
-      padding: 20rpx;
-      border-bottom: 1px solid #ededed;
+      padding-left: 20rpx;
       &:last-child{
         border-bottom: none;
       }
@@ -21,6 +20,7 @@
         flex: 0 0 auto;
         position: relative;
         overflow: hidden;
+        margin-top: 20rpx;
         &::before{
           position: absolute;
           content: '';
@@ -65,6 +65,8 @@
       .sui-content{
         margin-left: 20rpx;
         flex: 1;
+        border-bottom: 1px solid #efefef;
+        padding: 20rpx 20rpx 20rpx 0;
         .title{
           font-size: 30rpx;
           color: #333333;

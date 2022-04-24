@@ -1,22 +1,47 @@
 
 .home-page{
-  padding-bottom: 100rpx;
   overflow: hidden;
-  .swiper-item{
+  background: #f6f6f6;
+  padding-bottom: 50rpx;
+  .swiper{
+    height: 266rpx;
     width: 100%;
-    height: 300rpx;
+    margin-top: 16rpx;
+    .swiper-content {
+      width: calc(100% - 32rpx);
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
+      .img {
+        width: 100%;
+        height: 266rpx;
+        border-radius: 30rpx;
+        transform: scale(0.9);
+        transition: all 0.3s ease;
+        &.active {
+          transform: scale(1);
+        }        
+      }
+    }
+  }
+  .home-notice{
+    margin: 16rpx 16rpx 0;
+    border-radius: 30rpx;
+    overflow: hidden;
   }
   .home-module{
     display: flex;
-    margin: 20rpx -15rpx 0;
-    padding: 0 30rpx;
+    margin: 16rpx 16rpx 0;
+    padding: 16rpx 8rpx;
+    background: #ffffff;
+    border-radius: 30rpx;
     .module-wrapper{
       width: 50%;
-      margin: 0 15rpx;
+      margin: 0 8rpx;
       display: flex;
       flex-direction: column;
       padding: 40rpx 32rpx;
-      border-radius: 16px;
+      border-radius: 26rpx;
       align-items: baseline;
       position: relative;
       overflow: hidden;
@@ -95,6 +120,9 @@
     }
   }
   .home-container{
+    background: #fff;
+    margin: 16rpx 16rpx;
+    border-radius: 30rpx;
     .hc-title{
       padding: 0 36rpx 0 40rpx;
       line-height: 100rpx;
@@ -134,26 +162,28 @@
     .hc-navs{
       display: flex;
       flex-wrap: wrap;
-      border-top: 1px solid #f9f9f9;
-      border-left: 1px solid #f9f9f9;
+      padding: 0 8rpx;
+      box-sizing: border-box;
       .nav-item{
-        width: 33.33%;
+        width: calc(25% - 16rpx);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-bottom: 1px solid #f9f9f9;
-        border-right: 1px solid #f9f9f9;
-        padding: 30rpx 0;
+        padding: 40rpx 0;
         box-sizing: border-box;
+        margin: 0 8rpx;
         .iconfont{
           font-size: 60rpx;
         }
         .text{
           margin-top: 20rpx;
-          font-size: 30rpx;
+          font-size: 28rpx;
           color: #3d3c3c;
         }
+      }
+      navigator:hover{
+        border-radius: 16rpx;
       }
     }
   }

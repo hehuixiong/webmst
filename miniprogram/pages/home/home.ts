@@ -3,13 +3,18 @@ const { getTopicCate, getTopicList } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
 Page({
   data: {
+    swiper: [
+      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
+      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png'
+    ],
+    current: 0,
     navs: [
-      {
-        icon: 'icon-quanbu',
-        label: '全部',
-        type: NAV_TYPES.all,
-        id: null
-      },
+      // {
+      //   icon: 'icon-quanbu',
+      //   label: '全部',
+      //   type: NAV_TYPES.all,
+      //   id: null
+      // },
       {
         icon: 'icon-javascript',
         label: 'JavaScript',
@@ -146,6 +151,14 @@ Page({
         pageTotal: res.data.pageTotal,
         currentTime: `${yyyy}/${mm}/${dd}`
       })
+    })
+  },
+  swiperChange(e: any) {
+    if (!this.data.swiper.length) {
+      return
+    }
+    this.setData({
+      current: e.detail.current
     })
   },
   getTopicCate() {
