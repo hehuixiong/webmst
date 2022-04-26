@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "面试题",
+  "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "van-rate": "@vant/weapp/rate/index",
     "loading": "/components/loading/index",

@@ -147,7 +147,7 @@ Page({
    */
   onShareAppMessage() {
     return{
-      title: '给你推荐一款非常好用的前端面试题小程序',
+      title: '大厂前端面试题材，悄悄分享给你！',
       imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220424005002.png'
     }
   }

@@ -1,14 +1,9 @@
 <view class="topic-res">
-  <view class="header">
-    <text wx:if="{{!first}}" class="prev" bindtap="prevQuestion">上一题</text>
-    <text>第{{topicIndex + 1}}题</text>
-    <text wx:if="{{!last}}" class="next" bindtap="nextQuestion">下一题</text>
-  </view>
   <view class="topic-res-container" wx:if="{{!loading}}">
-    <block>
-      <view class="title">题目：{{title}}</view>
-      <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{topic}}" />
-      <htmltowxml wx:if="{{choice}}" linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{false}}" text="{{choice}}" />
+    <view class="topic-container">
+      <view class="title">第{{topicIndex + 1}}题：{{title}}</view>
+      <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{topic}}" />
+      <htmltowxml wx:if="{{choice}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{choice}}" />
       <view class="difficulty">
         <view class="level">
           <text>难度：</text>
@@ -18,17 +13,32 @@
           <text>更新时间：{{create_time}}</text>
         </view>
       </view>
-    </block>
-    <view style="margin-top: 20px;"></view>
-    <block wx:if="{{answerShow}}">
-      <view class="analysis">答案与解析</view>
-      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="tomorrow" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
-      <view wx:else style="color: #999999;font-size: 12px;">正在整理中...</view>
-    </block>
-    <view class="footer">
-      <text class="collect" bindtap="go">加入收藏</text>
-      <text class="continue" wx:if="{{answerShow}}" bindtap="nextQuestion">继续答题</text>
-      <text class="answer" wx:else bindtap="onShowAnswer">查看答案</text>
+      <view class="tag">{{type === 'choice' ? '选择题' : '问答题'}}</view>
+    </view>
+    <view class="answer-container">
+      <view class="title"><text>答案与解析</text></view>
+      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
+      <view wx:else class="zhengli">正在整理中...</view>
+    </view>
+    <view class="sidebar">
+      <view class="sidebar-item" bindtap="go">
+        <text class="icon-bg">
+          <text class="iconfont icon-shoucang"></text>
+        </text>
+        <text class="text">收藏</text>
+      </view>
+      <button class="sidebar-item" open-type="share" data-title="第{{topicIndex + 1}}题：{{title}}" bindtap="onShare">
+        <text class="icon-bg">
+          <text class="iconfont icon-fenxiang"></text>
+        </text>
+        <text class="text">分享</text>
+      </button>
+      <view class="sidebar-item" bindtap="nextQuestion">
+        <text class="icon-bg">
+          <text class="iconfont icon-xiayiti"></text>
+        </text>
+        <text class="text">下题</text>
+      </view>
     </view>
   </view>
   <view class="loading" wx:else>

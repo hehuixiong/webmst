@@ -1,6 +1,6 @@
 <view class="topic-list">
   <block wx:for="{{data}}" wx:key="index">
-    <navigator class="topic-item my-class" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-topicsum="{{topicSum}}">
+    <navigator class="topic-item my-class" url="/pages/topic-res/topic-res" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-type="{{type}}" data-topicsum="{{topicSum}}">
       <view class="topic-item__title">
         <view class="title">
           <text>第{{index + 1}}题：{{item.title}}</text>
@@ -13,7 +13,9 @@
           <van-rate size="14px" readonly value="{{ item.level }}" />
         </view>
         <view class="time">
-          <text>更新时间：{{item.create_time}}</text>
+          <!-- <text class="iconfont icon-yulan"></text>10.0k <text class="iconfont icon-shou"></text>33  -->
+          更新时间：
+          <text>{{item.create_time}}</text>
         </view>
       </view>
     </navigator>

@@ -1,9 +1,10 @@
+@import '/styles/iconfont.wxss';
 .topic-list{
   .topic-item{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 32rpx 30rpx;
+    padding: 32rpx 16rpx;
     border-bottom: 1px solid #f6f6f6;
     &:nth-child(odd) {
       background: #f6f6f6;
@@ -22,10 +23,10 @@
       }
       .tag{
         background: #7e68f3;
-        padding: 4rpx 16rpx;
+        padding: 4rpx 12rpx;
         color: #ffffff;
-        font-size: 26rpx;
-        border-radius: 30rpx;
+        font-size: 24rpx;
+        border-radius: 8rpx;
         flex: 0 0 auto;
         margin-left: 10rpx;
       }
@@ -49,6 +50,16 @@
       }
       .time{
         font-size: 24rpx;
+        color: #666666;
+        display: flex;
+        align-items: center;
+        // text{
+        //   margin-left: 20rpx;
+        //   margin-right: 4rpx;
+        // }
+        // .iconfont{
+        //   font-size: 24rpx;
+        // }
       }
     }
   }

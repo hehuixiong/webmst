@@ -164,7 +164,7 @@
       margin: 20rpx 20rpx;
       border-radius: 32rpx;
       background: #ffffff;
-      padding: 0 32rpx;
+      overflow: hidden;
       &.is-active{
         border-radius: 0 0 32rpx 32rpx;
       }
@@ -172,10 +172,11 @@
         display: flex;
         align-items: center;
         border-bottom: 1rpx solid #efefef;
-        padding: 32rpx 0;
         background: #fff;
         line-height: 1;
         text-align: left;
+        padding: 0;
+        border-radius: 0;
         &::after{
           display: none;
         }
@@ -195,6 +196,12 @@
             color: #999999;
           }
         }
+      }
+      .item{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 32rpx 20rpx;
       }
       &.cell-groip-top{
         margin-top: 0;

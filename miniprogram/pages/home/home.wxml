@@ -47,7 +47,7 @@
     </view>
     <view class="hc-navs">
       <block wx:for="{{navs}}" wx:key="index">
-        <navigator class="nav-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}">
+        <navigator class="nav-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}&type={{item.type}}">
           <text class="iconfont {{item.icon}}"></text>
           <text class="text">{{item.label}}</text>
         </navigator>

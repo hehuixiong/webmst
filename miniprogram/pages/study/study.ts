@@ -222,7 +222,7 @@ const list = [
     course: '链接: https://pan.baidu.com/s/1afNk9M7gX8oDrSI-GcGmQw?pwd=hr93 提取码: hr93'
   }
 ]
-const title = '给你推荐一款非常好用的前端面试题小程序'
+const title = '大厂前端面试题材，悄悄分享给你！'
 Page({
 
   /**

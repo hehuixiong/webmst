@@ -1,4 +1,10 @@
-@import './styles/iconfont.scss';
+@import './styles/iconfont.wxss';
 page{
   font-size: 30rpx;
+}
+.van-rate__item {
+  padding: 0 4rpx!important;
+  .van-rate__icon {
+    color: var(--rate-icon-full-color,#ee0a24);
+  }
 }

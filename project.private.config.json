@@ -28,6 +28,13 @@
           "name": "",
           "pathName": "pages/home/home",
           "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/topic-list/topic-list",
+          "query": "id=5&label=Vue.js&type=vueJs",
           "scene": null,
           "launchMode": "default"
         }

@@ -2,9 +2,9 @@
   font-family: "iconfont"; /* Project id 3316631 */
   /* Color fonts */
   src: 
-       url('//at.alicdn.com/t/font_3316631_pku6or49v4.woff2?t=1650795231708') format('woff2'),
-       url('//at.alicdn.com/t/font_3316631_pku6or49v4.woff?t=1650795231708') format('woff'),
-       url('//at.alicdn.com/t/font_3316631_pku6or49v4.ttf?t=1650795231708') format('truetype');
+       url('//at.alicdn.com/t/font_3316631_ellcq7su29v.woff2?t=1650906014362') format('woff2'),
+       url('//at.alicdn.com/t/font_3316631_ellcq7su29v.woff?t=1650906014362') format('woff'),
+       url('//at.alicdn.com/t/font_3316631_ellcq7su29v.ttf?t=1650906014362') format('truetype');
 }
 
 .iconfont {
@@ -15,8 +15,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-guanbi:before {
-  content: "\e6c9";
+.icon-fenxiang:before {
+  content: "\e60a";
+}
+
+.icon-xiayiti:before {
+  content: "\e637";
+}
+
+.icon-shoucang:before {
+  content: "\e600";
+}
+
+.icon-yulan:before {
+  content: "\e880";
+}
+
+.icon-shou:before {
+  content: "\e650";
 }
 
 .icon-sousuo1:before {

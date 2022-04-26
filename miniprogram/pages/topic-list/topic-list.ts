@@ -13,15 +13,19 @@ Page({
     loading: false,
     id: null,
     label: null,
-    topicSum: 0
+    topicSum: 0,
+    type: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ label, id }: any) {
+  onLoad({ label, id, type }: any) {
     this.data.id = id
     this.data.label = label
+    this.setData({
+      type: type
+    })
     // 动态改变标题
     wx.setNavigationBarTitle({
       title: label || ''
@@ -111,7 +115,7 @@ Page({
    */
   onShareAppMessage() {
     return{
-      title: '给你推荐一款非常好用的前端面试题小程序'
+      title: '大厂前端面试题材，悄悄分享给你！'
     }
   }
 })

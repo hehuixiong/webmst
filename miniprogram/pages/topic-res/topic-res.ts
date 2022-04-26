@@ -1,6 +1,7 @@
 import { handleTime } from '../../utils/util'
 const { getTopicInfo } = require('../../api/index')
 import { setWatcher } from '../../utils/watch'
+const title = '大厂前端面试题材，悄悄分享给你！'
 Page({
 
   /**
@@ -13,25 +14,25 @@ Page({
     answer: '',
     level: 0,
     create_time: '',
-    answerShow: false,
-    first: false,
     last: false,
     topicIndex: 0,
     topicSum: 0,
     loading: false,
     id: 0,
     next_id: 0,
-    prev_id: 0
+    type: '',
+    currentTitle: title
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const { index, id, topicSum } = wx.getStorageSync('queryTopic')
+    const { index, id, topicSum, type } = wx.getStorageSync('queryTopic')
     this.setData({
       topicIndex: Number(index),
       topicSum: topicSum,
-      id: id
+      id: id,
+      type: type
     })
     this.setCurrentTopic(index)
     setWatcher(this)
@@ -81,7 +82,6 @@ Page({
         title: res.data.title,
         level: res.data.level,
         next_id: res.data.next_id,
-        prev_id: res.data.prev_id,
         create_time: handleTime(res.data.create_time),
         loading: false
       })
@@ -97,13 +97,10 @@ Page({
   },
 
   setCurrentTopic(index: any) {
-    if (index === 0) {
-      this.setData({ first: true })
-    } else if (index === this.data.topicSum - 1) {
+    if (index === this.data.topicSum - 1) {
       this.setData({ last: true })
     } else {
       this.setData({
-        first: false,
         last: false
       })
     }
@@ -115,16 +112,7 @@ Page({
     this.getTopicInfo()
   },
   /**
-   * 上一题
-   */
-  prevQuestion() {
-    if (this.data.loading) return
-    this.data.id = this.data.prev_id
-    let newIndex = this.data.topicIndex
-    this.setData({ topicIndex: --newIndex, answerShow: false })
-  },
-  /**
-   * 下一题
+   * 下题
    */
   nextQuestion() {
     if (this.data.loading) return
@@ -147,11 +135,7 @@ Page({
     }
     this.data.id = this.data.next_id
     let newIndex = this.data.topicIndex
-    this.setData({ topicIndex: ++newIndex, answerShow: false })
-  },
-
-  onShowAnswer() {
-    this.setData({ answerShow: true })
+    this.setData({ topicIndex: ++newIndex })
   },
 
   /**
@@ -172,7 +156,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    this.setData({
+      currentTitle: title
+    })
   },
 
   /**
@@ -196,12 +182,19 @@ Page({
 
   },
 
+  onShare(e: any) {
+    const { title } = e.target.dataset
+    this.setData({
+      currentTitle: title
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage() {
     return{
-      title: '给你推荐一款非常好用的前端面试题小程序'
+      title: this.data.currentTitle
     }
   }
 })
