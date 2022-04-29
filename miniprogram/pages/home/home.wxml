@@ -34,24 +34,57 @@
     </view>
   </view>
   <view class="home-container">
-    <view class="hc-title">
-      <text>热门分类</text>
-      <view class="search-wrap" bindtap="goSearch">
-        <view class="search-input">
-          <text class="icon-bg">
-            <text class="iconfont icon-sousuo1"></text>
-          </text>
-          <text class="text">搜索</text>
+    <view class="classify-wrapper">
+      <view class="title">
+        <text>热门分类</text>
+        <view class="search-wrap" bindtap="goSearch">
+          <view class="search-input">
+            <text class="icon-bg">
+              <text class="iconfont icon-sousuo1"></text>
+            </text>
+            <text class="text">搜索</text>
+          </view>
         </view>
       </view>
+      <view class="classify-list">
+        <block wx:for="{{classify}}" wx:key="index">
+          <navigator class="classify-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}&type={{item.type}}">
+            <text class="iconfont {{item.icon}}"></text>
+            <text class="text">{{item.label}}</text>
+          </navigator>
+        </block>
+      </view>
     </view>
-    <view class="hc-navs">
-      <block wx:for="{{navs}}" wx:key="index">
-        <navigator class="nav-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}&type={{item.type}}">
-          <text class="iconfont {{item.icon}}"></text>
-          <text class="text">{{item.label}}</text>
-        </navigator>
-      </block>
+    <view class="assist-wrapper">
+      <view class="title">
+        <text>辅助工具</text>
+      </view>
+      <view class="assist-list">
+        <block>
+          <navigator class="assist-item" url="">
+            <text></text>
+            <text>面试宝典</text>
+          </navigator>
+        </block>
+        <block>
+          <navigator class="assist-item" url="">
+            <text></text>
+            <text>简历模板推荐</text>
+          </navigator>
+        </block>
+        <block>
+          <navigator class="assist-item" url="">
+            <text></text>
+            <text>项目介绍</text>
+          </navigator>
+        </block>
+        <block>
+          <navigator class="assist-item" url="">
+            <text></text>
+            <text>面经分享</text>
+          </navigator>
+        </block>
+      </view>
     </view>
   </view>
 </view>

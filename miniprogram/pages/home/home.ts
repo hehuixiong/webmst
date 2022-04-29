@@ -3,7 +3,7 @@ const { getTopicCate, getTopicList } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
 Page({
   data: {
-    navs: [
+    classify: [
       // {
       //   icon: 'icon-quanbu',
       //   label: '全部',
@@ -181,9 +181,9 @@ Page({
         if (res.data[i].name === 'showgroup') {
           this.setData({ showgroup: true })
         }
-        for (let j = 0; j < this.data.navs.length; j++) {
-          if (res.data[i].name === this.data.navs[j].type) {
-            let str = 'navs['+ j +'].id'
+        for (let j = 0; j < this.data.classify.length; j++) {
+          if (res.data[i].name === this.data.classify[j].type) {
+            let str = 'classify['+ j +'].id'
             this.setData({
               [str]: res.data[i].id
             })
@@ -261,12 +261,12 @@ Page({
     })
     return{
       title: '大厂前端面试题材，悄悄分享给你！',
-      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220424005002.png'
+      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220427140039.png'
     }
   },
   onShareTimeline() {
     return{
-      title: '大厂前端面试题材，悄悄分享给你！'
+      title: '哇，真的想不到！！！'
     }
   }
 })
