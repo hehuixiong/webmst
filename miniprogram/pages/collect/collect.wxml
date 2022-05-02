@@ -1,0 +1,18 @@
+<view class="collect-container">
+  <view class="collect-content" wx:if="{{collectList.length}}">
+    <topic-list
+      data="{{collectList}}"
+      topicSum="{{topicSum}}"
+      loading="{{loading}}"
+      noMore="{{noMore}}"
+      type="{{type}}"
+    ></topic-list>
+  </view>
+  <view class="loading" style="margin-top: 30rpx;" wx:if="{{collectList.length === 0 && loading}}">
+    <loading color="#7e68f3"></loading>
+  </view>
+  <view class="no_collect" wx:if="{{empty && !loading}}">
+    <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220430162300.png" mode="widthFix"></image>
+    <view>亲，暂无收藏记录哦~</view>
+  </view>
+</view>

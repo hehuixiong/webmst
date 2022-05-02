@@ -28,7 +28,7 @@
   },
   "include": [
     "./**/*.ts"
-  ],
+, "miniprogram/data/skills.js"  ],
   "exclude": [
     "node_modules"
   ]

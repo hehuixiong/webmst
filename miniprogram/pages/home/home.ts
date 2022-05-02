@@ -3,17 +3,15 @@ const { getTopicCate, getTopicList } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
 Page({
   data: {
-    classify: [
-      // {
-      //   icon: 'icon-quanbu',
-      //   label: '全部',
-      //   type: NAV_TYPES.all,
-      //   id: null
-      // },
+    swiper: [
+      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
+      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png'
+    ],
+    category: [
       {
-        icon: 'icon-javascript',
-        label: 'JavaScript',
-        type: NAV_TYPES.javaScript,
+        icon: 'icon-html',
+        label: 'HTML',
+        type: NAV_TYPES.html,
         id: null
       },
       {
@@ -23,9 +21,9 @@ Page({
         id: null
       },
       {
-        icon: 'icon-html',
-        label: 'HTML',
-        type: NAV_TYPES.html,
+        icon: 'icon-javascript',
+        label: 'JavaScript',
+        type: NAV_TYPES.javaScript,
         id: null
       },
       {
@@ -35,23 +33,17 @@ Page({
         id: null
       },
       {
-        icon: 'icon-suanfa',
-        label: '算法',
-        type: NAV_TYPES.algorithm,
-        id: null
-      },
-      {
         icon: 'icon-reactjs',
         label: 'React.js',
         type: NAV_TYPES.reactJs,
         id: null
       },
-      {
-        icon: 'icon-qianduananquan',
-        label: '前端安全',
-        type: NAV_TYPES.security,
-        id: null
-      },
+      // {
+      //   icon: 'icon-qianduananquan',
+      //   label: '前端安全',
+      //   type: NAV_TYPES.security,
+      //   id: null
+      // },
       {
         icon: 'icon-es6',
         label: 'ES6',
@@ -65,75 +57,111 @@ Page({
         id: null
       },
       {
+        icon: 'icon-suanfa',
+        label: '算法',
+        type: NAV_TYPES.algorithm,
+        id: null
+      },
+      {
         icon: 'icon-bianchengti',
         label: '编程题',
         type: NAV_TYPES.programme,
         id: null
       },
-      {
-        icon: 'icon-quweiti',
-        label: '趣味题',
-        type: NAV_TYPES.interest,
-        id: null
-      },
-      {
-        icon: 'icon-jisuanjiwangluo',
-        label: '计算机网络',
-        type: NAV_TYPES.network,
-        id: null
-      },
+      // {
+      //   icon: 'icon-quweiti',
+      //   label: '趣味题',
+      //   type: NAV_TYPES.interest,
+      //   id: null
+      // },
+      // {
+      //   icon: 'icon-jisuanjiwangluo',
+      //   label: '计算机网络',
+      //   type: NAV_TYPES.network,
+      //   id: null
+      // },
       {
         icon: 'icon-xingnengyouhua',
         label: '性能优化',
         type: NAV_TYPES.performance,
         id: null
       },
-      {
-        icon: 'icon-shejimoshe',
-        label: '设计模式',
-        type: NAV_TYPES.designMode,
-        id: null
-      },
-      {
-        icon: 'icon-gongchenghua',
-        label: '工程化',
-        type: NAV_TYPES.engineering,
-        id: null
-      },
-      {
-        icon: 'icon-nodejs',
-        label: 'Node.js',
-        type: NAV_TYPES.nodeJs,
-        id: null
-      },
+      // {
+      //   icon: 'icon-shejimoshe',
+      //   label: '设计模式',
+      //   type: NAV_TYPES.designMode,
+      //   id: null
+      // },
+      // {
+      //   icon: 'icon-gongchenghua',
+      //   label: '工程化',
+      //   type: NAV_TYPES.engineering,
+      //   id: null
+      // },
+      // {
+      //   icon: 'icon-nodejs',
+      //   label: 'Node.js',
+      //   type: NAV_TYPES.nodeJs,
+      //   id: null
+      // },
       {
         icon: 'icon-gongju',
         label: '工具',
         type: NAV_TYPES.tools,
         id: null
       },
+      // {
+      //   icon: 'icon-jisuanjijichu',
+      //   label: '计算机基础',
+      //   type: NAV_TYPES.basis,
+      //   id: null
+      // },
+      // {
+      //   icon: 'icon-leetcode',
+      //   label: 'LeetCode',
+      //   type: NAV_TYPES.leetCode,
+      //   id: null
+      // },
+      // {
+      //   icon: 'icon-daixuanze',
+      //   label: '选择题',
+      //   type: NAV_TYPES.choice,
+      //   id: null
+      // }
       {
-        icon: 'icon-jisuanjijichu',
-        label: '计算机基础',
-        type: NAV_TYPES.basis,
-        id: null
-      },
-      {
-        icon: 'icon-leetcode',
-        label: 'LeetCode',
-        type: NAV_TYPES.leetCode,
-        id: null
-      },
-      {
-        icon: 'icon-daixuanze',
-        label: '选择题',
-        type: NAV_TYPES.choice,
+        icon: 'icon-quanbu',
+        label: '全部分类',
+        type: NAV_TYPES.all,
         id: null
       }
     ],
-    swiper: [
-      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
-      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png'
+    assist: [
+      {
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220100.png',
+        label: '简历推荐'
+      },
+      {
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220101.png',
+        label: '项目经验'
+      },
+      {
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220102.png',
+        label: '企业真题'
+      },
+      {
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220103.png',
+        label: '面试技巧',
+        to: '/pages/skills-list/skills-list',
+      },
+      {
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220104.png',
+        label: '介绍模板'
+      },
+      {
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220105.png',
+        label: '我的收藏',
+        to: '/pages/collect/collect'
+      }
     ],
     current: 0,
     titLoading: true,
@@ -181,9 +209,9 @@ Page({
         if (res.data[i].name === 'showgroup') {
           this.setData({ showgroup: true })
         }
-        for (let j = 0; j < this.data.classify.length; j++) {
-          if (res.data[i].name === this.data.classify[j].type) {
-            let str = 'classify['+ j +'].id'
+        for (let j = 0; j < this.data.category.length; j++) {
+          if (res.data[i].name === this.data.category[j].type) {
+            let str = 'category['+ j +'].id'
             this.setData({
               [str]: res.data[i].id
             })
@@ -260,7 +288,7 @@ Page({
       menus: ['shareAppMessage', 'shareTimeline']
     })
     return{
-      title: '大厂前端面试题材，悄悄分享给你！',
+      title: '大厂前端面试题，悄悄分享给你！',
       imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220427140039.png'
     }
   },

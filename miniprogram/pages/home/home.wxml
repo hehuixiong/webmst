@@ -34,7 +34,7 @@
     </view>
   </view>
   <view class="home-container">
-    <view class="classify-wrapper">
+    <view class="category-wrapper">
       <view class="title">
         <text>热门分类</text>
         <view class="search-wrap" bindtap="goSearch">
@@ -46,9 +46,13 @@
           </view>
         </view>
       </view>
-      <view class="classify-list">
-        <block wx:for="{{classify}}" wx:key="index">
-          <navigator class="classify-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}&type={{item.type}}">
+      <view class="category-list">
+        <block wx:for="{{category}}" wx:key="index">
+          <navigator wx:if="{{item.type === 'all'}}" class="category-item" url="/pages/category/category">
+            <text class="iconfont {{item.icon}}"></text>
+            <text class="text">{{item.label}}</text>
+          </navigator>
+          <navigator wx:else="" class="category-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}&type={{item.type}}">
             <text class="iconfont {{item.icon}}"></text>
             <text class="text">{{item.label}}</text>
           </navigator>
@@ -60,28 +64,10 @@
         <text>辅助工具</text>
       </view>
       <view class="assist-list">
-        <block>
-          <navigator class="assist-item" url="">
-            <text></text>
-            <text>面试宝典</text>
-          </navigator>
-        </block>
-        <block>
-          <navigator class="assist-item" url="">
-            <text></text>
-            <text>简历模板推荐</text>
-          </navigator>
-        </block>
-        <block>
-          <navigator class="assist-item" url="">
-            <text></text>
-            <text>项目介绍</text>
-          </navigator>
-        </block>
-        <block>
-          <navigator class="assist-item" url="">
-            <text></text>
-            <text>面经分享</text>
+        <block wx:for="{{assist}}" wx:key="index">
+          <navigator class="assist-item" url="{{item.to}}">
+            <image src="{{item.url}}" mode="heightFix"></image>
+            <text class="text">{{item.label}}</text>
           </navigator>
         </block>
       </view>

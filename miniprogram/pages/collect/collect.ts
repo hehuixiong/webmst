@@ -1,11 +1,17 @@
-// pages/vip/vip.ts
+// pages/collect/collect.ts
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    collectList: [],
+    topicSum: 0,
+    page: 1,
+    pageTotal: 0,
+    noMore: false,
+    loading: false,
+    empty: true
   },
 
   /**

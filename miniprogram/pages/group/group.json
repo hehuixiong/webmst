@@ -1,5 +1,6 @@
 {
-  "navigationBarTitleText": "扫码加入交流群",
+  "navigationBarTitleText": "群聊",
+  "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"
   }

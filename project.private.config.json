@@ -6,15 +6,6 @@
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "libVersion": "2.21.4",
   "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
     "miniprogram": {
       "list": [
         {
@@ -35,8 +26,15 @@
           "name": "",
           "pathName": "pages/topic-list/topic-list",
           "query": "id=5&label=Vue.js&type=vueJs",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/skills-list/skills-list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

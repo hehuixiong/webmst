@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "面试技巧",
+  "backgroundColor": "#f6f6f6",
+  "usingComponents": {
+    "htmltowxml": "plugin://htmltowxml/view",
+    "loading": "/components/loading/index"
+  }
+}

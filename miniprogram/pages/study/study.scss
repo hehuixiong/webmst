@@ -4,14 +4,15 @@
     .study-item{
       display: flex;
       padding-left: 20rpx;
+      overflow: hidden;
       &:last-child{
         border-bottom: none;
       }
       .sui-image{
-        width: 136rpx;
-        height: 136rpx;
+        width: 110rpx;
+        height: 110rpx;
         background: #7e68f3;
-        border-radius: 32rpx;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -19,34 +20,58 @@
         color: #fff;
         flex: 0 0 auto;
         position: relative;
-        overflow: hidden;
         margin-top: 20rpx;
-        &::before{
+        .image-bg{
           position: absolute;
-          content: '';
-          left: -20rpx;
-          bottom: -50rpx;
-          width: 200rpx;
-          height: 80rpx;
+          width: 110rpx;
+          height: 110rpx;
+          left: 0;
+          top: 0;
+          overflow: hidden;
           border-radius: 50%;
-          transform: rotate(-12deg);
-          background: rgba($color: #c2a6f9, $alpha: 0.5);
+          &::before{
+            position: absolute;
+            content: '';
+            left: -20rpx;
+            bottom: -61rpx;
+            width: 200rpx;
+            height: 80rpx;
+            border-radius: 50%;
+            transform: rotate(-12deg);
+            background: rgba($color: #c2a6f9, $alpha: 0.5);
+          }
+          &::after{
+            position: absolute;
+            content: '';
+            left: -20rpx;
+            bottom: -80rpx;
+            width: 200rpx;
+            height: 80rpx;
+            border-radius: 50%;
+            transform: rotate(32deg);
+            background: rgba($color: #c2a6f9, $alpha: 0.5);
+          }
         }
-        &::after{
+        .before{
           position: absolute;
-          content: '';
-          left: -20rpx;
-          bottom: -80rpx;
-          width: 200rpx;
-          height: 80rpx;
-          border-radius: 50%;
-          transform: rotate(32deg);
-          background: rgba($color: #c2a6f9, $alpha: 0.5);
+          left: 50%;
+          top: -1000rpx;
+          width: 1px;
+          background: #ededed;
+          height: 1000rpx;
+        }
+        .after{
+          position: absolute;
+          left: 50%;
+          bottom: -1000rpx;
+          width: 1px;
+          background: #ededed;
+          height: 1000rpx;
         }
         .ch{
           text-shadow:rgb(0, 0, 0) 2px 4px 5px;
           letter-spacing: 1px;
-          font-size: 28rpx;
+          font-size: 22rpx;
           position: relative;
           z-index: 1;
         }
@@ -56,7 +81,7 @@
           letter-spacing : -1px;
           font-weight: 100;
           font-family: Times;
-          font-size: 22rpx;
+          font-size: 18rpx;
           margin-top: -4rpx;
           position: relative;
           z-index: 1;
@@ -65,7 +90,7 @@
       .sui-content{
         margin-left: 20rpx;
         flex: 1;
-        border-bottom: 1px solid #efefef;
+        // border-bottom: 1px solid #efefef;
         padding: 20rpx 20rpx 20rpx 0;
         .title{
           font-size: 30rpx;
@@ -101,6 +126,10 @@
             }
           }
         }
+      }
+      &:first-child .before,
+      &:last-child .after{
+        display: none!important;
       }
     }
   }

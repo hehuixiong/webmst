@@ -1,0 +1,40 @@
+<view class="category-container">
+  <view class="category-header">
+    <view class="header-item">
+      <text class="number">{{recordsCount.day || 0}}</text>
+      <text>已练习天数</text>
+    </view>
+    <view class="header-item">
+      <text class="number">{{recordsCount.topic || 0}}</text>
+      <text>已练习题目</text>
+    </view>
+    <view class="header-item">
+      <text class="number">{{recordsCount.module || 0}}</text>
+      <text>已练习模块</text>
+    </view>
+  </view>
+  <view class="category-list">
+    <block wx:for="{{category}}" wx:key="index">
+      <navigator class="category-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}&type={{item.type}}">
+        <view class="warpper">
+          <view class="icon">
+            <text class="iconfont {{item.icon}}"></text>
+          </view>
+          <view class="title-wrap">
+            <view class="title">{{item.label}}</view>
+            <view class="record">
+              <!-- <text>共 100 题</text>
+              <text class="line">|</text> -->
+              <text>已练习 {{recordsObj[item.type].ids.length || 0}} 题</text>
+            </view>
+          </view>
+        </view>
+        <view class="tag">
+          <text class="text">练习</text>
+          <text class="icon">
+          </text>
+        </view>
+      </navigator>
+    </block>
+  </view>
+</view>

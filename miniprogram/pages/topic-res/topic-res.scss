@@ -16,7 +16,7 @@
       margin-top: 10rpx;
       line-height: 48rpx;
       padding: 0 10rpx;
-      font-size: 30rpx;
+      font-size: 32rpx;
     }
     .difficulty{
       display: flex;
@@ -122,6 +122,10 @@
       .iconfont{
         font-size: 40rpx;
       }
+      .icon-fenxiang,
+      .icon-xiayiti{
+        font-size: 42rpx;
+      }
       .text{
         font-size: 24rpx;
         color: #786eeb;
@@ -146,6 +150,12 @@
       font-size: 26rpx;
       color: #666666;
     }
+  }
+  .source{
+    font-size: 22rpx;
+    color: #b1b1b1;
+    margin-top: 20rpx;
+    margin-left: 20rpx;
   }
 }
 
@@ -237,7 +247,7 @@
 
 .markdown-body{
   color: #333333!important;
-  font-size: 28rpx!important;
+  font-size: 30rpx!important;
   .wxml-li-text {
     overflow: hidden!important;
   }
@@ -248,6 +258,9 @@
   
   .hljs-style-tomorrow{
     color: #24292f!important;
+  }
+  .wxml-code{
+    border: none!important;
   }
   .wxml-li-text{
     line-height: 46rpx!important;

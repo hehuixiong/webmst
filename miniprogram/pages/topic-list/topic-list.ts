@@ -115,7 +115,7 @@ Page({
    */
   onShareAppMessage() {
     return{
-      title: '大厂前端面试题材，悄悄分享给你！'
+      title: '大厂前端面试题，悄悄分享给你！'
     }
   }
 })

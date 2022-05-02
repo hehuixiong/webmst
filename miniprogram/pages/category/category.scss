@@ -1,0 +1,123 @@
+.category-container{
+  background: #f6f6f6;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+  .category-header{
+    display: flex;
+    background: #fff;
+    padding: 30rpx 0;
+    box-sizing: border-box;
+    .header-item{
+      width: 33.33%;
+      padding: 0 30rpx;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text{
+        color: #999999;
+      }
+      .number{
+        color: #333333;
+        font-size: 32rpx;
+        margin-bottom: 8rpx;
+        font-weight: bold;
+      }
+    }
+  }
+  .category-list{
+    background: #fff;
+    margin-top: 20rpx;
+    .category-item{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30rpx 20rpx;
+      overflow: hidden;
+      .warpper{
+        display: flex;
+        align-items: center;
+        .icon{
+          margin-right: 20rpx;
+          border-radius: 50%;
+          width: 70rpx;
+          height: 70rpx;
+          position: relative;
+          &::before{
+            position: absolute;
+            content: '';
+            left: 50%;
+            top: -100rpx;
+            width: 1px;
+            background: #ededed;
+            height: 100rpx;
+          }
+          &::after{
+            position: absolute;
+            content: '';
+            left: 50%;
+            bottom: -100rpx;
+            width: 1px;
+            background: #ededed;
+            height: 100rpx;
+          }
+          .iconfont{
+            font-size: 70rpx;
+          }
+        }
+        .title-wrap{
+          .title{
+            font-size: 32rpx;
+            font-weight: bold;
+            color: #333333;
+          }
+          .record{
+            display: flex;
+            align-items: center;
+            margin-top: 12rpx;
+            text{
+              color: #999999;
+              font-size: 26rpx;
+            }
+            .line{
+              margin: 0 8rpx;
+            }
+          }
+        }
+      }
+      .tag{
+        border: 1px solid #7e68f3;
+        border-radius: 8rpx;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        height: 56rpx;
+        .text{
+          color: #7e68f3;
+          text-align: center;
+          padding: 0 20rpx;
+          font-size: 28rpx;
+        }
+        .icon{
+          padding: 0 20rpx;
+          background: #7e68f3;
+          color: #fff;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+      }
+      &:first-child{
+        .icon::before{
+          display: none;
+        }
+      }
+      &:last-child{
+        .icon::after{
+          display: none;
+        }
+      }
+    }
+  }
+}

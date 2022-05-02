@@ -2,8 +2,11 @@
   <view class="study-list">
     <view class="study-item" wx:for="{{studyPageList}}" wx:key="index">
       <view class="sui-image">
+        <text class="image-bg"></text>
         <text class="ch">免费资源</text>
         <text class="en">RESOURCES</text>
+        <text class="before"></text>
+        <text class="after"></text>
       </view>
       <view class="sui-content">
         <view class="title">
@@ -11,7 +14,7 @@
         </view>
         <view class="get-wrapper">
           <view class="has-brought">
-            <text>剩余数量：</text>{{item.count}}
+            {{item.count}}人已领取
           </view>
           <view class="btns">
             <van-button plain icon="share-o" type="danger" size="small" open-type="share" data-title="{{item.title}}" bindtap="onShare"></van-button>
@@ -20,12 +23,12 @@
         </view>
       </view>
     </view>
-    <view class="loading-container">
-      <view class="loading" wx:if="{{loading}}">
-        <loading color="#7e68f3"></loading>
-        <text style="margin-left: 10rpx">加载中...</text>
-      </view>
-      <view wx:if="{{noMore}}">没有更多了~</view>
+  </view>
+  <view class="loading-container">
+    <view class="loading" wx:if="{{loading}}">
+      <loading color="#7e68f3"></loading>
+      <text style="margin-left: 10rpx">加载中...</text>
     </view>
+    <view wx:if="{{noMore}}">没有更多了~</view>
   </view>
 </view>

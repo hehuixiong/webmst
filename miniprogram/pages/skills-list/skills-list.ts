@@ -1,18 +1,21 @@
-// pages/vip/vip.ts
+const localList = require("../../data/skillsList")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    skillsList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    const skillsList: any = [...localList.data]
+    this.setData({
+      skillsList: skillsList
+    })
   },
 
   /**
@@ -62,8 +65,7 @@ Page({
    */
   onShareAppMessage() {
     return{
-      title: '大厂前端面试题，悄悄分享给你！',
-      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220427140039.png'
+      title: '大厂前端面试题，悄悄分享给你！'
     }
   }
 })

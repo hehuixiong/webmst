@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 32rpx 16rpx;
+    padding: 32rpx 0 32rpx 16rpx;
     border-bottom: 1px solid #f6f6f6;
     &:nth-child(odd) {
       background: #f6f6f6;
@@ -23,10 +23,10 @@
       }
       .tag{
         background: #7e68f3;
-        padding: 4rpx 12rpx;
+        padding: 4rpx 12rpx 4rpx 22rpx;
         color: #ffffff;
         font-size: 24rpx;
-        border-radius: 8rpx;
+        border-radius: 32rpx 0 0 32rpx;
         flex: 0 0 auto;
         margin-left: 10rpx;
       }
@@ -37,6 +37,7 @@
       align-items: center;
       color: #666666;
       margin-top: 14rpx;
+      padding-right: 12rpx;
       .level{
         font-size: 24rpx;
         display: flex;

@@ -8,7 +8,11 @@
     "pages/topic-res/topic-res",
     "components/loading/index",
     "pages/group/group",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/category/category",
+    "pages/collect/collect",
+    "pages/skills-list/skills-list",
+    "pages/skills-res/skills-res"
   ],
   "window": {
     "backgroundTextStyle": "light",

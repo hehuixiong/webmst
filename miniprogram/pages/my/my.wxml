@@ -38,8 +38,8 @@
       <view class="understand" bindtap="go">了解详情</view>
     </view>
     <view class="cell-groip cell-groip-top {{ showgroup ? 'is-active' : '' }}">
-      <button bindtap="go">
-        <navigator class="item">
+      <button>
+        <navigator class="item" url="/pages/collect/collect">
           <view class="text-icon">
             <text class="iconfont"></text>
             <text class="text">我的收藏</text>
