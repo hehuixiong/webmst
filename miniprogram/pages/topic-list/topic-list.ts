@@ -1,6 +1,5 @@
 const { getTopicList } = require('../../api/index')
 import { handleTime } from '../../utils/util'
-const PAGE_SIZE = 20
 Page({
   /**
    * 页面的初始数据
@@ -14,7 +13,8 @@ Page({
     id: null,
     label: null,
     topicSum: 0,
-    type: ''
+    type: '',
+    pageSize: 20
   },
 
   /**
@@ -46,7 +46,7 @@ Page({
       }
       const topicList: any = [...this.data.topicList, ...res.data.list]
       this.setData({
-        pageTotal: Math.ceil(res.data.pageTotal / PAGE_SIZE),
+        pageTotal: Math.ceil(res.data.pageTotal / this.data.pageSize),
         topicList: topicList,
         loading: false,
         label: this.data.label,

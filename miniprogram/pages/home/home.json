@@ -5,6 +5,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "van-notice-bar": "@vant/weapp/notice-bar/index",
-    "nav-bar": "/components/nav-bar/index"
+    "nav-bar": "/components/nav-bar/index",
+    "vip-popup": "/components/vip-popup/index"
   }
 }

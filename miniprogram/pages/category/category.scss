@@ -100,12 +100,16 @@
           font-size: 28rpx;
         }
         .icon{
-          padding: 0 20rpx;
           background: #7e68f3;
           color: #fff;
           height: 100%;
+          padding: 0 8rpx;
           display: flex;
           align-items: center;
+          justify-content: center;
+          .iconfont{
+            font-size: 36rpx;
+          }
         }
       }
       &:first-child{

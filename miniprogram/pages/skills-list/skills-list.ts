@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    skillsList: []
+    skillsPageList: [],
+    skillsList: [],
+    totalPage: 0,
+    pageSize: 16,
+    page: 1
   },
 
   /**
@@ -16,6 +20,13 @@ Page({
     this.setData({
       skillsList: skillsList
     })
+    this.setData({
+      totalPage: Math.ceil(this.data.skillsList.length / this.data.pageSize)
+    })
+    this.setData({
+      totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
+    })
+    this.setCurrentPageData()
   },
 
   /**
@@ -54,10 +65,37 @@ Page({
   },
 
   /**
+   * 处理分页
+   */
+  setCurrentPageData() {
+    let begin = (this.data.page - 1) * this.data.pageSize
+    let end = this.data.page * this.data.pageSize
+    this.setData({
+      skillsPageList: [...this.data.skillsPageList, ...this.data.skillsList.slice(begin, end)],
+      loading: false
+    })
+  },
+
+  /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
+    if(this.data.page == this.data.totalPage) {
+      this.setData({
+        noMore: true
+      })
+      return
+    }
 
+    let { page } = this.data
+    this.setData({
+      page: ++page,
+      loading: true
+    })
+    const timer = setTimeout(() => {
+      this.setCurrentPageData()
+      clearTimeout(timer)
+    }, Math.floor(Math.random() * (500 - 100) + 100))
   },
 
   /**

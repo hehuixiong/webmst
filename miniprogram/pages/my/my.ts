@@ -7,7 +7,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     showgroup: false,
-    year: null
+    year: null,
+    show: false
   },
   onLoad() {
     this.setUserInfo()
@@ -54,6 +55,9 @@ Page({
       icon: 'none',
       duration: 2000
     })
+  },
+  showVip() {
+    this.setData({ show: true })
   },
   addGroup() {
     wx.navigateTo({

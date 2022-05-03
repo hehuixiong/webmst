@@ -27,4 +27,16 @@
       }
     }
   }
+  .loading-container{
+    text-align: center;
+    margin-top: 20rpx;
+    line-height: 74rpx;
+    font-size: 26rpx;
+    color: #666666;
+    .loading{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }

@@ -158,3 +158,20 @@
 .icon-bianchengti:before {
   content: "\e62b";
 }
+
+
+/* 轻量级图标 */
+@font-face {
+  font-family: "iconfont"; /* Project id 3372673 */
+  src: url('//at.alicdn.com/t/font_3372673_4hjqyhyjvnq.woff2?t=1651541253036') format('woff2'),
+       url('//at.alicdn.com/t/font_3372673_4hjqyhyjvnq.woff?t=1651541253036') format('woff'),
+       url('//at.alicdn.com/t/font_3372673_4hjqyhyjvnq.ttf?t=1651541253036') format('truetype');
+}
+
+.icon-huiyuanvip:before {
+  content: "\e7ac";
+}
+
+.icon-youjiantou:before {
+  content: "\e79c";
+}

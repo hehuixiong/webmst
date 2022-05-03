@@ -32,6 +32,7 @@
         <view class="tag">
           <text class="text">练习</text>
           <text class="icon">
+            <text class="icon-youjiantou iconfont"></text>
           </text>
         </view>
       </navigator>

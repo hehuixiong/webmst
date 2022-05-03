@@ -20,7 +20,7 @@
       <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
       <view wx:else class="zhengli">正在整理中...</view>
     </view>
-    <view class="source" wx:if="{{!isSelf}}">来源：前端面试题宝典</view>
+    <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!isSelf}}">来源：前端面试题宝典</navigator>
     <view class="sidebar">
       <view class="sidebar-item" bindtap="go">
         <text class="icon-bg">

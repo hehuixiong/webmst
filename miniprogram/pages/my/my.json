@@ -3,6 +3,7 @@
   "backgroundColor": "#f6f6f6",
   "navigationStyle":"custom",
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "vip-popup": "/components/vip-popup/index"
   }
 }

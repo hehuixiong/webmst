@@ -4,8 +4,14 @@ import { NAV_TYPES } from '../../utils/constant'
 Page({
   data: {
     swiper: [
-      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
-      'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png'
+      {
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
+        to: '/pages/skills-list/skills-list'
+      },
+      {
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
+        to: '/pages/skills-list/skills-list'
+      }
     ],
     category: [
       {
@@ -38,12 +44,6 @@ Page({
         type: NAV_TYPES.reactJs,
         id: null
       },
-      // {
-      //   icon: 'icon-qianduananquan',
-      //   label: '前端安全',
-      //   type: NAV_TYPES.security,
-      //   id: null
-      // },
       {
         icon: 'icon-es6',
         label: 'ES6',
@@ -68,66 +68,18 @@ Page({
         type: NAV_TYPES.programme,
         id: null
       },
-      // {
-      //   icon: 'icon-quweiti',
-      //   label: '趣味题',
-      //   type: NAV_TYPES.interest,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-jisuanjiwangluo',
-      //   label: '计算机网络',
-      //   type: NAV_TYPES.network,
-      //   id: null
-      // },
       {
         icon: 'icon-xingnengyouhua',
         label: '性能优化',
         type: NAV_TYPES.performance,
         id: null
       },
-      // {
-      //   icon: 'icon-shejimoshe',
-      //   label: '设计模式',
-      //   type: NAV_TYPES.designMode,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-gongchenghua',
-      //   label: '工程化',
-      //   type: NAV_TYPES.engineering,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-nodejs',
-      //   label: 'Node.js',
-      //   type: NAV_TYPES.nodeJs,
-      //   id: null
-      // },
       {
         icon: 'icon-gongju',
         label: '工具',
         type: NAV_TYPES.tools,
         id: null
       },
-      // {
-      //   icon: 'icon-jisuanjijichu',
-      //   label: '计算机基础',
-      //   type: NAV_TYPES.basis,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-leetcode',
-      //   label: 'LeetCode',
-      //   type: NAV_TYPES.leetCode,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-daixuanze',
-      //   label: '选择题',
-      //   type: NAV_TYPES.choice,
-      //   id: null
-      // }
       {
         icon: 'icon-quanbu',
         label: '全部分类',
@@ -168,7 +120,8 @@ Page({
     hideTip: true,
     currentTime: '',
     pageTotal: 0,
-    showgroup: false
+    showgroup: false,
+    show: false
   },
   onLoad() {
     this.getTopicCate()
@@ -195,6 +148,9 @@ Page({
     this.setData({ hideTip: true })
     wx.setStorageSync('hideTip', true)
   },
+  showVip() {
+    this.setData({ show: true })
+  },
   swiperChange(e: any) {
     if (!this.data.swiper.length) {
       return
@@ -220,7 +176,11 @@ Page({
       }
     })
   },
-  go() {
+  go(e: any) {
+    const { to, vip } = e.currentTarget.dataset
+    if (to) {
+      return
+    }
     wx.showToast({
       title: '敬请期待...',
       icon: 'none',

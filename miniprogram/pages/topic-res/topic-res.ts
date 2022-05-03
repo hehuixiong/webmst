@@ -64,6 +64,8 @@ Page({
     let recordsDay = 1
     if (yearMonthDay !== storageYearMonthDay) {
       recordsDay = ++storageDay
+    } else {
+      recordsDay = storageDay
     }
     wx.setStorageSync('recordsObj', recordsObj)
     wx.setStorageSync('recordsDay', recordsDay)
@@ -168,6 +170,7 @@ Page({
     this.data.id = this.data.next_id
     let newIndex = this.data.topicIndex
     this.setData({ topicIndex: ++newIndex })
+    this.practiceRecords(this.data.type, this.data.id)
   },
 
   /**

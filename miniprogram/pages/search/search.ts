@@ -1,7 +1,6 @@
 // pages/search/search.ts
 const { getTopicList } = require('../../api/index')
 import { handleTime } from '../../utils/util'
-const PAGE_SIZE = 20
 Page({
 
   /**
@@ -15,7 +14,8 @@ Page({
     pageTotal: 0,
     noMore: false,
     loading: false,
-    empty: true
+    empty: true,
+    pageSize: 20
   },
 
   /**
@@ -38,7 +38,7 @@ Page({
       }
       const searchList: any = [...this.data.searchList, ...list]
       this.setData({
-        pageTotal: Math.ceil(res.data.pageTotal / PAGE_SIZE),
+        pageTotal: Math.ceil(res.data.pageTotal / this.data.pageSize),
         searchList: searchList,
         loading: false,
         topicSum: res.data.pageTotal,

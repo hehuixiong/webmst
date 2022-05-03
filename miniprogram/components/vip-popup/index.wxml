@@ -1,0 +1,111 @@
+<view class="vip-popup">
+  <van-popup
+    show="{{ show }}"
+    round
+    position="bottom"
+    custom-style="height: 70%"
+    bind:close="onClose"
+    closeable
+    safe-area-inset-bottom="{{safeAreaInsetBottom}}"
+    custom-class="vip-popup-body"
+  >
+    <view class="vip-popup-title">会员</view>
+    <view class="vip-popup-container">
+      <view class="vip-list">
+        <view class="vip-item {{ currentIndex === 0 ? 'is-active' : '' }}" bindtap="changeVip" data-index="0">
+          <view class="vip-item__left">
+            <view class="vip-item__left-icon">
+              <text class="iconfont icon-huiyuanvip"></text>
+            </view>
+            <view class="vip-item__left-text">
+              普通会员
+            </view>
+          </view>
+          <view class="vip-item__center">
+            <view class="vip-item__center-title">
+              包月会员
+            </view>
+            <view class="vip-item__center-desc">
+              权益：享受30天会员权益，全部功能可用
+            </view>
+          </view>
+          <view class="vip-item__right">
+            <view class="vip-item__right-price">
+              <text>10.0</text> 元
+            </view>
+            <view class="vip-item__right-bless">
+              祝你面试马到功成
+            </view>
+          </view>
+          <view class="dos"></view>
+        </view>
+        <view class="vip-item {{ currentIndex === 1 ? 'is-active' : '' }}" bindtap="changeVip" data-index="1">
+          <view class="vip-item__left">
+            <view class="vip-item__left-icon">
+              <text class="iconfont icon-huiyuanvip"></text>
+            </view>
+            <view class="vip-item__left-text">
+              钻石会员
+            </view>
+          </view>
+          <view class="vip-item__center">
+            <view class="vip-item__center-title">
+              包年会员
+            </view>
+            <view class="vip-item__center-desc">
+              权益：享受365天会员权益，全部功能可用
+            </view>
+          </view>
+          <view class="vip-item__right">
+            <view class="vip-item__right-price">
+              <text>20.0</text> 元
+            </view>
+            <view class="vip-item__right-bless">
+              祝你轻松拿到大offer
+            </view>
+          </view>
+          <view class="dos"></view>
+        </view>
+        <view class="vip-item {{ currentIndex === 2 ? 'is-active' : '' }}" bindtap="changeVip" data-index="2">
+          <view class="vip-item__left">
+            <view class="vip-item__left-icon">
+              <text class="iconfont icon-huiyuanvip"></text>
+            </view>
+            <view class="vip-item__left-text">
+              至尊会员
+            </view>
+          </view>
+          <view class="vip-item__center">
+            <view class="vip-item__center-title">
+              永久会员
+            </view>
+            <view class="vip-item__center-desc">
+              权益：享受永久会员权益，全部功能可用
+            </view>
+          </view>
+          <view class="vip-item__right">
+            <view class="vip-item__right-price">
+              <text>30.0</text> 元
+            </view>
+            <view class="vip-item__right-bless">
+              祝你工作无忧又高薪
+            </view>
+          </view>
+          <view class="dos"></view>
+        </view>
+      </view>
+      <view class="vip-notice">
+        <view class="vip-notice__title">购买须知</view>
+        <view class="vip-notice__wrapper">
+          <view class="vip-notice__item">⒈ 购买后如果没有成功请重新加载小程序</view>
+          <view class="vip-notice__item">⒉ 多次购买自动叠加</view>
+          <view class="vip-notice__item">⒊ 如果其他问题或故障请联系微信 NetEngine666</view>
+          <view class="vip-notice__item">⒋ 购买后如果仍然无法访问一定要联系微信 NetEngine666</view>
+        </view>
+      </view>
+    </view>
+    <view class="vip-popup-footer">
+      <van-button round size="normal" type="danger" color="linear-gradient(#9382f0, #7e68f3)" bindtap="submitVip">立即开通</van-button>
+    </view>
+  </van-popup>
+</view>

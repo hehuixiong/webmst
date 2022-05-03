@@ -1,13 +1,29 @@
 <view class="home-page">
-  <nav-bar id="navBar" title="前端面试题材" hideTip="{{hideTip}}" titLoading="{{titLoading}}" background='linear-gradient(#6581f6, #7e68f3)' color="#fff" bind:closeTip="closeTip"></nav-bar>
+  <nav-bar
+    id="navBar"
+    title="前端面试题材"
+    hideTip="{{hideTip}}"
+    titLoading="{{titLoading}}"
+    background='linear-gradient(#6581f6, #7e68f3)'
+    color="#fff"
+    bind:closeTip="closeTip"
+  ></nav-bar>
   <view class="home-swiper">
     <view class="bg"></view>
-    <swiper class="swiper" indicator-dots autoplay circular interval="4000" duration="500" bindchange="swiperChange">
+    <swiper
+      class="swiper"
+      indicator-dots
+      autoplay
+      circular
+      interval="5000"
+      duration="500"
+      bindchange="swiperChange"
+    >
       <block wx:for="{{swiper}}" wx:key="index">
-        <swiper-item bindtap="go">
-          <view class="swiper-content">
-            <image class="img {{current===index?'active':''}}" src="{{item}}"></image>
-          </view>
+        <swiper-item>
+          <navigator class="swiper-content" url="{{item.to}}" bindtap="go" data-to="{{item.to}}" hover-class="none">
+            <image class="img {{current===index?'active':''}}" src="{{item.url}}"></image>
+          </navigator>
         </swiper-item>
       </block>
     </swiper>
@@ -18,7 +34,7 @@
     </van-notice-bar>
   </view>
   <view class="home-module" wx:if="{{showgroup}}">
-    <view class="module-wrapper bg1" bindtap="go">
+    <view class="module-wrapper bg1" bindtap="showVip">
       <view class="title">VIP专属权益</view>
       <view class="btn">了解详情</view>
       <view class="icon-wrapper">
@@ -65,7 +81,7 @@
       </view>
       <view class="assist-list">
         <block wx:for="{{assist}}" wx:key="index">
-          <navigator class="assist-item" url="{{item.to}}">
+          <navigator class="assist-item" url="{{item.to}}" bindtap="go" data-to="{{item.to}}" data-vip="{{true}}">
             <image src="{{item.url}}" mode="heightFix"></image>
             <text class="text">{{item.label}}</text>
           </navigator>
@@ -73,4 +89,6 @@
       </view>
     </view>
   </view>
+  <!-- vip -->
+  <vip-popup safeAreaInsetBottom="{{false}}" show="{{show}}"></vip-popup>
 </view>

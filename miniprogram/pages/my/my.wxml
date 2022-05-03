@@ -35,7 +35,7 @@
         </text>
         <text class="text">VIP专属权益</text>
       </view>
-      <view class="understand" bindtap="go">了解详情</view>
+      <view class="understand" bindtap="showVip">了解详情</view>
     </view>
     <view class="cell-groip cell-groip-top {{ showgroup ? 'is-active' : '' }}">
       <button>
@@ -70,7 +70,7 @@
         </view>
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>
-      <button bindtap="go" open-type="contact">
+      <button open-type="contact">
         <navigator class="item">
           <view class="text-icon">
             <text class="iconfont"></text>
@@ -84,4 +84,6 @@
       <text>Copyright © 2021-{{year}} 前端面试题材</text>
     </view>
   </view>
+  <!-- vip -->
+  <vip-popup safeAreaInsetBottom="{{false}}" show="{{show}}"></vip-popup>
 </view>

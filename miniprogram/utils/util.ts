@@ -25,3 +25,12 @@ export const handleTime = (date: string) => {
   const dateArr = date.split(' ')
   return dateArr[0]
 }
+
+export const numFormat = (num: any) => {
+  if (num >= 10000) {
+    num = (Math.round(num / 1000) / 10).toFixed(1) + 'w'
+  } else if (num >= 1000) {
+    num = (Math.round(num / 100) / 10).toFixed(1) + 'k'
+  }
+  return num
+}
