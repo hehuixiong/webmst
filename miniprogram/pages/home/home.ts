@@ -194,7 +194,7 @@ Page({
       to,
       needLogin
     } = e.currentTarget.dataset.item
-    if (wx.getStorageSync('token') || !needLogin) {
+    if (wx.getStorageSync('loginStatus') || !needLogin) {
       if (to) {
         wx.navigateTo({
           url: to

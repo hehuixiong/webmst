@@ -28,7 +28,8 @@ Page({
   },
   setUserInfo() {
     const { avatarUrl, nickName, timeStamp } = wx.getStorageSync('userInfo')
-    const loginState = wx.getStorageSync('token') && true
+    const loginState = wx.getStorageSync('loginStatus')
+    console.log(loginState)
     this.setData({ userInfo: { avatarUrl, nickName, timeStamp }, loginState })
   },
   go() {

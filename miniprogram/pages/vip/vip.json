@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "增值服务介绍"
+  "navigationBarTitleText": "增值服务介绍",
+  "usingComponents": {
+  }
 }

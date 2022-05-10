@@ -91,6 +91,9 @@ Page({
         res.data.problem = res.data.problem.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
           return ''
         })
+        res.data.problem = res.data.problem.replace(/src="/gi, () => {
+          return 'src="https://images.weserv.nl/?url='
+        })
       }
       if (res.data.content) {
         res.data.content = res.data.content.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, () => {
@@ -107,6 +110,9 @@ Page({
         })
         res.data.content = res.data.content.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
           return ''
+        })
+        res.data.content = res.data.content.replace(/src="/gi, () => {
+          return 'src="https://images.weserv.nl/?url='
         })
       }
       this.setData({
@@ -146,7 +152,7 @@ Page({
     this.getTopicInfo()
   },
   addCollect() {
-    if (wx.getStorageSync('token')) {
+    if (wx.getStorageSync('loginStatus')) {
       addCollect({
         goods_id: this.data.id
       }).then((res: any) => {

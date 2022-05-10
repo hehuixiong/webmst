@@ -37,6 +37,7 @@ Page({
                 timeStamp: e.timeStamp
               })
               wx.setStorageSync('token', res.data.token)
+              wx.setStorageSync('loginStatus', true)
               wx.hideLoading()
               wx.navigateBack()
             })
