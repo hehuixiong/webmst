@@ -1,14 +1,14 @@
 <view class="my-container">
   <view class="userinfo-wrapper">
     <view class="userinfo">
-      <block wx:if="{{!hasUserInfo}}">
-        <view class="userinfo-avatar" bindtap="getUserProfile">
-          <image class="nologin" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220419192701.png"></image>
-        </view>
-        <view class="userinfo-info" bindtap="getUserProfile">
+      <block wx:if="{{!loginState}}">
+        <navigator class="userinfo-avatar" hover-class="none" url="/pages/login/login">
+          <image class="nologin" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220509223414.png"></image>
+        </navigator>
+        <navigator class="userinfo-info" hover-class="none" url="/pages/login/login">
           <text class="nickname">点我快捷登录</text>
           <text class="desc">拼搏到无能为力 坚持到感动自己</text>
-        </view>
+        </navigator>
       </block>
       <block wx:else>
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -39,13 +39,13 @@
     </view>
     <view class="cell-groip cell-groip-top {{ showgroup ? 'is-active' : '' }}">
       <button>
-        <navigator class="item" url="/pages/collect/collect">
+        <view class="item" hover-class="navigator-hover" bindtap="onRoute">
           <view class="text-icon">
             <text class="iconfont"></text>
             <text class="text">我的收藏</text>
           </view>
           <view class="is-link"><van-icon name="arrow" /></view>
-        </navigator>
+        </view>
       </button>
       <button class="item" bindtap="go">
         <view class="text-icon">

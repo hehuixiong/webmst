@@ -53,7 +53,8 @@ Page({
         topicSum: res.data.pageTotal
       })
       this.setData({
-        pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal
+        pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,
+        noMore: this.data.topicList.length === res.data.pageTotal
       })
     })
   },

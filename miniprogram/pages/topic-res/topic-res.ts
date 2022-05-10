@@ -1,5 +1,5 @@
 import { handleTime } from '../../utils/util'
-const { getTopicInfo } = require('../../api/index')
+const { getTopicInfo, addCollect } = require('../../api/index')
 import { setWatcher } from '../../utils/watch'
 const title = '大厂前端面试题，悄悄分享给你！'
 Page({
@@ -144,6 +144,22 @@ Page({
       duration: 0
     })
     this.getTopicInfo()
+  },
+  addCollect() {
+    if (wx.getStorageSync('token')) {
+      addCollect({
+        goods_id: this.data.id
+      }).then((res: any) => {
+        console.log(res)
+        wx.showToast({
+          title: res.msg
+        })
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    }
   },
   /**
    * 下题

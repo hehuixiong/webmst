@@ -4,5 +4,8 @@ module.exports = {
   // 获取面试题
   getTopicList: (params) => request('vehicle/index/get_activity_list', 'POST', params),
   getTopicCate: (params) => request('vehicle/index/get_activity_cate', 'POST', params),
-  getTopicInfo: (params) => request('vehicle/index/get_activity_info', 'POST', params)
+  getTopicInfo: (params) => request('vehicle/index/get_activity_info', 'POST', params),
+  login: (params) => request('vehicle/login/wx_login', 'POST', params),
+  addCollect: (params) => request('vehicle/User/add_collect', 'POST', params),
+  getCollectList: (params) => request('vehicle/User/get_collect_list', 'POST', params)
 }

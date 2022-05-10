@@ -2,6 +2,6 @@
   "navigationBarTitleText": "面试技巧",
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
-    "loading": "/components/loading/index"
+    "more-wrap": "/components/more-wrap/index"
   }
 }

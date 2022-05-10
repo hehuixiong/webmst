@@ -5,7 +5,7 @@ const { getTopicCate, getTopicList } = require('../../api/index')
 Page({
   data: {
     userInfo: {},
-    hasUserInfo: false,
+    loginState: false,
     showgroup: false,
     year: null,
     show: false
@@ -23,31 +23,13 @@ Page({
     const year: any = date.getFullYear()
     this.setData({ year })
   },
-  getUserProfile(e: any) {
-    console.log(e)
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        wx.login({
-          success: (res) => {
-            console.log(res)
-          }
-        })
-        wx.setStorageSync('userInfo', {
-          avatarUrl: res.userInfo.avatarUrl,
-          nickName: res.userInfo.nickName,
-          timeStamp: e.timeStamp,
-          hasUserInfo: true
-        })
-        this.setUserInfo()
-      }
-    })
+  onShow() {
+    this.setUserInfo()
   },
   setUserInfo() {
-    const { avatarUrl, nickName, timeStamp, hasUserInfo } = wx.getStorageSync('userInfo')
-    this.setData({ userInfo: { avatarUrl, nickName, timeStamp }, hasUserInfo })
+    const { avatarUrl, nickName, timeStamp } = wx.getStorageSync('userInfo')
+    const loginState = wx.getStorageSync('token') && true
+    this.setData({ userInfo: { avatarUrl, nickName, timeStamp }, loginState })
   },
   go() {
     wx.showToast({
@@ -55,6 +37,17 @@ Page({
       icon: 'none',
       duration: 2000
     })
+  },
+  onRoute() {
+    if (this.data.loginState) {
+      wx.navigateTo({
+        url: '/pages/collect/collect'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    }
   },
   showVip() {
     this.setData({ show: true })

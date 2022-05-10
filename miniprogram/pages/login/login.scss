@@ -1,0 +1,39 @@
+.login-container{
+  display: flex;
+  flex-direction: column;
+  padding: 150rpx 50rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  .login-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220rpx;
+    height: 220rpx;
+    box-sizing: border-box;
+    border-radius: 50%;
+    box-shadow: 0 4rpx 40rpx 0 rgba($color: #58bd6a, $alpha: 0.2);
+    margin: 0 auto;
+    image{
+      width: 220rpx;
+      height: 220rpx;
+      border-radius: 50%;
+    }
+  }
+  .msg{
+    margin-top: 80rpx;
+    font-size: 32rpx;
+    color: #000000;
+  }
+  .get{
+    font-size: 26rpx;
+    color: #999999;
+    margin-top: 20rpx;
+  }
+  button{
+    width: 100%;
+    border-radius: 60rpx;
+    font-size: 32rpx;
+    margin: 60rpx -10rpx 0;
+  }
+}

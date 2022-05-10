@@ -81,10 +81,10 @@
       </view>
       <view class="assist-list">
         <block wx:for="{{assist}}" wx:key="index">
-          <navigator class="assist-item" url="{{item.to}}" bindtap="go" data-to="{{item.to}}" data-vip="{{true}}">
+          <view class="assist-item" hover-class="navigator-hover" bindtap="onRoute" data-item="{{item}}">
             <image src="{{item.url}}" mode="heightFix"></image>
             <text class="text">{{item.label}}</text>
-          </navigator>
+          </view>
         </block>
       </view>
     </view>

@@ -1,32 +1,53 @@
-const localSkillsList = require("../../data/skillsList")
+// pages/share-list/share-list.ts
+const localShareList = require("../../data/shareList")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    skillsPageList: [],
-    skillsList: [],
+    sharePageList: [],
+    shareList: [],
     totalPage: 0,
     pageSize: 16,
-    page: 1
+    noMore: false,
+    page: 1,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const skillsList: any = [...localSkillsList.data]
+    const shareList: any = [...localShareList.data]
     this.setData({
-      skillsList: skillsList
+      shareList: shareList
     })
     this.setData({
-      totalPage: Math.ceil(this.data.skillsList.length / this.data.pageSize)
+      totalPage: Math.ceil(this.data.shareList.length / this.data.pageSize)
     })
     this.setData({
       totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
     })
     this.setCurrentPageData()
+  },
+
+  /**
+   * 处理分页
+   */
+  setCurrentPageData() {
+    let begin = (this.data.page - 1) * this.data.pageSize
+    let end = this.data.page * this.data.pageSize
+    this.setData({
+      sharePageList: [...this.data.sharePageList, ...this.data.shareList.slice(begin, end)],
+      loading: false
+    })
+  },
+
+  go() {
+    wx.showToast({
+      title: '努力整理中，敬请期待',
+      icon: 'none'
+    })
   },
 
   /**
@@ -62,18 +83,6 @@ Page({
    */
   onPullDownRefresh() {
 
-  },
-
-  /**
-   * 处理分页
-   */
-  setCurrentPageData() {
-    let begin = (this.data.page - 1) * this.data.pageSize
-    let end = this.data.page * this.data.pageSize
-    this.setData({
-      skillsPageList: [...this.data.skillsPageList, ...this.data.skillsList.slice(begin, end)],
-      loading: false
-    })
   },
 
   /**

@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
-    "loading": "/components/loading/index"
+    "more-wrap": "/components/more-wrap/index"
   },
   "navigationBarTitleText": "学习视频资源"
 }

@@ -22,7 +22,7 @@
     </view>
     <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!isSelf}}">来源：前端面试题宝典</navigator>
     <view class="sidebar">
-      <view class="sidebar-item" bindtap="go">
+      <view class="sidebar-item" bindtap="addCollect">
         <text class="icon-bg">
           <text class="iconfont icon-shoucang"></text>
         </text>

@@ -8,6 +8,10 @@ module.exports = {
         url: fullUrl,
         method,
         data,
+        header: {
+          'content-type': 'application/json',
+          'token': token
+        },
         success(res){
           if (res.data.code == 200) {
             resolve(res.data)

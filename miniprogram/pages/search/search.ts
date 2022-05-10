@@ -45,7 +45,8 @@ Page({
         empty: res.data.pageTotal === 0
       })
       this.setData({
-        pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal
+        pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,
+        noMore: this.data.searchList.length === res.data.pageTotal
       })
     })
   },

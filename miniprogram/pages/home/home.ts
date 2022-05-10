@@ -98,10 +98,11 @@ Page({
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220102.png',
-        label: '企业真题'
+        label: '企业真题',
+        to: '/pages/share-list/share-list'
       },
       {
-        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220103.png',
+        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220106.png',
         label: '面试技巧',
         to: '/pages/skills-list/skills-list',
       },
@@ -112,7 +113,8 @@ Page({
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220105.png',
         label: '我的收藏',
-        to: '/pages/collect/collect'
+        to: '/pages/collect/collect',
+        needLogin: true
       }
     ],
     current: 0,
@@ -177,7 +179,7 @@ Page({
     })
   },
   go(e: any) {
-    const { to, vip } = e.currentTarget.dataset
+    const { to } = e.currentTarget.dataset
     if (to) {
       return
     }
@@ -186,6 +188,29 @@ Page({
       icon: 'none',
       duration: 2000
     })
+  },
+  onRoute(e: any) {
+    const {
+      to,
+      needLogin
+    } = e.currentTarget.dataset.item
+    if (wx.getStorageSync('token') || !needLogin) {
+      if (to) {
+        wx.navigateTo({
+          url: to
+        })
+      } else {
+        wx.showToast({
+          title: '敬请期待...',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    }
   },
   addGroup() {
     wx.navigateTo({

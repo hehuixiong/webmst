@@ -12,7 +12,10 @@
     "pages/category/category",
     "pages/collect/collect",
     "pages/skills-list/skills-list",
-    "pages/skills-res/skills-res"
+    "pages/skills-res/skills-res",
+    "pages/share-list/share-list",
+    "pages/share-res/share-res",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
