@@ -29,6 +29,14 @@ Page({
     this.setCurrentPageData()
   },
 
+  goSkip(e: any) {
+    const { id, index, title } = e.currentTarget.dataset
+    const query = { id, index, title }
+    wx.navigateTo({
+      url: `/pages/skills-res/skills-res?query=${JSON.stringify(query)}`
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

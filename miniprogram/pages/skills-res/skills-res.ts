@@ -22,8 +22,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ id, title, index }: any) {
+  onLoad({ query }: any) {
     const skillsRes = localRes.data
+    const { index, id, title }: any = query ? JSON.parse(query) : {}
     this.setData({
       title: title,
       sum: localList.data.length,
@@ -131,8 +132,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
+    const query = { id: this.data.id, index: this.data.index, title: this.data.title }
     return{
-      title: '大厂前端面试题，悄悄分享给你！'
+      title: '大厂前端面试题，悄悄分享给你！',
+      path: `/pages/skills-res/skills-res?query=${JSON.stringify(query)}`
     }
   }
 })

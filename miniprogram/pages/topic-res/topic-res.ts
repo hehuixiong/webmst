@@ -27,8 +27,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-    const { index, id, topicSum, type, isSelf } = wx.getStorageSync('queryTopic')
+  onLoad({ query }: any) {
+    const { index, id, topicSum, type, isSelf }: any = query ? JSON.parse(query) : {}
     this.setData({
       topicIndex: Number(index),
       topicSum: topicSum,
@@ -250,8 +250,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
+    const query = { id: this.data.id, index: this.data.topicIndex, topicsum: this.data.topicSum, type: this.data.type }
     return{
-      title: this.data.currentTitle
+      title: this.data.currentTitle,
+      path: `/pages/topic-res/topic-res?query=${JSON.stringify(query)}`
     }
   }
 })

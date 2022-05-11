@@ -1,6 +1,6 @@
 <view class="topic-list">
   <block wx:for="{{data}}" wx:key="index">
-    <navigator class="topic-item my-class" url="/pages/topic-res/topic-res" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-type="{{type}}" data-topicsum="{{topicSum}}">
+    <view class="topic-item my-class" hover-class="navigator-hover" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-type="{{type}}" data-topicsum="{{topicSum}}">
       <view class="topic-item__title">
         <view class="title">
           <text>第{{index + 1}}题：{{item.title}}</text>
@@ -18,7 +18,7 @@
           <text>{{item.create_time}}</text>
         </view>
       </view>
-    </navigator>
+    </view>
   </block>
   <more-wrap loading="{{loading}}" noMore="{{noMore}}"></more-wrap>
 </view>

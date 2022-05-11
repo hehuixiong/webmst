@@ -37,19 +37,14 @@ Component({
    */
   methods: {
     /**
-   * 题目跳转
-   */
-  handleJump(e: any) {
-    const { id, index, topicsum, type } = e.currentTarget.dataset
-    console.log(e)
-      const queryTopic = {
-        id: id,
-        index: index,
-        topicSum: topicsum,
-        type: type
-      }
-      // 添加缓存
-      wx.setStorageSync('queryTopic', queryTopic)
+     * 题目跳转
+     */
+    handleJump(e: any) {
+      const { id, index, topicsum, type } = e.currentTarget.dataset
+      const query = { id, index, topicsum, type }
+      wx.navigateTo({
+        url: `/pages/topic-res/topic-res?query=${JSON.stringify(query)}`
+      })
     }
   }
 })
