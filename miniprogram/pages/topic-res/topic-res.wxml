@@ -1,4 +1,6 @@
 <view class="topic-res">
+  <!-- 广告位 -->
+  <ad-custom wx:if="{{!loading && showgroup}}" unit-id="adunit-12c54eb2714570a1"></ad-custom>
   <view class="topic-res-container" wx:if="{{!loading}}">
     <view class="topic-container">
       <view class="title">第{{topicIndex + 1}}题：{{title}}</view>
@@ -16,11 +18,14 @@
       <view class="tag">{{type === 'choice' ? '选择题' : '问答题'}}</view>
     </view>
     <view class="answer-container">
-      <view class="title"><text>答案与解析</text></view>
+      <view class="title-wrapper">
+        <view class="title"><text class="iconfont icon-yulanxinxi"></text> 答案解析</view>
+        <view class="bug" bindtap="onBug"><text class="iconfont icon-bug"></text> 纠错</view>
+      </view>
       <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
       <view wx:else class="zhengli">正在整理中...</view>
     </view>
-    <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!isSelf}}">来源：前端面试题宝典</navigator>
+    <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!self}}">来源：前端面试题宝典</navigator>
     <view class="sidebar">
       <view class="sidebar-item" bindtap="addCollect">
         <text class="icon-bg">
@@ -45,4 +50,7 @@
   <view class="loading" wx:else>
     <loading color="#7e68f3"></loading><text>加载中...</text>
   </view>
+
+  <!-- 题目纠错 -->
+  <bug-popup show="{{showBug}}"></bug-popup>
 </view>

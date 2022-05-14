@@ -51,26 +51,30 @@
     border-radius: 20rpx;
     box-shadow: 0 2px 12px 0 rgba($color: #7e68f3, $alpha: .2);
     margin-top: 26rpx;
-    .title{
-      padding: 0 20rpx 0 0;
+    .title-wrapper{
+      padding: 0 16rpx 0 0;
       line-height: 76rpx;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #7e68f3;
       border-bottom: 1px solid #f0f0f0;
-      font-weight: bold;
       margin: 0 12rpx 12rpx;
-      &::before{
-        position: absolute;
-        content: '';
-        left: -20rpx;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 8rpx;
-        background-color: #7e68f3;
-        height: 34rpx;
+      .title{
+        color: #7e68f3;
+        font-weight: bold;
+        font-size: 32rpx;
+        display: flex;
+        align-items: center;
+      }
+      .bug{
+        font-size: 26rpx;
+        color: #666;
+        display: flex;
+        align-items: center;
+      }
+      .iconfont{
+        margin-right: 6rpx;
       }
     }
     .zhengli{

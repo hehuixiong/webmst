@@ -1,5 +1,6 @@
 // pages/study/study.ts
 import { numFormat } from '../../utils/util'
+import { eventStore } from '../../store/index'
 const list = [
   {
     title: 'vue3.2+elementPlus快速上手(提供vue3.2学习文档)',
@@ -223,6 +224,8 @@ const list = [
   }
 ]
 const title = '大厂前端面试题，悄悄分享给你！'
+// 在页面中定义激励视频广告
+let rewardedVideoAd: any = null
 Page({
 
   /**
@@ -234,7 +237,13 @@ Page({
     currentTitle: title,
     page: 1,
     totalPage: 0,
-    pageSize: 16
+    pageSize: 16,
+    showgroup: false,
+    ad: {
+      title: '',
+      course: '',
+      index: 0
+    }
   },
 
   /**
@@ -242,18 +251,67 @@ Page({
    */
   onLoad() {
     const studyList: any = list
-    this.setData({
-      studyList: studyList
+    eventStore.onState('showgroup', (value: any) => {
+      this.setData({
+        studyList: studyList,
+        showgroup: value
+      })
+      this.setData({
+        totalPage: Math.ceil(this.data.studyList.length / this.data.pageSize)
+      })
+      this.setData({
+        totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
+      })
+      this.setCurrentPageData()
+      this.showRewardedVideoAd()
     })
-    this.setData({
-      totalPage: Math.ceil(this.data.studyList.length / this.data.pageSize)
-    })
-    this.setData({
-      totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
-    })
-    this.setCurrentPageData()
   },
 
+  showRewardedVideoAd() {
+    if (this.data.showgroup) {
+      if (wx.createRewardedVideoAd) {
+        rewardedVideoAd = wx.createRewardedVideoAd({
+          adUnitId: 'adunit-92cc5ea0105da417'
+        })
+        rewardedVideoAd.onLoad(() => {
+          console.log('onload rewardedVideoAd')
+        })
+        rewardedVideoAd.onError((err: any) => {
+          console.log('onError rewardedVideoAd', err)
+        })
+        rewardedVideoAd.onClose((res: any) => {
+          console.log('onClose rewardedVideoAd', res)
+          if (res && res.isEnded) {
+            console.log('观看完成')
+            this.getLink()
+            // 设置时间
+            this.setAdDate()
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '领取失败，观看完整广告后领取，感谢您的支持！',
+              confirmText: '知道了',
+              showCancel: false
+            })
+          }
+        })
+      }
+    }
+  },
+
+  setAdDate() {
+    // 设置年月日
+    let date = new Date()
+    const yyyy = date.getFullYear()
+    const mm = date.getMonth() + 1
+    const dd = date.getDate()
+    const currentDate = `${yyyy}-${mm}-${dd}`
+    const storageMsg = wx.getStorageSync('adDateMsg')
+    let adDateMsg: any = Object.assign({}, {
+      [this.data.ad.index]: currentDate
+    }, storageMsg)
+    wx.setStorageSync('adDateMsg', adDateMsg)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -325,17 +383,56 @@ Page({
    */
   immediatelyGet(e: any) {
     const { title, course, index } = e.target.dataset
+    this.setData({
+      ad: { title, course, index }
+    })
+    let date = new Date()
+    const yyyy = date.getFullYear()
+    const mm = date.getMonth() + 1
+    const dd = date.getDate()
+    const currentDate = `${yyyy}-${mm}-${dd}`
+    const storageMsg = wx.getStorageSync('adDateMsg')
+    if (storageMsg[index] && storageMsg[index] === currentDate || !this.data.showgroup) {
+      console.log('今天已经看过广告')
+      this.getLink()
+    } else {
+      console.log('今天没有看过广告')
+      wx.showModal({
+        title: '提示',
+        content: '观看一次完整视频广告，本资源24小时无广告领取',
+        confirmText: '观看视频',
+        cancelText: '下次再说',
+        success (res) {
+          if (res.confirm) {
+            // 用户触发广告后，显示激励视频广告
+            if (rewardedVideoAd) {
+              rewardedVideoAd.show().catch(() => {
+                // 失败重试
+                rewardedVideoAd.load()
+                  .then(() => rewardedVideoAd.show())
+                  .catch(() => {
+                    console.log('激励视频 广告显示失败')
+                  })
+              })
+            }
+          }
+        }
+      })
+    }
+  },
+
+  getLink () {
     const _this = this
     wx.showModal({
       title: '教程名称',
-      content: title,
+      content: _this.data.ad.title,
       confirmText: '复制链接',
       showCancel: false,
       confirmColor: '#ff3d3d',
       success (res) {
         if (res.confirm) {
           wx.setClipboardData({
-            data: course,
+            data: _this.data.ad.course,
             success: function () {
               wx.getClipboardData({
                 //这个api是把拿到的数据放到电脑系统中的
@@ -352,12 +449,12 @@ Page({
                   wx.showModal({
                     title: '提示',
                     content: '教程下载地址复制成功，请前往浏览器下载。',
-                    confirmText: '我知道了',
+                    confirmText: '知道了',
                     showCancel: false,
                     success (res) {
                       if (res.confirm) {
-                        let { count } = _this.data.studyList[index]
-                        const setKey =  `studyList[${index}].count`
+                        let { count } = _this.data.studyList[_this.data.ad.index]
+                        const setKey =  `studyList[${_this.data.ad.index}].count`
                         if (count === 0) return
                         _this.setData({
                           [setKey]: --count

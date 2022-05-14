@@ -42,6 +42,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/topic-res/topic-res",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

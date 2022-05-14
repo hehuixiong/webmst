@@ -9,13 +9,11 @@
     line-height: 100rpx;
     text-align: center;
     font-size: 32rpx;
-    font-weight: bold;
     flex-shrink: 0;
   }
   .vip-popup-container{
     flex: 1 1 auto;
     overflow-y: scroll;
-    max-height: 800rpx;
     min-height: 88rpx;
     .vip-list{
       padding: 0 28rpx;

@@ -1,6 +1,4 @@
-// 获取应用实例
-const app = getApp()
-const { getTopicCate, getTopicList } = require('../../api/index')
+import { eventStore } from '../../store/index'
 
 Page({
   data: {
@@ -12,16 +10,12 @@ Page({
   },
   onLoad() {
     this.setUserInfo()
-    getTopicCate().then((res: any) => {
-      for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i].name === 'showgroup') {
-          this.setData({ showgroup: true })
-        }
-      }
-    })
     let date = new Date()
     const year: any = date.getFullYear()
     this.setData({ year })
+    eventStore.onState('showgroup', (value: any) => {
+      this.setData({ showgroup: value })
+    })
   },
   onShow() {
     this.setUserInfo()

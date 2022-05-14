@@ -9,7 +9,7 @@
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 16px;
+  font-size: 32rpx;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -163,9 +163,17 @@
 /* 轻量级图标 */
 @font-face {
   font-family: "iconfont"; /* Project id 3372673 */
-  src: url('//at.alicdn.com/t/font_3372673_4hjqyhyjvnq.woff2?t=1651541253036') format('woff2'),
-       url('//at.alicdn.com/t/font_3372673_4hjqyhyjvnq.woff?t=1651541253036') format('woff'),
-       url('//at.alicdn.com/t/font_3372673_4hjqyhyjvnq.ttf?t=1651541253036') format('truetype');
+  src: url('//at.alicdn.com/t/font_3372673_pyuy8q31cvf.woff2?t=1652271354350') format('woff2'),
+       url('//at.alicdn.com/t/font_3372673_pyuy8q31cvf.woff?t=1652271354350') format('woff'),
+       url('//at.alicdn.com/t/font_3372673_pyuy8q31cvf.ttf?t=1652271354350') format('truetype');
+}
+
+.icon-bug:before {
+  content: "\e656";
+}
+
+.icon-yulanxinxi:before {
+  content: "\e603";
 }
 
 .icon-huiyuanvip:before {

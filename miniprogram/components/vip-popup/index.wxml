@@ -3,7 +3,7 @@
     show="{{ show }}"
     round
     position="bottom"
-    custom-style="height: 70%"
+    custom-style="max-height: 80%;min-height: 60%"
     bind:close="onClose"
     closeable
     safe-area-inset-bottom="{{safeAreaInsetBottom}}"

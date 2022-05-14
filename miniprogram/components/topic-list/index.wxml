@@ -1,6 +1,6 @@
 <view class="topic-list">
   <block wx:for="{{data}}" wx:key="index">
-    <view class="topic-item my-class" hover-class="navigator-hover" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-type="{{type}}" data-topicsum="{{topicSum}}">
+    <view class="topic-item my-class {{index % 14 === 0 ? 'is-active' : ''}}" hover-class="navigator-hover" bindtap="handleJump" data-index="{{index}}" data-id="{{item.id}}" data-type="{{type}}" data-topicsum="{{topicSum}}">
       <view class="topic-item__title">
         <view class="title">
           <text>第{{index + 1}}题：{{item.title}}</text>
@@ -17,6 +17,9 @@
           更新时间：
           <text>{{item.create_time}}</text>
         </view>
+      </view>
+      <view class="ad" wx:if="{{index % 14 === 0 && showgroup}}">
+        <ad-custom unit-id="adunit-22b0c53040c52e13"></ad-custom>
       </view>
     </view>
   </block>

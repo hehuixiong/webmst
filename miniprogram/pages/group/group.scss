@@ -4,7 +4,7 @@
   min-height: 100vh;
   box-sizing: border-box;
   .gruop-wrapper{
-    border-radius: 30rpx;
+    border-radius: 20rpx;
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -37,5 +37,8 @@
       margin-top: 38rpx;
       color: #ff3d3d;
     }
+  }
+  .ad{
+    margin-top: 20rpx;
   }
 }

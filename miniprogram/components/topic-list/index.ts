@@ -1,4 +1,5 @@
 // components/topic-list/index.ts
+import { eventStore } from '../../store/index'
 Component({
   externalClasses:['my-class'],
   /**
@@ -29,7 +30,13 @@ Component({
    * 组件的初始数据
    */
   data: {
+    showgroup: false
+  },
 
+  attached() {
+    eventStore.onState('showgroup', (value: any) => {
+      this.setData({ showgroup: value })
+    })
   },
 
   /**

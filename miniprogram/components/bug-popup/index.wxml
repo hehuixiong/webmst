@@ -1,0 +1,33 @@
+<view class="bug-popup">
+  <van-popup
+    show="{{ show }}"
+    round
+    position="bottom"
+    custom-style="max-height: 80%;min-height: 60%"
+    bind:close="onClose"
+    closeable
+    safe-area-inset-bottom="{{true}}"
+    custom-class="bug-popup-body"
+  >
+    <view class="bug-popup-title">题目纠错</view>
+    <view class="bug-popup-container">
+      <view class="bug-msg__list">
+        <view class="bug-msg__item {{active === item.type ? 'is-active': ''}}" wx:key="index" wx:for="{{bugMsgList}}" data-type="{{item.type}}" bindtap="onClick">{{item.label}}</view>
+      </view>
+      <view class="bug-textarea">
+        <textarea placeholder-class="place-holder" value="{{value}}" bindinput="onInput" placeholder="您的补充说明让我们更精准校正题目" name="textarea" class="textarea" cols="30" rows="10"></textarea>
+      </view>
+      <view class="bug-img-uploader">
+        <van-uploader max-count="1" preview-size="100" bind:delete="deleteImg" file-list="{{ fileList }}" bind:after-read="afterRead">
+          <view class="bug-uploader__upload">
+            <van-icon class="icon" name="photograph" />
+            <text>上传截图</text>
+          </view>
+        </van-uploader>
+      </view>
+    </view>
+    <view class="bug-popup-footer">
+      <van-button round size="normal" type="danger" color="linear-gradient(#9382f0, #7e68f3)" bindtap="submit">确定</van-button>
+    </view>
+  </van-popup>
+</view>

@@ -1,6 +1,7 @@
 import { handleTime } from '../../utils/util'
 const { getTopicInfo, addCollect } = require('../../api/index')
 import { setWatcher } from '../../utils/watch'
+import { eventStore } from '../../store/index'
 const title = '大厂前端面试题，悄悄分享给你！'
 Page({
 
@@ -22,23 +23,28 @@ Page({
     next_id: 0,
     type: '',
     currentTitle: title,
-    isSelf: false
+    self: false,
+    showBug: false,
+    showgroup: false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad({ query }: any) {
-    const { index, id, topicSum, type, isSelf }: any = query ? JSON.parse(query) : {}
+    const { index, id, topicSum, type, self }: any = query ? JSON.parse(query) : {}
     this.setData({
       topicIndex: Number(index),
       topicSum: topicSum,
       id: id,
       type: type,
-      isSelf: isSelf
+      self: self
     })
     this.setCurrentTopic(index)
     setWatcher(this)
     this.practiceRecords(type, id)
+    eventStore.onState('showgroup', (value: any) => {
+      this.setData({ showgroup: value })
+    })
   },
 
   /**
@@ -244,6 +250,10 @@ Page({
     this.setData({
       currentTitle: title
     })
+  },
+
+  onBug() {
+    this.setData({ showBug: true })
   },
 
   /**

@@ -88,6 +88,11 @@
         </block>
       </view>
     </view>
+
+    <!-- 广告位 -->
+    <view class="ad" wx:if="{{showgroup}}">
+      <ad-custom unit-id="adunit-4740ba525cdd081d"></ad-custom>
+    </view>
   </view>
   <!-- vip -->
   <vip-popup safeAreaInsetBottom="{{false}}" show="{{show}}"></vip-popup>

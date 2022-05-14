@@ -80,6 +80,10 @@
         </navigator>
       </button>
     </view>
+    <!-- 广告位 -->
+    <view class="cell-groip" wx:if="{{showgroup}}">
+      <ad-custom unit-id="adunit-248ba9ef170ce527"></ad-custom>
+    </view>
     <view class="more">
       <text>Copyright © 2021-{{year}} 前端面试题材</text>
     </view>

@@ -1,6 +1,7 @@
 // home.ts
 const { getTopicCate, getTopicList } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
+import { eventStore } from '../../store/index'
 Page({
   data: {
     swiper: [
@@ -82,7 +83,7 @@ Page({
       },
       {
         icon: 'icon-quanbu',
-        label: '全部分类',
+        label: '更多分类',
         type: NAV_TYPES.all,
         id: null
       }
@@ -145,6 +146,10 @@ Page({
         clearTimeout(timer)
       }, 800)
     })
+
+    eventStore.onState('showgroup', (value: any) => {
+      this.setData({ showgroup: value })
+    })
   },
   closeTip() {
     this.setData({ hideTip: true })
@@ -164,9 +169,6 @@ Page({
   getTopicCate() {
     getTopicCate().then((res: any) => {
       for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i].name === 'showgroup') {
-          this.setData({ showgroup: true })
-        }
         for (let j = 0; j < this.data.category.length; j++) {
           if (res.data[i].name === this.data.category[j].type) {
             let str = 'category['+ j +'].id'
