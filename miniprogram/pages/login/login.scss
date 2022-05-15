@@ -8,15 +8,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 220rpx;
-    height: 220rpx;
+    width: 160rpx;
+    height: 160rpx;
     box-sizing: border-box;
     border-radius: 50%;
-    box-shadow: 0 4rpx 40rpx 0 rgba($color: #58bd6a, $alpha: 0.2);
+    box-shadow: 0 4rpx 24rpx 0 rgb(0 0 0 / 10%);
     margin: 0 auto;
     image{
-      width: 220rpx;
-      height: 220rpx;
+      width: 160rpx;
+      height: 160rpx;
       border-radius: 50%;
     }
   }
@@ -33,7 +33,7 @@
   button{
     width: 100%;
     border-radius: 60rpx;
-    font-size: 32rpx;
+    font-size: 30rpx;
     margin: 60rpx -10rpx 0;
   }
 }

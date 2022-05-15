@@ -1,6 +1,6 @@
 import { handleTime } from '../../utils/util'
-const { getTopicInfo, addCollect } = require('../../api/index')
-import { setWatcher } from '../../utils/watch'
+const { getTopicInfo, getCollectInfo, addCollect } = require('../../api/index')
+// import { setWatcher } from '../../utils/watch'
 import { eventStore } from '../../store/index'
 const title = '大厂前端面试题，悄悄分享给你！'
 Page({
@@ -17,7 +17,6 @@ Page({
     create_time: '',
     last: false,
     topicIndex: 0,
-    topicSum: 0,
     loading: false,
     id: 0,
     next_id: 0,
@@ -25,25 +24,26 @@ Page({
     currentTitle: title,
     self: false,
     showBug: false,
-    showgroup: false
+    showgroup: false,
+    topicAd: false,
+    isVip: false,
+    is_collect: 0,
+    search: ''
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ query }: any) {
-    const { index, id, topicSum, type, self }: any = query ? JSON.parse(query) : {}
-    this.setData({
-      topicIndex: Number(index),
-      topicSum: topicSum,
-      id: id,
-      type: type,
-      self: self
-    })
-    this.setCurrentTopic(index)
-    setWatcher(this)
-    this.practiceRecords(type, id)
+  onLoad({ id, is_collect, search }: any) {
+    this.setData({ id, is_collect, search }, () => this.getTopicInfo())
+    // setWatcher(this)
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
+    })
+    eventStore.onState('topicAd', (value: any) => {
+      this.setData({ topicAd: value })
+    })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
     })
   },
 
@@ -78,60 +78,82 @@ Page({
     wx.setStorageSync('yearMonthDay', yearMonthDay)
   },
 
-  watch: {
-    // 需要监听的字段
-    topicIndex(newIndex: any) {
-      this.setCurrentTopic(newIndex)
-    }
-  },
+  // watch: {
+  //   // 需要监听的字段
+  //   topicIndex(newIndex: any) {
+  //     this.setCurrentTopic(newIndex)
+  //   }
+  // },
   getTopicInfo() {
     this.setData({ loading: true })
-    getTopicInfo({id: this.data.id}).then((res: any) => {
-      if (res.data.problem) {
-        res.data.problem = res.data.problem.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, () => {
-          return ''
-        })
-        res.data.problem = res.data.problem.replace(/<span class="linenumber/gi, () => {
-          return '\n<span class="linenumber'
-        })
-        res.data.problem = res.data.problem.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
-          return ''
-        })
-        res.data.problem = res.data.problem.replace(/src="/gi, () => {
-          return 'src="https://images.weserv.nl/?url='
-        })
-      }
-      if (res.data.content) {
-        res.data.content = res.data.content.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, () => {
-          return ''
-        })
-        res.data.content = res.data.content.replace(/<span class="linenumber/gi, () => {
-          return '\n<span class="linenumber'
-        })
-        res.data.content = res.data.content.replace(/前端面试题宝典/gi, () => {
-          return '前端面试题材'
-        })
-        res.data.content = res.data.content.replace(/https:\/\/fe.ecool.fun\//gi, () => {
-          return 'https://blog.ithhx.cn'
-        })
-        res.data.content = res.data.content.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
-          return ''
-        })
-        res.data.content = res.data.content.replace(/src="/gi, () => {
-          return 'src="https://images.weserv.nl/?url='
-        })
-      }
-      this.setData({
-        topic: res.data.problem,
-        choice: res.data.choice,
-        answer: res.data.content,
-        title: res.data.title,
-        level: res.data.level,
-        next_id: res.data.next_id,
-        create_time: handleTime(res.data.create_time),
-        loading: false
+    const params: any = { id: this.data.id }
+    if (+this.data.is_collect === 1) {
+      console.log('???')
+      // 收藏
+      getCollectInfo(params).then((res: any) => {
+        this.setTopicInfo(res)
       })
+    } else {
+      console.log('有没有进来？')
+      // 非收藏
+      if (this.data.search) {
+        params.search = this.data.search
+      }
+      getTopicInfo(params).then((res: any) => {
+        this.setTopicInfo(res)
+      })
+    }
+  },
+
+  // 设置题目信息
+  setTopicInfo(res: any) {
+    if (res.data.problem) {
+      res.data.problem = res.data.problem.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, () => {
+        return ''
+      })
+      res.data.problem = res.data.problem.replace(/<span class="linenumber/gi, () => {
+        return '\n<span class="linenumber'
+      })
+      res.data.problem = res.data.problem.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
+        return ''
+      })
+      res.data.problem = res.data.problem.replace(/src="/gi, () => {
+        return 'src="https://images.weserv.nl/?url='
+      })
+    }
+    if (res.data.content) {
+      res.data.content = res.data.content.replace(/<button class="copyBtn___3UMAO">复制<\/button>/gi, () => {
+        return ''
+      })
+      res.data.content = res.data.content.replace(/<span class="linenumber/gi, () => {
+        return '\n<span class="linenumber'
+      })
+      res.data.content = res.data.content.replace(/前端面试题宝典/gi, () => {
+        return '前端面试题材'
+      })
+      res.data.content = res.data.content.replace(/https:\/\/fe.ecool.fun\//gi, () => {
+        return 'https://blog.ithhx.cn'
+      })
+      res.data.content = res.data.content.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
+        return ''
+      })
+      res.data.content = res.data.content.replace(/src="/gi, () => {
+        return 'src="https://images.weserv.nl/?url='
+      })
+    }
+    this.setData({
+      topic: res.data.problem,
+      choice: res.data.choice,
+      answer: res.data.content,
+      title: res.data.title,
+      level: res.data.level,
+      next_id: res.data.next_id,
+      create_time: handleTime(res.data.create_time),
+      topicIndex: res.data.now_num,
+      loading: false
     })
+    this.setCurrentTopic()
+    this.practiceRecords(res.data.cate_name, this.data.id)
   },
 
   go() {
@@ -142,8 +164,8 @@ Page({
     })
   },
 
-  setCurrentTopic(index: any) {
-    if (index === this.data.topicSum - 1) {
+  setCurrentTopic() {
+    if (!this.data.next_id) {
       this.setData({ last: true })
     } else {
       this.setData({
@@ -155,10 +177,9 @@ Page({
       scrollTop: 0,
       duration: 0
     })
-    this.getTopicInfo()
   },
   addCollect() {
-    if (wx.getStorageSync('loginStatus')) {
+    if (wx.getStorageSync('loginState')) {
       addCollect({
         goods_id: this.data.id
       }).then((res: any) => {
@@ -196,9 +217,7 @@ Page({
       return
     }
     this.data.id = this.data.next_id
-    let newIndex = this.data.topicIndex
-    this.setData({ topicIndex: ++newIndex })
-    this.practiceRecords(this.data.type, this.data.id)
+    this.getTopicInfo()
   },
 
   /**
@@ -260,10 +279,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-    const query = { id: this.data.id, index: this.data.topicIndex, topicsum: this.data.topicSum, type: this.data.type }
     return{
       title: this.data.currentTitle,
-      path: `/pages/topic-res/topic-res?query=${JSON.stringify(query)}`
+      path: `/pages/topic-res/topic-res?id${this.data.id}`
     }
   }
 })

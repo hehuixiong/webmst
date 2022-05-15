@@ -9,7 +9,6 @@ Page({
   data: {
     keyword: '',
     searchList: [],
-    topicSum: 0,
     page: 1,
     pageTotal: 0,
     noMore: false,
@@ -32,7 +31,7 @@ Page({
     }
     getTopicList(params).then((res: any) => {
       let list = res.data.list
-      list = this.removeDuplicateObj(list)
+      // list = this.removeDuplicateObj(list)
       for (let i = 0; i < list.length; i++) {
         list[i].create_time = handleTime(list[i].create_time)
       }
@@ -41,7 +40,6 @@ Page({
         pageTotal: Math.ceil(res.data.pageTotal / this.data.pageSize),
         searchList: searchList,
         loading: false,
-        topicSum: res.data.pageTotal,
         empty: res.data.pageTotal === 0
       })
       this.setData({

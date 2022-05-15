@@ -7,7 +7,6 @@ Page({
    */
   data: {
     collectList: [],
-    topicSum: 0,
     page: 1,
     pageTotal: 0,
     noMore: false,
@@ -37,7 +36,6 @@ Page({
         pageTotal: Math.ceil(res.data.pageTotal / this.data.pageSize),
         collectList: collectList,
         loading: false,
-        topicSum: res.data.pageTotal,
         empty: res.data.pageTotal === 0
       })
       this.setData({

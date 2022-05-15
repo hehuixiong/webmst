@@ -23,8 +23,8 @@
           <view class="title-wrap">
             <view class="title">{{item.label}}</view>
             <view class="record">
-              <!-- <text>共 100 题</text> -->
-              <!-- <text class="line">|</text> -->
+              <text>共 {{item.cate_num}} 题</text>
+              <text class="line">|</text>
               <text>已练习 {{recordsObj[item.type].ids.length || 0}} 题</text>
             </view>
           </view>

@@ -35,7 +35,6 @@
     position: relative;
     z-index: 1;
     .userinfo-avatar {
-      overflow: hidden;
       width: 150rpx;
       height: 150rpx;
       margin: 20rpx;
@@ -50,10 +49,28 @@
         width: 150rpx;
         height: 150rpx;
         content: '';
-        border: 1px solid #f8f8f8;
+        border: 1px solid #ffffff;
         border-radius: 50%;
-        z-index: 1;
+        z-index: 2;
         box-sizing: border-box;
+      }
+      &.is-vip::before{
+        border: 2px solid #dcb86c;
+      }
+      .icon-vip-show{
+        position: absolute;
+        top: -18rpx;
+        right: 10rpx;
+        color: #dcb86c;
+        transform: rotate(32deg);
+        font-size: 40rpx;
+      }
+      .image{
+        width: 150rpx;
+        height: 150rpx;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
       }
       .nologin{
         width: 150rpx;
@@ -64,12 +81,23 @@
     .userinfo-info{
       display: flex;
       flex-direction: column;
-      text{
+      view{
         color: #ffffff;
       }
       .nickname{
         font-size: 38rpx;
         font-weight: bold;
+        display: flex;
+        align-items: center;
+        .tag{
+          border-radius: 12px;
+          padding: 2rpx 20rpx;
+          font-size: 22rpx;
+          border: 1px solid #e2b044;
+          background: #f8efda;
+          color: #bb8a1f;
+          margin-left: 10rpx;
+        }
       }
       .desc{
         margin-top: 10rpx;
@@ -209,7 +237,7 @@
     }
     .more{
       text-align: center;
-      margin-top: 60rpx;
+      margin-top: 30rpx;
       text{
         font-size: 24rpx;
         color: #999999;

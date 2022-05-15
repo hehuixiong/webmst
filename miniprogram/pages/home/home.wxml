@@ -30,7 +30,7 @@
   </view>
   <view class="home-notice">
     <van-notice-bar left-icon="volume-o">
-      <text>截止{{currentTime}}，共录入面试题：{{pageTotal}}题 <text class="iconfont icon-huomiao"></text></text>
+      <text>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>
   </view>
   <view class="home-module" wx:if="{{showgroup}}">
@@ -90,7 +90,7 @@
     </view>
 
     <!-- 广告位 -->
-    <view class="ad" wx:if="{{showgroup}}">
+    <view class="ad" wx:if="{{showgroup && !isVip}}">
       <ad-custom unit-id="adunit-4740ba525cdd081d"></ad-custom>
     </view>
   </view>

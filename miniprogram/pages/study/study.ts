@@ -239,6 +239,7 @@ Page({
     totalPage: 0,
     pageSize: 16,
     showgroup: false,
+    isVip: false,
     ad: {
       title: '',
       course: '',
@@ -265,10 +266,13 @@ Page({
       this.setCurrentPageData()
       this.showRewardedVideoAd()
     })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
+    })
   },
 
   showRewardedVideoAd() {
-    if (this.data.showgroup) {
+    if (this.data.showgroup && !this.data.isVip) {
       if (wx.createRewardedVideoAd) {
         rewardedVideoAd = wx.createRewardedVideoAd({
           adUnitId: 'adunit-92cc5ea0105da417'
@@ -286,13 +290,6 @@ Page({
             this.getLink()
             // 设置时间
             this.setAdDate()
-          } else {
-            wx.showModal({
-              title: '提示',
-              content: '领取失败，观看完整广告后领取，感谢您的支持！',
-              confirmText: '知道了',
-              showCancel: false
-            })
           }
         })
       }
@@ -307,9 +304,9 @@ Page({
     const dd = date.getDate()
     const currentDate = `${yyyy}-${mm}-${dd}`
     const storageMsg = wx.getStorageSync('adDateMsg')
-    let adDateMsg: any = Object.assign({}, {
-      [this.data.ad.index]: currentDate
-    }, storageMsg)
+    let adDateMsg: any = Object.assign({}, storageMsg, {
+      [`study_id${this.data.ad.index}`]: currentDate
+    })
     wx.setStorageSync('adDateMsg', adDateMsg)
   },
   /**
@@ -392,14 +389,14 @@ Page({
     const dd = date.getDate()
     const currentDate = `${yyyy}-${mm}-${dd}`
     const storageMsg = wx.getStorageSync('adDateMsg')
-    if (storageMsg[index] && storageMsg[index] === currentDate || !this.data.showgroup) {
-      console.log('今天已经看过广告')
+    if (storageMsg[`study_id${index}`] && (storageMsg[`study_id${index}`] === currentDate) || (!this.data.showgroup || this.data.isVip)) {
+      console.log('拥有访问权限')
       this.getLink()
     } else {
       console.log('今天没有看过广告')
       wx.showModal({
-        title: '提示',
-        content: '观看一次完整视频广告，本资源24小时无广告领取',
+        title: '友情提示',
+        content: '观看精彩视频，本资源24小时无广告领取哦！',
         confirmText: '观看视频',
         cancelText: '下次再说',
         success (res) {

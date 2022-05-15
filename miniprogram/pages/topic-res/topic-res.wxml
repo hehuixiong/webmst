@@ -1,9 +1,9 @@
 <view class="topic-res">
   <!-- 广告位 -->
-  <ad-custom wx:if="{{!loading && showgroup}}" unit-id="adunit-12c54eb2714570a1"></ad-custom>
+  <ad-custom wx:if="{{!loading && showgroup && !topicAd && !isVip}}" unit-id="adunit-12c54eb2714570a1"></ad-custom>
   <view class="topic-res-container" wx:if="{{!loading}}">
     <view class="topic-container">
-      <view class="title">第{{topicIndex + 1}}题：{{title}}</view>
+      <view class="title">第{{topicIndex}}题：{{title}}</view>
       <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{topic}}" />
       <htmltowxml wx:if="{{choice}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{choice}}" />
       <view class="difficulty">

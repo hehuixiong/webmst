@@ -1,3 +1,4 @@
+import { eventStore } from '../../store/index'
 const { login } = require('../../api/index')
 Page({
 
@@ -31,15 +32,18 @@ Page({
             login(Object.assign({
               code: code
             }, user)).then((res: any) => {
-              wx.setStorageSync('userInfo', {
-                avatarUrl: user.userInfo.avatarUrl,
-                nickName: user.userInfo.nickName,
-                timeStamp: e.timeStamp
-              })
               wx.setStorageSync('token', res.data.token)
-              wx.setStorageSync('loginStatus', true)
-              wx.hideLoading()
+              wx.setStorageSync('loginState', true)
+              // 一定要在登录状态为true后面执行，此方法加了登录状态判断
+              eventStore.dispatch('getUserInfo')
               wx.navigateBack()
+              wx.hideLoading()
+            }).catch(() => {
+              wx.showToast({
+                title: '登录失败，请重试',
+                icon: 'none',
+                duration: 2000
+              })
             })
           }
         })

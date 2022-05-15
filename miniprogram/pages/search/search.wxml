@@ -10,10 +10,9 @@
   <view class="search-content" wx:if="{{searchList.length}}">
     <topic-list
       data="{{searchList}}"
-      topicSum="{{topicSum}}"
       loading="{{loading}}"
       noMore="{{noMore}}"
-      type="{{type}}"
+      search="{{keyword}}"
       my-class="external-topic-item"
     ></topic-list>
   </view>

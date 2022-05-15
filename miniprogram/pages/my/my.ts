@@ -1,12 +1,13 @@
 import { eventStore } from '../../store/index'
-
 Page({
   data: {
     userInfo: {},
     loginState: false,
     showgroup: false,
     year: null,
-    show: false
+    show: false,
+    isVip: false,
+    flag: false
   },
   onLoad() {
     this.setUserInfo()
@@ -16,15 +17,22 @@ Page({
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
     })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
+    })
   },
   onShow() {
     this.setUserInfo()
   },
   setUserInfo() {
-    const { avatarUrl, nickName, timeStamp } = wx.getStorageSync('userInfo')
-    const loginState = wx.getStorageSync('loginStatus')
-    console.log(loginState)
-    this.setData({ userInfo: { avatarUrl, nickName, timeStamp }, loginState })
+    const loginState = wx.getStorageSync('loginState')
+    this.setData({ loginState })
+    if (loginState) {
+      eventStore.dispatch('getUserInfo')
+      eventStore.onState('userInfo', (value: any) => {
+        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(0, 8) : '' } })
+      })
+    }
   },
   go() {
     wx.showToast({

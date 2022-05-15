@@ -1,3 +1,4 @@
+import { eventStore } from '../../store/index'
 const localSkillsList = require("../../data/skillsList")
 Page({
 
@@ -9,7 +10,8 @@ Page({
     skillsList: [],
     totalPage: 0,
     pageSize: 16,
-    page: 1
+    page: 1,
+    isVip: false
   },
 
   /**
@@ -26,10 +28,21 @@ Page({
     this.setData({
       totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
     })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
+    })
     this.setCurrentPageData()
   },
 
   goSkip(e: any) {
+    if (!this.data.isVip) {
+      wx.showToast({
+        title: 'VIP专属权益...',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     const { id, index, title } = e.currentTarget.dataset
     const query = { id, index, title }
     wx.navigateTo({

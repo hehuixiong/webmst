@@ -6,17 +6,20 @@
           <image class="nologin" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220509223414.png"></image>
         </navigator>
         <navigator class="userinfo-info" hover-class="none" url="/pages/login/login">
-          <text class="nickname">点我快捷登录</text>
-          <text class="desc">拼搏到无能为力 坚持到感动自己</text>
+          <view class="nickname"><text>点我快捷登录</text></view>
+          <view class="desc">拼搏到无能为力 坚持到感动自己</view>
         </navigator>
       </block>
       <block wx:else>
-        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <view class="userinfo-info">
-          <text class="nickname">{{userInfo.nickName}}</text>
-          <text class="desc">拼搏到无能为力 坚持到感动自己</text>
-          <text class="number">用户ID：{{userInfo.timeStamp}}</text>
-        </view>
+        <navigator class="userinfo-avatar {{isVip ? 'is-vip' : ''}}" hover-class="none" url="/pages/login/login">
+          <image class="image" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <text wx:if="{{isVip}}" class="iconfont icon-vip-show"></text>
+        </navigator>
+        <navigator class="userinfo-info" hover-class="none" url="/pages/login/login">
+          <view class="nickname"><text>{{userInfo.nickName}}</text> <text wx:if="{{isVip}}" class="tag">VIP</text></view>
+          <view class="desc">拼搏到无能为力 坚持到感动自己</view>
+          <view class="number">用户ID：{{userInfo.timeStamp}}</view>
+        </navigator>
       </block>
     </view>
   </view>
@@ -81,7 +84,7 @@
       </button>
     </view>
     <!-- 广告位 -->
-    <view class="cell-groip" wx:if="{{showgroup}}">
+    <view class="cell-groip" wx:if="{{showgroup && !isVip}}">
       <ad-custom unit-id="adunit-248ba9ef170ce527"></ad-custom>
     </view>
     <view class="more">

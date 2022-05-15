@@ -6,7 +6,7 @@
     <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" show-menu-by-longpress></image>
     <view class="changan">长按识别二维码，添加工作人员微信</view>
   </view>
-  <view class="ad" wx:if="{{showgroup}}">
+  <view class="ad" wx:if="{{showgroup && !isVip}}">
     <ad-custom unit-id="adunit-ba7e437afa043476"></ad-custom>
   </view>
 </view>

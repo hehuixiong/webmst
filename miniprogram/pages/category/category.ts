@@ -148,9 +148,9 @@ Page({
         }
         for (let j = 0; j < this.data.category.length; j++) {
           if (res.data[i].name === this.data.category[j].type) {
-            let str = 'category['+ j +'].id'
             this.setData({
-              [str]: res.data[i].id
+              [`category[${j}].id`]: res.data[i].id,
+              [`category[${j}].cate_num`]: res.data[i].cate_num
             })
           }
         }

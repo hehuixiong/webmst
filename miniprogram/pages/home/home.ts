@@ -1,5 +1,5 @@
 // home.ts
-const { getTopicCate, getTopicList } = require('../../api/index')
+const { getTopicCate } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
 Page({
@@ -105,7 +105,7 @@ Page({
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220106.png',
         label: '面试技巧',
-        to: '/pages/skills-list/skills-list',
+        to: '/pages/skills-list/skills-list'
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220104.png',
@@ -122,33 +122,18 @@ Page({
     titLoading: true,
     hideTip: true,
     currentTime: '',
-    pageTotal: 0,
+    topicSum: 0,
     showgroup: false,
+    isVip: false,
     show: false
   },
   onLoad() {
     this.getTopicCate()
-    const hideTip = wx.getStorageSync('hideTip')
-    getTopicList().then((res: any) => {
-      let date = new Date()
-      const yyyy = date.getFullYear()
-      const mm = date.getMonth() + 1
-      const dd = date.getDate()
-      this.setData({
-        pageTotal: res.data.pageTotal,
-        currentTime: `${yyyy}/${mm}/${dd}`,
-        hideTip: hideTip
-      })
-      const timer = setTimeout(() => {
-        this.setData({
-          titLoading: false
-        })
-        clearTimeout(timer)
-      }, 800)
-    })
-
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
+    })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
     })
   },
   closeTip() {
@@ -168,7 +153,9 @@ Page({
   },
   getTopicCate() {
     getTopicCate().then((res: any) => {
+      let topicSum = 0
       for (let i = 0; i < res.data.length; i++) {
+        topicSum += res.data[i].cate_num
         for (let j = 0; j < this.data.category.length; j++) {
           if (res.data[i].name === this.data.category[j].type) {
             let str = 'category['+ j +'].id'
@@ -178,6 +165,17 @@ Page({
           }
         }
       }
+      const hideTip = wx.getStorageSync('hideTip')
+      let date = new Date()
+      const yyyy = date.getFullYear()
+      const mm = date.getMonth() + 1
+      const dd = date.getDate()
+      this.setData({
+        topicSum: topicSum,
+        currentTime: `${yyyy}/${mm}/${dd}`,
+        hideTip: hideTip,
+        titLoading: false
+      })
     })
   },
   go(e: any) {
@@ -196,7 +194,7 @@ Page({
       to,
       needLogin
     } = e.currentTarget.dataset.item
-    if (wx.getStorageSync('loginStatus') || !needLogin) {
+    if (wx.getStorageSync('loginState') || !needLogin) {
       if (to) {
         wx.navigateTo({
           url: to

@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showgroup: false
+    showgroup: false,
+    isVip: false
   },
 
   /**
@@ -15,6 +16,9 @@ Page({
   onLoad() {
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
+    })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
     })
   },
 

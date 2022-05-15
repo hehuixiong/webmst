@@ -12,20 +12,15 @@ Page({
     loading: false,
     id: null,
     label: null,
-    topicSum: 0,
-    type: '',
     pageSize: 20
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ label, id, type }: any) {
+  onLoad({ label, id }: any) {
     this.data.id = id
     this.data.label = label
-    this.setData({
-      type: type
-    })
     // 动态改变标题
     wx.setNavigationBarTitle({
       title: label || ''
@@ -49,8 +44,7 @@ Page({
         pageTotal: Math.ceil(res.data.pageTotal / this.data.pageSize),
         topicList: topicList,
         loading: false,
-        label: this.data.label,
-        topicSum: res.data.pageTotal
+        label: this.data.label
       })
       this.setData({
         pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,

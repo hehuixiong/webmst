@@ -3,10 +3,8 @@
   <view class="topic-container">
     <topic-list
       data="{{topicList}}"
-      topicSum="{{topicSum}}"
       loading="{{loading}}"
       noMore="{{noMore}}"
-      type="{{type}}"
     ></topic-list>
   </view>
 </view>
