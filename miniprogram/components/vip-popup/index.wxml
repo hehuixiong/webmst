@@ -45,14 +45,14 @@
         <view class="vip-notice__wrapper">
           <view class="vip-notice__item">⒈ 购买后如果没有成功请重新加载小程序</view>
           <view class="vip-notice__item">⒉ 多次购买自动叠加</view>
-          <view class="vip-notice__item">⒊ 如果其他问题或故障请联系微信工作人员</view>
-          <view class="vip-notice__item" style="color: salmon;">⒋ 购买后如果仍然无法访问一定要联系微信工作人员</view>
+          <view class="vip-notice__item">⒊ 如果其他问题或故障请在我的页面联系客服</view>
+          <view class="vip-notice__item" style="color: salmon;">⒋ 购买后如果仍然无法访问一定要在我的页面联系客服</view>
           <view class="vip-notice__item" style="color: salmon;">⒌ 全部功能可用，无广告刷题</view>
         </view>
       </view>
     </view>
     <view class="vip-popup-footer">
-      <van-button round size="normal" type="danger" color="linear-gradient(#9382f0, #7e68f3)" bindtap="submitVip">立即开通</van-button>
+      <van-button round size="normal" type="danger" color="linear-gradient(#6783f1, #4e6ef2)" bindtap="submitVip">立即体验</van-button>
     </view>
   </van-popup>
 </view>

@@ -6,7 +6,8 @@ const eventStore = new HYEventStore({
     showgroup: wx.getStorageSync('showgroup') || false,
     topicAd: wx.getStorageSync('topicAd') || false,
     isVip: wx.getStorageSync('isVip') || false,
-    userInfo: wx.getStorageSync('userInfo') || {}
+    userInfo: wx.getStorageSync('userInfo') || {},
+    isIos: false
   },
   actions: {
     async getTopicCate(ctx: any) {
@@ -24,11 +25,9 @@ const eventStore = new HYEventStore({
             wx.setStorageSync('topicAd', true)
           }
         }
-        console.log('测试')
       })
     },
     async getUserInfo(ctx: any) {
-      console.log('擦')
       if (wx.getStorageSync('loginState')) {
         await getUserInfo().then((res: any) => {
           ctx.isVip = res.data.vip_time !== ''

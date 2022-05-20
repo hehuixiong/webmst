@@ -2,6 +2,7 @@
 import { eventStore } from '../../store/index'
 // 在页面中定义激励视频广告
 let rewardedVideoAd: any = null
+let videoAdPushStatus = false
 Component({
   externalClasses:['my-class'],
   /**
@@ -60,12 +61,13 @@ Component({
    */
   methods: {
     showRewardedVideoAd() {
-      if (this.data.showgroup && !this.data.isVip) {
+      if (!this.data.isVip) {
         if (wx.createRewardedVideoAd) {
           rewardedVideoAd = wx.createRewardedVideoAd({
             adUnitId: 'adunit-92cc5ea0105da417'
           })
           rewardedVideoAd.onLoad(() => {
+            videoAdPushStatus = true
             console.log('onload rewardedVideoAd')
           })
           rewardedVideoAd.onError((err: any) => {
@@ -111,7 +113,8 @@ Component({
       const mm = date.getMonth() + 1
       const dd = date.getDate()
       const currentDate = `${yyyy}-${mm}-${dd}`
-      if (storageMsg['topic'] && storageMsg['topic'] === currentDate || (!this.data.showgroup || !this.data.topicAd || this.data.isVip)) {
+      const _this = this
+      if (storageMsg['topic'] && storageMsg['topic'] === currentDate || (!this.data.topicAd || this.data.isVip)) {
         console.log('拥有访问权限')
         wx.navigateTo({
           url: `/pages/topic-res/topic-res?id=${id}&search=${this.data.search}&is_collect=${this.data.is_collect}`
@@ -121,13 +124,13 @@ Component({
         console.log('今天没有看过广告')
         wx.showModal({
           title: '友情提示',
-          content: '观看精彩视频，本题材24小时无广告刷题哦！',
+          content: '观看视频点击广告跳转，解锁24小时无广告刷题',
           confirmText: '观看视频',
           cancelText: '下次再说',
           success (res) {
             if (res.confirm) {
               // 用户触发广告后，显示激励视频广告
-              if (rewardedVideoAd) {
+              if (rewardedVideoAd && videoAdPushStatus) {
                 rewardedVideoAd.show().catch(() => {
                   // 失败重试
                   rewardedVideoAd.load()
@@ -136,6 +139,8 @@ Component({
                       console.log('激励视频 广告显示失败')
                     })
                 })
+              } else {
+                _this.setAdDate()
               }
             }
           }

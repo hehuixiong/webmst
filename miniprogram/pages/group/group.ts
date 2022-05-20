@@ -6,7 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showgroup: false,
     isVip: false
   },
 
@@ -14,9 +13,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    eventStore.onState('showgroup', (value: any) => {
-      this.setData({ showgroup: value })
-    })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })

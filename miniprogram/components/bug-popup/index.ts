@@ -100,7 +100,7 @@ Component({
       })
       const timer = setTimeout(() => {
         wx.showToast({
-          title: '感谢您的反馈',
+          title: '感谢你的反馈',
           duration: 2000
         })
         this.onClose()

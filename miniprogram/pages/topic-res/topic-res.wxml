@@ -1,6 +1,4 @@
 <view class="topic-res">
-  <!-- 广告位 -->
-  <ad-custom wx:if="{{!loading && showgroup && !topicAd && !isVip}}" unit-id="adunit-12c54eb2714570a1"></ad-custom>
   <view class="topic-res-container" wx:if="{{!loading}}">
     <view class="topic-container">
       <view class="title">第{{topicIndex}}题：{{title}}</view>
@@ -25,7 +23,9 @@
       <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
       <view wx:else class="zhengli">正在整理中...</view>
     </view>
-    <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!self}}">来源：前端面试题宝典</navigator>
+    <!-- 广告位 -->
+    <ad wx:if="{{!loading && !topicAd && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad>
+    <!-- <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!self}}">来源：前端面试题宝典</navigator> -->
     <view class="sidebar">
       <view class="sidebar-item" bindtap="addCollect">
         <text class="icon-bg">
@@ -48,7 +48,7 @@
     </view>
   </view>
   <view class="loading" wx:else>
-    <loading color="#7e68f3"></loading><text>加载中...</text>
+    <loading color="#4e6ef2"></loading><text>加载中...</text>
   </view>
 
   <!-- 题目纠错 -->

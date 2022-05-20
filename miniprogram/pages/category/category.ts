@@ -15,39 +15,15 @@ Page({
         id: null
       },
       {
-        icon: 'icon-css',
-        label: 'CSS',
-        type: NAV_TYPES.css,
-        id: null
-      },
-      {
         icon: 'icon-html',
         label: 'HTML',
         type: NAV_TYPES.html,
         id: null
       },
       {
-        icon: 'icon-vuejs',
-        label: 'Vue.js',
-        type: NAV_TYPES.vueJs,
-        id: null
-      },
-      {
-        icon: 'icon-suanfa',
-        label: '算法',
-        type: NAV_TYPES.algorithm,
-        id: null
-      },
-      {
-        icon: 'icon-reactjs',
-        label: 'React.js',
-        type: NAV_TYPES.reactJs,
-        id: null
-      },
-      {
-        icon: 'icon-qianduananquan',
-        label: '前端安全',
-        type: NAV_TYPES.security,
+        icon: 'icon-css',
+        label: 'CSS',
+        type: NAV_TYPES.css,
         id: null
       },
       {
@@ -63,9 +39,45 @@ Page({
         id: null
       },
       {
+        icon: 'icon-vuejs',
+        label: 'Vue.js',
+        type: NAV_TYPES.vueJs,
+        id: null
+      },
+      {
+        icon: 'icon-reactjs',
+        label: 'React.js',
+        type: NAV_TYPES.reactJs,
+        id: null
+      },
+      {
+        icon: 'icon-nodejs',
+        label: 'Node.js',
+        type: NAV_TYPES.nodeJs,
+        id: null
+      },
+      {
+        icon: 'icon-suanfa',
+        label: '算法',
+        type: NAV_TYPES.algorithm,
+        id: null
+      },
+      {
+        icon: 'icon-gongju',
+        label: '工具',
+        type: NAV_TYPES.tools,
+        id: null
+      },
+      {
         icon: 'icon-bianchengti',
         label: '编程题',
         type: NAV_TYPES.programme,
+        id: null
+      },
+      {
+        icon: 'icon-qianduananquan',
+        label: '前端安全',
+        type: NAV_TYPES.security,
         id: null
       },
       {
@@ -96,18 +108,6 @@ Page({
         icon: 'icon-gongchenghua',
         label: '工程化',
         type: NAV_TYPES.engineering,
-        id: null
-      },
-      {
-        icon: 'icon-nodejs',
-        label: 'Node.js',
-        type: NAV_TYPES.nodeJs,
-        id: null
-      },
-      {
-        icon: 'icon-gongju',
-        label: '工具',
-        type: NAV_TYPES.tools,
         id: null
       },
       {

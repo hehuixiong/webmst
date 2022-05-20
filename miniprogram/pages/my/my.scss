@@ -3,7 +3,7 @@
   background: #f6f6f6;
   .userinfo-wrapper{
     padding-top: 50px;
-    background: linear-gradient(#c2a6f9, #7e68f3);
+    background: linear-gradient(#6783f1, #4e6ef2);
     position: relative;
     overflow: hidden;
     &::after{
@@ -12,7 +12,7 @@
       width: 500rpx;
       height: 300rpx;
       border-radius: 50%;
-      background: rgba($color: #c2a6f9, $alpha: 0.6);
+      background: rgba($color: #b9c6f8, $alpha: 0.3);
       left: -256rpx;
       bottom: -192rpx;
     }
@@ -22,7 +22,7 @@
       width: 60rpx;
       height: 60rpx;
       border-radius: 50%;
-      background: rgba($color: #c2a6f9, $alpha: 0.6);
+      background: rgba($color: #b9c6f8, $alpha: 0.3);
       right: 30%;
       top: 40%;
     }
@@ -131,7 +131,7 @@
         flex: 1;
         .title{
           font-size: 30rpx;
-          color: #666666;
+          color: #333333;
           font-weight: bold;
         }
         .desc{

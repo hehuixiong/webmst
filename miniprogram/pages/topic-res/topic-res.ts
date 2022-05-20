@@ -137,6 +137,9 @@ Page({
       res.data.content = res.data.content.replace(/<span class="linenumber react-syntax-highlighter-line-number" style="display: inline-block; min-width: (0|[1-9][0-9]*|-[1-9][0-9]*).25em; padding-right: 1em; text-align: right; user-select: none; color: rgb\(124, 124, 124\);">(0|[1-9][0-9]*|-[1-9][0-9]*)<\/span>/gi, () => {
         return ''
       })
+      res.data.content = res.data.content.replace(/<blockquote/gi, () => {
+        return '<blockquote style="display: none"'
+      })
       res.data.content = res.data.content.replace(/src="/gi, () => {
         return 'src="https://images.weserv.nl/?url='
       })

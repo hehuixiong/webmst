@@ -31,7 +31,7 @@
       </view>
       <view class="go" bindtap="addGroup">立即加入</view>
     </view>
-    <view class="vip-group" wx:if="{{showgroup}}">
+    <view class="vip-group">
       <view class="text-icon">
         <text class="icon">
           <text class="iconfont icon-vip"></text>
@@ -84,7 +84,7 @@
       </button>
     </view>
     <!-- 广告位 -->
-    <view class="cell-groip" wx:if="{{showgroup && !isVip}}">
+    <view class="cell-groip" wx:if="{{!isVip}}">
       <ad-custom unit-id="adunit-248ba9ef170ce527"></ad-custom>
     </view>
     <view class="more">

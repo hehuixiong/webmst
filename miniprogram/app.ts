@@ -12,3 +12,11 @@ App<IAppOption>({
     await eventStore.dispatch('getUserInfo')
   }
 })
+/**
+ * {
+      "pagePath": "pages/vip/vip",
+      "text": "增值",
+      "iconPath": "images/icon_vip.png",
+      "selectedIconPath": "images/icon_vip_active.png"
+    },
+ */

@@ -1,4 +1,5 @@
 import { eventStore } from '../../store/index'
+const app = getApp()
 Page({
   data: {
     userInfo: {},
@@ -53,6 +54,15 @@ Page({
     }
   },
   showVip() {
+    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
+      wx.showModal({
+        title: '友情提示',
+        content: '由于相关规范，苹果IOS暂不可用',
+        confirmText: '知道了',
+        showCancel: false
+      })
+      return
+    }
     this.setData({ show: true })
   },
   addGroup() {

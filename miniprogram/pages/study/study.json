@@ -1,7 +1,9 @@
 {
+  "navigationStyle":"custom",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
+    "nav-bar": "/components/nav-bar/index",
     "more-wrap": "/components/more-wrap/index"
-  },
-  "navigationBarTitleText": "学习视频资源"
+  }
 }

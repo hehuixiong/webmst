@@ -26,7 +26,7 @@ export function checkUpdateVersion() {
           // 新版本下载失败
           wx.showModal({
             title: '已有新版本',
-            content: '请您删除小程序，重新搜索进入',
+            content: '请你删除小程序，重新搜索进入',
             showCancel: false,
             confirmText: '我知道了'
           })

@@ -1,6 +1,6 @@
 <view class="loading-container">
   <view class="loading" wx:if="{{loading}}">
-    <loading color="#7e68f3"></loading>
+    <loading color="#4e6ef2"></loading>
     <text style="margin-left: 10rpx">加载中...</text>
   </view>
   <view wx:if="{{noMore}}">没有更多了~</view>

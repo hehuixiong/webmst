@@ -4,7 +4,7 @@
     title="前端面试题材"
     hideTip="{{hideTip}}"
     titLoading="{{titLoading}}"
-    background='linear-gradient(#6581f6, #7e68f3)'
+    background='#4e6ef2'
     color="#fff"
     bind:closeTip="closeTip"
   ></nav-bar>
@@ -33,7 +33,7 @@
       <text>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>
   </view>
-  <view class="home-module" wx:if="{{showgroup}}">
+  <view class="home-module">
     <view class="module-wrapper bg1" bindtap="showVip">
       <view class="title">VIP专属权益</view>
       <view class="btn">了解详情</view>
@@ -41,9 +41,16 @@
         <view class="iconfont icon-aixin"></view>
       </view>
     </view>
-    <view class="module-wrapper bg2" bindtap="addGroup">
+    <view class="module-wrapper bg2" bindtap="addGroup" wx:if="{{showgroup}}">
       <view class="title">面试交流群</view>
       <view class="btn">立即加入</view>
+      <view class="icon-wrapper">
+        <view class="iconfont icon-yuandianda"></view>
+      </view>
+    </view>
+    <view class="module-wrapper bg2" bindtap="addMsjq" wx:else>
+      <view class="title">前端面试技巧</view>
+      <view class="btn">立即前往</view>
       <view class="icon-wrapper">
         <view class="iconfont icon-yuandianda"></view>
       </view>
@@ -90,7 +97,7 @@
     </view>
 
     <!-- 广告位 -->
-    <view class="ad" wx:if="{{showgroup && !isVip}}">
+    <view class="ad" wx:if="{{!isVip}}">
       <ad-custom unit-id="adunit-4740ba525cdd081d"></ad-custom>
     </view>
   </view>

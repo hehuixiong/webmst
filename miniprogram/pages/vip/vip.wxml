@@ -5,7 +5,7 @@
     <view>做好大家学习路上的领路人，一起学习进步，锁定心动offer是我们的初心。为了更好的服务大家，我们后续将推出“简历指导”、“模拟面试”的增值服务，敬请期待。</view>    
   </view>
   <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220424000300.jpg" mode="widthFix"></image>
-  <view class="ad" wx:if="{{showgroup && !isVip}}">
+  <view class="ad" wx:if="{{!isVip}}">
     <ad-custom unit-id="adunit-e468984d6329e4e5"></ad-custom>
   </view>
 </view>

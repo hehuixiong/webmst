@@ -26,7 +26,7 @@
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "color": "#333333",
-    "selectedColor": "#7e68f3",
+    "selectedColor": "#4e6ef2",
     "backgroundColor": "#fff",
     "borderStyle": "black",
     "list": [
@@ -41,12 +41,6 @@
         "text": "学习",
         "iconPath": "images/icon_study.png",
         "selectedIconPath": "images/icon_study_active.png"
-      },
-      {
-        "pagePath": "pages/vip/vip",
-        "text": "增值",
-        "iconPath": "images/icon_vip.png",
-        "selectedIconPath": "images/icon_vip_active.png"
       },
       {
         "pagePath": "pages/my/my",

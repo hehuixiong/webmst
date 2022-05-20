@@ -7,7 +7,7 @@
     position: relative;
     .bg{
       width: 100%;
-      background: #7e68f3;
+      background: #4e6ef2;
       height: 500rpx;
       border-radius: 10%;
       position: absolute;
@@ -23,7 +23,7 @@
         height: 160rpx;
         border-radius: 50%;
         transform: rotate(30deg);
-        background: rgba($color: #c2a6f9, $alpha: 0.2);
+        background: rgba($color: #d5dfff, $alpha: 0.2);
       }
       &::after{
         content: '';
@@ -34,7 +34,7 @@
         height: 160rpx;
         border-radius: 50%;
         transform: rotate(-35deg);
-        background: rgba($color: #c2a6f9, $alpha: 0.2);
+        background: rgba($color: #d5dfff, $alpha: 0.2);
       }
     }
   }
@@ -80,10 +80,10 @@
       position: relative;
       overflow: hidden;
       &.bg1{
-        background: #7e68f3;
+        background: #4e6ef2;
       }
       &.bg2{
-        background: #6581f6;
+        background: #7e68f3;
       }
       .title{
         font-size: 32rpx;
@@ -146,11 +146,11 @@
       }
       &.bg1::before,
       &.bg1::after{
-        background: rgba($color: #c2a6f9, $alpha: 0.5);
+        background: rgba($color: #9caef1, $alpha: 0.5);
       }
       &.bg2::before,
       &.bg2::after{
-        background: rgba($color: #8daaf1, $alpha: 0.5);
+        background: rgba($color: #c2a6f9, $alpha: 0.5);
       }
     }
   }
@@ -169,7 +169,7 @@
         top: 50%;
         transform: translateY(-50%);
         width: 8rpx;
-        background-color: #7e68f3;
+        background-color: #4e6ef2;
         height: 30rpx;
         border-radius: 8rpx;
       }

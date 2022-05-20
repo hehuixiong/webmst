@@ -1,4 +1,10 @@
 <view class="study-container">
+  <nav-bar
+    id="navBar"
+    title="学习视频资源"
+    background='#4e6ef2'
+    color="#fff"
+  ></nav-bar>
   <view class="study-list">
     <view class="study-item" wx:for="{{studyPageList}}" wx:key="index">
       <view class="sui-image">
@@ -18,7 +24,7 @@
           </view>
           <view class="btns">
             <van-button plain icon="share-o" type="danger" size="small" open-type="share" data-title="{{item.title}}" bindtap="onShare"></van-button>
-            <van-button plain type="danger" size="small" bindtap="immediatelyGet" data-title="{{index+1}}. {{item.title}}" data-course="{{item.course}}" data-index="{{index}}"><text class="text">立即领取</text></van-button>
+            <van-button plain type="danger" size="small" bindtap="immediatelyGet" data-title="{{index+1}}. {{item.title}}" data-course="{{item.course}}" data-index="{{index}}"><text class="text">免费领取</text></van-button>
           </view>
         </view>
       </view>

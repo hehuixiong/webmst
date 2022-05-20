@@ -1,5 +1,5 @@
 .topic-res{
-  padding: 0 0 220rpx;
+  padding: 0 0 80rpx;
   overflow: hidden;
   background: #f6f6f6;
   box-sizing: border-box;
@@ -8,7 +8,7 @@
     background: #fff;
     padding: 20rpx 8rpx;
     border-radius: 20rpx;
-    box-shadow: 0 2px 12px 0 rgba($color: #7e68f3, $alpha: .2);
+    box-shadow: 0 2px 12px 0 rgba($color: #4e6ef2, $alpha: .2);
     .title{
       color: #3a3a3a;
       margin-bottom: 20rpx;
@@ -35,7 +35,7 @@
       }
     }
     .tag{
-      background: #7e68f3;
+      background: #4e6ef2;
       padding: 4rpx 12rpx;
       color: #ffffff;
       font-size: 24rpx;
@@ -49,7 +49,7 @@
     background: #fff;
     padding: 16rpx 8rpx;
     border-radius: 20rpx;
-    box-shadow: 0 2px 12px 0 rgba($color: #7e68f3, $alpha: .2);
+    box-shadow: 0 2px 12px 0 rgba($color: #4e6ef2, $alpha: .2);
     margin-top: 26rpx;
     .title-wrapper{
       padding: 0 16rpx 0 0;
@@ -61,7 +61,7 @@
       border-bottom: 1px solid #f0f0f0;
       margin: 0 12rpx 12rpx;
       .title{
-        color: #7e68f3;
+        color: #4e6ef2;
         font-weight: bold;
         font-size: 32rpx;
         display: flex;
@@ -111,9 +111,9 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 20rpx;
-      padding: 0 20rpx;
+      padding: 0 20rpx 0 0;
       .icon-bg{
-        background: rgba($color: #786eeb, $alpha: 0.1);
+        background: rgba($color: #4e6ef2, $alpha: 0.1);
         width: 68rpx;
         height: 68rpx;
         z-index: -1;
@@ -125,6 +125,7 @@
       }
       .iconfont{
         font-size: 40rpx;
+        color: #4e6ef2;
       }
       .icon-fenxiang,
       .icon-xiayiti{
@@ -132,7 +133,7 @@
       }
       .text{
         font-size: 24rpx;
-        color: #786eeb;
+        color: #4e6ef2;
         font-weight: bold;
         line-height: 36rpx;
       }

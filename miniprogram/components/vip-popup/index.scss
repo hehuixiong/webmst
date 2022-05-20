@@ -87,7 +87,7 @@
           }
         }
         &.is-active{
-          background: linear-gradient(#9382f0, #7e68f3);
+          background: linear-gradient(#6783f1, #4e6ef2);
           color: #fff;
           position: relative;
           overflow: hidden;
@@ -96,7 +96,7 @@
             content: '';
             left: 0;
             bottom: -40rpx;
-            background: rgba($color: #c2a6f9, $alpha: 0.5);
+            background: rgba($color: #a2b4f8, $alpha: 0.5);
             width: 100rpx;
             height: 50rpx;
             border-radius: 50%;
@@ -107,7 +107,7 @@
             content: '';
             right: 0;
             bottom: -44rpx;
-            background: rgba($color: #c2a6f9, $alpha: 0.5);
+            background: rgba($color: #a2b4f8, $alpha: 0.5);
             width: 130rpx;
             height: 50rpx;
             border-radius: 0 100rpx 100rpx 0;
@@ -118,12 +118,12 @@
             width: 44rpx;
             height: 44rpx;
             border-radius: 50%;
-            background: rgba($color: #c2a6f9, $alpha: 0.5);
+            background: rgba($color: #a2b4f8, $alpha: 0.5);
             left: 50%;
             bottom: 20rpx;
           }
           .iconfont{
-            color: #7e68f3!important;
+            color: #4e6ef2!important;
           }
         }
       }
