@@ -1,19 +1,19 @@
 .topic-res{
-  padding: 0 0 80rpx;
   overflow: hidden;
   background: #f6f6f6;
   box-sizing: border-box;
   min-height: 100vh;
+  padding-bottom: 20rpx;
   .topic-container{
     background: #fff;
     padding: 20rpx 8rpx;
-    border-radius: 20rpx;
+    border-radius: 0 0 20rpx 20rpx;
     box-shadow: 0 2px 12px 0 rgba($color: #4e6ef2, $alpha: .2);
     .title{
       color: #3a3a3a;
       margin-bottom: 20rpx;
       font-weight: 600;
-      margin-top: 10rpx;
+      margin-top: 4rpx;
       line-height: 48rpx;
       padding: 0 10rpx;
       font-size: 32rpx;
@@ -47,19 +47,19 @@
   }
   .answer-container{
     background: #fff;
-    padding: 16rpx 8rpx;
+    padding: 0 8rpx 16rpx;
     border-radius: 20rpx;
     box-shadow: 0 2px 12px 0 rgba($color: #4e6ef2, $alpha: .2);
-    margin-top: 26rpx;
+    margin-top: 20rpx;
     .title-wrapper{
       padding: 0 16rpx 0 0;
-      line-height: 76rpx;
+      line-height: 92rpx;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid #f0f0f0;
-      margin: 0 12rpx 12rpx;
+      margin: 0 12rpx 18rpx;
       .title{
         color: #4e6ef2;
         font-weight: bold;
@@ -83,6 +83,7 @@
       line-height: 66rpx;
       margin-top: 6rpx;
       padding-left: 8rpx;
+      text-align: center;
     }
   }
   .sidebar{
@@ -111,7 +112,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 20rpx;
-      padding: 0 20rpx 0 0;
+      padding: 0 10rpx 0 0;
       .icon-bg{
         background: rgba($color: #4e6ef2, $alpha: 0.1);
         width: 68rpx;

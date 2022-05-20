@@ -31,9 +31,10 @@ Page({
     if (loginState) {
       eventStore.dispatch('getUserInfo')
       eventStore.onState('userInfo', (value: any) => {
-        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(0, 8) : '' } })
+        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(0, 10) : '' } })
       })
     }
+    console.log('setUserInfo')
   },
   go() {
     wx.showToast({
@@ -42,16 +43,19 @@ Page({
       duration: 2000
     })
   },
+  onLogin() {
+    eventStore.dispatch('login', () => {
+      this.setUserInfo()
+    })
+  },
   onRoute() {
-    if (this.data.loginState) {
-      wx.navigateTo({
-        url: '/pages/collect/collect'
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/login/login'
-      })
+    if (!this.data.loginState) {
+      this.onLogin()
+      return 
     }
+    wx.navigateTo({
+      url: '/pages/collect/collect'
+    })
   },
   showVip() {
     if (app.globalSystemInfo && app.globalSystemInfo.ios) {

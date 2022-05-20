@@ -106,6 +106,10 @@ Component({
      * 题目跳转
      */
     handleJump(e: any) {
+      if (!wx.getStorageSync('loginState')) {
+        eventStore.dispatch('login')
+        return
+      }
       const { id } = e.currentTarget.dataset
       const storageMsg = wx.getStorageSync('adDateMsg')
       let date = new Date()

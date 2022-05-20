@@ -4,6 +4,7 @@ import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
 const app = getApp()
 Page({
+  refresh: false,
   data: {
     swiper: [
       {
@@ -217,9 +218,7 @@ Page({
         })
       }
     } else {
-      wx.navigateTo({
-        url: '/pages/login/login'
-      })
+      eventStore.dispatch('login')
     }
   },
   addGroup() {
@@ -265,11 +264,30 @@ Page({
 
   },
 
+  init() {
+    const timer = setTimeout(() => {
+      this.refresh = false;
+      wx.stopPullDownRefresh()
+      clearTimeout(timer)
+    }, 800)
+  },
+
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    // 判断是不是刷新
+    if (this.refresh) {
+      wx.stopPullDownRefresh()
+      wx.showToast({
+        title: '您刷新频率过快~',
+        icon: 'none',
+        duration: 1500,
+      })
+      return
+    }
+    this.refresh = true
+    this.init()
   },
 
   /**

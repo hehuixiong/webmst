@@ -5,7 +5,7 @@
         <view class="title">
           <text>第{{index + 1}}题：{{item.title}}</text>
         </view>
-        <view class="tag">{{type === 'choice' ? '选择题' : '问答题'}}</view>
+        <view class="tag">{{item.cate_id === 21 ? '选择题' : '问答题'}}</view>
       </view>
       <view class="topic-item__desc">
         <view class="level">

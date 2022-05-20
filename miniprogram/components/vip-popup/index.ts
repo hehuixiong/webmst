@@ -72,9 +72,7 @@ Component({
     },
     submitVip() {
       if (!wx.getStorageSync('loginState')) {
-        wx.navigateTo({
-          url: '/pages/login/login'
-        })
+        eventStore.dispatch('login')
         return
       }
       wx.showLoading({

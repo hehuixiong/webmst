@@ -163,9 +163,13 @@
 /* 轻量级图标 */
 @font-face {
   font-family: "iconfont"; /* Project id 3372673 */
-  src: url('//at.alicdn.com/t/font_3372673_itvb772vdk.woff2?t=1652859280739') format('woff2'),
-       url('//at.alicdn.com/t/font_3372673_itvb772vdk.woff?t=1652859280739') format('woff'),
-       url('//at.alicdn.com/t/font_3372673_itvb772vdk.ttf?t=1652859280739') format('truetype');
+  src: url('//at.alicdn.com/t/font_3372673_5zetrkeg26v.woff2?t=1653047995218') format('woff2'),
+       url('//at.alicdn.com/t/font_3372673_5zetrkeg26v.woff?t=1653047995218') format('woff'),
+       url('//at.alicdn.com/t/font_3372673_5zetrkeg26v.ttf?t=1653047995218') format('truetype');
+}
+
+.icon-pinglun:before {
+  content: "\e687";
 }
 
 .icon-fenxiang:before {

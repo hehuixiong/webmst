@@ -35,6 +35,10 @@ Page({
   },
 
   goSkip(e: any) {
+    if (!wx.getStorageSync('loginState')) {
+      eventStore.dispatch('login')
+      return
+    }
     if (!this.data.isVip) {
       wx.showToast({
         title: 'VIP专属权益...',

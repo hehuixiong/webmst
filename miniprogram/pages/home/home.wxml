@@ -9,7 +9,13 @@
     bind:closeTip="closeTip"
   ></nav-bar>
   <view class="home-swiper">
-    <view class="bg"></view>
+    <view class="bg">
+      <view class="three-bounce">
+        <view class="one"></view>
+        <view class="two"></view>
+        <view class="three"></view>
+      </view>
+    </view>
     <swiper
       class="swiper"
       indicator-dots

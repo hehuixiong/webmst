@@ -136,6 +136,7 @@ page {
         text-overflow: ellipsis;
         overflow: hidden;
         font-weight: bold;
+        margin-left: 10rpx;
       }
       .lxy-nav-bar__center-spinner{
         width: 120rpx;
@@ -188,7 +189,7 @@ page {
   .lxy-nav-bar__add{
     position: fixed;
     z-index: 9999;
-    background: rgba($color: #000000, $alpha: .6);
+    background: rgba($color: #000000, $alpha: .7);
     color: #ffffff;
     padding: 20rpx 8rpx 20rpx 20rpx;
     font-size: 26rpx;

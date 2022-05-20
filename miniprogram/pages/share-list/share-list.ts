@@ -1,4 +1,5 @@
 // pages/share-list/share-list.ts
+import { eventStore } from '../../store/index'
 const localShareList = require("../../data/shareList")
 Page({
 
@@ -44,8 +45,12 @@ Page({
   },
 
   go() {
+    if (!wx.getStorageSync('loginState')) {
+      eventStore.dispatch('login')
+      return
+    }
     wx.showToast({
-      title: '努力整理中，敬请期待',
+      title: '开发中，敬请期待',
       icon: 'none'
     })
   },

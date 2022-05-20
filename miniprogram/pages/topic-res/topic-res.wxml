@@ -23,6 +23,12 @@
       <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
       <view wx:else class="zhengli">正在整理中...</view>
     </view>
+    <view class="answer-container pinglun">
+      <view class="title-wrapper">
+        <view class="title"><text class="iconfont icon-pinglun"></text> 评论区</view>
+      </view>
+      <view class="zhengli">暂无评论</view>
+    </view>
     <!-- 广告位 -->
     <ad wx:if="{{!loading && !topicAd && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad>
     <!-- <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!self}}">来源：前端面试题宝典</navigator> -->

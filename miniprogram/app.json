@@ -6,7 +6,6 @@
     "pages/my/my",
     "pages/topic-list/topic-list",
     "pages/topic-res/topic-res",
-    "components/loading/index",
     "pages/group/group",
     "pages/search/search",
     "pages/category/category",
@@ -15,13 +14,14 @@
     "pages/skills-res/skills-res",
     "pages/share-list/share-list",
     "pages/share-res/share-res",
-    "pages/login/login"
+    "pages/mock-test/mock-test"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {

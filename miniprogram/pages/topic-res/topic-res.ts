@@ -182,20 +182,18 @@ Page({
     })
   },
   addCollect() {
-    if (wx.getStorageSync('loginState')) {
-      addCollect({
-        goods_id: this.data.id
-      }).then((res: any) => {
-        console.log(res)
-        wx.showToast({
-          title: res.msg
-        })
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/login/login'
-      })
+    if (!wx.getStorageSync('loginState')) {
+      eventStore.dispatch('login')
+      return
     }
+    addCollect({
+      goods_id: this.data.id
+    }).then((res: any) => {
+      console.log(res)
+      wx.showToast({
+        title: res.msg
+      })
+    })
   },
   /**
    * 下题
