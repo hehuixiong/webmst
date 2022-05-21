@@ -4,7 +4,7 @@
     title="前端面试题材"
     hideTip="{{hideTip}}"
     titLoading="{{titLoading}}"
-    background='#4e6ef2'
+    background='linear-gradient(#7e68f3, #4e6ef2)'
     color="#fff"
     bind:closeTip="closeTip"
   ></nav-bar>
@@ -63,7 +63,7 @@
     </view>
   </view>
   <view class="home-container">
-    <view class="category-wrapper">
+    <view class="gongge-wrapper">
       <view class="title">
         <text>热门分类</text>
         <view class="search-wrap" bindtap="goSearch">
@@ -71,32 +71,55 @@
             <text class="icon-bg">
               <text class="iconfont icon-sousuo1"></text>
             </text>
-            <text class="text">搜索</text>
+            <text class="text">题材搜索</text>
           </view>
         </view>
       </view>
-      <view class="category-list">
+      <view class="gongge-list">
         <block wx:for="{{category}}" wx:key="index">
-          <navigator wx:if="{{item.type === 'all'}}" class="category-item" url="/pages/category/category">
-            <text class="iconfont {{item.icon}}"></text>
-            <text class="text">{{item.label}}</text>
+          <navigator wx:if="{{item.type === 'all'}}" class="gongge-item" url="/pages/category/category">
+            <view class="wrapper">
+              <view class="left">
+                <text class="iconfont {{item.icon}}"></text>
+              </view>
+              <view class="right">
+                <text class="text">{{item.label}}</text>
+                <text class="tag">共{{topicSum}}条</text>
+              </view>
+            </view>
+            <text class="icon-right-circle iconfont"></text>
           </navigator>
-          <navigator wx:else="" class="category-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}&type={{item.type}}">
-            <text class="iconfont {{item.icon}}"></text>
-            <text class="text">{{item.label}}</text>
+          <navigator wx:else class="gongge-item" url="/pages/topic-list/topic-list?id={{item.id}}&label={{item.label}}&type={{item.type}}">
+            <view class="wrapper">
+              <view class="left">
+                <text class="iconfont {{item.icon}}"></text>
+              </view>
+              <view class="right">
+                <text class="text">{{item.label}}</text>
+                <text class="tag">共{{item.cate_num}}条</text>
+              </view>
+            </view>
+            <text class="icon-right-circle iconfont"></text>
           </navigator>
         </block>
       </view>
     </view>
-    <view class="assist-wrapper">
+    <view class="gongge-wrapper">
       <view class="title">
         <text>辅助工具</text>
       </view>
-      <view class="assist-list">
+      <view class="gongge-list">
         <block wx:for="{{assist}}" wx:key="index">
-          <view class="assist-item" hover-class="navigator-hover" bindtap="onRoute" data-item="{{item}}">
-            <image src="{{item.url}}" mode="heightFix"></image>
-            <text class="text">{{item.label}}</text>
+          <view class="gongge-item assist" hover-class="navigator-hover" bindtap="onRoute" data-item="{{item}}">
+            <view class="wrapper">
+              <view class="left">
+                <image src="{{item.url}}" mode="heightFix"></image>
+              </view>
+              <view class="right">
+                <text class="text">{{item.label}}</text>
+              </view>
+            </view>
+            <text class="icon-right-circle iconfont"></text>
           </view>
         </block>
       </view>

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "题目搜索",
+  "navigationBarTitleText": "题材搜索",
   "usingComponents": {
     "loading": "/components/loading/index",
     "van-icon": "@vant/weapp/icon/index",
