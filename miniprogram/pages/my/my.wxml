@@ -40,7 +40,7 @@
       </view>
       <view class="understand" bindtap="showVip">了解详情</view>
     </view>
-    <view class="cell-groip cell-groip-top {{ showgroup ? 'is-active' : '' }}">
+    <view class="cell-groip cell-groip-top">
       <button>
         <view class="item" hover-class="navigator-hover" bindtap="onRoute">
           <view class="text-icon">

@@ -11,31 +11,21 @@
     align-items: center;
     font-size: 28rpx;
     color: #333333;
-    padding: 16rpx 36rpx 36rpx;
+    padding: 36rpx;
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
-    .title{
-      text-align: center;
-      font-size: 38rpx;
-      line-height: 80rpx;
-      color: #000000;
-      font-weight: bold;
-    }
     .text{
-      line-height: 50rpx;
-    }
-    button{
-      margin: 40rpx 0 50rpx;
-      height:76rpx;
-      width: 500rpx;
-      border-radius: 60rpx;
+      font-size: 30rpx;
+      line-height: 70rpx;
     }
     image{
-      width: 500rpx;
-      height: 500rpx;
+      width: 314rpx;
+      height: 314rpx;
     }
     .changan{
+      font-size: 30rpx;
       margin-top: 38rpx;
       color: #ff3d3d;
+      text-align: center;
     }
   }
   .ad{

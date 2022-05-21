@@ -190,12 +190,9 @@
     }
     .cell-groip{
       margin: 20rpx 20rpx;
-      border-radius: 32rpx;
+      border-radius: 0 0 32rpx 32rpx;
       background: #ffffff;
       overflow: hidden;
-      &.is-active{
-        border-radius: 0 0 32rpx 32rpx;
-      }
       button{
         display: flex;
         align-items: center;
