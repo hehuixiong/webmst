@@ -1,8 +1,8 @@
-<view class="share-container">
+<view class="face-container">
   <view class="msg">以下数据来源于网络及互联网网友共享投稿</view>
-  <view class="share-list">
-    <block wx:for="{{sharePageList}}" wx:key="index">
-      <navigator class="share-item" url="" bindtap="go">
+  <view class="face-list">
+    <block wx:for="{{facePageList}}" wx:key="index">
+      <navigator class="face-item" url="" bindtap="go">
         <view class="tag-wrapper">
           <view class="tag" wx:if="{{item.status === 0}}" style="color: #fc494b;background: #ffe4e4;">未通过</view>
           <view class="tag" wx:if="{{item.status === 1}}" style="color: #4fc08d;background: #ebfff0;">已通过</view>

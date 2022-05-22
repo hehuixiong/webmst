@@ -31,6 +31,10 @@ Component({
     is_collect: {
       type: Number,
       value: 0
+    },
+    is_topic_limit: {
+      type: Boolean,
+      value: true
     }
   },
 
@@ -40,6 +44,7 @@ Component({
   data: {
     showgroup: false,
     topicAd: false,
+    topicVip: false,
     isVip: false
   },
 
@@ -49,6 +54,10 @@ Component({
     })
     eventStore.onState('topicAd', (value: any) => {
       this.setData({ topicAd: value })
+      this.showRewardedVideoAd()
+    })
+    eventStore.onState('topicVip', (value: any) => {
+      this.setData({ topicVip: value })
       this.showRewardedVideoAd()
     })
     eventStore.onState('isVip', (value: any) => {
@@ -110,7 +119,18 @@ Component({
         eventStore.dispatch('login')
         return
       }
-      const { id } = e.currentTarget.dataset
+      const { id, cate_id } = e.currentTarget.dataset.item
+      // 控制（除了html与css分类）其他分类必须要vip才能访问
+      console.log('是否html与css分类', ![2, 3].includes(id))
+      console.log('是否vip', !this.data.isVip)
+      if (this.data.topicVip && ![2, 3].includes(cate_id) && !this.data.isVip && this.data.is_topic_limit) {
+        wx.showToast({
+          title: 'VIP专属权益',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
       const storageMsg = wx.getStorageSync('adDateMsg')
       let date = new Date()
       const yyyy = date.getFullYear()

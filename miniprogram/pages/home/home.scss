@@ -100,6 +100,12 @@
     margin: 16rpx 16rpx 0;
     border-radius: 30rpx;
     overflow: hidden;
+    .van-icon-volume-o{
+      font-size: 32rpx;
+    }
+    text,.icon-huomiao{
+      font-size: 28rpx;
+    }
   }
   .home-module{
     display: flex;
@@ -256,7 +262,7 @@
         .gongge-item{
           display: flex;
           align-items: center;
-          padding: 20rpx;
+          padding: 20rpx 18rpx;
           box-sizing: border-box;
           margin: 8rpx 8rpx;
           border-radius: 20rpx;
@@ -269,6 +275,7 @@
           .wrapper{
             display: flex;
             align-items: center;
+            flex: 1;
             image{
               height: 50rpx;
               display: block;
@@ -278,15 +285,19 @@
             }
           }
           .text{
-            font-size: 30rpx;
+            font-size: 28rpx;
             color: #3d3c3c;
-            margin-left: 8rpx;
+            margin-left: 6rpx;
           }
           .right{
             display: flex;
             flex-direction: column;
-            margin-left: 30rpx;
+            margin-left: 24rpx;
             align-items: flex-start;
+            .free{
+              font-size: 20rpx;
+              color: #999999;
+            }
           }
           .tag{
             background: #eff2fe;

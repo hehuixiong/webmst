@@ -18,7 +18,7 @@
         <view class="userinfo-info" bindtap="onLogin">
           <view class="nickname"><text>{{userInfo.nickName}}</text> <text wx:if="{{isVip}}" class="tag">VIP</text></view>
           <view class="desc">拼搏到无能为力 坚持到感动自己</view>
-          <view class="number">用户ID：{{userInfo.timeStamp}}</view>
+          <view class="number" catchtap="copyUID" data-uid="{{userInfo.timeStamp}}">用户ID：{{userInfo.timeStamp}}</view>
         </view>
       </block>
     </view>
@@ -65,7 +65,7 @@
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>
     </view>
-    <view class="cell-groip">
+    <view class="cell-groip radius">
       <button class="item" bindtap="AboutUs">
         <view class="text-icon">
           <text class="iconfont"></text>

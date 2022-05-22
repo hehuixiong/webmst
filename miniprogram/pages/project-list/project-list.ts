@@ -1,57 +1,56 @@
-// pages/share-list/share-list.ts
 import { eventStore } from '../../store/index'
-const localShareList = require("../../data/shareList")
+const localProjectList = require("../../data/projectList")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    sharePageList: [],
-    shareList: [],
+    projectPageList: [],
+    projectList: [],
     totalPage: 0,
     pageSize: 16,
-    noMore: false,
-    page: 1,
+    isVip: false,
+    page: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const shareList: any = [...localShareList.data]
+    const projectList: any = [...localProjectList.data]
     this.setData({
-      shareList: shareList
+      projectList: projectList
     })
     this.setData({
-      totalPage: Math.ceil(this.data.shareList.length / this.data.pageSize)
+      totalPage: Math.ceil(this.data.projectList.length / this.data.pageSize)
     })
     this.setData({
       totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
     })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
+    })
     this.setCurrentPageData()
   },
 
-  /**
-   * 处理分页
-   */
-  setCurrentPageData() {
-    let begin = (this.data.page - 1) * this.data.pageSize
-    let end = this.data.page * this.data.pageSize
-    this.setData({
-      sharePageList: [...this.data.sharePageList, ...this.data.shareList.slice(begin, end)],
-      loading: false
-    })
-  },
-
-  go() {
+  goSkip(e: any) {
     if (!wx.getStorageSync('loginState')) {
       eventStore.dispatch('login')
       return
     }
-    wx.showToast({
-      title: '开发中，敬请期待',
-      icon: 'none'
+    if (!this.data.isVip) {
+      wx.showToast({
+        title: 'VIP专属权益...',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    const { id, index, title } = e.currentTarget.dataset
+    const query = { id, index, title }
+    wx.navigateTo({
+      url: `/pages/project-res/project-res?query=${JSON.stringify(query)}`
     })
   },
 
@@ -88,6 +87,18 @@ Page({
    */
   onPullDownRefresh() {
 
+  },
+
+  /**
+   * 处理分页
+   */
+  setCurrentPageData() {
+    let begin = (this.data.page - 1) * this.data.pageSize
+    let end = this.data.page * this.data.pageSize
+    this.setData({
+      projectPageList: [...this.data.projectPageList, ...this.data.projectList.slice(begin, end)],
+      loading: false
+    })
   },
 
   /**

@@ -4,9 +4,17 @@ const { login } = require('../api/index')
 
 const eventStore = new HYEventStore({
   state: {
+    // 控制交流群展示（用于提审）
     showgroup: wx.getStorageSync('showgroup') || false,
+    // 控制是否需要看激励广告才可进（题材列表入口）
     topicAd: wx.getStorageSync('topicAd') || false,
+    // 控制是否开通vip才能访问题材（html，css免费开放）
+    topicVip: wx.getStorageSync('topicVip') || false,
+    // 控制ios是否可以支付（）
+    iosIsPay: wx.getStorageSync('iosIsPay') || false,
+    // 是否vip用户
     isVip: wx.getStorageSync('isVip') || false,
+    // 用户信息
     userInfo: wx.getStorageSync('userInfo') || {}
   },
   actions: {
@@ -14,6 +22,8 @@ const eventStore = new HYEventStore({
       ctx.showgroup = false
       wx.setStorageSync('showgroup', false)
       wx.setStorageSync('topicAd', false)
+      wx.setStorageSync('topicVip', false)
+      wx.setStorageSync('iosIsPay', false)
       await getTopicCate().then((res: any) => {
         for (let i = 0; i < res.data.length; i++) {
           if (res.data[i].name === 'showgroup') {
@@ -23,6 +33,14 @@ const eventStore = new HYEventStore({
           if (res.data[i].name === 'topicAd') {
             ctx.topicAd = true
             wx.setStorageSync('topicAd', true)
+          }
+          if (res.data[i].name === 'topicVip') {
+            ctx.topicVip = true
+            wx.setStorageSync('topicVip', true)
+          }
+          if (res.data[i].name === 'iosIsPay') {
+            ctx.iosIsPay = true
+            wx.setStorageSync('iosIsPay', true)
           }
         }
       })
@@ -46,6 +64,7 @@ const eventStore = new HYEventStore({
         desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
         success: (res) => {
           const user = res
+          console.log(user)
           wx.login({
             success: (res) => {
               const code = res.code

@@ -5,10 +5,10 @@ Page({
     userInfo: {},
     loginState: false,
     showgroup: false,
+    iosIsPay: false,
     year: null,
     show: false,
-    isVip: false,
-    flag: false
+    isVip: false
   },
   onLoad() {
     this.setUserInfo()
@@ -21,6 +21,9 @@ Page({
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })
+    eventStore.onState('iosIsPay', (value: any) => {
+      this.setData({ iosIsPay: value })
+    })
   },
   onShow() {
     this.setUserInfo()
@@ -31,10 +34,27 @@ Page({
     if (loginState) {
       eventStore.dispatch('getUserInfo')
       eventStore.onState('userInfo', (value: any) => {
-        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(0, 10) : '' } })
+        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(5, 15) : '' } })
       })
     }
     console.log('setUserInfo')
+  },
+  copyUID(e: any) {
+    const { uid } = e.currentTarget.dataset
+    wx.setClipboardData({
+      data: uid,
+      success: function () {
+        wx.getClipboardData({
+          //这个api是把拿到的数据放到电脑系统中的
+          success: function () {
+            wx.showToast({
+              title: '用户ID已复制',
+              icon: 'none'
+            })
+          }
+        })
+      }
+    })
   },
   go() {
     wx.showToast({
@@ -59,12 +79,18 @@ Page({
   },
   showVip() {
     if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      wx.showModal({
-        title: '友情提示',
-        content: '由于相关规范，苹果IOS暂不可用',
-        confirmText: '知道了',
-        showCancel: false
-      })
+      if (this.data.iosIsPay) {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      } else {
+        wx.showModal({
+          title: '友情提示',
+          content: '由于相关规范，苹果IOS暂不可用',
+          confirmText: '知道了',
+          showCancel: false
+        })
+      }
       return
     }
     this.setData({ show: true })

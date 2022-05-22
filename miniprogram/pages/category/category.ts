@@ -1,5 +1,6 @@
 // pages/category/category.ts
 import { NAV_TYPES } from '../../utils/constant'
+import { eventStore } from '../../store/index'
 const { getTopicCate } = require('../../api/index')
 Page({
 
@@ -8,12 +9,6 @@ Page({
    */
   data: {
     category: [
-      {
-        icon: 'icon-javascript',
-        label: 'JavaScript',
-        type: NAV_TYPES.javaScript,
-        id: null
-      },
       {
         icon: 'icon-html',
         label: 'HTML',
@@ -24,6 +19,12 @@ Page({
         icon: 'icon-css',
         label: 'CSS',
         type: NAV_TYPES.css,
+        id: null
+      },
+      {
+        icon: 'icon-javascript',
+        label: 'JavaScript',
+        type: NAV_TYPES.javaScript,
         id: null
       },
       {
@@ -130,13 +131,17 @@ Page({
       }
     ],
     recordsCount: {},
-    recordsObj: {}
+    recordsObj: {},
+    topicVip: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    eventStore.onState('topicVip', (value: any) => {
+      this.setData({ topicVip: value })
+    })
     this.getTopicCate()
   },
 

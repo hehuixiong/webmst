@@ -1,28 +1,13 @@
 // home.ts
-const { getTopicCate } = require('../../api/index')
+const { getTopicCate, getAdImage } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
 const app = getApp()
 Page({
   refresh: false,
   data: {
-    swiper: [
-      {
-        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
-        to: '/pages/skills-list/skills-list'
-      },
-      {
-        url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220323233900.png',
-        to: '/pages/skills-list/skills-list'
-      }
-    ],
+    swiper: [],
     category: [
-      {
-        icon: 'icon-javascript',
-        label: 'JavaScript',
-        type: NAV_TYPES.javaScript,
-        id: null
-      },
       {
         icon: 'icon-html',
         label: 'HTML',
@@ -33,6 +18,12 @@ Page({
         icon: 'icon-css',
         label: 'CSS',
         type: NAV_TYPES.css,
+        id: null
+      },
+      {
+        icon: 'icon-javascript',
+        label: 'JavaScript',
+        type: NAV_TYPES.javaScript,
         id: null
       },
       {
@@ -97,12 +88,13 @@ Page({
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220101.png',
-        label: '项目经验'
+        label: '项目经验',
+        to: '/pages/project-list/project-list'
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220102.png',
         label: '企业真题',
-        to: '/pages/share-list/share-list'
+        to: '/pages/face-list/face-list'
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220106.png',
@@ -111,7 +103,8 @@ Page({
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220104.png',
-        label: '介绍模板'
+        label: '介绍模板',
+        to: '/pages/introduce/introduce'
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220105.png',
@@ -127,15 +120,42 @@ Page({
     topicSum: 0,
     showgroup: false,
     isVip: false,
-    show: false
+    topicVip: false,
+    iosIsPay: false,
+    show: false,
+    isNotice: false,
+    noticeText: ''
   },
   onLoad() {
     this.getTopicCate()
+    this.getAdImage()
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
     })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
+    })
+    eventStore.onState('topicVip', (value: any) => {
+      this.setData({ topicVip: value })
+    })
+    eventStore.onState('iosIsPay', (value: any) => {
+      this.setData({ iosIsPay: value })
+    })
+  },
+  getAdImage() {
+    getAdImage().then((res: any) => {
+      console.log(res)
+      const bannerList = res.data.filter((item: any) => (item.title === 'banner'))
+      const noticeList = res.data.filter((item: any) => (item.title === 'notice'))
+      if (noticeList.length) {
+        this.setData({
+          isNotice: true,
+          noticeText: noticeList[0].url
+        })
+      }
+      this.setData({
+        swiper: bannerList
+      })
     })
   },
   closeTip() {
@@ -144,12 +164,18 @@ Page({
   },
   showVip() {
     if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      wx.showModal({
-        title: '友情提示',
-        content: '由于相关规范，苹果IOS暂不可用',
-        confirmText: '知道了',
-        showCancel: false
-      })
+      if (this.data.iosIsPay) {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      } else {
+        wx.showModal({
+          title: '友情提示',
+          content: '由于相关规范，苹果IOS暂不可用',
+          confirmText: '知道了',
+          showCancel: false
+        })
+      }
       return
     }
     this.setData({ show: true })

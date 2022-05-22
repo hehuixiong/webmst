@@ -27,8 +27,8 @@
     >
       <block wx:for="{{swiper}}" wx:key="index">
         <swiper-item>
-          <navigator class="swiper-content" url="{{item.to}}" bindtap="go" data-to="{{item.to}}" hover-class="none">
-            <image class="img {{current===index?'active':''}}" src="{{item.url}}"></image>
+          <navigator class="swiper-content" url="{{item.url}}" data-url="{{item.url}}" hover-class="none">
+            <image class="img {{current===index?'active':''}}" src="{{item.thumb}}"></image>
           </navigator>
         </swiper-item>
       </block>
@@ -36,7 +36,8 @@
   </view>
   <view class="home-notice">
     <van-notice-bar left-icon="volume-o">
-      <text>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
+      <text wx:if="{{isNotice}}">{{noticeText}}</text>
+      <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>
   </view>
   <view class="home-module">
@@ -95,8 +96,8 @@
                 <text class="iconfont {{item.icon}}"></text>
               </view>
               <view class="right">
-                <text class="text">{{item.label}}</text>
-                <text class="tag">共{{item.cate_num}}条</text>
+                <text class="text">{{item.label}} <text class="free" wx:if="{{(item.id === 2 || item.id === 3) && topicVip}}">(免费开放)</text></text>
+                <text class="tag">共{{item.cate_num || 0}}条</text>
               </view>
             </view>
             <text class="icon-right-circle iconfont"></text>

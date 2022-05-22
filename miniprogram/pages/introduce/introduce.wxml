@@ -1,0 +1,12 @@
+<view class="introduce-container">
+  <view class="introduce-list">
+    <view class="introduce-item" wx:for="{{introduce}}" wx:key="index">
+      <view class="header">
+        <view class="tag">模板 {{index+1}}</view>
+        <view class="copy" bindtap="copyText" data-content="{{item.content}}">复制</view>
+      </view>
+      <view class="text">{{item.content}}</view>
+    </view>
+  </view>
+  <view style="text-align: center;color: #999999;font-size: 26rpx;line-height: 80rpx;">持续更新中...</view>
+</view>

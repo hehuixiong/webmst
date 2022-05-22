@@ -2,7 +2,6 @@
   "pages": [
     "pages/home/home",
     "pages/study/study",
-    "pages/vip/vip",
     "pages/my/my",
     "pages/topic-list/topic-list",
     "pages/topic-res/topic-res",
@@ -12,15 +11,20 @@
     "pages/collect/collect",
     "pages/skills-list/skills-list",
     "pages/skills-res/skills-res",
-    "pages/share-list/share-list",
-    "pages/share-res/share-res",
-    "pages/mock-test/mock-test"
+    "pages/face-list/face-list",
+    "pages/face-res/face-res",
+    "pages/mock-test/mock-test",
+    "pages/vip/vip",
+    "pages/project-list/project-list",
+    "pages/project-res/project-res",
+    "pages/introduce/introduce"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "前端面试题材",
+    "navigationBarBackgroundColor": "#4e6ef2",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f6f6f6"
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {

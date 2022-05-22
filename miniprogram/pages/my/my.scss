@@ -193,6 +193,9 @@
       border-radius: 0 0 32rpx 32rpx;
       background: #ffffff;
       overflow: hidden;
+      &.radius{
+        border-radius: 32rpx;
+      }
       button{
         display: flex;
         align-items: center;

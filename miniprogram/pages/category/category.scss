@@ -71,6 +71,11 @@
             font-size: 30rpx;
             font-weight: 500;
             color: #333333;
+            .free{
+              font-size: 22rpx;
+              color: #999999;
+              font-weight: 400;
+            }
           }
           .record{
             display: flex;
@@ -90,7 +95,7 @@
         overflow: hidden;
         display: flex;
         align-items: center;
-        height: 54rpx;
+        height: 50rpx;
         .text{
           color: #4e6ef2;
           text-align: center;

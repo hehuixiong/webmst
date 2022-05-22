@@ -1,0 +1,36 @@
+.introduce-container{
+  padding: 20rpx 20rpx 60rpx;
+  .introduce-list{
+    .introduce-item{
+      border-radius: 20rpx;
+      background: #fff;
+      box-shadow: 0 4rpx 24rpx 0 rgb(0 0 0 / 10%);
+      color: #666666;
+      margin-bottom: 20rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 20rpx;
+      .header{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-right: 30rpx;
+        box-sizing: border-box;
+      }
+      .tag{
+        background: #4e6ef2;
+        border-radius: 0 30rpx 30rpx 0;
+        color: #fff;
+        font-size: 24rpx;
+        padding: 4rpx 20rpx 4rpx 12rpx;
+      }
+      .copy{
+        color: #4e6ef2;
+      }
+      .text{
+        padding: 10rpx 20rpx 20rpx;
+      }
+    }
+  }
+}

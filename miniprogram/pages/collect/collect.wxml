@@ -4,6 +4,7 @@
       data="{{collectList}}"
       loading="{{loading}}"
       noMore="{{noMore}}"
+      is_topic_limit="{{false}}"
       is_collect="{{1}}"
     ></topic-list>
   </view>

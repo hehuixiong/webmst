@@ -1,4 +1,4 @@
-// pages/share-res/share-res.ts
+// pages/face-res/face-res.ts
 Page({
 
   /**

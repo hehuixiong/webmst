@@ -35,6 +35,14 @@ Page({
     })
   },
 
+  showImg(e: any) {
+    let { src } = e.currentTarget.dataset
+    wx.previewImage({
+      current: src,
+      urls: [src]
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

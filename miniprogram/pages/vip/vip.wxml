@@ -1,11 +1,35 @@
 <view class="vip-container">
-  <view class="text">
-    <view>前端学习路上缺乏领路人？有心精进却无从下手？无法锁定心动的offer？</view>
-    <view>《前端面试题材》经过半年多的更新迭代，推出了小程序刷题工具，也为大家提供了公众号推送面经、技术文章等。</view>
-    <view>做好大家学习路上的领路人，一起学习进步，锁定心动offer是我们的初心。为了更好的服务大家，我们后续将推出“简历指导”、“模拟面试”的增值服务，敬请期待。</view>    
-  </view>
-  <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220424000300.jpg" mode="widthFix"></image>
-  <view class="ad" wx:if="{{!isVip}}">
-    <ad-custom unit-id="adunit-e468984d6329e4e5"></ad-custom>
+  <view class="vip-shadow">
+    <view class="vip-table">
+      <view class="table-header">
+        <view class="tr">
+          <view class="th">类别</view>
+          <view class="th">价格(元)</view>
+          <view class="th">特权</view>
+          <view class="th">支持作者</view>
+        </view>
+      </view>
+      <view class="table-body">
+        <view class="tr" wx:for="{{vipList}}" wx:key="index">
+          <view class="td">{{item.type_name}}</view>
+          <view class="td">{{item.price}}</view>
+          <view class="td show" bindtap="showPrivilege" data-item="{{item}}">查看</view>
+          <view class="td">
+            <van-button type="primary" size="small" color="#68a649" bindtap="submitVip" data-id="{{item.id}}">赞赏</van-button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="vip-hint">
+      <view class="text">管理员微信</view>
+      <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" bindtap="showImg" show-menu-by-longpress></image>
+      <view class="text" bindtap="copyWX">微信号：NetEngine666</view>
+      <!-- <view class="hint">
+        【温馨提示】①赞赏前先登录小程序，赞赏成功后自动成为VIP会员 ②有问题加微信处理 ③在线辅导简历 项目经验分析 ④全部功能可用 无广告刷题
+      </view> -->
+      <view class="hint">
+        【温馨提示】①赞赏前请先登录，赞赏成功后获取JS高级书一本 赠送VIP会员 ②请联系管理员领取 ③在线辅导简历 项目经验分析 ④全部功能可用 无广告刷题
+      </view>
+    </view>
   </view>
 </view>

@@ -11,5 +11,6 @@ module.exports = {
   getCollectList: (params) => request('vehicle/User/get_collect_list', 'POST', params),
   getVipLevel: (params) => request('/vehicle/index/vip', 'POST', params),
   getUserInfo: (params) => request('vehicle/User/index', 'POST', params),
-  orderPay: (params) => request('vehicle/User/order', 'POST', params)
+  orderPay: (params) => request('vehicle/User/order', 'POST', params),
+  getAdImage: (params) => request('vehicle/index/get_ad_list', 'POST', params)
 }
