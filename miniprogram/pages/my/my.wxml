@@ -84,7 +84,7 @@
       </button>
     </view>
     <!-- 广告位 -->
-    <view class="cell-groip" wx:if="{{!isVip}}">
+    <view class="cell-groip radius" wx:if="{{!isVip}}">
       <ad-custom unit-id="adunit-248ba9ef170ce527"></ad-custom>
     </view>
     <view class="more">

@@ -163,6 +163,7 @@ Page({
     wx.setStorageSync('hideTip', true)
   },
   showVip() {
+    // 修改ios支付相关规则。
     if (app.globalSystemInfo && app.globalSystemInfo.ios) {
       if (this.data.iosIsPay) {
         wx.navigateTo({
