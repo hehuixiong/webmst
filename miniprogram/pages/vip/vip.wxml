@@ -25,10 +25,10 @@
       <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" bindtap="showImg" show-menu-by-longpress></image>
       <view class="text" bindtap="copyWX">微信号：NetEngine666</view>
       <!-- <view class="hint">
-        【温馨提示】①赞赏前先登录小程序，赞赏成功后自动成为VIP会员 ②有问题加微信处理 ③在线辅导简历 项目经验分析 ④全部功能可用 无广告刷题
+        【温馨提示】①赞赏前先登录小程序，赞赏成功后自动成为VIP会员 ②有问题加微信处理 ③在线辅导简历 项目经验分析 ④全部功能可用
       </view> -->
       <view class="hint">
-        【温馨提示】①赞赏前请先登录，赞赏成功后获取JS高级书一本 赠送VIP会员 ②请联系管理员领取 ③在线辅导简历 项目经验分析 ④全部功能可用 无广告刷题
+        【温馨提示】①赞赏前请先登录，赞赏成功后获取JS高级书一本 赠送VIP会员 ②请联系管理员领取 ③在线辅导简历 项目经验分析 ④全部功能可用
       </view>
     </view>
   </view>

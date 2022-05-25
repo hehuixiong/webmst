@@ -18,7 +18,7 @@
     </view>
     <swiper
       class="swiper"
-      indicator-dots
+      indicator-dots="{{swiper.length > 1}}"
       autoplay
       circular
       interval="5000"
@@ -35,7 +35,7 @@
     </swiper>
   </view>
   <view class="home-notice">
-    <van-notice-bar left-icon="volume-o">
+    <van-notice-bar left-icon="volume-o" scrollable>
       <text wx:if="{{isNotice}}">{{noticeText}}</text>
       <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>

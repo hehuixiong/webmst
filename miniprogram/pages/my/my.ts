@@ -1,5 +1,6 @@
 import { eventStore } from '../../store/index'
 const app = getApp()
+let vipDate: any = null
 Page({
   data: {
     userInfo: {},
@@ -8,7 +9,8 @@ Page({
     iosIsPay: false,
     year: null,
     show: false,
-    isVip: false
+    isVip: false,
+    vipType: 0
   },
   onLoad() {
     this.setUserInfo()
@@ -34,10 +36,29 @@ Page({
     if (loginState) {
       eventStore.dispatch('getUserInfo')
       eventStore.onState('userInfo', (value: any) => {
+        console.log(value)
+        if (value.vip_time) {
+          this.setData({ vipType: value.vip })
+          vipDate = value.vip_time
+        }
         this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(5, 15) : '' } })
       })
     }
     console.log('setUserInfo')
+  },
+  showVipDate() {
+    const { vipType } = this.data
+    if (!vipType || vipType === 3) {
+      return
+    }
+    const title = vipType === 1 ? '包月' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : ''
+    const newDate = vipDate.split(' ')[0]
+    wx.showModal({
+      title: title + 'VIP',
+      content: `有效期至：${newDate}`,
+      confirmText: '知道了',
+      showCancel: false
+    })
   },
   copyUID(e: any) {
     const { uid } = e.currentTarget.dataset
