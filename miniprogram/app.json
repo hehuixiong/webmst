@@ -17,7 +17,8 @@
     "pages/vip/vip",
     "pages/project-list/project-list",
     "pages/project-res/project-res",
-    "pages/introduce/introduce"
+    "pages/introduce/introduce",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

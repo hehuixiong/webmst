@@ -228,24 +228,25 @@ Page({
     })
   },
   onRoute(e: any) {
+    console.log(e, '111')
     const {
       to,
       needLogin
     } = e.currentTarget.dataset.item
-    if (wx.getStorageSync('loginState') || !needLogin) {
-      if (to) {
-        wx.navigateTo({
-          url: to
-        })
-      } else {
-        wx.showToast({
-          title: '敬请期待...',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    } else {
+    if (!wx.getStorageSync('loginState') && needLogin) {
       eventStore.dispatch('login')
+      return 
+    }
+    if (to) {
+      wx.navigateTo({
+        url: to
+      })
+    } else {
+      wx.showToast({
+        title: '敬请期待...',
+        icon: 'none',
+        duration: 2000
+      })
     }
   },
   addGroup() {

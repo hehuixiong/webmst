@@ -41,7 +41,7 @@ Page({
     }
     if (!this.data.isVip) {
       wx.showToast({
-        title: 'VIP专属权益...',
+        title: 'VIP专属权益',
         icon: 'none',
         duration: 2000
       })

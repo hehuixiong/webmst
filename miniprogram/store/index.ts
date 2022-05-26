@@ -6,8 +6,6 @@ const eventStore = new HYEventStore({
   state: {
     // 控制交流群展示（用于提审）
     showgroup: wx.getStorageSync('showgroup') || false,
-    // 控制是否需要看激励广告才可进（题材列表入口）
-    topicAd: wx.getStorageSync('topicAd') || false,
     // 控制是否开通vip才能访问题材（html，css免费开放）
     topicVip: wx.getStorageSync('topicVip') || false,
     // 控制ios是否可以支付（）
@@ -21,7 +19,6 @@ const eventStore = new HYEventStore({
     async getTopicCate(ctx: any) {
       ctx.showgroup = false
       wx.setStorageSync('showgroup', false)
-      wx.setStorageSync('topicAd', false)
       wx.setStorageSync('topicVip', false)
       wx.setStorageSync('iosIsPay', false)
       await getTopicCate().then((res: any) => {
@@ -29,10 +26,6 @@ const eventStore = new HYEventStore({
           if (res.data[i].name === 'showgroup') {
             ctx.showgroup = true
             wx.setStorageSync('showgroup', true)
-          }
-          if (res.data[i].name === 'topicAd') {
-            ctx.topicAd = true
-            wx.setStorageSync('topicAd', true)
           }
           if (res.data[i].name === 'topicVip') {
             ctx.topicVip = true
@@ -58,13 +51,12 @@ const eventStore = new HYEventStore({
         console.log('未登录')
       }
     },
-    login(ctx: any, cb: any) {
+    login(ctx: any, callback: any) {
       console.log(ctx)
       wx.getUserProfile({
         desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
         success: (res) => {
           const user = res
-          console.log(user)
           wx.login({
             success: (res) => {
               const code = res.code
@@ -80,7 +72,12 @@ const eventStore = new HYEventStore({
                   title: '登录成功',
                   duration: 2000
                 })
-                cb && cb()
+                if (callback) {
+                  console.log('我的页面会进来')
+                  callback && callback()
+                } else {
+                  eventStore.dispatch('getUserInfo')
+                }
               }).catch(() => {
                 wx.showToast({
                   title: '登录失败，请重试',

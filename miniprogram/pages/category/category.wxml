@@ -38,4 +38,5 @@
       </navigator>
     </block>
   </view>
+  <more-wrap loading="{{false}}" noMore="{{true}}"></more-wrap>
 </view>

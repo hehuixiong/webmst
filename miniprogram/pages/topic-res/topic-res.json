@@ -2,6 +2,7 @@
   "navigationBarTitleText": "面试题",
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
     "bug-popup": "/components/bug-popup/index",
     "van-rate": "@vant/weapp/rate/index",
     "loading": "/components/loading/index",

@@ -44,6 +44,16 @@
       display: inline-block;
       margin-left: 10rpx;
     }
+    .show-answer{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 20rpx;
+      button{
+        width: 300rpx;
+        height: 70rpx;
+      }
+    }
   }
   .answer-container{
     background: #fff;
@@ -190,7 +200,7 @@
     list-style: none;
     font-feature-settings: "tnum","tnum";
     position: relative;
-    top: 0.2em;
+    top: 0.3em;
     display: inline-block;
     outline: none;
     cursor: pointer;

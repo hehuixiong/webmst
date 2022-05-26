@@ -36,7 +36,6 @@ Page({
     if (loginState) {
       eventStore.dispatch('getUserInfo')
       eventStore.onState('userInfo', (value: any) => {
-        console.log(value)
         if (value.vip_time) {
           this.setData({ vipType: value.vip })
           vipDate = value.vip_time

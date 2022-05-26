@@ -1,7 +1,7 @@
 <view class="topic-res">
   <view class="topic-res-container" wx:if="{{!loading}}">
     <!-- 广告位 -->
-    <ad wx:if="{{!loading && !topicAd && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad>
+    <ad wx:if="{{!loading && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad>
     <view class="topic-container">
       <view class="title">第{{topicIndex}}题：{{title}}</view>
       <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{topic}}" />
@@ -15,9 +15,12 @@
           <text>更新时间：{{create_time}}</text>
         </view>
       </view>
-      <view class="tag">{{type === 'choice' ? '选择题' : '问答题'}}</view>
+      <view class="tag">{{isChoice ? '选择题' : '问答题'}}</view>
+      <view class="show-answer" wx:if="{{isChoice && !showAnswer}}">
+        <van-button color="#4e6ef2" round type="primary" bindtap="onShowAnswer">查看答案</van-button>
+      </view>
     </view>
-    <view class="answer-container">
+    <view class="answer-container" wx:if="{{showAnswer}}">
       <view class="title-wrapper">
         <view class="title"><text class="iconfont icon-yulanxinxi"></text> 答案解析</view>
         <view class="bug" bindtap="onBug"><text class="iconfont icon-bug"></text> 纠错</view>
@@ -25,7 +28,7 @@
       <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
       <view wx:else class="zhengli">正在整理中...</view>
     </view>
-    <view class="answer-container pinglun">
+    <view class="answer-container pinglun" wx:if="{{showAnswer}}">
       <view class="title-wrapper">
         <view class="title"><text class="iconfont icon-pinglun"></text> 评论区</view>
       </view>

@@ -18,7 +18,7 @@
           <text>{{item.create_time}}</text>
         </view>
       </view>
-      <view class="ad" wx:if="{{index % 14 === 0 && !topicAd && !isVip}}">
+      <view class="ad" wx:if="{{index % 14 === 0 && !isVip}}">
         <ad-custom unit-id="adunit-22b0c53040c52e13"></ad-custom>
       </view>
     </view>

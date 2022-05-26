@@ -1,8 +1,5 @@
 // components/topic-list/index.ts
 import { eventStore } from '../../store/index'
-// 在页面中定义激励视频广告
-let rewardedVideoAd: any = null
-let videoAdPushStatus = false
 Component({
   externalClasses:['my-class'],
   /**
@@ -43,7 +40,6 @@ Component({
    */
   data: {
     showgroup: false,
-    topicAd: false,
     topicVip: false,
     isVip: false
   },
@@ -52,13 +48,8 @@ Component({
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
     })
-    eventStore.onState('topicAd', (value: any) => {
-      this.setData({ topicAd: value })
-      this.showRewardedVideoAd()
-    })
     eventStore.onState('topicVip', (value: any) => {
       this.setData({ topicVip: value })
-      this.showRewardedVideoAd()
     })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
@@ -69,48 +60,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    showRewardedVideoAd() {
-      if (!this.data.isVip) {
-        if (wx.createRewardedVideoAd) {
-          rewardedVideoAd = wx.createRewardedVideoAd({
-            adUnitId: 'adunit-92cc5ea0105da417'
-          })
-          rewardedVideoAd.onLoad(() => {
-            videoAdPushStatus = true
-            console.log('onload rewardedVideoAd')
-          })
-          rewardedVideoAd.onError((err: any) => {
-            console.log('onError rewardedVideoAd', err)
-          })
-          rewardedVideoAd.onClose((res: any) => {
-            console.log('onClose rewardedVideoAd', res)
-            if (res && res.isEnded) {
-              console.log('观看完成')
-              wx.showModal({
-                title: '提示',
-                content: '已完成，祝君早日拿到心动offer',
-                confirmText: '知道了',
-                showCancel: false
-              })
-              this.setAdDate()
-            }
-          })
-        }
-      }
-    },
-    setAdDate() {
-      // 设置年月日
-      let date = new Date()
-      const yyyy = date.getFullYear()
-      const mm = date.getMonth() + 1
-      const dd = date.getDate()
-      const currentDate = `${yyyy}-${mm}-${dd}`
-      const storageMsg = wx.getStorageSync('adDateMsg')
-      let adDateMsg: any = Object.assign({}, storageMsg, {
-        ['topic']: currentDate
-      })
-      wx.setStorageSync('adDateMsg', adDateMsg)
-    },
     /**
      * 题目跳转
      */
@@ -121,8 +70,8 @@ Component({
       }
       const { id, cate_id } = e.currentTarget.dataset.item
       // 控制（除了html与css分类）其他分类必须要vip才能访问
-      console.log('是否html与css分类', ![2, 3].includes(id))
-      console.log('是否vip', !this.data.isVip)
+      console.log('是否html与css分类', [2, 3].includes(id))
+      console.log('是否vip', this.data.isVip)
       if (this.data.topicVip && ![2, 3].includes(cate_id) && !this.data.isVip && this.data.is_topic_limit) {
         wx.showToast({
           title: 'VIP专属权益',
@@ -131,45 +80,9 @@ Component({
         })
         return
       }
-      const storageMsg = wx.getStorageSync('adDateMsg')
-      let date = new Date()
-      const yyyy = date.getFullYear()
-      const mm = date.getMonth() + 1
-      const dd = date.getDate()
-      const currentDate = `${yyyy}-${mm}-${dd}`
-      const _this = this
-      if (storageMsg['topic'] && storageMsg['topic'] === currentDate || (!this.data.topicAd || this.data.isVip)) {
-        console.log('拥有访问权限')
-        wx.navigateTo({
-          url: `/pages/topic-res/topic-res?id=${id}&search=${this.data.search}&is_collect=${this.data.is_collect}`
-        })
-        this.setAdDate()
-      } else {
-        console.log('今天没有看过广告')
-        wx.showModal({
-          title: '友情提示',
-          content: '观看视频点击广告跳转，解锁24小时无广告刷题',
-          confirmText: '观看视频',
-          cancelText: '下次再说',
-          success (res) {
-            if (res.confirm) {
-              // 用户触发广告后，显示激励视频广告
-              if (rewardedVideoAd && videoAdPushStatus) {
-                rewardedVideoAd.show().catch(() => {
-                  // 失败重试
-                  rewardedVideoAd.load()
-                    .then(() => rewardedVideoAd.show())
-                    .catch(() => {
-                      console.log('激励视频 广告显示失败')
-                    })
-                })
-              } else {
-                _this.setAdDate()
-              }
-            }
-          }
-        })
-      }
+      wx.navigateTo({
+        url: `/pages/topic-res/topic-res?id=${id}&search=${this.data.search}&is_collect=${this.data.is_collect}`
+      })
     }
   }
 })

@@ -20,15 +20,15 @@ Page({
     loading: false,
     id: 0,
     next_id: 0,
-    type: '',
     currentTitle: title,
     self: false,
     showBug: false,
     showgroup: false,
-    topicAd: false,
     isVip: false,
     is_collect: 0,
-    search: ''
+    search: '',
+    isChoice: false,
+    showAnswer: false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -38,9 +38,6 @@ Page({
     // setWatcher(this)
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
-    })
-    eventStore.onState('topicAd', (value: any) => {
-      this.setData({ topicAd: value })
     })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
@@ -153,10 +150,18 @@ Page({
       next_id: res.data.next_id,
       create_time: handleTime(res.data.create_time),
       topicIndex: res.data.now_num,
+      isChoice: res.data.cate_name === 'choice',
+      showAnswer: res.data.cate_name !== 'choice',
       loading: false
     })
     this.setCurrentTopic()
     this.practiceRecords(res.data.cate_name, this.data.id)
+  },
+
+  onShowAnswer() {
+    this.setData({
+      showAnswer: true
+    })
   },
 
   go() {
