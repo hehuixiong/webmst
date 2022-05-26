@@ -92,7 +92,7 @@
     opacity: 0;
     bottom: constant(safe-area-inset-bottom);
     bottom: env(safe-area-inset-bottom);
-    margin-bottom: 20rpx;
+    margin-bottom: 60rpx;
     animation: sidebar-right 0.4s;
     animation-delay: 1s;
     animation-fill-mode: forwards;
@@ -112,7 +112,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 20rpx;
-      padding: 0 10rpx 0 0;
+      padding: 0 20rpx 0 0;
       .icon-bg{
         background: rgba($color: #4e6ef2, $alpha: 0.1);
         width: 68rpx;
@@ -251,7 +251,7 @@
   }
 }
 
-.markdown-body{
+.html2wxml{
   color: #333333!important;
   font-size: 28rpx!important;
   .wxml-li-text {

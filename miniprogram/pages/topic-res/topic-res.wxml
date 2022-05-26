@@ -1,5 +1,7 @@
 <view class="topic-res">
   <view class="topic-res-container" wx:if="{{!loading}}">
+    <!-- 广告位 -->
+    <ad wx:if="{{!loading && !topicAd && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad>
     <view class="topic-container">
       <view class="title">第{{topicIndex}}题：{{title}}</view>
       <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{topic}}" />
@@ -29,8 +31,6 @@
       </view>
       <view class="zhengli">别让楼主寂寞太久哦 ~</view>
     </view>
-    <!-- 广告位 -->
-    <ad wx:if="{{!loading && !topicAd && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad>
     <!-- <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!self}}">来源：前端面试题宝典</navigator> -->
     <view class="sidebar">
       <view class="sidebar-item" bindtap="addCollect">
