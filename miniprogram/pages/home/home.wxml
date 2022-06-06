@@ -56,7 +56,7 @@
       </view>
     </view>
     <view class="module-wrapper bg2" bindtap="addMsjq" wx:else>
-      <view class="title">前端面试技巧</view>
+      <view class="title">Web面试技巧</view>
       <view class="btn">立即前往</view>
       <view class="icon-wrapper">
         <view class="iconfont icon-yuandianda"></view>

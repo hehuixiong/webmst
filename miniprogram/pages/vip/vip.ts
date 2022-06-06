@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    vipList: []
+    vipList: [],
+    iosIsPay: false
   },
 
   /**
@@ -15,11 +16,14 @@ Page({
    */
   onLoad() {
     this.getVipLevel()
+    eventStore.onState('iosIsPay', (value: any) => {
+      this.setData({ iosIsPay: value })
+    })
   },
   showPrivilege(e: any) {
-    const { type_name, content, desc } = e.currentTarget.dataset.item
+    const { title, content, desc } = e.currentTarget.dataset.item
     wx.showModal({
-      title: type_name,
+      title: title,
       content: content + desc,
       confirmText: '知道了',
       showCancel: false
@@ -31,19 +35,16 @@ Page({
       console.log(res)
       let newVipList: any = []
       res.data.map((item: any) => {
-        if (item.title === '包月会员') {
-          item.type_name = '月度VIP'
+        if (item.title === '月度VIP') {
           item.desc = '祝你面试马到功成'
         }
-        if (item.title === '包年会员') {
-          item.type_name = '年度VIP'
+        if (item.title === '年度VIP') {
           item.desc = '祝你轻松拿到大offer'
         }
-        if (item.title === '永久会员') {
-          item.type_name = '永久VIP'
+        if (item.title === '永久VIP') {
           item.desc = '祝你工作无忧又高薪'
         }
-        if (item.title !== '包月会员') {
+        if (item.title !== '月度VIP') {
           newVipList.unshift(item)
         }
       })

@@ -18,7 +18,7 @@
         <view class="userinfo-info">
           <view class="nickname">
             <text>{{userInfo.nickName}}</text>
-            <text bindtap="showVipDate" wx:if="{{isVip}}" class="tag">{{ vipType === 1 ? '包月' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : '' }}VIP</text>
+            <text bindtap="showVipDate" wx:if="{{isVip}}" class="tag">{{ vipType === 1 ? '月度' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : '' }}VIP</text>
           </view>
           <view class="desc">拼搏到无能为力 坚持到感动自己</view>
           <view class="number" catchtap="copyUID" data-uid="{{userInfo.timeStamp}}">用户ID：{{userInfo.timeStamp}}</view>

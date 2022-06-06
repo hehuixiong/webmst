@@ -6,7 +6,7 @@
   .vip-shadow{
     background: #fff;
     box-shadow: 0 4rpx 16rpx 0 rgb(0 0 0 / 10%);
-    border-radius: 20rpx;
+    border-radius: 32rpx;
     .vip-table{
       border-radius: 20rpx 20rpx 0 0;
       color: #868585;
@@ -67,6 +67,25 @@
         text-align: center;
         line-height: 44rpx;
         color: #ff3d3d;
+      }
+      button{
+        height: 76rpx;
+        line-height: 76rpx;
+        font-size: 30rpx;
+        width: 100%;
+        background: #4e6ef2;
+        border-radius: 40rpx!important;
+      }
+      .button-hover{
+        background: #4a65d2;
+      }
+    }
+  }
+  &.iosNoPay{
+    .vip-shadow{
+      padding: 40rpx 20rpx 40rpx 20rpx;
+      .vip-hint{
+        margin-top: 0;
       }
     }
   }

@@ -20,41 +20,36 @@
         <van-button color="#4e6ef2" round type="primary" bindtap="onShowAnswer">查看答案</van-button>
       </view>
     </view>
-    <view class="answer-container" wx:if="{{showAnswer}}">
-      <view class="title-wrapper">
-        <view class="title"><text class="iconfont icon-yulanxinxi"></text> 答案解析</view>
-        <view class="bug" bindtap="onBug"><text class="iconfont icon-bug"></text> 纠错</view>
+    <permissions-view permissions="{{permissions}}">
+      <view class="answer-container" wx:if="{{showAnswer}}">
+        <view class="title-wrapper">
+          <view class="title"><text class="iconfont icon-yulanxinxi"></text> 答案解析</view>
+          <view class="bug" bindtap="onBug"><text class="iconfont icon-bug"></text> 纠错</view>
+        </view>
+        <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
+        <view wx:else class="zhengli">正在整理中...</view>
       </view>
-      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
-      <view wx:else class="zhengli">正在整理中...</view>
-    </view>
-    <view class="answer-container pinglun" wx:if="{{showAnswer}}">
-      <view class="title-wrapper">
-        <view class="title"><text class="iconfont icon-pinglun"></text> 评论区</view>
+      <view class="sidebar">
+        <view class="sidebar-item" bindtap="addCollect">
+          <text class="icon-bg">
+            <text class="iconfont icon-shoucang"></text>
+          </text>
+          <text class="text">收藏</text>
+        </view>
+        <button class="sidebar-item" open-type="share" data-title="第{{topicIndex + 1}}题：{{title}}" bindtap="onShare">
+          <text class="icon-bg">
+            <text class="iconfont icon-fenxiang"></text>
+          </text>
+          <text class="text">分享</text>
+        </button>
+        <view class="sidebar-item" bindtap="nextQuestion">
+          <text class="icon-bg">
+            <text class="iconfont icon-xiayiti"></text>
+          </text>
+          <text class="text">下题</text>
+        </view>
       </view>
-      <view class="zhengli">别让楼主寂寞太久哦 ~</view>
-    </view>
-    <!-- <navigator class="source" target="miniProgram" open-type="navigate" hover-class="none" app-id="wx84296168fa0170c9" wx:if="{{!self}}">来源：前端面试题宝典</navigator> -->
-    <view class="sidebar">
-      <view class="sidebar-item" bindtap="addCollect">
-        <text class="icon-bg">
-          <text class="iconfont icon-shoucang"></text>
-        </text>
-        <text class="text">收藏</text>
-      </view>
-      <button class="sidebar-item" open-type="share" data-title="第{{topicIndex + 1}}题：{{title}}" bindtap="onShare">
-        <text class="icon-bg">
-          <text class="iconfont icon-fenxiang"></text>
-        </text>
-        <text class="text">分享</text>
-      </button>
-      <view class="sidebar-item" bindtap="nextQuestion">
-        <text class="icon-bg">
-          <text class="iconfont icon-xiayiti"></text>
-        </text>
-        <text class="text">下题</text>
-      </view>
-    </view>
+    </permissions-view>
   </view>
   <view class="loading" wx:else>
     <loading color="#4e6ef2"></loading><text>加载中...</text>

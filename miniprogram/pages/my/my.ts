@@ -6,7 +6,6 @@ Page({
     userInfo: {},
     loginState: false,
     showgroup: false,
-    iosIsPay: false,
     year: null,
     show: false,
     isVip: false,
@@ -22,9 +21,6 @@ Page({
     })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
-    })
-    eventStore.onState('iosIsPay', (value: any) => {
-      this.setData({ iosIsPay: value })
     })
   },
   onShow() {
@@ -50,7 +46,7 @@ Page({
     if (!vipType || vipType === 3) {
       return
     }
-    const title = vipType === 1 ? '包月' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : ''
+    const title = vipType === 1 ? '月度' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : ''
     const newDate = vipDate.split(' ')[0]
     wx.showModal({
       title: title + 'VIP',
@@ -99,18 +95,9 @@ Page({
   },
   showVip() {
     if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      if (this.data.iosIsPay) {
-        wx.navigateTo({
-          url: '/pages/vip/vip'
-        })
-      } else {
-        wx.showModal({
-          title: '友情提示',
-          content: '由于相关规范，苹果IOS暂不可用',
-          confirmText: '知道了',
-          showCancel: false
-        })
-      }
+      wx.navigateTo({
+        url: '/pages/vip/vip'
+      })
       return
     }
     this.setData({ show: true })

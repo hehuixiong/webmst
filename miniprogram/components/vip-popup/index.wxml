@@ -9,7 +9,7 @@
     safe-area-inset-bottom="{{safeAreaInsetBottom}}"
     custom-class="vip-popup-body"
   >
-    <view class="vip-popup-title">会员</view>
+    <view class="vip-popup-title">开通VIP</view>
     <view class="vip-popup-container">
       <view class="vip-list">
         <view wx:for="{{vipList}}" wx:key="index" class="vip-item {{ currentId === item.id ? 'is-active' : '' }}" bindtap="changeVip" data-index="{{item.id}}">
@@ -51,7 +51,7 @@
       </view>
     </view>
     <view class="vip-popup-footer">
-      <van-button round size="normal" type="danger" color="linear-gradient(#6783f1, #4e6ef2)" bindtap="submitVip">立即体验</van-button>
+      <van-button round size="normal" type="danger" color="linear-gradient(#6783f1, #4e6ef2)" bindtap="submitVip">立即开通</van-button>
     </view>
   </van-popup>
 </view>

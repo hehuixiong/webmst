@@ -10,7 +10,6 @@ Page({
     projectList: [],
     totalPage: 0,
     pageSize: 16,
-    isVip: false,
     page: 1
   },
 
@@ -28,23 +27,12 @@ Page({
     this.setData({
       totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
     })
-    eventStore.onState('isVip', (value: any) => {
-      this.setData({ isVip: value })
-    })
     this.setCurrentPageData()
   },
 
   goSkip(e: any) {
     if (!wx.getStorageSync('loginState')) {
       eventStore.dispatch('login')
-      return
-    }
-    if (!this.data.isVip) {
-      wx.showToast({
-        title: 'VIP专属权益',
-        icon: 'none',
-        duration: 2000
-      })
       return
     }
     const { id, index, title } = e.currentTarget.dataset

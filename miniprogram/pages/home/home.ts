@@ -121,7 +121,6 @@ Page({
     showgroup: false,
     isVip: false,
     topicVip: false,
-    iosIsPay: false,
     show: false,
     isNotice: false,
     noticeText: ''
@@ -137,9 +136,6 @@ Page({
     })
     eventStore.onState('topicVip', (value: any) => {
       this.setData({ topicVip: value })
-    })
-    eventStore.onState('iosIsPay', (value: any) => {
-      this.setData({ iosIsPay: value })
     })
   },
   getAdImage() {
@@ -163,20 +159,10 @@ Page({
     wx.setStorageSync('hideTip', true)
   },
   showVip() {
-    // 修改ios支付相关规则。
     if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      if (this.data.iosIsPay) {
-        wx.navigateTo({
-          url: '/pages/vip/vip'
-        })
-      } else {
-        wx.showModal({
-          title: '友情提示',
-          content: '由于相关规范，苹果IOS暂不可用',
-          confirmText: '知道了',
-          showCancel: false
-        })
-      }
+      wx.navigateTo({
+        url: '/pages/vip/vip'
+      })
       return
     }
     this.setData({ show: true })

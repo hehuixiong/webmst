@@ -85,13 +85,11 @@ Page({
     this.setData({ loading: true })
     const params: any = { id: this.data.id }
     if (+this.data.is_collect === 1) {
-      console.log('???')
       // 收藏
       getCollectInfo(params).then((res: any) => {
         this.setTopicInfo(res)
       })
     } else {
-      console.log('有没有进来？')
       // 非收藏
       if (this.data.search) {
         params.search = this.data.search
@@ -141,6 +139,8 @@ Page({
         return 'src="https://images.weserv.nl/?url='
       })
     }
+    // 设置可查看权限（html，css 分类）
+    const permissions = [2, 3].includes(res.data.cate_id)
     this.setData({
       topic: res.data.problem,
       choice: res.data.choice,
@@ -152,6 +152,7 @@ Page({
       topicIndex: res.data.now_num,
       isChoice: res.data.cate_name === 'choice',
       showAnswer: res.data.cate_name !== 'choice',
+      permissions: permissions,
       loading: false
     })
     this.setCurrentTopic()

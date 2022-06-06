@@ -1,6 +1,6 @@
-<view class="vip-container">
+<view class="vip-container {{!iosIsPay?'iosNoPay':''}}">
   <view class="vip-shadow">
-    <view class="vip-table">
+    <view class="vip-table" wx:if="{{iosIsPay}}">
       <view class="table-header">
         <view class="tr">
           <view class="th">类别</view>
@@ -11,7 +11,7 @@
       </view>
       <view class="table-body">
         <view class="tr" wx:for="{{vipList}}" wx:key="index">
-          <view class="td">{{item.type_name}}</view>
+          <view class="td">{{item.title}}</view>
           <view class="td">{{item.price}}</view>
           <view class="td show" bindtap="showPrivilege" data-item="{{item}}">查看</view>
           <view class="td">
@@ -24,12 +24,17 @@
       <view class="text">管理员微信</view>
       <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" bindtap="showImg" show-menu-by-longpress></image>
       <view class="text" bindtap="copyWX">微信号：NetEngine666</view>
-      <!-- <view class="hint">
-        【温馨提示】①赞赏前先登录小程序，赞赏成功后自动成为VIP会员 ②有问题加微信处理 ③在线辅导简历 项目经验分析 ④全部功能可用
-      </view> -->
-      <view class="hint">
-        【温馨提示】①赞赏前请先登录，赞赏成功后获取JS高级书一本 赠送VIP会员 ②请联系管理员领取 ③在线辅导简历 项目经验分析 ④全部功能可用
-      </view>
+      <block wx:if="{{iosIsPay}}">
+        <view class="hint">
+          【温馨提示】①赞赏前请先登录，赞赏成功后获取JS高级书一本 赠送VIP会员 ②请联系管理员领取 ③在线辅导简历 项目经验分析 ④全部功能可用
+        </view>
+      </block>
+      <block wx:else>
+        <view class="hint">
+          【温馨提示】由于平台规范，IOS用户暂不可在线支付，请联系客服或添加管理员微信进行开通，开通后赠送JS高级书一本，全部功能可用
+        </view>
+        <button hover-class="button-hover" type="primary" open-type="contact">联系客服</button>
+      </block>
     </view>
   </view>
 </view>

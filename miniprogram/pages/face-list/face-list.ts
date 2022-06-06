@@ -12,7 +12,6 @@ Page({
     totalPage: 0,
     pageSize: 16,
     noMore: false,
-    isVip: false,
     page: 1,
   },
 
@@ -29,9 +28,6 @@ Page({
     })
     this.setData({
       totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
-    })
-    eventStore.onState('isVip', (value: any) => {
-      this.setData({ isVip: value })
     })
     this.setCurrentPageData()
   },
@@ -53,16 +49,8 @@ Page({
       eventStore.dispatch('login')
       return
     }
-    if (!this.data.isVip) {
-      wx.showToast({
-        title: 'VIP专属权益',
-        icon: 'none',
-        duration: 2000
-      })
-      return
-    }
     wx.showToast({
-      title: '未开发完，敬请期待',
+      title: 'vip专属权益',
       icon: 'none'
     })
   },

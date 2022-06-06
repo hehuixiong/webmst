@@ -44,15 +44,15 @@ Component({
     getVipLevel() {
       getVipLevel().then((res: any) => {
         const vipList: any = res.data.map((item: any) => {
-          if (item.title === '包月会员') {
+          if (item.title === '月度VIP') {
             item.type_name = '普通会员'
             item.desc = '祝你面试马到功成'
           }
-          if (item.title === '包年会员') {
+          if (item.title === '年度VIP') {
             item.type_name = '钻石会员'
             item.desc = '祝你轻松拿到大offer'
           }
-          if (item.title === '永久会员') {
+          if (item.title === '永久VIP') {
             item.type_name = '至尊会员'
             item.desc = '祝你工作无忧又高薪'
           }
