@@ -6,7 +6,7 @@
     <view class="text" style="margin-top: 10rpx;">公众号：前端面试分享</view>
     <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" bindtap="showImg" show-menu-by-longpress></image>
     <view class="text">公众号内回复【666】，领取学习资料一份</view>
-    <view class="changan">欢迎关注公众号或添加群主学习，长按识别二维码，如无法识别可转发给文件助手再识别</view>
+    <view class="changan">欢迎关注公众号或添加群主学习，长按识别二维码，如无法识别可单击二维码再长按识别</view>
   </view>
   <view class="ad" wx:if="{{!isVip}}">
     <ad-custom unit-id="adunit-ba7e437afa043476"></ad-custom>

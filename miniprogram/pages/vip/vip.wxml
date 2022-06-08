@@ -31,9 +31,8 @@
       </block>
       <block wx:else>
         <view class="hint">
-          【温馨提示】由于平台规范，IOS用户暂不可在线支付，请联系客服或添加管理员微信进行开通，开通后赠送JS高级书一本，全部功能可用
+          【温馨提示】由于相关规则，苹果手机用户不支持在线支付，安卓手机用户不受影响
         </view>
-        <button hover-class="button-hover" type="primary" open-type="contact">联系客服</button>
       </block>
     </view>
   </view>

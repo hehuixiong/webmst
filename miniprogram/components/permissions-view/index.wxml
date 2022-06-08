@@ -1,8 +1,11 @@
 <view class="permissions-view">
   <slot wx:if="{{isVip || permissions}}"></slot>
   <view class="none-permissions" wx:else>
-    <view style="color: #555555;">VIP专属权益</view>
-    <button bindtap="showVip" hover-class="button-hover" type="primary">升级VIP，全部功能可用</button>
+    <view class="text">VIP专属权益，内容无法查看</view>
+    <view class="btns">
+      <button bindtap="showVip" class="theme-color" hover-class="button-hover" type="primary">升级VIP，全部功能可用</button>
+      <button bindtap="gofreepre" class="gray-color" type="default">免费开放专区</button>
+    </view>
   </view>
   <!-- vip -->
   <vip-popup safeAreaInsetBottom="{{false}}" show="{{show}}"></vip-popup>

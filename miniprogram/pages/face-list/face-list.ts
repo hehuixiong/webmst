@@ -50,7 +50,7 @@ Page({
       return
     }
     wx.showToast({
-      title: 'vip专属权益',
+      title: '开发中，敬请期待',
       icon: 'none'
     })
   },
