@@ -1,6 +1,7 @@
 // pages/vip/vip.ts
 import { eventStore } from '../../store/index'
 const { getVipLevel, orderPay } = require('../../api/index')
+const app = getApp()
 Page({
 
   /**
@@ -8,7 +9,8 @@ Page({
    */
   data: {
     vipList: [],
-    iosIsPay: false
+    iosIsPay: false,
+    isIos: false
   },
 
   /**
@@ -19,6 +21,9 @@ Page({
     eventStore.onState('iosIsPay', (value: any) => {
       this.setData({ iosIsPay: value })
     })
+    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
+      this.setData({ isIos: true })
+    }
   },
   showPrivilege(e: any) {
     const { title, content, desc } = e.currentTarget.dataset.item
@@ -44,11 +49,28 @@ Page({
         if (item.title === '永久VIP') {
           item.desc = '祝你工作无忧又高薪'
         }
+        item.price = Number(item.price).toFixed(0)
         if (item.title !== '月度VIP') {
           newVipList.unshift(item)
         }
       })
       this.setData({ vipList: newVipList })
+    })
+  },
+  copyWX() {
+    wx.setClipboardData({
+      data: 'NetEngine666',
+      success: function () {
+        wx.getClipboardData({
+          //这个api是把拿到的数据放到电脑系统中的
+          success: function () {
+            wx.showToast({
+              title: '微信号已复制',
+              icon: 'none'
+            })
+          }
+        })
+      }
     })
   },
 

@@ -2,7 +2,6 @@
 const { getTopicCate, getAdImage } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
-const app = getApp()
 Page({
   refresh: false,
   data: {
@@ -93,7 +92,7 @@ Page({
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220102.png',
-        label: '企业真题',
+        label: '面经合集',
         to: '/pages/face-list/face-list'
       },
       {
@@ -159,13 +158,9 @@ Page({
     wx.setStorageSync('hideTip', true)
   },
   showVip() {
-    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      wx.navigateTo({
-        url: '/pages/vip/vip'
-      })
-      return
-    }
-    this.setData({ show: true })
+    wx.navigateTo({
+      url: '/pages/vip/vip'
+    })
   },
   swiperChange(e: any) {
     if (!this.data.swiper.length) {

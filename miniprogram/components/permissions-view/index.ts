@@ -1,6 +1,5 @@
 // components/permissions-view/index.ts
 import { eventStore } from '../../store/index'
-const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -31,13 +30,9 @@ Component({
    */
   methods: {
     showVip() {
-      if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-        wx.navigateTo({
-          url: '/pages/vip/vip'
-        })
-        return
-      }
-      this.setData({ show: true })
+      wx.navigateTo({
+        url: '/pages/vip/vip'
+      })
     },
     gofreepre() {
       wx.navigateTo({

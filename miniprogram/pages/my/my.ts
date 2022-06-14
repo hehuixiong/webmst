@@ -1,5 +1,4 @@
 import { eventStore } from '../../store/index'
-const app = getApp()
 let vipDate: any = null
 Page({
   data: {
@@ -94,13 +93,9 @@ Page({
     })
   },
   showVip() {
-    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      wx.navigateTo({
-        url: '/pages/vip/vip'
-      })
-      return
-    }
-    this.setData({ show: true })
+    wx.navigateTo({
+      url: '/pages/vip/vip'
+    })
   },
   addGroup() {
     wx.navigateTo({
