@@ -2,8 +2,9 @@
   <view class="search_input_box">
     <view class="search_box">
       <text class="iconfont icon-sousuo"></text>
-      <input class="search_input" focus="{{ true }}" hold-keyboard="{{ true }}" value="{{ keyword }}" data-key="keyword" bindinput="bindInput" placeholder="请输入题目关键字" placeholder-class="placeholder" confirm-type="search" bindconfirm="onSearch" bindfocus="onFocus" />
-      <van-icon class="close" wx:if="{{keyword}}" bindtap="clearInput" name="cross" />
+      <input class="search_input" focus="{{ focus }}" hold-keyboard="{{ true }}" value="{{ keyword }}" data-key="keyword" bindinput="bindInput" placeholder="请输入题目关键字" placeholder-class="placeholder" confirm-type="search" bindconfirm="onSearch" bindfocus="onFocus" />
+      <text class="bg"></text>
+      <van-icon class="close" bindtap="clearInput" wx:if="{{keyword}}" name="cross" />
     </view>
     <text class="search_btn" bindtap="onSearch">搜索</text>
   </view>

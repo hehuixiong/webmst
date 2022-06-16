@@ -105,8 +105,8 @@ Page({
   AboutUs() {
     wx.showModal({
       title: '提示',
-      content: '嗨！你好，非常感谢你对题材的支持，题材将会做的更好，分享更多有价值的内容，也祝你拿到大offer',
-      confirmText: '已了解',
+      content: '哈喽！感谢你对小程序的支持，我们将会做的更好，分享更多有价值的面试题材，祝你早日拿offer',
+      confirmText: '知道了',
       showCancel: false,
       success (res) {
         if (res.confirm) {

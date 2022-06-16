@@ -40,28 +40,10 @@
       <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>
   </view>
-  <view class="home-module">
-    <view class="module-wrapper bg1" bindtap="showVip">
-      <view class="title">VIP专属权益</view>
-      <view class="btn">了解详情</view>
-      <view class="icon-wrapper">
-        <view class="iconfont icon-aixin"></view>
-      </view>
-    </view>
-    <view class="module-wrapper bg2" bindtap="addGroup" wx:if="{{showgroup}}">
-      <view class="title">面试交流群</view>
-      <view class="btn">立即加入</view>
-      <view class="icon-wrapper">
-        <view class="iconfont icon-yuandianda"></view>
-      </view>
-    </view>
-    <view class="module-wrapper bg2" bindtap="addMsjq" wx:else>
-      <view class="title">Web面试技巧</view>
-      <view class="btn">立即前往</view>
-      <view class="icon-wrapper">
-        <view class="iconfont icon-yuandianda"></view>
-      </view>
-    </view>
+  <view class="home-btn">
+    <view class="btn btn1" bindtap="showVip"><text class="iconfont icon-vip-show"></text>VIP会员中心</view>
+    <view class="btn btn2" wx:if="{{showgroup}}" bindtap="addGroup">免费加交流群</view>
+    <view class="btn btn2" wx:else bindtap="addMsjq">web面试技巧</view>
   </view>
   <view class="home-container">
     <view class="gongge-wrapper">
@@ -107,7 +89,7 @@
     </view>
     <view class="gongge-wrapper">
       <view class="title">
-        <text>辅助工具</text>
+        <text>辅助功能</text>
       </view>
       <view class="gongge-list">
         <block wx:for="{{assist}}" wx:key="index">

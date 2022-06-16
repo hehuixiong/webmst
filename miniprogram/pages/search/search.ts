@@ -14,7 +14,8 @@ Page({
     noMore: false,
     loading: false,
     empty: true,
-    pageSize: 20
+    pageSize: 20,
+    focus: true
   },
 
   /**
@@ -80,7 +81,7 @@ Page({
   },
 
   clearInput() {
-    this.setData({ keyword: '' })
+    this.setData({ keyword: '', focus: true })
   },
 
   onFocus() {},

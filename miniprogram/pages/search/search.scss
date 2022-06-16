@@ -20,6 +20,7 @@
     .search_box{
       flex: 1;
       position: relative;
+      display: flex;
       .iconfont{
         position: absolute;
         left: 20rpx;
@@ -33,11 +34,11 @@
         transform: translateY(-50%);
         padding: 20rpx;
         color: #999999;
-        z-index: 99;
+        z-index: 99999;
       }
       .search_input{
         background: #f6f6f6;
-        border-radius: 32rpx;
+        border-radius: 32rpx 0 0 32rpx;
         height: 64rpx;
         box-sizing: border-box;
         padding-left: 60rpx;
@@ -48,6 +49,15 @@
       text-align: center;
       padding: 0 6rpx;
       color: #4e6ef2;
+    }
+    input{
+      width: 92%;
+      position: static;
+    }
+    .bg{
+      width: 8%;
+      background: #f6f6f6;
+      border-radius: 0 32rpx 32rpx 0;
     }
   }
   .external-topic-item{

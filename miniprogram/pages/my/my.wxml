@@ -1,5 +1,11 @@
 <view class="my-container">
-  <view class="userinfo-wrapper">
+  <nav-bar
+    id="navBar"
+    title="我的"
+    background='#4e6ef2'
+    color="#fff"
+  ></nav-bar>
+  <view class="userinfo-wrapper {{isVip ? 'is-vip' : ''}}">
     <view class="userinfo">
       <block wx:if="{{!loginState}}">
         <view class="userinfo-avatar" bindtap="onLogin">
@@ -7,41 +13,37 @@
         </view>
         <view class="userinfo-info" bindtap="onLogin">
           <view class="nickname"><text>点我快捷登录</text></view>
-          <view class="desc">拼搏到无能为力 坚持到感动自己</view>
+          <view class="desc">努力刷题面试 争取拿到好offer</view>
+          <view class="number no-tag">未登录</view>
         </view>
       </block>
       <block wx:else>
-        <view class="userinfo-avatar {{isVip ? 'is-vip' : ''}}" bindtap="onLogin">
+        <view class="userinfo-avatar" bindtap="onLogin">
           <image class="image" src="{{userInfo.avatarUrl}}" mode="cover"></image>
           <text wx:if="{{isVip}}" class="iconfont icon-vip-show"></text>
         </view>
         <view class="userinfo-info">
           <view class="nickname">
-            <text>{{userInfo.nickName}}</text>
+            <text class="name">{{userInfo.nickName}}</text>
             <text bindtap="showVipDate" wx:if="{{isVip}}" class="tag">{{ vipType === 1 ? '月度' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : '' }}VIP</text>
           </view>
-          <view class="desc">拼搏到无能为力 坚持到感动自己</view>
+          <view class="desc">努力刷题面试 争取拿到好offer</view>
           <view class="number" catchtap="copyUID" data-uid="{{userInfo.timeStamp}}">用户ID：{{userInfo.timeStamp}}</view>
         </view>
       </block>
     </view>
   </view>
   <view class="group-container">
-    <view class="communication-group" wx:if="{{showgroup}}">
-      <view class="text-container">
-        <text class="title">面试交流群</text>
-        <text class="desc">加入交流群，分享面试经验，一起高薪就业</text>
+    <view class="vip-wrapper" bindtap="showVip">
+      <view class="vip-text">
+        <view class="tit">
+          <text class="vip">VIP</text>会员中心
+        </view>
+        <view class="desc">成为会员享受全平台所有功能可用</view>
       </view>
-      <view class="go" bindtap="addGroup">立即加入</view>
-    </view>
-    <view class="vip-group">
-      <view class="text-icon">
-        <text class="icon">
-          <text class="iconfont icon-vip"></text>
-        </text>
-        <text class="text">VIP专属权益</text>
+      <view class="vip-btn">
+        <text>立即开通</text>
       </view>
-      <view class="understand" bindtap="showVip">了解详情</view>
     </view>
     <view class="cell-groip cell-groip-top">
       <button>
@@ -56,6 +58,13 @@
       <button class="item" bindtap="go">
         <view class="text-icon">
           <text class="iconfont"></text>
+          <text class="text">积分系统</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
+      </button>
+      <button class="item" bindtap="go">
+        <view class="text-icon">
+          <text class="iconfont"></text>
           <text class="text">更多功能</text>
         </view>
         <view class="is-link"><van-icon name="arrow" /></view>
@@ -64,6 +73,13 @@
         <view class="text-icon">
           <text class="iconfont"></text>
           <text class="text">分享小程序</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
+      </button>
+      <button class="item" bindtap="addGroup" hover-class="navigator-hover" wx:if="{{showgroup}}">
+        <view class="text-icon">
+          <text class="iconfont"></text>
+          <text class="text">加入交流群</text>
         </view>
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>
