@@ -9,8 +9,10 @@ module.exports = {
   login: (params) => request('vehicle/login/wx_login', 'POST', params),
   addCollect: (params) => request('vehicle/User/add_collect', 'POST', params),
   getCollectList: (params) => request('vehicle/User/get_collect_list', 'POST', params),
-  getVipLevel: (params) => request('/vehicle/index/vip', 'POST', params),
+  getVipLevel: (params) => request('vehicle/index/vip', 'POST', params),
   getUserInfo: (params) => request('vehicle/User/index', 'POST', params),
   orderPay: (params) => request('vehicle/User/order', 'POST', params),
-  getAdImage: (params) => request('vehicle/index/get_ad_list', 'POST', params)
+  getAdImage: (params) => request('vehicle/index/get_ad_list', 'POST', params),
+  reward: (params) => request('vehicle/user/reward', 'POST', params),
+  rewardLog: (params) => request('vehicle/index/get_reward_log', 'POST', params)
 }

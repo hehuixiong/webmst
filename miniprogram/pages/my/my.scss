@@ -200,6 +200,18 @@
       }
     }
   }
+  .give-a-reward{
+    background: #f2ddb5;
+    color: #6b3e10;
+    font-weight: 500;
+    width: calc(100% - 40rpx);
+    line-height: 76rpx;
+    height: 76rpx;
+    font-size: 30rpx;
+    border-radius: 60rpx;
+    margin: 0 20rpx;
+    text-align: center;
+  }
 }
 .my-popup{
   display: flex;

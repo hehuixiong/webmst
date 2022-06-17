@@ -22,7 +22,7 @@
     </view>
     <view class="vip-hint">
       <view class="text" bindtap="copyWX">微信：NetEngine666</view>
-      <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" bindtap="showImg" show-menu-by-longpress></image>
+      <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" bindtap="showImg" show-menu-by-longpress></image>
       <view class="text">长按添加管理员微信</view>
       <block wx:if="{{iosIsPay || !isIos}}">
         <view class="hint">

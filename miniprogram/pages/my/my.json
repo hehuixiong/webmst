@@ -5,6 +5,7 @@
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
     "nav-bar": "/components/nav-bar/index",
-    "vip-popup": "/components/vip-popup/index"
+    "vip-popup": "/components/vip-popup/index",
+    "reward-popup": "/components/reward-popup/index"
   }
 }

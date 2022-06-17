@@ -8,7 +8,8 @@ Page({
     year: null,
     show: false,
     isVip: false,
-    vipType: 0
+    vipType: 0,
+    rewardShow: false
   },
   onLoad() {
     this.setUserInfo()
@@ -115,6 +116,13 @@ Page({
         }
       }
     })
+  },
+  onRewardAuthor() {
+    if (!this.data.loginState) {
+      this.onLogin()
+      return 
+    }
+    this.setData({ rewardShow: true })
   },
   onShare() {},
   /**

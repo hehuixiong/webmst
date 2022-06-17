@@ -84,6 +84,7 @@ Page({
     })
     const { id } = e.currentTarget.dataset
     orderPay({ id }).then((res: any) => {
+      wx.hideLoading()
       const jsConfig = res.data
       wx.requestPayment({
         appid: jsConfig.appid,
@@ -92,9 +93,7 @@ Page({
         package: jsConfig.package,
         signType: jsConfig.signType,
         paySign: jsConfig.paySign,
-        success: function (res: any) {
-          console.log(res)
-          wx.hideLoading()
+        success: function () {
           eventStore.dispatch('getUserInfo')
           wx.showModal({
             title: '提示',
@@ -114,7 +113,6 @@ Page({
         },
         complete: function () {
           const timer = setTimeout(() => {
-            wx.hideLoading()
             clearTimeout(timer)
           }, 2000)
         }
