@@ -1,4 +1,4 @@
-const { reward, rewardLog } = require('../../api/index')
+const { reward, rewardLog, orderPay } = require('../../api/index')
 import { checkNum } from '../../utils/util'
 Component({
   /**
@@ -53,61 +53,72 @@ Component({
       })
     },
     rewardAuthor() {
-      const _this = this
       if (!this.data.price) {
         return
       }
-      if (Number(this.data.price) < 1) {
-        wx.showToast({
-          title: '最低打赏金额1元哦',
-          icon:'none'
-        })
-        return
-      }
+      const price = Number(this.data.price)
+      // if (price < 1) {
+      //   wx.showToast({
+      //     title: '最低打赏金额1元哦',
+      //     icon:'none'
+      //   })
+      //   return
+      // }
       wx.showLoading({
         title: '请稍等...'
       })
-      reward({ price: this.data.price }).then((res: any) => {
-        const jsConfig = res.data
-        wx.hideLoading()
-        wx.requestPayment({
-          appid: jsConfig.appid,
-          timeStamp: jsConfig.timeStamp,
-          nonceStr: jsConfig.nonceStr,
-          package: jsConfig.package,
-          signType: jsConfig.signType,
-          paySign: jsConfig.paySign,
-          success: function (res: any) {
-            console.log(res)
-            wx.showModal({
-              title: '提示',
-              content: '感谢支持，我会继续努力的',
-              confirmText: '知道了',
-              showCancel: false
-            })
-            _this.setData({
-              price: null
-            })
-            _this.onClose()
-          },
-          fail: function (e: any) {
-            console.info(e)
-            wx.showToast({
-              title: '打赏失败',
-              icon: 'none',
-              duration: 2000
-            })
-            _this.setData({
-              price: null
-            })
-            console.log('取消支付')
-          },
-          complete: function () {
-            const timer = setTimeout(() => {
-              clearTimeout(timer)
-            }, 2000)
-          }
+      if (price === 39 || price === 59) {
+        orderPay({ id: price === 39 ? 2 : 3 }).then((res: any) => {
+          this.pullupPayment(res)
         })
+      } else {
+        reward({ price: price }).then((res: any) => {
+          this.pullupPayment(res)
+        })
+      }
+    },
+
+    pullupPayment(res: any) {
+      const _this = this
+      const jsConfig = res.data
+      wx.hideLoading()
+      wx.requestPayment({
+        appid: jsConfig.appid,
+        timeStamp: jsConfig.timeStamp,
+        nonceStr: jsConfig.nonceStr,
+        package: jsConfig.package,
+        signType: jsConfig.signType,
+        paySign: jsConfig.paySign,
+        success: function (res: any) {
+          console.log(res)
+          wx.showModal({
+            title: '提示',
+            content: '感谢支持，我会继续努力的',
+            confirmText: '知道了',
+            showCancel: false
+          })
+          _this.setData({
+            price: null
+          })
+          _this.onClose()
+        },
+        fail: function (e: any) {
+          console.info(e)
+          wx.showToast({
+            title: '打赏失败',
+            icon: 'none',
+            duration: 2000
+          })
+          _this.setData({
+            price: null
+          })
+          console.log('取消支付')
+        },
+        complete: function () {
+          const timer = setTimeout(() => {
+            clearTimeout(timer)
+          }, 2000)
+        }
       })
     },
   

@@ -36,16 +36,12 @@ Component({
    */
   data: {
     showgroup: false,
-    topicVip: false,
     isVip: false
   },
 
   attached() {
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
-    })
-    eventStore.onState('topicVip', (value: any) => {
-      this.setData({ topicVip: value })
     })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })

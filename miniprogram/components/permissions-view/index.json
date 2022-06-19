@@ -1,7 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index",
-    "vip-popup": "/components/vip-popup/index"
+    "van-button": "@vant/weapp/button/index"
   }
 }

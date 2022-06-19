@@ -35,13 +35,13 @@
     </swiper>
   </view>
   <view class="home-notice">
-    <van-notice-bar left-icon="volume-o" scrollable>
+    <van-notice-bar left-icon="volume-o" scrollable bindtap="jumpVip">
       <text wx:if="{{isNotice}}">{{noticeText}}</text>
       <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>
   </view>
   <view class="home-btn">
-    <view class="btn btn1" bindtap="showVip"><text class="iconfont icon-vip-show"></text>VIP会员中心</view>
+    <view class="btn btn1" bindtap="jumpVip"><text class="iconfont icon-vip-show"></text>VIP会员中心</view>
     <view class="btn btn2" wx:if="{{showgroup}}" bindtap="addGroup">免费加交流群</view>
     <view class="btn btn2" wx:else bindtap="addMsjq">web面试技巧</view>
   </view>
@@ -78,7 +78,7 @@
                 <text class="iconfont {{item.icon}}"></text>
               </view>
               <view class="right">
-                <text class="text">{{item.label}} <text class="free" wx:if="{{(item.id === 2 || item.id === 3) && topicVip}}">(免费开放)</text></text>
+                <text class="text">{{item.label}} <text class="free" wx:if="{{item.id === 2 || item.id === 3}}">(免费开放)</text></text>
                 <text class="tag">共{{item.cate_num || 0}}条</text>
               </view>
             </view>
@@ -113,6 +113,4 @@
       <ad-custom unit-id="adunit-4740ba525cdd081d"></ad-custom>
     </view>
   </view>
-  <!-- vip -->
-  <vip-popup safeAreaInsetBottom="{{false}}" show="{{show}}"></vip-popup>
 </view>

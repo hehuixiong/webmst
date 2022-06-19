@@ -1,3 +1,4 @@
+const app = getApp()
 import { handleTime } from '../../utils/util'
 const { getTopicInfo, getCollectInfo, addCollect } = require('../../api/index')
 // import { setWatcher } from '../../utils/watch'
@@ -28,13 +29,13 @@ Page({
     is_collect: 0,
     search: '',
     isChoice: false,
-    showAnswer: false
+    showAnswer: false,
+    isNewUser: false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad({ id, is_collect, search }: any) {
-    this.setData({ id, is_collect, search }, () => this.getTopicInfo())
     // setWatcher(this)
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
@@ -42,6 +43,10 @@ Page({
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })
+    eventStore.onState('isNewUser', (value: any) => {
+      this.setData({ isNewUser: value })
+    })
+    this.setData({ id, is_collect, search }, () => this.getTopicInfo())
   },
 
   /**
@@ -54,7 +59,7 @@ Page({
     ids.push(id)
     recordsObj = Object.assign({}, storageRecords, {
       [type]: {
-        ids: [...new Set(ids)]
+        ids: [...new Set(ids.map((id: any) => Number(id)))]
       }
     })
     let date = new Date()
@@ -139,8 +144,6 @@ Page({
         return 'src="https://images.weserv.nl/?url='
       })
     }
-    // 设置可查看权限（html，css 分类）
-    const permissions = [2, 3].includes(res.data.cate_id)
     this.setData({
       topic: res.data.problem,
       choice: res.data.choice,
@@ -152,8 +155,16 @@ Page({
       topicIndex: res.data.now_num,
       isChoice: res.data.cate_name === 'choice',
       showAnswer: res.data.cate_name !== 'choice',
-      permissions: permissions,
       loading: false
+    })
+    // 设置可查看权限（html，css 分类）
+    eventStore.onState('topicVip', (value: any) => {
+      const permissions = [2, 3].includes(res.data.cate_id) || (!value && (app.globalSystemInfo && app.globalSystemInfo.ios) || this.data.isNewUser)
+      console.log(this.data.isNewUser)
+      console.log(permissions)
+      this.setData({
+        permissions: permissions,
+      })
     })
     this.setCurrentTopic()
     this.practiceRecords(res.data.cate_name, this.data.id)

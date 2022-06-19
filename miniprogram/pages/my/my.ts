@@ -6,7 +6,6 @@ Page({
     loginState: false,
     showgroup: false,
     year: null,
-    show: false,
     isVip: false,
     vipType: 0,
     rewardShow: false
@@ -93,7 +92,7 @@ Page({
       url: '/pages/collect/collect'
     })
   },
-  showVip() {
+  jumpVip() {
     wx.navigateTo({
       url: '/pages/vip/vip'
     })

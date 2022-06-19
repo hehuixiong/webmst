@@ -8,6 +8,17 @@
     </view>
     <text class="search_btn" bindtap="onSearch">搜索</text>
   </view>
+  <view class="search-history" wx:if="{{!searchList.length && historyData.length}}">
+    <view class="title">
+      <text>历史搜索</text>
+      <van-icon class="clear" name="delete-o" bindtap="clearHistory" />
+    </view>
+    <scroll-view scroll-x="true" class="scroll-view">
+      <view class="history-list">
+        <view wx:for="{{historyData}}" wx:key="index" class="item" bindtap="onSearch" data-keyword="{{item}}">{{item}}</view>
+      </view>
+    </scroll-view>
+  </view>
   <view class="search-content" wx:if="{{searchList.length}}">
     <topic-list
       data="{{searchList}}"

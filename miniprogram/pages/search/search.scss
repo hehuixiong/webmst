@@ -43,6 +43,9 @@
         box-sizing: border-box;
         padding-left: 60rpx;
       }
+      .placeholder{
+        color: #cccccc!important;
+      }
     }
     .search_btn{
       width: 80rpx;
@@ -58,6 +61,35 @@
       width: 8%;
       background: #f6f6f6;
       border-radius: 0 32rpx 32rpx 0;
+    }
+  }
+  .search-history{
+    padding: 20rpx 20rpx;
+    .title{
+      font-size: 28rpx;
+      font-size: #333333;
+      display: flex;
+      justify-content: space-between;
+      .clear{
+        color: #ff0000;
+        padding: 6rpx 12rpx;
+      }
+    }
+    .scroll-view{
+      height: 42rpx;
+      margin-top: 20rpx;
+    }
+    .history-list{
+      display: flex;
+      white-space: nowrap;
+      .item{
+        padding: 4rpx 22rpx;
+        background: #f0f0f0;
+        font-size: 24rpx;
+        border-radius: 60rpx;
+        color: #333333;
+        margin-right: 20rpx;
+      }
     }
   }
   .external-topic-item{
@@ -80,7 +112,7 @@
     image{
       width: 500rpx;
       height: 300rpx;
-      margin-top: 300rpx;
+      margin-top: 260rpx;
     }
   }
 }

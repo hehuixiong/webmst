@@ -15,8 +15,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    isVip: false,
-    show: false
+    isVip: false
   },
 
   attached() {
@@ -29,7 +28,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    showVip() {
+    jumpVip() {
       wx.navigateTo({
         url: '/pages/vip/vip'
       })

@@ -6,7 +6,6 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "van-notice-bar": "@vant/weapp/notice-bar/index",
-    "nav-bar": "/components/nav-bar/index",
-    "vip-popup": "/components/vip-popup/index"
+    "nav-bar": "/components/nav-bar/index"
   }
 }

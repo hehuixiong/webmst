@@ -1,6 +1,7 @@
 const { HYEventStore } = require('hy-event-store')
 const { getTopicCate, getUserInfo } = require('../api/index')
 const { login } = require('../api/index')
+import { handleTime } from '../utils/util'
 
 const eventStore = new HYEventStore({
   state: {
@@ -13,11 +14,15 @@ const eventStore = new HYEventStore({
     // 是否vip用户
     isVip: wx.getStorageSync('isVip') || false,
     // 用户信息
-    userInfo: wx.getStorageSync('userInfo') || {}
+    userInfo: wx.getStorageSync('userInfo') || {},
+    // 是否新用户
+    isNewUser: wx.getStorageSync('isNewUser') || false
   },
   actions: {
     async getTopicCate(ctx: any) {
       ctx.showgroup = false
+      ctx.topicVip = false
+      ctx.iosIsPay = false
       wx.setStorageSync('showgroup', false)
       wx.setStorageSync('topicVip', false)
       wx.setStorageSync('iosIsPay', false)
@@ -39,13 +44,24 @@ const eventStore = new HYEventStore({
       })
     },
     async getUserInfo(ctx: any) {
+      ctx.isNewUser = false
+      wx.setStorageSync('isNewUser', false)
       if (wx.getStorageSync('loginState')) {
         await getUserInfo().then((res: any) => {
           ctx.isVip = res.data.vip_time !== ''
           ctx.userInfo = res.data
           wx.setStorageSync('isVip', ctx.isVip)
           wx.setStorageSync('userInfo', res.data)
-          console.log('是否vip', ctx.isVip)
+          // 判断是否新用户
+          const create_time = handleTime(res.data.create_time)
+          let date = new Date()
+          const yyyy = date.getFullYear()
+          const mm = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
+          const dd = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+          let yearMonthDay = yyyy + '-' + mm + '-' + dd
+          const isNewUser = create_time.toString() === yearMonthDay.toString()
+          ctx.isNewUser = isNewUser
+          wx.setStorageSync('isNewUser', isNewUser)
         })
       } else {
         console.log('未登录')

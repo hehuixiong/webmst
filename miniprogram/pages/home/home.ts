@@ -49,30 +49,6 @@ Page({
         type: NAV_TYPES.reactJs,
         id: null
       },
-      // {
-      //   icon: 'icon-nodejs',
-      //   label: 'Node.js',
-      //   type: NAV_TYPES.nodeJs,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-suanfa',
-      //   label: '算法',
-      //   type: NAV_TYPES.algorithm,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-gongju',
-      //   label: '工具',
-      //   type: NAV_TYPES.tools,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-bianchengti',
-      //   label: '编程题',
-      //   type: NAV_TYPES.programme,
-      //   id: null
-      // },
       {
         icon: 'icon-quanbu',
         label: '全部分类',
@@ -119,8 +95,6 @@ Page({
     topicSum: 0,
     showgroup: false,
     isVip: false,
-    topicVip: false,
-    show: false,
     isNotice: false,
     noticeText: ''
   },
@@ -132,9 +106,6 @@ Page({
     })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
-    })
-    eventStore.onState('topicVip', (value: any) => {
-      this.setData({ topicVip: value })
     })
   },
   getAdImage() {
@@ -157,7 +128,7 @@ Page({
     this.setData({ hideTip: true })
     wx.setStorageSync('hideTip', true)
   },
-  showVip() {
+  jumpVip() {
     wx.navigateTo({
       url: '/pages/vip/vip'
     })

@@ -18,7 +18,7 @@ module.exports = {
           } else if (res.data.code === 402) {
             // token失效，重新去登录
             wx.showToast({
-              title: '信息失效，请重新登录',
+              title: '登录失效，请重新登录',
               icon:'none'
             })
             clearTimeout(timer)
