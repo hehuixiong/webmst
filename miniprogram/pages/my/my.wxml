@@ -2,7 +2,7 @@
   <nav-bar
     id="navBar"
     title="我的"
-    background='#4e6ef2'
+    background='#7e68f3'
     color="#fff"
   ></nav-bar>
   <view class="userinfo-wrapper {{isVip ? 'is-vip' : ''}}">

@@ -6,7 +6,7 @@
     <view class="msg">前端面试题材申请获取以下权限</view>
     <view class="get">获取你的公开信息（昵称、头像）</view>
     <view class="btns">
-      <van-button color="#4e6ef2" type="primary" bindtap="login">微信快捷登录</van-button>
+      <van-button color="#7e68f3" type="primary" bindtap="login">微信快捷登录</van-button>
       <van-button bindtap="goHome">返回首页</van-button>
     </view>
   </view>

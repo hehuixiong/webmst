@@ -12,7 +12,7 @@
       </view>
     </view>
     <view class="loading" wx:else>
-      <loading color="#4e6ef2"></loading><text>加载中...</text>
+      <loading color="#7e68f3"></loading><text>加载中...</text>
     </view>
     <view class="other">*部分答案整理自网络资源</view>
     <view class="page-turning">

@@ -1,4 +1,4 @@
-const { reward, rewardLog, orderPay } = require('../../api/index')
+const { reward, rewardLog, orderPay, getVipLevel } = require('../../api/index')
 import { checkNum } from '../../utils/util'
 Component({
   /**
@@ -17,6 +17,7 @@ Component({
     priceList: [2, 5, 10, 20, 50, 100],
     otherPrice: 1,
     latelyList: [],
+    vipList: [],
     otherShow: false,
     focus: true,
     price: null
@@ -26,6 +27,7 @@ Component({
     show: function (val) {
       if (val) {
         this.rewardLog()
+        this.getVipLevel()
       }
     }
   },
@@ -52,23 +54,38 @@ Component({
         })
       })
     },
+    getVipLevel() {
+      getVipLevel().then((res: any) => {
+        let newVipList: any = []
+        for (let i = 0; i < res.data.length; i++) {
+          newVipList.push({ id: res.data[i].id, price: res.data[i].price })
+        }
+        this.setData({ vipList: newVipList})
+      })
+    },
     rewardAuthor() {
       if (!this.data.price) {
         return
       }
       const price = Number(this.data.price)
-      // if (price < 1) {
-      //   wx.showToast({
-      //     title: '最低打赏金额1元哦',
-      //     icon:'none'
-      //   })
-      //   return
-      // }
+      if (price < 1) {
+        wx.showToast({
+          title: '最低打赏金额1元哦',
+          icon:'none'
+        })
+        return
+      }
       wx.showLoading({
         title: '请稍等...'
       })
-      if (price === 39 || price === 59) {
-        orderPay({ id: price === 39 ? 2 : 3 }).then((res: any) => {
+      let payId = null
+      for (let i = 0; i < this.data.vipList.length; i++) {
+        if (price === Number(this.data.vipList[i].price)) {
+          payId = this.data.vipList[i].id
+        }
+      }
+      if (payId) {
+        orderPay({ id: payId }).then((res: any) => {
           this.pullupPayment(res)
         })
       } else {

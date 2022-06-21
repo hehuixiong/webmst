@@ -23,15 +23,15 @@
       padding: 32rpx 16rpx 0;
       .bug-msg__item{
         border-radius: 8rpx;
-        background: #eaeefd;
+        background: #e9e6fa;
         padding: 12rpx 20rpx;
-        color: rgba($color: #4e6ef2, $alpha: .8);
+        color: rgba($color: #7e68f3, $alpha: .8);
         margin: 0 16rpx 32rpx;
         font-size: 28rpx;
         font-weight: 500;
         &.is-active{
           color: #fff;
-          background: #a6b7f5;
+          background: #ac9ff5;
         }
       }
     }

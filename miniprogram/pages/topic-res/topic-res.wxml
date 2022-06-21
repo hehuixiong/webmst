@@ -17,7 +17,7 @@
       </view>
       <view class="tag">{{isChoice ? '选择题' : '问答题'}}</view>
       <view class="show-answer" wx:if="{{isChoice && !showAnswer}}">
-        <van-button color="#4e6ef2" round type="primary" bindtap="onShowAnswer">查看答案</van-button>
+        <van-button color="#7e68f3" round type="primary" bindtap="onShowAnswer">查看答案</van-button>
       </view>
     </view>
     <permissions-view permissions="{{permissions}}">
@@ -52,7 +52,7 @@
     </permissions-view>
   </view>
   <view class="loading" wx:else>
-    <loading color="#4e6ef2"></loading><text>加载中...</text>
+    <loading color="#7e68f3"></loading><text>加载中...</text>
   </view>
 
   <!-- 题目纠错 -->

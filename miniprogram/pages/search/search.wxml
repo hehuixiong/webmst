@@ -29,7 +29,7 @@
     ></topic-list>
   </view>
   <view class="loading" style="margin-top: 30rpx;" wx:if="{{searchList.length === 0 && loading}}">
-    <loading color="#4e6ef2"></loading>
+    <loading color="#7e68f3"></loading>
   </view>
   <view class="no_search" wx:if="{{empty && !loading}}">
     <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220420235800.png" mode="widthFix"></image>

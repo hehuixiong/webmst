@@ -159,7 +159,7 @@ Page({
     })
     // 设置可查看权限（html，css 分类）
     eventStore.onState('topicVip', (value: any) => {
-      const permissions = [2, 3].includes(res.data.cate_id) || (!value && (app.globalSystemInfo && app.globalSystemInfo.ios) || this.data.isNewUser)
+      const permissions = [2, 3].includes(res.data.cate_id) || (!value && (app.globalSystemInfo && app.globalSystemInfo.ios))
       console.log(this.data.isNewUser)
       console.log(permissions)
       this.setData({

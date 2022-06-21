@@ -1,39 +1,38 @@
-<view class="vip-container {{!iosIsPay && isIos ? 'iosNoPay' : ''}}">
-  <view class="vip-shadow">
-    <view class="vip-table" wx:if="{{iosIsPay || !isIos}}">
-      <view class="table-header">
-        <view class="tr">
-          <view class="th">类别</view>
-          <view class="th">价格(元)</view>
-          <view class="th">特权</view>
-          <view class="th">支持作者</view>
+<view class="vip-container">
+  <view class="vip-can-pay" wx:if="{{iosIsPay || !isIos}}">
+    <view class="vip-bg">
+      <view class="vip-user">
+        <view class="userinfo-avatar">
+          <image wx:if="{{loginState}}" class="image" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <image bindtap="onLogin" wx:else class="image" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220509223414.png"></image>
         </view>
-      </view>
-      <view class="table-body">
-        <view class="tr" wx:for="{{vipList}}" wx:key="index">
-          <view class="td">{{item.title}}</view>
-          <view class="td">{{item.price}}</view>
-          <view class="td show" bindtap="showPrivilege" data-item="{{item}}">查看</view>
-          <view class="td">
-            <van-button type="primary" size="small" color="#4ebd17" bindtap="submitVip" data-id="{{item.id}}">赞赏</van-button>
-          </view>
+        <view class="userinfo-info">
+          <view wx:if="{{loginState}}" class="nickname"><text>{{userInfo.nickName}}</text></view>
+          <view bindtap="onLogin" wx:else class="nickname">点我快捷登录</view>
+          <view class="desc">开通VIP会员 全部功能可用</view>
         </view>
       </view>
     </view>
+    <view class="vip-card">
+      <view class="card-item {{active === item.id ? 'is-active' : ''}}" wx:for="{{vipList}}" wx:key="index" bindtap="selectVip" data-id="{{item.id}}">
+        <view class="tit">{{item.title}}</view>
+        <view class="now-price"><text>￥</text>{{item.price}}</view>
+        <view class="raw-price"><text>￥</text>{{item.raw_price}}</view>
+        <rich-text class="docs" nodes="{{item.content}}"></rich-text>
+        <text class="icon-huiyuanvip iconfont"></text>
+      </view>
+    </view>
+    <view class="pay-btn" bindtap="submitVip">立即开通</view>
+    <view class="hint s">
+      【温馨提示】①开通前请先登录，开通成功后获取JS高级书一本 成为VIP会员 ②请联系管理员领取 ③在线辅导简历 项目经验分析 ④全部功能可用
+    </view>
+  </view>
+  <view class="vip-no-pay" wx:else>
     <view class="vip-hint">
       <view class="text" bindtap="copyWX">微信：NetEngine666</view>
       <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" bindtap="showImg" show-menu-by-longpress></image>
       <view class="text">长按添加管理员微信</view>
-      <block wx:if="{{iosIsPay || !isIos}}">
-        <view class="hint">
-          【温馨提示】①赞赏前请先登录，赞赏成功后获取JS高级书一本 赠送VIP会员 ②请联系管理员领取 ③在线辅导简历 项目经验分析 ④全部功能可用
-        </view>
-      </block>
-      <block wx:else>
-        <view class="hint">
-          【温馨提示】由于平台相关规则，苹果手机用户不支持在线支付，安卓手机用户不受影响
-        </view>
-      </block>
+      <view class="hint">【温馨提示】由于平台相关规则，苹果IOS手机用户<view style="white-space:pre-wrap"> </view>不支持在线支付，安卓手机用户不受影响</view>
     </view>
   </view>
 </view>

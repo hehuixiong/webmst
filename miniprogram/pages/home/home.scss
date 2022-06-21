@@ -7,7 +7,7 @@
     position: relative;
     .bg{
       width: 100%;
-      background: #4e6ef2;
+      background: #7e68f3;
       height: 500rpx;
       border-radius: 10%;
       position: absolute;
@@ -104,11 +104,11 @@
       }
     }
     .btn1{
-      background: #eff2fe;
-      color: #4e6ef2;
+      background: #fff8ea;
+      color: #ed6a0c;
     }
     .btn2{
-      background: #f0edfc;
+      background: #f4f3fc;
       color: #7e68f3;
     }
   }
@@ -127,7 +127,7 @@
         top: 50%;
         transform: translateY(-50%);
         width: 8rpx;
-        background-color: #4e6ef2;
+        background-color: #7e68f3;
         height: 30rpx;
         border-radius: 8rpx;
       }
@@ -135,7 +135,7 @@
         width: 200rpx;
         .icon-bg{
           border-radius: 50%;
-          background: #4e6ef2;
+          background: #7e68f3;
           width: 46rpx;
           height: 46rpx;
           margin-right: 16rpx;
@@ -146,7 +146,7 @@
           border-radius: 32rpx;
           height: 64rpx;
           width: 100%;
-          background: #eff2fe;
+          background: #f4f3fc;
           display: flex;
           align-items: center;
           padding-left: 16rpx;
@@ -220,13 +220,13 @@
             border-radius: 30rpx;
             padding: 0 16rpx;
             font-size: 22rpx;
-            color: #4e6ef2;
+            color: #7e68f3;
             margin-right: 8rpx;
             margin-top: 8rpx;
           }
           .icon-right-circle{
             font-size: 40rpx;
-            color: #4e6ef2;
+            color: #7e68f3;
           }
         }
       }

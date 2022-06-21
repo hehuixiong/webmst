@@ -1,58 +1,160 @@
 .vip-container{
-  padding: 20rpx;
   background: #f6f6f6;
   min-height: 100vh;
   box-sizing: border-box;
-  .vip-shadow{
-    background: #fff;
-    box-shadow: 0 4rpx 16rpx 0 rgb(0 0 0 / 10%);
-    border-radius: 32rpx;
-    .vip-table{
-      border-radius: 20rpx 20rpx 0 0;
-      color: #868585;
-      font-size: 28rpx;
-      .table-header{
-        .tr{
-          font-weight: 500;
-        }
-      }
-      .tr{
+  .vip-can-pay{
+    overflow: hidden;
+    .vip-bg{
+      background: #ecc180;
+      padding: 60rpx 20rpx 0;
+      border-radius: 0 0 50% 50%;
+      overflow: hidden;
+      position: relative;
+      width: 200%;
+      box-sizing: border-box;
+      height: 350rpx;
+      margin-left: -375rpx;
+      margin-top: -150rpx;
+      .vip-user{
+        width: 710rpx;
+        height: 150rpx;
+        background: #f2ddb5;
+        border-radius: 32rpx 32rpx 0 0;
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
-        border-bottom: 1px solid #efefef;
-        height: 84rpx;
-        .th,.td{
-          border-right: 1px solid #efefef;
+        align-items: center;
+        padding: 0 20rpx 10rpx;
+        .userinfo-avatar {
+          width: 100rpx;
+          height: 100rpx;
+          border-radius: 50%;
           display: flex;
-          justify-content: center;
-          align-items: center;
-          &:nth-child(1) {
-            width: 23%;
-          }
-          &:nth-child(2) {
-            width: 23%;
-          }
-          &:nth-child(3) {
-            width: 23%;
-          }
-          &:nth-child(4) {
-            width: 31%;
-            border-right: none;
-          }
-          button{
-            border-radius: 8rpx;
+          .image{
+            width: 100rpx;
+            height: 100rpx;
+            border-radius: 50%;
           }
         }
-      }
-      .show{
-        color: #4e6ef2;
+        .userinfo-info{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          margin-left: 20rpx;
+          margin-top: -4rpx;
+          view{
+            color: #6b3e10;
+          }
+          .nickname{
+            font-size: 30rpx;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            .name{
+              max-width: 380rpx;
+              white-space:nowrap;
+              text-overflow:ellipsis;
+              overflow: hidden;
+            }
+          }
+          .desc{
+            margin-top: 5rpx;
+            font-size: 28rpx;
+          }
+        }
       }
     }
+    .vip-card{
+      display: flex;
+      padding: 20rpx;
+      box-sizing: border-box;
+      margin-top: 30rpx;
+      .card-item{
+        width: 33.33%;
+        height: 260rpx;
+        border: 2px solid #ffffff;
+        border-radius: 30rpx;
+        margin: 0 10rpx;
+        background: #ffffff;
+        color: #6b3e10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 10rpx 0;
+        position: relative;
+        overflow: hidden;
+        z-index: 2;
+        .tit{
+          font-size: 30rpx;
+        }
+        .now-price{
+          font-weight: 500;
+          font-size: 44rpx;
+          text{
+            font-size: 24rpx;
+          }
+        }
+        .raw-price{
+          font-size: 24rpx;
+          color: #ed6a0c;
+          text-decoration: line-through;
+          text{
+            font-size: 20rpx;
+          }
+        }
+        .docs{
+          font-size: 24rpx;
+          text-align: center;
+          color: #999999;
+        }
+        .icon-huiyuanvip{
+          position: absolute;
+          right: -12rpx;
+          bottom: -16rpx;
+          font-size: 54rpx;
+          color: #ecc180;
+          display: none;
+          z-index: 99;
+        }
+        &.is-active{
+          border: 2px solid #ecc180;
+          background: #fff8ea;
+          .icon-huiyuanvip{
+            display: block;
+          }
+        }
+      }
+    }
+    .pay-btn{
+      background: #f2ddb5;
+      color: #6b3e10;
+      font-weight: 500;
+      width: calc(100% - 60rpx);
+      line-height: 76rpx;
+      height: 76rpx;
+      font-size: 30rpx;
+      border-radius: 60rpx;
+      margin: 60rpx 30rpx 30rpx;
+      text-align: center;
+    }
+    .hint.s{
+      color: #999999;
+    }
+  }
+  .vip-no-pay{
+    padding: 40rpx 20rpx 40rpx 20rpx;
     .vip-hint{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-top: 40rpx;
+      margin-top: 0;
       .text{
         font-size: 28rpx;
         line-height: 68rpx;
@@ -61,35 +163,13 @@
         width: 288rpx;
         height: 288rpx;
       }
-      .hint{
-        font-size: 28rpx;
-        padding: 30rpx;
-        text-align: center;
-        line-height: 44rpx;
-        color: #ff3d3d;
-      }
-      button{
-        height: 76rpx;
-        line-height: 76rpx;
-        font-size: 30rpx;
-        width: 100%;
-        background: #4e6ef2;
-        border-radius: 40rpx!important;
-      }
-      .button-hover{
-        background: #4a65d2;
-      }
     }
   }
-  &.iosNoPay{
-    .vip-shadow{
-      padding: 40rpx 20rpx 40rpx 20rpx;
-      .vip-hint{
-        margin-top: 0;
-        .hint{
-          padding: 30rpx 30rpx 30rpx;
-        }
-      }
-    }
+  .hint{
+    font-size: 28rpx;
+    padding: 30rpx 30rpx 30rpx;
+    text-align: center;
+    line-height: 44rpx;
+    color: #ff3d3d;
   }
 }

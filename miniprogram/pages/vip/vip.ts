@@ -10,7 +10,10 @@ Page({
   data: {
     vipList: [],
     iosIsPay: false,
-    isIos: false
+    isIos: false,
+    userInfo: {},
+    active: 3,
+    loginState: false
   },
 
   /**
@@ -18,6 +21,7 @@ Page({
    */
   onLoad() {
     this.getVipLevel()
+    this.setUserInfo()
     eventStore.onState('iosIsPay', (value: any) => {
       this.setData({ iosIsPay: value })
     })
@@ -25,14 +29,10 @@ Page({
       this.setData({ isIos: true })
     }
   },
-  showPrivilege(e: any) {
-    const { title, content, desc } = e.currentTarget.dataset.item
-    wx.showModal({
-      title: title,
-      content: content + desc,
-      confirmText: '知道了',
-      showCancel: false
-    })
+
+  selectVip(e: any) {
+    const { id } = e.currentTarget.dataset
+    this.setData({ active: id })
   },
 
   getVipLevel() {
@@ -41,18 +41,17 @@ Page({
       let newVipList: any = []
       res.data.map((item: any) => {
         if (item.title === '月度VIP') {
-          item.desc = '祝你面试马到功成'
+          item.raw_price = 29
         }
         if (item.title === '年度VIP') {
-          item.desc = '祝你轻松拿到大offer'
+          item.raw_price = 59
         }
         if (item.title === '永久VIP') {
-          item.desc = '祝你工作无忧又高薪'
+          item.raw_price = 99
         }
         item.price = Number(item.price).toFixed(0)
-        if (item.title !== '月度VIP') {
-          newVipList.unshift(item)
-        }
+        newVipList.unshift(item)
+        console.log(item)
       })
       this.setData({ vipList: newVipList })
     })
@@ -74,16 +73,32 @@ Page({
     })
   },
 
-  submitVip(e: any) {
+  setUserInfo() {
+    const loginState = wx.getStorageSync('loginState')
+    this.setData({ loginState })
+    if (loginState) {
+      eventStore.dispatch('getUserInfo')
+      eventStore.onState('userInfo', (value: any) => {
+        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name } })
+      })
+    }
+  },
+
+  onLogin() {
+    eventStore.dispatch('login', () => {
+      this.setUserInfo()
+    })
+  },
+
+  submitVip() {
     if (!wx.getStorageSync('loginState')) {
-      eventStore.dispatch('login')
+      this.onLogin()
       return
     }
     wx.showLoading({
       title: '请稍等...'
     })
-    const { id } = e.currentTarget.dataset
-    orderPay({ id }).then((res: any) => {
+    orderPay({ id: this.data.active }).then((res: any) => {
       wx.hideLoading()
       const jsConfig = res.data
       wx.requestPayment({
@@ -97,7 +112,7 @@ Page({
           eventStore.dispatch('getUserInfo')
           wx.showModal({
             title: '提示',
-            content: '赞赏成功，已成为VIP',
+            content: '支付成功，已成为VIP',
             confirmText: '知道了',
             showCancel: false
           })
@@ -105,7 +120,7 @@ Page({
         fail: function (e: any) {
           console.info(e)
           wx.showToast({
-            title: '赞赏失败',
+            title: '支付失败',
             icon: 'none',
             duration: 2000
           })
