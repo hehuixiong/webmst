@@ -1,0 +1,13 @@
+<view class="resume-container">
+  <view class="resume-list">
+    <view class="resume-item" wx:for="{{resumeList}}" wx:key="index">
+      <view class="image">
+        <image src="{{item.image}}" data-current="{{item.image}}" bindtap="showImg" mode="widthFix" show-menu-by-longpress></image>
+      </view>
+      <view class="text">
+        <view class="title">简历模板{{index+1}}</view>
+        <view class="download" data-download="{{item.download}}" bindtap="download"><van-icon name="down" />下载</view>
+      </view>
+    </view>
+  </view>
+</view>

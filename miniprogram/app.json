@@ -18,7 +18,9 @@
     "pages/project-list/project-list",
     "pages/project-res/project-res",
     "pages/introduce/introduce",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/integral/integral",
+    "pages/resume/resume"
   ],
   "window": {
     "backgroundTextStyle": "light",

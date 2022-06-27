@@ -59,7 +59,8 @@ Page({
     assist: [
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220100.png',
-        label: '简历推荐'
+        label: '简历模板',
+        to: '/pages/resume/resume'
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220101.png',
@@ -96,7 +97,8 @@ Page({
     showgroup: false,
     isVip: false,
     isNotice: false,
-    noticeText: ''
+    noticeText: '',
+    scrollable: false
   },
   onLoad() {
     this.getTopicCate()
@@ -118,6 +120,11 @@ Page({
           isNotice: true,
           noticeText: noticeList[0].url
         })
+        if (this.data.noticeText.indexOf('秒杀') >= 0) {
+          this.setData({
+            scrollable: true
+          })
+        }
       }
       this.setData({
         swiper: bannerList

@@ -83,6 +83,11 @@ Page({
       this.setUserInfo()
     })
   },
+  onIntegral() {
+    wx.navigateTo({
+      url: '/pages/integral/integral'
+    })
+  },
   onRoute() {
     if (!this.data.loginState) {
       this.onLogin()

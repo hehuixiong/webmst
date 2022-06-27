@@ -1,0 +1,27 @@
+.resume-container{
+  padding: 32rpx 16rpx;
+  .resume-list{
+    display: flex;
+    flex-wrap: wrap;
+    .resume-item{
+      width: calc(50% - 32rpx);
+      margin: 0 16rpx 20rpx;
+      image{
+        width: 100%;
+        border-radius: 12rpx;
+        border: 1px solid #e6e6e6;
+      }
+      .text{
+        display: flex;
+        justify-content: space-between;
+        .title{
+          padding: 20rpx 20rpx 20rpx 0;
+        }
+        .download{
+          color: #7e68f3;
+          padding: 20rpx 0 20rpx 20rpx;
+        }
+      }
+    }
+  }
+}

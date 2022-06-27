@@ -35,9 +35,9 @@
     </swiper>
   </view>
   <view class="home-notice">
-    <van-notice-bar background="#fff8ea" color="#ed6a0c" left-icon="volume-o" scrollable bindtap="jumpVip">
+    <van-notice-bar background="#fff8ea" color="#ed6a0c" left-icon="volume-o" scrollable="{{scrollable}}" bindtap="jumpVip">
       <text wx:if="{{isNotice}}">{{noticeText}}</text>
-      <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
+      <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum || '--'}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>
   </view>
   <view class="home-btn">
@@ -67,7 +67,7 @@
               </view>
               <view class="right">
                 <text class="text">{{item.label}}</text>
-                <text class="tag">共{{topicSum}}条</text>
+                <text class="tag">共{{topicSum || '--'}}条</text>
               </view>
             </view>
             <text class="icon-right-circle iconfont"></text>
@@ -79,7 +79,7 @@
               </view>
               <view class="right">
                 <text class="text">{{item.label}} <text class="free" wx:if="{{item.id === 2 || item.id === 3}}">(免费开放)</text></text>
-                <text class="tag">共{{item.cate_num || 0}}条</text>
+                <text class="tag">共{{item.cate_num || '--'}}条</text>
               </view>
             </view>
             <text class="icon-right-circle iconfont"></text>
@@ -112,5 +112,8 @@
     <view class="ad" wx:if="{{!isVip}}">
       <ad-custom unit-id="adunit-4740ba525cdd081d"></ad-custom>
     </view>
+
+    <!-- 签到 -->
+    <!-- <view class="sign-in">签到</view> -->
   </view>
 </view>

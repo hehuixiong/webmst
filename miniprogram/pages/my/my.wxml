@@ -46,6 +46,15 @@
       </view>
     </view>
     <view class="cell-groip cell-groip-top">
+      <!-- <button>
+        <view class="item" hover-class="navigator-hover" bindtap="onIntegral">
+          <view class="text-icon">
+            <text class="iconfont"></text>
+            <text class="text">积分管理</text>
+          </view>
+          <view class="is-link"><van-icon name="arrow" /></view>
+        </view>
+      </button> -->
       <button>
         <view class="item" hover-class="navigator-hover" bindtap="onRoute">
           <view class="text-icon">
@@ -55,13 +64,6 @@
           <view class="is-link"><van-icon name="arrow" /></view>
         </view>
       </button>
-      <!-- <button class="item" bindtap="go">
-        <view class="text-icon">
-          <text class="iconfont"></text>
-          <text class="text">更多功能</text>
-        </view>
-        <view class="is-link"><van-icon name="arrow" /></view>
-      </button> -->
       <button class="item" bindtap="onShare" open-type="share">
         <view class="text-icon">
           <text class="iconfont"></text>

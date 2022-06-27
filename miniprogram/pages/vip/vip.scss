@@ -77,7 +77,7 @@
         width: 33.33%;
         height: 260rpx;
         border: 2px solid #ffffff;
-        border-radius: 30rpx;
+        border-radius: 20rpx;
         margin: 0 10rpx;
         background: #ffffff;
         color: #6b3e10;
@@ -121,6 +121,16 @@
           color: #ecc180;
           display: none;
           z-index: 99;
+        }
+        .time-limit{
+          position: absolute;
+          left: 0;
+          top: 0;
+          font-size: 20rpx;
+          background: #ff0000;
+          border-radius: 0 0 20rpx 0;
+          padding: 2rpx 12rpx;
+          color: #ffffff;
         }
         &.is-active{
           border: 2px solid #ecc180;
