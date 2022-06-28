@@ -55,6 +55,30 @@ Page({
         image: 'https://s-gz-2804-hero-image.oss.dogecdn.com/resume/20220627134033.png',
         download: '链接: https://pan.baidu.com/s/1erXkK8h45RjODyV-EtbgoA?pwd=febu 提取码: febu'
       },
+      {
+        image: 'https://s-gz-2804-hero-image.oss.dogecdn.com/resume/20220628113624.png',
+        download: '链接: https://pan.baidu.com/s/1wUch7oXWDlVQqzoqRD2-ow?pwd=k84v 提取码: k84v'
+      },
+      {
+        image: 'https://s-gz-2804-hero-image.oss.dogecdn.com/resume/20220628113839.png',
+        download: '链接: https://pan.baidu.com/s/1BMXHBbrcn2BcQs_upheunQ?pwd=rlek 提取码: rlek'
+      },
+      {
+        image: 'https://s-gz-2804-hero-image.oss.dogecdn.com/resume/20220628114751.png',
+        download: '链接: https://pan.baidu.com/s/1OuQS6JHp-ld-Xwt2J15W5g?pwd=0s5r 提取码: 0s5r'
+      },
+      {
+        image: 'https://s-gz-2804-hero-image.oss.dogecdn.com/resume/20220628114034.png',
+        download: '链接: https://pan.baidu.com/s/1Tolgcco82JcbD6I1edbolQ?pwd=ddca 提取码: ddca'
+      },
+      {
+        image: 'https://s-gz-2804-hero-image.oss.dogecdn.com/resume/20220628114231.png',
+        download: '链接: https://pan.baidu.com/s/1WRvxgpf4w2ayPNC7WZEDyQ?pwd=fas8 提取码: fas8'
+      },
+      {
+        image: 'https://s-gz-2804-hero-image.oss.dogecdn.com/resume/20220628114421.png',
+        download: '链接: https://pan.baidu.com/s/1WDHHZ1Ip8gPCO93jkRmtLg?pwd=uihq 提取码: uihq'
+      }
     ],
     isVip: false
   },

@@ -35,15 +35,39 @@
     </swiper>
   </view>
   <view class="home-notice">
-    <van-notice-bar background="#fff8ea" color="#ed6a0c" left-icon="volume-o" scrollable="{{scrollable}}" bindtap="jumpVip">
+    <van-notice-bar background="#f6f6f6" color="#ed6a0c" left-icon="volume-o" scrollable="{{scrollable}}" bindtap="jumpVip">
       <text wx:if="{{isNotice}}">{{noticeText}}</text>
       <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum || '--'}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>
   </view>
-  <view class="home-btn">
-    <view class="btn btn1" bindtap="jumpVip"><text class="iconfont icon-vip-show"></text>VIP会员中心</view>
-    <view class="btn btn2" wx:if="{{showgroup}}" bindtap="addGroup">免费加交流群</view>
-    <view class="btn btn2" wx:else bindtap="addMsjq">web面试技巧</view>
+  <view class="home-card">
+    <view class="card card1" bindtap="jumpVip">
+      <view class="text">
+        <text class="title">VIP专属权益</text>
+        <text class="go">立即前往</text>
+      </view>
+      <view class="icon-wrap">
+        <text class="iconfont icon-vip-show"></text>
+      </view>
+    </view>
+    <view class="card card2" wx:if="{{showgroup}}" bindtap="addGroup">
+      <view class="text">
+        <text class="title">免费加交流群</text>
+        <text class="go">申请加入</text>
+      </view>
+      <view class="icon-wrap">
+        <text class="iconfont icon-bug"></text>
+      </view>
+    </view>
+    <view class="card card2" wx:else bindtap="addMsjq">
+    <view class="text">
+        <text class="title">web面试技巧</text>
+        <text class="go">查看更多</text>
+      </view>
+      <view class="icon-wrap">
+        <text class="iconfont icon-bug"></text>
+      </view>
+    </view>
   </view>
   <view class="home-container">
     <view class="gongge-wrapper">

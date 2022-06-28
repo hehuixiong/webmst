@@ -58,14 +58,14 @@
     height: 294rpx;
     width: 100%;
     .swiper-content {
-      width: calc(100% - 32rpx);
+      width: calc(100% - 36rpx);
       text-align: center;
       margin: 0 auto;
       position: relative;
       .img {
         width: 100%;
         height: 294rpx;
-        border-radius: 30rpx;
+        border-radius: 20rpx;
         transform: scale(0.9);
         transition: all 0.3s ease;
         &.active {
@@ -75,9 +75,12 @@
     }
   }
   .home-notice{
-    margin: 16rpx 16rpx 0;
-    border-radius: 30rpx;
+    border-radius: 20rpx;
     overflow: hidden;
+    padding: 10rpx 0;
+    .van-notice-bar{
+      padding: 0 20rpx!important;
+    }
     .van-icon-volume-o{
       font-size: 32rpx;
     }
@@ -85,38 +88,71 @@
       font-size: 28rpx;
     }
   }
-  .home-btn{
+  .home-card{
     display: flex;
-    margin: 16rpx 16rpx 0;
-    padding: 16rpx 8rpx;
-    background: #ffffff;
+    margin: 0 10rpx 0;
     border-radius: 30rpx;
-    .btn{
+    .card{
       color: #ffffff;
       font-size: 30rpx;
       flex: 1;
-      margin: 0 8rpx;
-      border-radius: 60rpx;
-      line-height: 76rpx;
-      text-align: center;
-      .iconfont{
-        margin-right: 4rpx;
+      margin: 0 10rpx;
+      border-radius: 20rpx;
+      height: 160rpx;
+      padding: 26rpx 40rpx;
+      box-sizing: border-box;
+      position: relative;
+      box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
+      .text{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .title{
+          font-size: 32rpx;
+          color: #fff;
+          font-weight: 500;
+        }
+        .go{
+          border-radius: 20rpx;
+          border: 1px solid #fff;
+          font-size: 24rpx;
+          padding: 2rpx 12rpx;
+          margin-top: 14rpx;
+        }
+      }
+      .icon-wrap{
+        position: absolute;
+        bottom: 66rpx;
+        right: 66rpx;
+        width: 50rpx;
+        height: 50rpx;
+        .iconfont{
+          font-size: 100rpx;
+          opacity: 0.2;
+        }
       }
     }
-    .btn1{
-      background: #fff8ea;
-      color: #ed6a0c;
+    .card1{
+      background: #ecc180;
+      color: #ffffff;
+      .iconfont{
+        color: #805d28;
+      }
     }
-    .btn2{
-      background: #f4f3fc;
-      color: #7e68f3;
+    .card2{
+      background: #9383ee;
+      color: #ffffff;
+      .iconfont{
+        color: #5e4eb8;
+      }
     }
   }
   .home-container{
     position: relative;
     .title{
+      margin-top: 10rpx;
       padding: 0 20rpx 0 40rpx;
-      line-height: 100rpx;
+      line-height: 88rpx;
       position: relative;
       display: flex;
       align-items: center;
@@ -153,6 +189,7 @@
           padding-left: 16rpx;
           color: #aaaaaa;
           box-sizing: border-box;
+          border: 1px solid #f1f0f5;
         }
         .iconfont{
           font-size: 28rpx;
@@ -163,29 +200,22 @@
       }
     }
     .gongge-wrapper{
-      background: #fff;
-      margin: 16rpx 16rpx;
-      border-radius: 30rpx;
-      padding-bottom: 8rpx;
       .gongge-list{
         display: flex;
         flex-wrap: wrap;
-        padding: 0 8rpx;
+        padding: 0 10rpx;
         box-sizing: border-box;
         .gongge-item{
           display: flex;
           align-items: center;
-          padding: 20rpx 18rpx;
+          padding: 24rpx 20rpx;
           box-sizing: border-box;
-          margin: 8rpx 8rpx;
+          margin: 10rpx 10rpx;
           border-radius: 20rpx;
-          width: calc(50% - 16rpx);
-          box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
+          width: calc(50% - 20rpx);
+          box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 5%);
           justify-content: space-between;
-          &:last-child,
-          &:nth-last-child(2):nth-child(odd){
-            box-shadow: 0 -8rpx 18rpx -4rpx rgb(0 0 0 / 10%);
-          }
+          background: #ffffff;
           &.assist{
             padding: 36rpx 20rpx;
           }
@@ -194,11 +224,11 @@
             align-items: center;
             flex: 1;
             image{
-              height: 50rpx;
+              height: 54rpx;
               display: block;
             }
             .iconfont{
-              font-size: 50rpx;
+              font-size: 54rpx;
             }
           }
           .text{
@@ -233,9 +263,10 @@
       }
     }
     .ad{
-      margin: 16rpx 16rpx;
-      border-radius: 30rpx;
+      margin: 10rpx 20rpx;
+      border-radius: 20rpx;
       overflow: hidden;
+      box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
     }
     .sign-in{
       position: fixed;

@@ -37,7 +37,7 @@
     <view class="vip-wrapper" bindtap="jumpVip">
       <view class="vip-text">
         <view class="tit">
-          <text class="vip">VIP</text>会员中心
+          <text class="vip">VIP</text>专属权益
         </view>
         <view class="desc">成为会员享受全平台所有功能可用</view>
       </view>
