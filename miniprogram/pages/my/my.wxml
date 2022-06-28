@@ -105,7 +105,7 @@
       </button>
     </view>
     <!-- 打赏按钮 -->
-    <view class="give-a-reward" bindtap="onRewardAuthor">打赏支持</view>
+    <view wx:if="{{showgroup}}" class="give-a-reward" bindtap="onRewardAuthor">打赏支持</view>
     <!-- 广告位 -->
     <!-- <view class="cell-groip radius" wx:if="{{!isVip}}">
       <ad-custom unit-id="adunit-248ba9ef170ce527"></ad-custom>

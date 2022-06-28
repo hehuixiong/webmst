@@ -25,7 +25,7 @@
     </view>
     <view class="pay-btn" bindtap="submitVip">立即开通</view>
     <view class="hint s">
-      【温馨提示】①开通前请先登录，开通成功后<text style="color: #ff3d3d;">赠送简历模板(多套风格)</text> 成为VIP会员 ②请联系管理员领取 ③在线辅导简历指导 项目经验分析 ④全部功能可用
+      【温馨提示】①开通前请先登录，开通成功后成为VIP会员 赠送简历模板(多种风格) ②请联系管理员领取 ③在线辅导简历指导 项目经验分析 ④全部功能可用
     </view>
   </view>
   <view class="vip-no-pay" wx:else>
