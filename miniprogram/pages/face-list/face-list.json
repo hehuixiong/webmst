@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "企业真题",
+  "navigationBarTitleText": "面经合集",
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "more-wrap": "/components/more-wrap/index"

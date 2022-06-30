@@ -1,0 +1,108 @@
+@import '/styles/iconfont.wxss';
+.reward-popup-body{
+  width: 90%;
+  .reward-popup-title{
+    line-height: 88rpx;
+    text-align: center;
+    font-size: 32rpx;
+    flex-shrink: 0;
+  }
+  .reward-popup-container{
+    flex: 1 1 auto;
+    overflow-y: scroll;
+    .reward-image{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 120rpx;
+      height: 120rpx;
+      box-sizing: border-box;
+      border-radius: 50%;
+      box-shadow: 0 4rpx 24rpx 0 rgba(#7e68f3, 0.2);
+      margin: 10rpx auto 0;
+      image{
+        width: 120rpx;
+        height: 120rpx;
+        border-radius: 50%;
+      }
+    }
+    .support{
+      line-height: 60rpx;
+      text-align: center;
+      font-size: 32rpx;
+      color: #333333;
+      margin-top: 20rpx;
+    }
+    .reward-price-list{
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 30rpx;
+      box-sizing: border-box;
+      padding: 0 20rpx;
+      .price-item{
+        width: 33.33%;
+        padding: 0 10rpx 20rpx;
+        box-sizing: border-box;
+        text{
+          line-height: 70rpx;
+          border-radius: 60rpx;
+          text-align: center;
+          display: inline-block;
+          width: 100%;
+          border: 1px solid #7e68f3;
+          color: #7e68f3;
+          font-weight: 500;
+          background: #eeecf8;
+        }
+      }
+    }
+    .other{
+      color: #7e68f3;
+      display: flex;
+      justify-content: center;
+      text{
+        line-height: 80rpx;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+      }
+      input{
+        font-size: 50rpx;
+        text-align: center;
+        height: 80rpx;
+        line-height: 80rpx;
+      }
+    }
+    .lately-reward{
+      padding: 30rpx;
+      box-sizing: border-box;
+      .tit{
+        font-size: 24rpx;
+        color: #999999;
+      }
+      .lately-list{
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20rpx;
+        .item{
+          width: 20%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 12rpx;
+          flex-direction: column;
+          align-items: center;
+          image{
+            width: 70rpx;
+            height: 70rpx;
+            border-radius: 50%;
+          }
+          .price{
+            color: #999999;
+            font-size: 24rpx;
+            margin-top: 6rpx;
+          }
+        }
+      }
+    }
+  }
+}

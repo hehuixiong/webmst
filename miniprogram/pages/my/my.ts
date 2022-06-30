@@ -1,16 +1,14 @@
 import { eventStore } from '../../store/index'
-const app = getApp()
 let vipDate: any = null
 Page({
   data: {
     userInfo: {},
     loginState: false,
     showgroup: false,
-    iosIsPay: false,
     year: null,
-    show: false,
     isVip: false,
-    vipType: 0
+    vipType: 0,
+    rewardShow: false
   },
   onLoad() {
     this.setUserInfo()
@@ -23,9 +21,6 @@ Page({
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })
-    eventStore.onState('iosIsPay', (value: any) => {
-      this.setData({ iosIsPay: value })
-    })
   },
   onShow() {
     this.setUserInfo()
@@ -36,7 +31,6 @@ Page({
     if (loginState) {
       eventStore.dispatch('getUserInfo')
       eventStore.onState('userInfo', (value: any) => {
-        console.log(value)
         if (value.vip_time) {
           this.setData({ vipType: value.vip })
           vipDate = value.vip_time
@@ -51,7 +45,7 @@ Page({
     if (!vipType || vipType === 3) {
       return
     }
-    const title = vipType === 1 ? '包月' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : ''
+    const title = vipType === 1 ? '月度' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : ''
     const newDate = vipDate.split(' ')[0]
     wx.showModal({
       title: title + 'VIP',
@@ -89,6 +83,11 @@ Page({
       this.setUserInfo()
     })
   },
+  onIntegral() {
+    wx.navigateTo({
+      url: '/pages/integral/integral'
+    })
+  },
   onRoute() {
     if (!this.data.loginState) {
       this.onLogin()
@@ -98,23 +97,10 @@ Page({
       url: '/pages/collect/collect'
     })
   },
-  showVip() {
-    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      if (this.data.iosIsPay) {
-        wx.navigateTo({
-          url: '/pages/vip/vip'
-        })
-      } else {
-        wx.showModal({
-          title: '友情提示',
-          content: '由于相关规范，苹果IOS暂不可用',
-          confirmText: '知道了',
-          showCancel: false
-        })
-      }
-      return
-    }
-    this.setData({ show: true })
+  jumpVip() {
+    wx.navigateTo({
+      url: '/pages/vip/vip'
+    })
   },
   addGroup() {
     wx.navigateTo({
@@ -124,8 +110,8 @@ Page({
   AboutUs() {
     wx.showModal({
       title: '提示',
-      content: '嗨！你好，非常感谢你对题材的支持，题材将会做的更好，分享更多有价值的内容，也祝你拿到大offer',
-      confirmText: '已了解',
+      content: '哈喽！感谢你对小程序的支持，我们将会做的更好，分享更多有价值的面试题材，祝你早日拿offer',
+      confirmText: '知道了',
       showCancel: false,
       success (res) {
         if (res.confirm) {
@@ -134,6 +120,13 @@ Page({
         }
       }
     })
+  },
+  onRewardAuthor() {
+    if (!this.data.loginState) {
+      this.onLogin()
+      return 
+    }
+    this.setData({ rewardShow: true })
   },
   onShare() {},
   /**

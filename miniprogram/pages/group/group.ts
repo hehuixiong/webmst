@@ -1,4 +1,5 @@
 // pages/group/group.ts
+const { getAdImage } = require('../../api/index')
 import { eventStore } from '../../store/index'
 Page({
 
@@ -6,30 +7,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isVip: false
+    isVip: false,
+    jlqewm: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    this.getAdImage()
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })
   },
-  
-  copyWX() {
-    wx.setClipboardData({
-      data: 'NetEngine666',
-      success: function () {
-        wx.getClipboardData({
-          //这个api是把拿到的数据放到电脑系统中的
-          success: function () {
-            wx.showToast({
-              title: '微信号已复制',
-              icon: 'none'
-            })
-          }
+
+  getAdImage() {
+    getAdImage().then((res: any) => {
+      const jlqewm = res.data.filter((item: any) => (item.title === '前端面试交流2群'))
+      console.log(jlqewm)
+      if (jlqewm.length) {
+        this.setData({
+          jlqewm: jlqewm[0].thumb
         })
       }
     })

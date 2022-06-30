@@ -1,3 +1,4 @@
+const app = getApp()
 import { handleTime } from '../../utils/util'
 const { getTopicInfo, getCollectInfo, addCollect } = require('../../api/index')
 // import { setWatcher } from '../../utils/watch'
@@ -20,31 +21,32 @@ Page({
     loading: false,
     id: 0,
     next_id: 0,
-    type: '',
     currentTitle: title,
     self: false,
     showBug: false,
     showgroup: false,
-    topicAd: false,
     isVip: false,
     is_collect: 0,
-    search: ''
+    search: '',
+    isChoice: false,
+    showAnswer: false,
+    isNewUser: false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad({ id, is_collect, search }: any) {
-    this.setData({ id, is_collect, search }, () => this.getTopicInfo())
     // setWatcher(this)
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
     })
-    eventStore.onState('topicAd', (value: any) => {
-      this.setData({ topicAd: value })
-    })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })
+    eventStore.onState('isNewUser', (value: any) => {
+      this.setData({ isNewUser: value })
+    })
+    this.setData({ id, is_collect, search }, () => this.getTopicInfo())
   },
 
   /**
@@ -57,7 +59,7 @@ Page({
     ids.push(id)
     recordsObj = Object.assign({}, storageRecords, {
       [type]: {
-        ids: [...new Set(ids)]
+        ids: [...new Set(ids.map((id: any) => Number(id)))]
       }
     })
     let date = new Date()
@@ -88,13 +90,11 @@ Page({
     this.setData({ loading: true })
     const params: any = { id: this.data.id }
     if (+this.data.is_collect === 1) {
-      console.log('???')
       // 收藏
       getCollectInfo(params).then((res: any) => {
         this.setTopicInfo(res)
       })
     } else {
-      console.log('有没有进来？')
       // 非收藏
       if (this.data.search) {
         params.search = this.data.search
@@ -153,10 +153,27 @@ Page({
       next_id: res.data.next_id,
       create_time: handleTime(res.data.create_time),
       topicIndex: res.data.now_num,
+      isChoice: res.data.cate_name === 'choice',
+      showAnswer: res.data.cate_name !== 'choice',
       loading: false
+    })
+    // 设置可查看权限（html，css 分类）
+    eventStore.onState('topicVip', (value: any) => {
+      const permissions = [2, 3].includes(res.data.cate_id) || (!value && (app.globalSystemInfo && app.globalSystemInfo.ios))
+      console.log(this.data.isNewUser)
+      console.log(permissions)
+      this.setData({
+        permissions: permissions,
+      })
     })
     this.setCurrentTopic()
     this.practiceRecords(res.data.cate_name, this.data.id)
+  },
+
+  onShowAnswer() {
+    this.setData({
+      showAnswer: true
+    })
   },
 
   go() {

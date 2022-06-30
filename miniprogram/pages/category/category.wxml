@@ -21,7 +21,7 @@
             <text class="iconfont {{item.icon}}"></text>
           </view>
           <view class="title-wrap">
-            <view class="title">{{item.label}} <text class="free" wx:if="{{(item.id === 2 || item.id === 3) && topicVip}}">(免费开放)</text> </view>
+            <view class="title">{{item.label}} <text class="free" wx:if="{{item.id === 2 || item.id === 3}}">(免费开放)</text> </view>
             <view class="record">
               <text>共 {{item.cate_num}} 题</text>
               <text class="line">|</text>
@@ -38,4 +38,5 @@
       </navigator>
     </block>
   </view>
+  <more-wrap loading="{{false}}" noMore="{{true}}"></more-wrap>
 </view>

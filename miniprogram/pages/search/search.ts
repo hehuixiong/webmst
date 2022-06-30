@@ -14,13 +14,24 @@ Page({
     noMore: false,
     loading: false,
     empty: true,
-    pageSize: 20
+    pageSize: 20,
+    focus: true,
+    historyData: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    this.getHistory()
+  },
+
+  getHistory() {
+    const storageHistory = wx.getStorageSync('historyArr') || []
+    const historyData: any = this.overturnArray(storageHistory)
+    this.setData({
+      historyData: historyData
+    })
   },
 
   getSearchList() {
@@ -31,7 +42,6 @@ Page({
     }
     getTopicList(params).then((res: any) => {
       let list = res.data.list
-      // list = this.removeDuplicateObj(list)
       for (let i = 0; i < list.length; i++) {
         list[i].create_time = handleTime(list[i].create_time)
       }
@@ -46,19 +56,37 @@ Page({
         pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,
         noMore: this.data.searchList.length === res.data.pageTotal
       })
+      this.addHistoryRecord(this.data.keyword)
     })
   },
 
-  removeDuplicateObj(arr: any) {
-    let obj: any = {}
-    arr = arr.reduce((newArr: any, next: any) => {
-      obj[next.resume] ? "" : (obj[next.resume] = true && newArr.push(next))
-      return newArr
-    }, [])
-    return arr
+  addHistoryRecord(keyword: any) {
+    const max = 10
+    const storageHistory = wx.getStorageSync('historyArr')
+    console.log(storageHistory)
+    let tempArr = []
+    tempArr.push(keyword)
+    let resultArr = [...new Set([...storageHistory, ...tempArr])]
+    if (resultArr.length > max) {
+      resultArr.splice(0, 1)
+    }
+    wx.setStorageSync('historyArr', resultArr)
+    this.getHistory()
   },
 
-  onSearch() {
+  overturnArray(arr: any) {
+    var result = []
+    for (var i = arr.length - 1; i >=  0; i--) {
+      result[result.length] = arr[i]
+    }
+    return result
+  },
+
+  onSearch(e: any) {
+    const { keyword } = e.currentTarget.dataset
+    if (keyword) {
+      this.setData({ keyword })
+    }
     if (!this.data.keyword) {
       wx.showToast({
         title: '请输入关键字',
@@ -68,7 +96,8 @@ Page({
     }
     this.setData({
       searchList: [],
-      page: 1
+      page: 1,
+      focus: false
     })
     this.getSearchList()
   },
@@ -80,7 +109,19 @@ Page({
   },
 
   clearInput() {
-    this.setData({ keyword: '' })
+    this.setData({
+      keyword: '',
+      focus: true,
+      searchList: [],
+      page: 1,
+      empty: true
+    })
+  },
+
+  clearHistory() {
+    wx.removeStorageSync('historyArr')
+    this.getHistory()
+    this.clearInput()
   },
 
   onFocus() {},

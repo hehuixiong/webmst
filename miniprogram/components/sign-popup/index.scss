@@ -1,0 +1,138 @@
+.sign-popup{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($color: #000000, $alpha: 0.75);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  z-index: 999;
+  overflow: hidden;
+  .sign-container{
+    width: 65%;
+    height: 340rpx;
+    background: #ffffff;
+    border-radius: 24rpx;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
+    .sign-content{
+      flex: 1;
+      position: relative;
+      .header{
+        position: absolute;
+        width: 200rpx;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -100rpx;
+        .success1{
+          position: absolute;
+          left: -50rpx;
+          top: 140rpx;
+          color: #eed66a;
+          font-size: 34rpx;
+        }
+        .success2{
+          position: absolute;
+          right: -50rpx;
+          top: 100rpx;
+          color: #eed66a;
+          font-size: 34rpx;
+        }
+        .circle{
+          position: absolute;
+          left: -20rpx;
+          top: 66rpx;
+          background: #eed66a;
+          width: 16rpx;
+          height: 16rpx;
+          border-radius: 50%;
+        }
+        .image{
+          width: 200rpx;
+        }
+        &::before{
+          width: 120rpx;
+          height: 120rpx;
+          background: #fff;
+          position: absolute;
+          left: 30rpx;
+          top: 50rpx;
+          content: '';
+          z-index: -1;
+        }
+      }
+      .content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding-top: 110rpx;
+        color: #444444;
+        .success{
+          font-size: 32rpx;
+        }
+        .integral{
+          display: flex;
+          margin-top: 12rpx;
+          align-items: center;
+        }
+        .integral-icon{
+          border-radius: 50%;
+          width: 30rpx;
+          height: 30rpx;
+          background: #f4b940;
+          display: flex;
+          border: 6rpx solid #f5e085;
+          align-items: center;
+          justify-content: center;
+          .star{
+            color: #fef1d0;
+            font-size: 24rpx;
+          }
+        }
+        .integral-number{
+          font-size: 36rpx;
+          color: #ee8133;
+          margin-left: 6rpx;
+          display: flex;
+          align-items: center;
+          .plus{
+            font-size: 28rpx;
+          }
+        }
+      }
+    }
+    .sign-button{
+      background: #ef8432;
+      border-radius: 0 0 24rpx 24rpx;
+      height: 80rpx;
+      color: #fff;
+      line-height: 80rpx;
+      text-align: center;
+      flex-shrink: 0;
+      font-size: 28rpx;
+    }
+    .sign-close{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -140rpx;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      width: 58rpx;
+      height: 58rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba($color: #000000, $alpha: 0.5);      .cross{
+        font-size: 36rpx;
+        color: #fff;
+      }
+    }
+  }
+}

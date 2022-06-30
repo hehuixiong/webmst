@@ -17,19 +17,22 @@
     "pages/vip/vip",
     "pages/project-list/project-list",
     "pages/project-res/project-res",
-    "pages/introduce/introduce"
+    "pages/introduce/introduce",
+    "pages/login/login",
+    "pages/integral/integral",
+    "pages/resume/resume"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarTitleText": "前端面试题材",
-    "navigationBarBackgroundColor": "#4e6ef2",
+    "navigationBarBackgroundColor": "#7e68f3",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f6f6f6"
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "color": "#333333",
-    "selectedColor": "#4e6ef2",
+    "selectedColor": "#7e68f3",
     "backgroundColor": "#fff",
     "borderStyle": "black",
     "list": [

@@ -4,6 +4,7 @@
   "navigationStyle":"custom",
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
-    "vip-popup": "/components/vip-popup/index"
+    "nav-bar": "/components/nav-bar/index",
+    "reward-popup": "/components/reward-popup/index"
   }
 }

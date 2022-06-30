@@ -2,7 +2,6 @@
 const { getTopicCate, getAdImage } = require('../../api/index')
 import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
-const app = getApp()
 Page({
   refresh: false,
   data: {
@@ -50,30 +49,6 @@ Page({
         type: NAV_TYPES.reactJs,
         id: null
       },
-      // {
-      //   icon: 'icon-nodejs',
-      //   label: 'Node.js',
-      //   type: NAV_TYPES.nodeJs,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-suanfa',
-      //   label: '算法',
-      //   type: NAV_TYPES.algorithm,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-gongju',
-      //   label: '工具',
-      //   type: NAV_TYPES.tools,
-      //   id: null
-      // },
-      // {
-      //   icon: 'icon-bianchengti',
-      //   label: '编程题',
-      //   type: NAV_TYPES.programme,
-      //   id: null
-      // },
       {
         icon: 'icon-quanbu',
         label: '全部分类',
@@ -84,7 +59,8 @@ Page({
     assist: [
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220100.png',
-        label: '简历推荐'
+        label: '简历模板',
+        to: '/pages/resume/resume'
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220101.png',
@@ -93,7 +69,7 @@ Page({
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220102.png',
-        label: '企业真题',
+        label: '面经合集',
         to: '/pages/face-list/face-list'
       },
       {
@@ -120,11 +96,10 @@ Page({
     topicSum: 0,
     showgroup: false,
     isVip: false,
-    topicVip: false,
-    iosIsPay: false,
-    show: false,
     isNotice: false,
-    noticeText: ''
+    noticeText: '',
+    scrollable: false,
+    showSignin: false
   },
   onLoad() {
     this.getTopicCate()
@@ -134,12 +109,6 @@ Page({
     })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
-    })
-    eventStore.onState('topicVip', (value: any) => {
-      this.setData({ topicVip: value })
-    })
-    eventStore.onState('iosIsPay', (value: any) => {
-      this.setData({ iosIsPay: value })
     })
   },
   getAdImage() {
@@ -152,34 +121,36 @@ Page({
           isNotice: true,
           noticeText: noticeList[0].url
         })
+        if (this.data.noticeText.indexOf('秒杀') >= 0) {
+          this.setData({
+            scrollable: true
+          })
+        }
       }
       this.setData({
         swiper: bannerList
       })
     })
   },
+  todaySignin() {
+    wx.showLoading({
+      title: '请稍等...'
+    })
+    setTimeout(() => {
+      this.setData({
+        showSignin: true
+      })
+      wx.hideLoading()
+    }, 300)
+  },
   closeTip() {
     this.setData({ hideTip: true })
     wx.setStorageSync('hideTip', true)
   },
-  showVip() {
-    // 修改ios支付相关规则。
-    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      if (this.data.iosIsPay) {
-        wx.navigateTo({
-          url: '/pages/vip/vip'
-        })
-      } else {
-        wx.showModal({
-          title: '友情提示',
-          content: '由于相关规范，苹果IOS暂不可用',
-          confirmText: '知道了',
-          showCancel: false
-        })
-      }
-      return
-    }
-    this.setData({ show: true })
+  jumpVip() {
+    wx.navigateTo({
+      url: '/pages/vip/vip'
+    })
   },
   swiperChange(e: any) {
     if (!this.data.swiper.length) {
@@ -228,24 +199,25 @@ Page({
     })
   },
   onRoute(e: any) {
+    console.log(e, '111')
     const {
       to,
       needLogin
     } = e.currentTarget.dataset.item
-    if (wx.getStorageSync('loginState') || !needLogin) {
-      if (to) {
-        wx.navigateTo({
-          url: to
-        })
-      } else {
-        wx.showToast({
-          title: '敬请期待...',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    } else {
+    if (!wx.getStorageSync('loginState') && needLogin) {
       eventStore.dispatch('login')
+      return 
+    }
+    if (to) {
+      wx.navigateTo({
+        url: to
+      })
+    } else {
+      wx.showToast({
+        title: '敬请期待...',
+        icon: 'none',
+        duration: 2000
+      })
     }
   },
   addGroup() {

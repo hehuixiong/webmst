@@ -27,7 +27,7 @@
       </view>
     </view>
     <view class="bug-popup-footer">
-      <van-button round size="normal" type="danger" color="linear-gradient(#6783f1, #4e6ef2)" bindtap="submit">确定</van-button>
+      <van-button round size="normal" type="danger" color="linear-gradient(#9182e4, #7e68f3)" bindtap="submit">确定</van-button>
     </view>
   </van-popup>
 </view>

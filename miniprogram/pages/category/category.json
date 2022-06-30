@@ -2,5 +2,6 @@
   "navigationBarTitleText": "全部分类",
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
+    "more-wrap": "/components/more-wrap/index"
   }
 }

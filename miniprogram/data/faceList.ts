@@ -1,30 +1,30 @@
 export const data = [
   {
-    title: '腾讯CSIG一面 校招',
-    date: '2021-09-02',
+    title: '腾讯云智一面',
+    date: '2022-05-25',
     status: 0,
     type: '腾讯'
   },
   {
-    title: '拼多多二面 校招',
-    date: '2021-08-18',
+    title: '北森云二面',
+    date: '2022-05-11',
     status: 1,
-    type: '拼多多'
+    type: '北森云'
   },
   {
-    title: '拼多多一面 校招',
-    date: '2021-08-17',
+    title: '字节商业化前端日常实习',
+    date: '2022-05-24',
     status: 1,
-    type: '拼多多'
+    type: '字节'
   },
   {
-    title: '腾讯PCG二面 校招',
-    date: '2021-07-02',
+    title: '字节-搜索方向前端一二三面',
+    date: '2022-05-19',
     status: 1,
-    type: '腾讯'
+    type: '字节'
   },
   {
-    title: '腾讯一面 实习',
+    title: '字节跳动 春招收官',
     date: '2021-06-02',
     status: 1,
     type: '腾讯'

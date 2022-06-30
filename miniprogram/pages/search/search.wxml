@@ -2,10 +2,22 @@
   <view class="search_input_box">
     <view class="search_box">
       <text class="iconfont icon-sousuo"></text>
-      <input class="search_input" focus="{{ true }}" hold-keyboard="{{ true }}" value="{{ keyword }}" data-key="keyword" bindinput="bindInput" placeholder="请输入题目关键字" placeholder-class="placeholder" confirm-type="search" bindconfirm="onSearch" bindfocus="onFocus" />
-      <van-icon class="close" wx:if="{{keyword}}" bindtap="clearInput" name="cross" />
+      <input class="search_input" focus="{{ focus }}" hold-keyboard="{{ true }}" value="{{ keyword }}" data-key="keyword" bindinput="bindInput" placeholder="请输入题目关键字" placeholder-class="placeholder" confirm-type="search" bindconfirm="onSearch" bindfocus="onFocus" />
+      <text class="bg"></text>
+      <van-icon class="close" bindtap="clearInput" wx:if="{{keyword}}" name="cross" />
     </view>
     <text class="search_btn" bindtap="onSearch">搜索</text>
+  </view>
+  <view class="search-history" wx:if="{{!searchList.length && historyData.length}}">
+    <view class="title">
+      <text>历史搜索</text>
+      <van-icon class="clear" name="delete-o" bindtap="clearHistory" />
+    </view>
+    <scroll-view scroll-x="true" class="scroll-view">
+      <view class="history-list">
+        <view wx:for="{{historyData}}" wx:key="index" class="item" bindtap="onSearch" data-keyword="{{item}}">{{item}}</view>
+      </view>
+    </scroll-view>
   </view>
   <view class="search-content" wx:if="{{searchList.length}}">
     <topic-list
@@ -17,7 +29,7 @@
     ></topic-list>
   </view>
   <view class="loading" style="margin-top: 30rpx;" wx:if="{{searchList.length === 0 && loading}}">
-    <loading color="#4e6ef2"></loading>
+    <loading color="#7e68f3"></loading>
   </view>
   <view class="no_search" wx:if="{{empty && !loading}}">
     <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220420235800.png" mode="widthFix"></image>

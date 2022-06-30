@@ -34,3 +34,21 @@ export const numFormat = (num: any) => {
   }
   return num
 }
+
+export const checkNum = function(e: any) {
+	let val = e.detail.value.replace(/(^\s*)|(\s*$)/g, "")
+	if (!val) {
+		return ''
+	}
+	var reg = /[^\d.]/g
+	// 只能是数字和小数点，不能是其他输入
+	val = val.replace(reg, "")
+	// // 保证第一位只能是数字，不能是点
+	val = val.replace(/^\./g, "");
+	// // 小数只能出现1位
+	val = val.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+	// // 小数点后面保留2位
+	val = val.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
+	console.log(val);
+	return val
+}

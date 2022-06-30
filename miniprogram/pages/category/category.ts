@@ -1,6 +1,5 @@
 // pages/category/category.ts
 import { NAV_TYPES } from '../../utils/constant'
-import { eventStore } from '../../store/index'
 const { getTopicCate } = require('../../api/index')
 Page({
 
@@ -131,17 +130,13 @@ Page({
       }
     ],
     recordsCount: {},
-    recordsObj: {},
-    topicVip: false
+    recordsObj: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    eventStore.onState('topicVip', (value: any) => {
-      this.setData({ topicVip: value })
-    })
     this.getTopicCate()
   },
 

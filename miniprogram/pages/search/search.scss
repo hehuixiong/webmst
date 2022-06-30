@@ -20,6 +20,7 @@
     .search_box{
       flex: 1;
       position: relative;
+      display: flex;
       .iconfont{
         position: absolute;
         left: 20rpx;
@@ -33,21 +34,62 @@
         transform: translateY(-50%);
         padding: 20rpx;
         color: #999999;
-        z-index: 99;
+        z-index: 99999;
       }
       .search_input{
         background: #f6f6f6;
-        border-radius: 32rpx;
+        border-radius: 32rpx 0 0 32rpx;
         height: 64rpx;
         box-sizing: border-box;
         padding-left: 60rpx;
+      }
+      .placeholder{
+        color: #cccccc!important;
       }
     }
     .search_btn{
       width: 80rpx;
       text-align: center;
       padding: 0 6rpx;
-      color: #4e6ef2;
+      color: #7e68f3;
+    }
+    input{
+      width: 92%;
+      position: static;
+    }
+    .bg{
+      width: 8%;
+      background: #f6f6f6;
+      border-radius: 0 32rpx 32rpx 0;
+    }
+  }
+  .search-history{
+    padding: 20rpx 20rpx;
+    .title{
+      font-size: 28rpx;
+      font-size: #333333;
+      display: flex;
+      justify-content: space-between;
+      .clear{
+        color: #ff0000;
+        padding: 6rpx 12rpx;
+      }
+    }
+    .scroll-view{
+      height: 42rpx;
+      margin-top: 20rpx;
+    }
+    .history-list{
+      display: flex;
+      white-space: nowrap;
+      .item{
+        padding: 4rpx 22rpx;
+        background: #f0f0f0;
+        font-size: 24rpx;
+        border-radius: 60rpx;
+        color: #333333;
+        margin-right: 20rpx;
+      }
     }
   }
   .external-topic-item{
@@ -70,7 +112,7 @@
     image{
       width: 500rpx;
       height: 300rpx;
-      margin-top: 300rpx;
+      margin-top: 260rpx;
     }
   }
 }

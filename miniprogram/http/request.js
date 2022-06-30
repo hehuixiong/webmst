@@ -15,7 +15,19 @@ module.exports = {
         success(res){
           if (res.data.code == 200) {
             resolve(res.data)
-          }else{
+          } else if (res.data.code === 402) {
+            // token失效，重新去登录
+            wx.showToast({
+              title: '登录失效，请重新登录',
+              icon:'none'
+            })
+            clearTimeout(timer)
+            const timer = setTimeout(() => {
+              wx.navigateTo({
+                url: '/pages/login/login'
+              })
+            }, 500)
+          } else {
             wx.showToast({
               title: res.data.msg,
               icon:'none'

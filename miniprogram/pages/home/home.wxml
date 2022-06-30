@@ -4,7 +4,7 @@
     title="前端面试题材"
     hideTip="{{hideTip}}"
     titLoading="{{titLoading}}"
-    background='linear-gradient(#7e68f3, #4e6ef2)'
+    background='linear-gradient(#4e6ef2, #7e68f3)'
     color="#fff"
     bind:closeTip="closeTip"
   ></nav-bar>
@@ -35,31 +35,37 @@
     </swiper>
   </view>
   <view class="home-notice">
-    <van-notice-bar left-icon="volume-o" scrollable>
+    <van-notice-bar background="#f6f6f6" color="#ed6a0c" left-icon="volume-o" scrollable="{{scrollable}}" bindtap="jumpVip">
       <text wx:if="{{isNotice}}">{{noticeText}}</text>
-      <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum}}题 <text class="iconfont icon-huomiao"></text></text>
+      <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum || '--'}}题 <text class="iconfont icon-huomiao"></text></text>
     </van-notice-bar>
   </view>
-  <view class="home-module">
-    <view class="module-wrapper bg1" bindtap="showVip">
-      <view class="title">VIP专属权益</view>
-      <view class="btn">了解详情</view>
-      <view class="icon-wrapper">
-        <view class="iconfont icon-aixin"></view>
+  <view class="home-card">
+    <view class="card card1" bindtap="jumpVip">
+      <view class="text">
+        <text class="title">VIP专属权益</text>
+        <text class="go">立即前往</text>
+      </view>
+      <view class="icon-wrap">
+        <text class="iconfont icon-vip-show"></text>
       </view>
     </view>
-    <view class="module-wrapper bg2" bindtap="addGroup" wx:if="{{showgroup}}">
-      <view class="title">面试交流群</view>
-      <view class="btn">立即加入</view>
-      <view class="icon-wrapper">
-        <view class="iconfont icon-yuandianda"></view>
+    <view class="card card2" wx:if="{{showgroup}}" bindtap="addGroup">
+      <view class="text">
+        <text class="title">免费加交流群</text>
+        <text class="go">申请加入</text>
+      </view>
+      <view class="icon-wrap">
+        <text class="iconfont icon-bug"></text>
       </view>
     </view>
-    <view class="module-wrapper bg2" bindtap="addMsjq" wx:else>
-      <view class="title">前端面试技巧</view>
-      <view class="btn">立即前往</view>
-      <view class="icon-wrapper">
-        <view class="iconfont icon-yuandianda"></view>
+    <view class="card card2" wx:else bindtap="addMsjq">
+    <view class="text">
+        <text class="title">web面试技巧</text>
+        <text class="go">查看更多</text>
+      </view>
+      <view class="icon-wrap">
+        <text class="iconfont icon-bug"></text>
       </view>
     </view>
   </view>
@@ -85,7 +91,7 @@
               </view>
               <view class="right">
                 <text class="text">{{item.label}}</text>
-                <text class="tag">共{{topicSum}}条</text>
+                <text class="tag">共{{topicSum || '--'}}条</text>
               </view>
             </view>
             <text class="icon-right-circle iconfont"></text>
@@ -96,8 +102,8 @@
                 <text class="iconfont {{item.icon}}"></text>
               </view>
               <view class="right">
-                <text class="text">{{item.label}} <text class="free" wx:if="{{(item.id === 2 || item.id === 3) && topicVip}}">(免费开放)</text></text>
-                <text class="tag">共{{item.cate_num || 0}}条</text>
+                <text class="text">{{item.label}} <text class="free" wx:if="{{item.id === 2 || item.id === 3}}">(免费开放)</text></text>
+                <text class="tag">共{{item.cate_num || '--'}}条</text>
               </view>
             </view>
             <text class="icon-right-circle iconfont"></text>
@@ -107,7 +113,7 @@
     </view>
     <view class="gongge-wrapper">
       <view class="title">
-        <text>辅助工具</text>
+        <text>辅助功能</text>
       </view>
       <view class="gongge-list">
         <block wx:for="{{assist}}" wx:key="index">
@@ -130,7 +136,9 @@
     <view class="ad" wx:if="{{!isVip}}">
       <ad-custom unit-id="adunit-4740ba525cdd081d"></ad-custom>
     </view>
+
+    <!-- 签到 -->
+    <view class="sign-in" bindtap="todaySignin"><van-icon class="edit" name="edit" />今日签到</view>
+    <sign-popup show="{{showSignin}}"></sign-popup>
   </view>
-  <!-- vip -->
-  <vip-popup safeAreaInsetBottom="{{false}}" show="{{show}}"></vip-popup>
 </view>

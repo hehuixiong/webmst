@@ -17,6 +17,7 @@
       align-items: center;
       text{
         color: #999999;
+        font-size: 28rpx;
       }
       .number{
         color: #333333;
@@ -90,20 +91,20 @@
         }
       }
       .tag{
-        border: 1px solid #4e6ef2;
+        border: 1px solid #7e68f3;
         border-radius: 8rpx;
         overflow: hidden;
         display: flex;
         align-items: center;
         height: 50rpx;
         .text{
-          color: #4e6ef2;
+          color: #7e68f3;
           text-align: center;
           padding: 0 18rpx;
           font-size: 24rpx;
         }
         .icon{
-          background: #4e6ef2;
+          background: #7e68f3;
           color: #fff;
           height: 100%;
           padding: 0 8rpx;

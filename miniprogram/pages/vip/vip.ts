@@ -1,13 +1,19 @@
 // pages/vip/vip.ts
 import { eventStore } from '../../store/index'
 const { getVipLevel, orderPay } = require('../../api/index')
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    vipList: []
+    vipList: [],
+    iosIsPay: false,
+    isIos: false,
+    userInfo: {},
+    active: 3,
+    loginState: false
   },
 
   /**
@@ -15,15 +21,18 @@ Page({
    */
   onLoad() {
     this.getVipLevel()
-  },
-  showPrivilege(e: any) {
-    const { type_name, content, desc } = e.currentTarget.dataset.item
-    wx.showModal({
-      title: type_name,
-      content: content + desc,
-      confirmText: '知道了',
-      showCancel: false
+    this.setUserInfo()
+    eventStore.onState('iosIsPay', (value: any) => {
+      this.setData({ iosIsPay: value })
     })
+    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
+      this.setData({ isIos: true })
+    }
+  },
+
+  selectVip(e: any) {
+    const { id } = e.currentTarget.dataset
+    this.setData({ active: id })
   },
 
   getVipLevel() {
@@ -31,36 +40,66 @@ Page({
       console.log(res)
       let newVipList: any = []
       res.data.map((item: any) => {
-        if (item.title === '包月会员') {
-          item.type_name = '月度VIP'
-          item.desc = '祝你面试马到功成'
+        if (item.title === '月度VIP') {
+          item.raw_price = 29
         }
-        if (item.title === '包年会员') {
-          item.type_name = '年度VIP'
-          item.desc = '祝你轻松拿到大offer'
+        if (item.title === '年度VIP') {
+          item.raw_price = 59
         }
-        if (item.title === '永久会员') {
-          item.type_name = '永久VIP'
-          item.desc = '祝你工作无忧又高薪'
+        if (item.title === '永久VIP') {
+          item.raw_price = 99
         }
-        if (item.title !== '包月会员') {
-          newVipList.unshift(item)
-        }
+        item.price = Number(item.price).toFixed(0)
+        newVipList.unshift(item)
+        console.log(item)
       })
       this.setData({ vipList: newVipList })
     })
   },
+  copyWX() {
+    wx.setClipboardData({
+      data: 'NetEngine666',
+      success: function () {
+        wx.getClipboardData({
+          //这个api是把拿到的数据放到电脑系统中的
+          success: function () {
+            wx.showToast({
+              title: '微信号已复制',
+              icon: 'none'
+            })
+          }
+        })
+      }
+    })
+  },
 
-  submitVip(e: any) {
+  setUserInfo() {
+    const loginState = wx.getStorageSync('loginState')
+    this.setData({ loginState })
+    if (loginState) {
+      eventStore.dispatch('getUserInfo')
+      eventStore.onState('userInfo', (value: any) => {
+        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name } })
+      })
+    }
+  },
+
+  onLogin() {
+    eventStore.dispatch('login', () => {
+      this.setUserInfo()
+    })
+  },
+
+  submitVip() {
     if (!wx.getStorageSync('loginState')) {
-      eventStore.dispatch('login')
+      this.onLogin()
       return
     }
     wx.showLoading({
       title: '请稍等...'
     })
-    const { id } = e.currentTarget.dataset
-    orderPay({ id }).then((res: any) => {
+    orderPay({ id: this.data.active }).then((res: any) => {
+      wx.hideLoading()
       const jsConfig = res.data
       wx.requestPayment({
         appid: jsConfig.appid,
@@ -69,13 +108,11 @@ Page({
         package: jsConfig.package,
         signType: jsConfig.signType,
         paySign: jsConfig.paySign,
-        success: function (res: any) {
-          console.log(res)
-          wx.hideLoading()
+        success: function () {
           eventStore.dispatch('getUserInfo')
           wx.showModal({
             title: '提示',
-            content: '赞赏成功，已成为VIP',
+            content: '支付成功，已成为VIP',
             confirmText: '知道了',
             showCancel: false
           })
@@ -83,7 +120,7 @@ Page({
         fail: function (e: any) {
           console.info(e)
           wx.showToast({
-            title: '赞赏失败',
+            title: '支付失败',
             icon: 'none',
             duration: 2000
           })
@@ -91,7 +128,6 @@ Page({
         },
         complete: function () {
           const timer = setTimeout(() => {
-            wx.hideLoading()
             clearTimeout(timer)
           }, 2000)
         }

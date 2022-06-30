@@ -3,12 +3,13 @@
   background: #f6f6f6;
   box-sizing: border-box;
   min-height: 100vh;
-  padding-bottom: 20rpx;
+  padding-bottom: calc(constant(safe-area-inset-bottom) + 20rpx); /*兼容 IOS<11.2*/
+  padding-bottom: calc(env(safe-area-inset-bottom) + 20rpx); /*兼容 IOS>11.2*/
   .topic-container{
     background: #fff;
     padding: 20rpx 8rpx;
     border-radius: 0 0 20rpx 20rpx;
-    box-shadow: 0 2px 12px 0 rgba($color: #4e6ef2, $alpha: .2);
+    box-shadow: 0 2px 12px 0 rgba($color: #7e68f3, $alpha: .2);
     .title{
       color: #3a3a3a;
       margin-bottom: 20rpx;
@@ -35,7 +36,7 @@
       }
     }
     .tag{
-      background: #4e6ef2;
+      background: #7e68f3;
       padding: 4rpx 12rpx;
       color: #ffffff;
       font-size: 24rpx;
@@ -44,12 +45,22 @@
       display: inline-block;
       margin-left: 10rpx;
     }
+    .show-answer{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 20rpx;
+      button{
+        width: 300rpx;
+        height: 70rpx;
+      }
+    }
   }
   .answer-container{
     background: #fff;
     padding: 0 8rpx 16rpx;
     border-radius: 20rpx;
-    box-shadow: 0 2px 12px 0 rgba($color: #4e6ef2, $alpha: .2);
+    box-shadow: 0 2px 12px 0 rgba($color: #7e68f3, $alpha: .2);
     margin-top: 20rpx;
     .title-wrapper{
       padding: 0 16rpx 0 0;
@@ -61,7 +72,7 @@
       border-bottom: 1px solid #f0f0f0;
       margin: 0 12rpx 18rpx;
       .title{
-        color: #4e6ef2;
+        color: #7e68f3;
         font-weight: bold;
         font-size: 32rpx;
         display: flex;
@@ -114,7 +125,7 @@
       margin-bottom: 20rpx;
       padding: 0 20rpx 0 0;
       .icon-bg{
-        background: rgba($color: #4e6ef2, $alpha: 0.1);
+        background: rgba($color: #7e68f3, $alpha: 0.1);
         width: 68rpx;
         height: 68rpx;
         z-index: -1;
@@ -126,7 +137,7 @@
       }
       .iconfont{
         font-size: 40rpx;
-        color: #4e6ef2;
+        color: #7e68f3;
       }
       .icon-fenxiang,
       .icon-xiayiti{
@@ -134,7 +145,7 @@
       }
       .text{
         font-size: 24rpx;
-        color: #4e6ef2;
+        color: #7e68f3;
         font-weight: bold;
         line-height: 36rpx;
       }
@@ -190,7 +201,7 @@
     list-style: none;
     font-feature-settings: "tnum","tnum";
     position: relative;
-    top: 0.2em;
+    top: 0.3em;
     display: inline-block;
     outline: none;
     cursor: pointer;
