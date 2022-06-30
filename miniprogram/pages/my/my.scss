@@ -184,8 +184,16 @@
       .item{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 100%;
         padding: 32rpx 24rpx 32rpx 32rpx;
+        position: relative;
+        .integral{
+          color: #6b3e10;
+          font-size: 28rpx;
+          position: absolute;
+          right: 70rpx;
+        }
       }
       &.cell-groip-top{
         margin-top: 0;

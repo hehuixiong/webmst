@@ -138,6 +138,7 @@
     </view>
 
     <!-- 签到 -->
-    <!-- <view class="sign-in">签到</view> -->
+    <view class="sign-in" bindtap="todaySignin"><van-icon class="edit" name="edit" />今日签到</view>
+    <sign-popup show="{{showSignin}}"></sign-popup>
   </view>
 </view>

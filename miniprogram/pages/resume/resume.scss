@@ -1,15 +1,18 @@
 .resume-container{
-  padding: 32rpx 16rpx 50rpx;
+  padding: 20rpx 10rpx 50rpx;
+  background: #f6f6f6;
   .resume-list{
     display: flex;
     flex-wrap: wrap;
     .resume-item{
-      width: calc(50% - 32rpx);
-      margin: 0 16rpx 20rpx;
+      width: calc(50% - 20rpx);
+      margin: 0 10rpx 20rpx;
       image{
         width: 100%;
-        border-radius: 12rpx;
-        border: 1px solid #e6e6e6;
+        border-radius: 20rpx;
+        border: 1px solid rgb(0 0 0 / 10%);
+        box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
+        position: relative;
       }
       .text{
         display: flex;
@@ -18,8 +21,14 @@
           padding: 20rpx 20rpx 20rpx 0;
         }
         .download{
-          color: #7e68f3;
           padding: 20rpx 0 20rpx 20rpx;
+        }
+        .btn{
+          border-radius: 60rpx;
+          background: #9383ee;
+          color: #fff;
+          font-size: 24rpx;
+          padding: 4rpx 16rpx;
         }
       }
     }

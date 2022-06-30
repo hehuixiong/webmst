@@ -3,8 +3,8 @@
     <view class="gruop-title">期待你的到来</view>
     <view class="header">
       <view class="item">
-        <image src="{{jlqewm}}" data-src="{{jlqewm}}" bindtap="showImg" show-menu-by-longpress></image>
-        <view class="text">微信群</view>
+        <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" bindtap="showImg" show-menu-by-longpress></image>
+        <view class="text">群主</view>
       </view>
       <view class="item">
         <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" bindtap="showImg" show-menu-by-longpress></image>
@@ -12,8 +12,8 @@
       </view>
     </view>
     <view class="item">
-      <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" bindtap="showImg" show-menu-by-longpress></image>
-      <view class="text">群主</view>
+      <image src="{{jlqewm}}" data-src="{{jlqewm}}" bindtap="showImg" show-menu-by-longpress></image>
+      <view class="text">微信群</view>
     </view>
     <view class="changan">关注公众号内回复666，可领学习资料一份</view>
     <view class="changan"><text class="red" style="font-weight: bold;font-size: 30rpx;">长按识别二维码</text>，如无法识别可单击二维码再长按识别，如无法入群可添加群主微信拉你入群</view>

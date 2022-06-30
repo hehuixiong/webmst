@@ -98,7 +98,8 @@ Page({
     isVip: false,
     isNotice: false,
     noticeText: '',
-    scrollable: false
+    scrollable: false,
+    showSignin: false
   },
   onLoad() {
     this.getTopicCate()
@@ -130,6 +131,17 @@ Page({
         swiper: bannerList
       })
     })
+  },
+  todaySignin() {
+    wx.showLoading({
+      title: '请稍等...'
+    })
+    setTimeout(() => {
+      this.setData({
+        showSignin: true
+      })
+      wx.hideLoading()
+    }, 300)
   },
   closeTip() {
     this.setData({ hideTip: true })

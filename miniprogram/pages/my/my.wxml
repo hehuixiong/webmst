@@ -1,7 +1,7 @@
 <view class="my-container">
   <nav-bar
     id="navBar"
-    title="我的"
+    title="个人中心"
     background='#7e68f3'
     color="#fff"
   ></nav-bar>
@@ -13,7 +13,7 @@
         </view>
         <view class="userinfo-info" bindtap="onLogin">
           <view class="nickname"><text>点我快捷登录</text></view>
-          <view class="desc">努力刷题面试 争取拿到好offer</view>
+          <view class="desc">努力刷题面试 争取拿到大offer</view>
           <view class="number no-tag">未登录</view>
         </view>
       </block>
@@ -27,7 +27,7 @@
             <text class="name">{{userInfo.nickName}}</text>
             <text bindtap="showVipDate" wx:if="{{isVip}}" class="tag">{{ vipType === 1 ? '月度' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : '' }}VIP</text>
           </view>
-          <view class="desc">努力刷题面试 争取拿到好offer</view>
+          <view class="desc">努力刷题面试 争取拿到大offer</view>
           <view class="number" catchtap="copyUID" data-uid="{{userInfo.timeStamp}}">用户ID：{{userInfo.timeStamp}}</view>
         </view>
       </block>
@@ -46,15 +46,16 @@
       </view>
     </view>
     <view class="cell-groip cell-groip-top">
-      <!-- <button>
+      <button>
         <view class="item" hover-class="navigator-hover" bindtap="onIntegral">
           <view class="text-icon">
             <text class="iconfont"></text>
             <text class="text">积分管理</text>
           </view>
+          <view class="integral">剩余：3</view>
           <view class="is-link"><van-icon name="arrow" /></view>
         </view>
-      </button> -->
+      </button>
       <button>
         <view class="item" hover-class="navigator-hover" bindtap="onRoute">
           <view class="text-icon">

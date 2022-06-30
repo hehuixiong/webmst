@@ -1,11 +1,12 @@
 {
-  "navigationBarTitleText": "前端面试题材",
   "backgroundColor": "#f6f6f6",
   "navigationStyle":"custom",
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "van-notice-bar": "@vant/weapp/notice-bar/index",
-    "nav-bar": "/components/nav-bar/index"
+    "nav-bar": "/components/nav-bar/index",
+    "sign-popup": "/components/sign-popup/index",
+    "van-icon": "@vant/weapp/icon/index"
   }
 }

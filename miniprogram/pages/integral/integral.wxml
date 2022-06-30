@@ -1,2 +1,32 @@
-<!--pages/integral/integral.wxml-->
-<text>pages/integral/integral.wxml</text>
+<view class="integral-rules">
+  <view class="rules-list">
+    <view class="rules-item">
+      <view class="title">• 积分的扣减规则</view>
+      <view class="content">每查询一道题目答案,会消耗1积分</view>
+    </view>
+    <view class="rules-item">
+      <view class="title">• 每日签到送积分</view>
+      <view class="content">每日签到一次,获取3积分,当天只能签到一次</view>
+    </view>
+    <view class="rules-item">
+      <view class="title">• 兑换码送积分</view>
+      <view class="content">扫下方二维码回复888,获取兑换码,兑换6积分</view>
+    </view>
+    <view class="rules-item">
+      <view class="title">• VIP专属权益</view>
+      <view class="content">全部功能可以,无积分限制,无广告刷题,免费简历指导</view>
+    </view>
+  </view>
+  <view class="conversion">
+    <view class="dhm">
+      <text>兑换码：</text>
+      <input type="text" value="{{value}}" placeholder="请输入兑换码" />
+    </view>
+    <button size="mini" type="primary">立即兑换</button>
+  </view>
+  <view class="official-account">
+    <view class="text">长按识别二维码</view>
+    <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" bindtap="showImg" show-menu-by-longpress></image>
+    <view class="text red">扫码回复【888】获取兑换码</view>
+  </view>
+</view>

@@ -115,6 +115,10 @@ Page({
   },
 
   download(e: any) {
+    if (!wx.getStorageSync('loginState')) {
+      eventStore.dispatch('login')
+      return 
+    }
     let { download } = e.currentTarget.dataset
     if (!this.data.isVip) {
       wx.showModal({
