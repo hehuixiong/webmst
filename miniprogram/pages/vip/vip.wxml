@@ -31,7 +31,8 @@
   <view class="vip-no-pay" wx:else>
     <view class="vip-hint">
       <view class="text" bindtap="copyWX">微信：{{configInfo.weixin}}</view>
-      <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" bindtap="showImg" show-menu-by-longpress></image>
+      <image wx:if="{{!showgroup}}" src="{{configInfo.guanzhu}}" data-src="{{configInfo.guanzhu}}" bindtap="showImg" show-menu-by-longpress></image>
+      <image wx:else src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" bindtap="showImg" show-menu-by-longpress></image>
       <view class="text">长按添加管理员微信</view>
       <view class="hint">【温馨提示】由于平台相关规则，苹果iOS手机用户<view style="white-space:pre-wrap"> </view>不支持在线支付，安卓手机用户不受影响</view>
     </view>
