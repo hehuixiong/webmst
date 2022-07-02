@@ -8,7 +8,8 @@ Page({
     year: null,
     isVip: false,
     vipType: 0,
-    rewardShow: false
+    rewardShow: false,
+    integral: 0
   },
   onLoad() {
     this.setUserInfo()
@@ -37,8 +38,10 @@ Page({
         }
         this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(5, 15) : '' } })
       })
+      eventStore.onState('integral', (value: any) => {
+        this.setData({ integral: value })
+      })
     }
-    console.log('setUserInfo')
   },
   showVipDate() {
     const { vipType } = this.data
@@ -110,7 +113,7 @@ Page({
   AboutUs() {
     wx.showModal({
       title: '提示',
-      content: '哈喽！感谢你对小程序的支持，我们将会做的更好，分享更多有价值的面试题材，祝你早日拿offer',
+      content: '哈喽！感谢你对小程序的支持，我们将会做的更好，分享更多有价值的面试题材，祝你早日拿大offer',
       confirmText: '知道了',
       showCancel: false,
       success (res) {

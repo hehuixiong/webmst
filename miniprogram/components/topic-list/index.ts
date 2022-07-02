@@ -25,7 +25,7 @@ Component({
       type: String,
       value: ''
     },
-    is_collect: {
+    collectPage: {
       type: Number,
       value: 0
     }
@@ -35,16 +35,17 @@ Component({
    * 组件的初始数据
    */
   data: {
-    showgroup: false,
-    isVip: false
+    isVip: false,
+    vipShow: false,
+    integral: 0
   },
 
   attached() {
-    eventStore.onState('showgroup', (value: any) => {
-      this.setData({ showgroup: value })
-    })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
+    })
+    eventStore.onState('integral', (value: any) => {
+      this.setData({ integral: value })
     })
   },
 
@@ -60,9 +61,13 @@ Component({
         eventStore.dispatch('login')
         return
       }
+      if (!this.data.isVip && +this.data.integral <= 0) {
+        this.setData({ vipShow: true })
+        return
+      }
       const { id } = e.currentTarget.dataset.item
       wx.navigateTo({
-        url: `/pages/topic-res/topic-res?id=${id}&search=${this.data.search}&is_collect=${this.data.is_collect}`
+        url: `/pages/topic-res/topic-res?id=${id}&search=${this.data.search}&collectPage=${this.data.collectPage}`
       })
     }
   }

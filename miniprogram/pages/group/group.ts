@@ -1,5 +1,3 @@
-// pages/group/group.ts
-const { getAdImage } = require('../../api/index')
 import { eventStore } from '../../store/index'
 Page({
 
@@ -7,29 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isVip: false,
-    jlqewm: ''
+    configInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getAdImage()
-    eventStore.onState('isVip', (value: any) => {
-      this.setData({ isVip: value })
-    })
-  },
-
-  getAdImage() {
-    getAdImage().then((res: any) => {
-      const jlqewm = res.data.filter((item: any) => (item.title === '前端面试交流2群'))
-      console.log(jlqewm)
-      if (jlqewm.length) {
-        this.setData({
-          jlqewm: jlqewm[0].thumb
-        })
-      }
+    eventStore.onState('configInfo', (value: any) => {
+      this.setData({ configInfo: value })
     })
   },
 

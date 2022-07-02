@@ -3,16 +3,16 @@
     <view class="gruop-title">期待你的到来</view>
     <view class="header">
       <view class="item">
-        <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220503122901.png" bindtap="showImg" show-menu-by-longpress></image>
+        <image src="{{configInfo.guanzhu}}" data-src="{{configInfo.guanzhu}}" bindtap="showImg" show-menu-by-longpress></image>
         <view class="text">群主</view>
       </view>
       <view class="item">
-        <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" bindtap="showImg" show-menu-by-longpress></image>
+        <image src="{{configInfo.gzh_img}}" data-src="{{configInfo.gzh_img}}" bindtap="showImg" show-menu-by-longpress></image>
         <view class="text">公众号</view>
       </view>
     </view>
     <view class="item">
-      <image src="{{jlqewm}}" data-src="{{jlqewm}}" bindtap="showImg" show-menu-by-longpress></image>
+      <image src="{{configInfo.jlq_img}}" data-src="{{configInfo.jlq_img}}" bindtap="showImg" show-menu-by-longpress></image>
       <view class="text">微信群</view>
     </view>
     <view class="changan">关注公众号内回复666，可领学习资料一份</view>

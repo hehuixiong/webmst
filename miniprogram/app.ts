@@ -8,7 +8,7 @@ App<IAppOption>({
     checkUpdateVersion()
   },
   async onShow() {
-    await eventStore.dispatch('getTopicCate')
+    await eventStore.dispatch('getConfig')
     await eventStore.dispatch('getUserInfo')
   }
 })

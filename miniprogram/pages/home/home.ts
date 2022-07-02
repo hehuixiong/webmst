@@ -1,5 +1,6 @@
 // home.ts
-const { getTopicCate, getAdImage } = require('../../api/index')
+const { getTopicCate, getAdImage, qiandao } = require('../../api/index')
+const app = getApp()
 import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
 Page({
@@ -99,7 +100,9 @@ Page({
     isNotice: false,
     noticeText: '',
     scrollable: false,
-    showSignin: false
+    showSignin: false,
+    isSign: false,
+    configInfo: {}
   },
   onLoad() {
     this.getTopicCate()
@@ -110,6 +113,13 @@ Page({
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })
+    eventStore.onState('isSign', (value: any) => {
+      this.setData({ isSign: value })
+    })
+    eventStore.onState('configInfo', (value: any) => {
+      this.setData({ configInfo: value })
+    })
+    eventStore.dispatch('setIsIos', app.globalSystemInfo && app.globalSystemInfo.ios)
   },
   getAdImage() {
     getAdImage().then((res: any) => {
@@ -133,15 +143,32 @@ Page({
     })
   },
   todaySignin() {
+    if (!wx.getStorageSync('loginState')) {
+      eventStore.dispatch('login')
+      return 
+    }
+    // 是否已签到
+    if (this.data.isSign) {
+      wx.showToast({
+        title: '今日已经签到，不能重复获取积分',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     wx.showLoading({
       title: '请稍等...'
     })
-    setTimeout(() => {
-      this.setData({
-        showSignin: true
-      })
-      wx.hideLoading()
-    }, 300)
+    qiandao().then((res: any) => {
+      if (res.code === 200) {
+        this.setData({
+          showSignin: true
+        })
+        eventStore.dispatch('getUserInfo')
+        wx.hideLoading()
+        return
+      }
+    })
   },
   closeTip() {
     this.setData({ hideTip: true })

@@ -13,11 +13,11 @@
           <view class="integral-icon">
             <van-icon class="star" name="star" />
           </view>
-          <view class="integral-number"><van-icon class="plus" name="plus" />2</view>
+          <view class="integral-number"><van-icon class="plus" name="plus" />{{jifen}}</view>
         </view>
       </view>
     </view>
-    <view class="sign-button" bindtap="close">明日签到可继续获得积分哦</view>
+    <view class="sign-button" bindtap="close">明日签到可继续获得积分</view>
     <view class="sign-close" bindtap="close">
       <van-icon class="cross" name="cross" />
     </view>

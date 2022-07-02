@@ -28,7 +28,7 @@
             <text bindtap="showVipDate" wx:if="{{isVip}}" class="tag">{{ vipType === 1 ? '月度' : vipType === 2 ? '年度' : vipType === 3 ? '永久' : '' }}VIP</text>
           </view>
           <view class="desc">努力刷题面试 争取拿到大offer</view>
-          <view class="number" catchtap="copyUID" data-uid="{{userInfo.timeStamp}}">用户ID：{{userInfo.timeStamp}}</view>
+          <view class="number" catchtap="copyUID" data-uid="{{userInfo.timeStamp}}">用户ID：{{userInfo.timeStamp}}<van-icon class="column" name="column" /></view>
         </view>
       </block>
     </view>
@@ -52,7 +52,7 @@
             <text class="iconfont"></text>
             <text class="text">积分管理</text>
           </view>
-          <view class="integral">剩余：3</view>
+          <view class="integral">剩余：{{integral}}</view>
           <view class="is-link"><van-icon name="arrow" /></view>
         </view>
       </button>

@@ -1,56 +1,49 @@
 const { HYEventStore } = require('hy-event-store')
-const { getTopicCate, getUserInfo } = require('../api/index')
+const { getConfig, getUserInfo } = require('../api/index')
 const { login } = require('../api/index')
 import { handleTime } from '../utils/util'
 
 const eventStore = new HYEventStore({
   state: {
-    // 控制交流群展示（用于提审）
-    showgroup: wx.getStorageSync('showgroup') || false,
-    // 控制是否开通vip才能访问题材（html，css免费开放）
-    topicVip: wx.getStorageSync('topicVip') || false,
-    // 控制ios是否可以支付（）
-    iosIsPay: wx.getStorageSync('iosIsPay') || false,
-    // 是否vip用户
-    isVip: wx.getStorageSync('isVip') || false,
     // 用户信息
     userInfo: wx.getStorageSync('userInfo') || {},
+    // 配置信息
+    configInfo: wx.getStorageSync('configInfo') || {},
+    // 当前积分
+    integral: 0,
+    // 控制交流群展示（用于提审）
+    showgroup: false,
+    // 控制是否开通vip才能访问题材（html，css免费开放）
+    topicVip: false,
+    // 控制ios是否可以支付（）
+    iosIsPay: false,
+    // 是否vip用户
+    isVip: false,
     // 是否新用户
-    isNewUser: wx.getStorageSync('isNewUser') || false
+    isNewUser: false,
+    // 是否ios设备
+    isIos: null,
+    // 是否已签到
+    isSign: false
   },
   actions: {
-    async getTopicCate(ctx: any) {
-      ctx.showgroup = false
-      ctx.topicVip = false
-      ctx.iosIsPay = false
-      wx.setStorageSync('showgroup', false)
-      wx.setStorageSync('topicVip', false)
-      wx.setStorageSync('iosIsPay', false)
-      await getTopicCate().then((res: any) => {
-        for (let i = 0; i < res.data.length; i++) {
-          if (res.data[i].name === 'showgroup') {
-            ctx.showgroup = true
-            wx.setStorageSync('showgroup', true)
-          }
-          if (res.data[i].name === 'topicVip') {
-            ctx.topicVip = true
-            wx.setStorageSync('topicVip', true)
-          }
-          if (res.data[i].name === 'iosIsPay') {
-            ctx.iosIsPay = true
-            wx.setStorageSync('iosIsPay', true)
-          }
-        }
+    async getConfig(ctx: any) {
+      await getConfig().then((res: any) => {
+        ctx.showgroup = res.data.jlq_open.toString() === '1'
+        // ctx.topicVip = res.data.vip_open.toString() === '1'
+        // ctx.iosIsPay = res.ios_open.toString() === '1'
+        ctx.configInfo = res.data
+        wx.setStorageSync('configInfo', res.data)
       })
     },
     async getUserInfo(ctx: any) {
-      ctx.isNewUser = false
-      wx.setStorageSync('isNewUser', false)
       if (wx.getStorageSync('loginState')) {
         await getUserInfo().then((res: any) => {
+          console.log(res, '用户信息')
           ctx.isVip = res.data.vip_time !== ''
+          ctx.isSign = Boolean(res.data.is_sign)
+          ctx.integral = res.data.jifen
           ctx.userInfo = res.data
-          wx.setStorageSync('isVip', ctx.isVip)
           wx.setStorageSync('userInfo', res.data)
           // 判断是否新用户
           const create_time = handleTime(res.data.create_time)
@@ -61,11 +54,16 @@ const eventStore = new HYEventStore({
           let yearMonthDay = yyyy + '-' + mm + '-' + dd
           const isNewUser = create_time.toString() === yearMonthDay.toString()
           ctx.isNewUser = isNewUser
-          wx.setStorageSync('isNewUser', isNewUser)
         })
       } else {
         console.log('未登录')
       }
+    },
+    setIsIos(ctx: any, isIos: any) {
+      ctx.isIos = isIos
+    },
+    setJifenReduce(ctx: any) {
+      ctx.integral--
     },
     login(ctx: any, callback: any) {
       console.log(ctx)
@@ -80,7 +78,8 @@ const eventStore = new HYEventStore({
                 title: '登录中...'
               })
               login(Object.assign({
-                code: code
+                code: code,
+                isIos: ctx.isIos ? 1 : 0
               }, user)).then((res: any) => {
                 wx.setStorageSync('token', res.data.token)
                 wx.setStorageSync('loginState', true)

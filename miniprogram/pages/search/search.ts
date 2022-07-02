@@ -1,5 +1,5 @@
 // pages/search/search.ts
-const { getTopicList } = require('../../api/index')
+const { getTopicList, getSearchs, clearSearch } = require('../../api/index')
 import { handleTime } from '../../utils/util'
 Page({
 
@@ -27,10 +27,12 @@ Page({
   },
 
   getHistory() {
-    const storageHistory = wx.getStorageSync('historyArr') || []
-    const historyData: any = this.overturnArray(storageHistory)
-    this.setData({
-      historyData: historyData
+    getSearchs().then((res: any) => {
+      if (res) {
+        this.setData({
+          historyData: res.data
+        })
+      }
     })
   },
 
@@ -56,30 +58,8 @@ Page({
         pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,
         noMore: this.data.searchList.length === res.data.pageTotal
       })
-      this.addHistoryRecord(this.data.keyword)
+      this.getHistory()
     })
-  },
-
-  addHistoryRecord(keyword: any) {
-    const max = 10
-    const storageHistory = wx.getStorageSync('historyArr')
-    console.log(storageHistory)
-    let tempArr = []
-    tempArr.push(keyword)
-    let resultArr = [...new Set([...storageHistory, ...tempArr])]
-    if (resultArr.length > max) {
-      resultArr.splice(0, 1)
-    }
-    wx.setStorageSync('historyArr', resultArr)
-    this.getHistory()
-  },
-
-  overturnArray(arr: any) {
-    var result = []
-    for (var i = arr.length - 1; i >=  0; i--) {
-      result[result.length] = arr[i]
-    }
-    return result
   },
 
   onSearch(e: any) {
@@ -119,9 +99,10 @@ Page({
   },
 
   clearHistory() {
-    wx.removeStorageSync('historyArr')
-    this.getHistory()
-    this.clearInput()
+    clearSearch().then(() => {
+      this.getHistory()
+      this.clearInput()
+    })
   },
 
   onFocus() {},

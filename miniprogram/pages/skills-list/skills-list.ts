@@ -10,7 +10,9 @@ Page({
     skillsList: [],
     totalPage: 0,
     pageSize: 16,
-    page: 1
+    page: 1,
+    isVip: false,
+    vipShow: false
   },
 
   /**
@@ -27,12 +29,19 @@ Page({
     this.setData({
       totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
     })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
+    })
     this.setCurrentPageData()
   },
 
   goSkip(e: any) {
     if (!wx.getStorageSync('loginState')) {
       eventStore.dispatch('login')
+      return
+    }
+    if (!this.data.isVip) {
+      this.setData({ vipShow: true })
       return
     }
     const { id, index, title } = e.currentTarget.dataset

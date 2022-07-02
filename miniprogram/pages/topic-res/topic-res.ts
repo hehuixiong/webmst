@@ -1,6 +1,6 @@
 const app = getApp()
 import { handleTime } from '../../utils/util'
-const { getTopicInfo, getCollectInfo, addCollect } = require('../../api/index')
+const { getTopicInfo, getCollectInfo, addCollect, deductIntegral } = require('../../api/index')
 // import { setWatcher } from '../../utils/watch'
 import { eventStore } from '../../store/index'
 const title = '大厂前端面试题，悄悄分享给你！'
@@ -24,29 +24,28 @@ Page({
     currentTitle: title,
     self: false,
     showBug: false,
-    showgroup: false,
     isVip: false,
-    is_collect: 0,
+    collectPage: 0,
     search: '',
     isChoice: false,
     showAnswer: false,
-    isNewUser: false
+    isNewUser: false,
+    is_collect: 0,
+    integral: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ id, is_collect, search }: any) {
+  onLoad({ id, collectPage, search }: any) {
     // setWatcher(this)
-    eventStore.onState('showgroup', (value: any) => {
-      this.setData({ showgroup: value })
-    })
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })
     eventStore.onState('isNewUser', (value: any) => {
       this.setData({ isNewUser: value })
     })
-    this.setData({ id, is_collect, search }, () => this.getTopicInfo())
+    this.setData({ id: Number(id), collectPage, search }, () => this.getTopicInfo())
+    this.setIntegral()
   },
 
   /**
@@ -86,10 +85,32 @@ Page({
   //     this.setCurrentTopic(newIndex)
   //   }
   // },
+  setIntegral() {
+    eventStore.onState('integral', (value: any) => {
+      this.setData({ integral: value })
+    })
+  },
   getTopicInfo() {
     this.setData({ loading: true })
+
+    // 无积分或非vip不能查看题目
+    if (+this.data.integral <= 0 && !this.data.isVip) {
+      wx.showToast({
+        title: '积分已消耗完毕，开通VIP全部功能可用',
+        icon: 'none',
+        duration: 2000
+      })
+      const timer = setTimeout(() => {
+        wx.navigateBack({
+          delta: 1
+        })
+        clearTimeout(timer)
+      }, 2000)
+      return
+    }
+
     const params: any = { id: this.data.id }
-    if (+this.data.is_collect === 1) {
+    if (+this.data.collectPage === 1) {
       // 收藏
       getCollectInfo(params).then((res: any) => {
         this.setTopicInfo(res)
@@ -155,19 +176,27 @@ Page({
       topicIndex: res.data.now_num,
       isChoice: res.data.cate_name === 'choice',
       showAnswer: res.data.cate_name !== 'choice',
+      is_collect: res.data.is_collect,
       loading: false
-    })
-    // 设置可查看权限（html，css 分类）
-    eventStore.onState('topicVip', (value: any) => {
-      const permissions = [2, 3].includes(res.data.cate_id) || (!value && (app.globalSystemInfo && app.globalSystemInfo.ios))
-      console.log(this.data.isNewUser)
-      console.log(permissions)
-      this.setData({
-        permissions: permissions,
-      })
     })
     this.setCurrentTopic()
     this.practiceRecords(res.data.cate_name, this.data.id)
+
+    // 扣除积分
+    this.deductIntegral()
+  },
+  deductIntegral() {
+    if (!this.data.isVip) {
+      deductIntegral({
+        jifen: 1,
+        id: this.data.id
+      }).then(((res: any) => {
+        if (res.code === 200) {
+          eventStore.dispatch('setJifenReduce')
+          this.setIntegral()
+        }
+      }))
+    }
   },
 
   onShowAnswer() {
@@ -208,7 +237,10 @@ Page({
     }).then((res: any) => {
       console.log(res)
       wx.showToast({
-        title: res.msg
+        title: this.data.is_collect ? '取消收藏' : '收藏成功'
+      })
+      this.setData({
+        is_collect: this.data.is_collect ? 0 : 1
       })
     })
   },

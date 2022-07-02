@@ -1,7 +1,7 @@
 <view class="topic-res">
   <view class="topic-res-container" wx:if="{{!loading}}">
     <!-- 广告位 -->
-    <ad wx:if="{{!loading && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad>
+    <!-- <ad wx:if="{{!loading && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad> -->
     <view class="topic-container">
       <view class="title">第{{topicIndex}}题：{{title}}</view>
       <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{topic}}" />
@@ -20,41 +20,39 @@
         <van-button color="#7e68f3" round type="primary" bindtap="onShowAnswer">查看答案</van-button>
       </view>
     </view>
-    <permissions-view permissions="{{permissions}}">
-      <view class="answer-container" wx:if="{{showAnswer}}">
-        <view class="title-wrapper">
-          <view class="title"><text class="iconfont icon-yulanxinxi"></text> 答案解析</view>
-          <view class="bug" bindtap="onBug"><text class="iconfont icon-bug"></text> 纠错</view>
-        </view>
-        <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
-        <view wx:else class="zhengli">正在整理中...</view>
+    <view class="answer-container" wx:if="{{showAnswer}}">
+      <view class="title-wrapper">
+        <view class="title"><text class="iconfont icon-yulanxinxi"></text> 答案解析</view>
+        <view class="bug" bindtap="onBug"><text class="iconfont icon-bug"></text> 纠错</view>
       </view>
-      <view class="sidebar">
-        <view class="sidebar-item" bindtap="addCollect">
-          <text class="icon-bg">
-            <text class="iconfont icon-shoucang"></text>
-          </text>
-          <text class="text">收藏</text>
-        </view>
-        <button class="sidebar-item" open-type="share" data-title="第{{topicIndex + 1}}题：{{title}}" bindtap="onShare">
-          <text class="icon-bg">
-            <text class="iconfont icon-fenxiang"></text>
-          </text>
-          <text class="text">分享</text>
-        </button>
-        <view class="sidebar-item" bindtap="nextQuestion">
-          <text class="icon-bg">
-            <text class="iconfont icon-xiayiti"></text>
-          </text>
-          <text class="text">下题</text>
-        </view>
+      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
+      <view wx:else class="zhengli">正在整理中...</view>
+    </view>
+    <view class="sidebar">
+      <view class="sidebar-item {{is_collect ? 'is-active': ''}}" bindtap="addCollect">
+        <text class="icon-bg">
+          <text class="iconfont icon-shoucang"></text>
+        </text>
+        <text class="text">{{ is_collect ? '取消' : '收藏' }}</text>
       </view>
-    </permissions-view>
+      <button class="sidebar-item" open-type="share" data-title="第{{topicIndex + 1}}题：{{title}}" bindtap="onShare">
+        <text class="icon-bg">
+          <text class="iconfont icon-fenxiang"></text>
+        </text>
+        <text class="text">分享</text>
+      </button>
+      <view class="sidebar-item" bindtap="nextQuestion">
+        <text class="icon-bg">
+          <text class="iconfont icon-xiayiti"></text>
+        </text>
+        <text class="text">下题</text>
+      </view>
+    </view>
   </view>
   <view class="loading" wx:else>
     <loading color="#7e68f3"></loading><text>加载中...</text>
   </view>
 
   <!-- 题目纠错 -->
-  <bug-popup show="{{showBug}}"></bug-popup>
+  <bug-popup show="{{showBug}}" topicId="{{id}}"></bug-popup>
 </view>

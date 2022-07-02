@@ -9,7 +9,7 @@
         <view class="userinfo-info">
           <view wx:if="{{loginState}}" class="nickname"><text>{{userInfo.nickName}}</text></view>
           <view bindtap="onLogin" wx:else class="nickname">点我快捷登录</view>
-          <view class="desc">开通VIP会员 全部功能可用</view>
+          <view class="desc">开通专属VIP 全部功能可用</view>
         </view>
       </view>
     </view>
@@ -30,10 +30,10 @@
   </view>
   <view class="vip-no-pay" wx:else>
     <view class="vip-hint">
-      <view class="text" bindtap="copyWX">微信：NetEngine666</view>
+      <view class="text" bindtap="copyWX">微信：{{configInfo.weixin}}</view>
       <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" bindtap="showImg" show-menu-by-longpress></image>
       <view class="text">长按添加管理员微信</view>
-      <view class="hint">【温馨提示】由于平台相关规则，苹果IOS手机用户<view style="white-space:pre-wrap"> </view>不支持在线支付，安卓手机用户不受影响</view>
+      <view class="hint">【温馨提示】由于平台相关规则，苹果iOS手机用户<view style="white-space:pre-wrap"> </view>不支持在线支付，安卓手机用户不受影响</view>
     </view>
   </view>
 </view>

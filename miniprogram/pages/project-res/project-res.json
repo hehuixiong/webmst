@@ -2,7 +2,6 @@
   "navigationBarTitleText": "项目经验",
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
-    "permissions-view": "/components/permissions-view/index",
     "htmltowxml": "plugin://htmltowxml/view",
     "loading": "/components/loading/index"
   }

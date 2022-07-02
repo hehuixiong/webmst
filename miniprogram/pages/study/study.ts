@@ -239,7 +239,6 @@ Page({
     page: 1,
     totalPage: 0,
     pageSize: 16,
-    showgroup: false,
     isVip: false,
     ad: {
       title: '',
@@ -253,20 +252,15 @@ Page({
    */
   onLoad() {
     const studyList: any = list
-    eventStore.onState('showgroup', (value: any) => {
-      this.setData({
-        studyList: studyList,
-        showgroup: value
-      })
-      this.setData({
-        totalPage: Math.ceil(this.data.studyList.length / this.data.pageSize)
-      })
-      this.setData({
-        totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
-      })
-      this.setCurrentPageData()
-      this.showRewardedVideoAd()
+    this.setData({
+      totalPage: Math.ceil(this.data.studyList.length / this.data.pageSize),
+      studyList: studyList
     })
+    this.setData({
+      totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
+    })
+    this.setCurrentPageData()
+    this.showRewardedVideoAd()
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
     })

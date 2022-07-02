@@ -1,3 +1,4 @@
+<wxs src="../../utils/utils.wxs" module="utils" />
 <view class="topic-list">
   <block wx:for="{{data}}" wx:key="index">
     <view class="topic-item my-class {{index % 14 === 0 ? 'is-active' : ''}}" hover-class="navigator-hover" bindtap="handleJump" data-item="{{item}}">
@@ -12,10 +13,10 @@
           <text>难度：</text>
           <van-rate size="14px" readonly value="{{ item.level }}" />
         </view>
-        <view class="time">
-          <!-- <text class="iconfont icon-yulan"></text>10.0k <text class="iconfont icon-shou"></text>33  -->
-          更新时间：
-          <text>{{item.create_time}}</text>
+        <view class="record {{item.is_collect ? 'is-active': ''}}">
+          <van-icon class="eye" name="eye" /><text>{{utils.numFormat(item.read_num)}}</text>
+          <van-icon class="like" name="like" /><text class="num">{{utils.numFormat(item.collect_use_num
+)}}</text>
         </view>
       </view>
       <view class="ad" wx:if="{{index % 14 === 0 && !isVip}}">
@@ -24,4 +25,5 @@
     </view>
   </block>
   <more-wrap loading="{{loading}}" noMore="{{noMore}}"></more-wrap>
+  <vip-popup show="{{vipShow}}"></vip-popup>
 </view>

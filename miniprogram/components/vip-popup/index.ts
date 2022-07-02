@@ -1,4 +1,3 @@
-// components/sign-popup/index.ts
 Component({
   /**
    * 组件的属性列表
@@ -7,8 +6,13 @@ Component({
     show: {
       type: Boolean
     },
-    jifen: {
-      type: String
+    title: {
+      type: String,
+      value: '积分消耗完毕'
+    },
+    desc: {
+      type: String,
+      value: '升级VIP无积分限制，全部功能可用'
     }
   },
 
@@ -26,6 +30,11 @@ Component({
     close() {
       this.setData({
         show: false
+      })
+    },
+    jumpVip() {
+      wx.navigateTo({
+        url: '/pages/vip/vip'
       })
     }
   }

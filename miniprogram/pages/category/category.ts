@@ -51,6 +51,12 @@ Page({
         id: null
       },
       {
+        icon: 'icon-css',
+        label: '微信小程序',
+        type: NAV_TYPES.miniprogram,
+        id: null
+      },
+      {
         icon: 'icon-nodejs',
         label: 'Node.js',
         type: NAV_TYPES.nodeJs,
@@ -143,9 +149,6 @@ Page({
   getTopicCate() {
     getTopicCate().then((res: any) => {
       for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i].name === 'showgroup') {
-          this.setData({ showgroup: true })
-        }
         for (let j = 0; j < this.data.category.length; j++) {
           if (res.data[i].name === this.data.category[j].type) {
             this.setData({
