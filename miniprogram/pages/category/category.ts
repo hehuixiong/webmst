@@ -147,6 +147,7 @@ Page({
 
   setUserInfo() {
     if (wx.getStorageSync('loginState')) {
+      eventStore.dispatch('getUserInfo')
       eventStore.onState('userInfo', (value: any) => {
         this.setData({ userInfo: value })
       })
@@ -160,7 +161,8 @@ Page({
           if (res.data[i].name === this.data.category[j].type) {
             this.setData({
               [`category[${j}].id`]: res.data[i].id,
-              [`category[${j}].cate_num`]: res.data[i].cate_num
+              [`category[${j}].cate_num`]: res.data[i].cate_num,
+              [`category[${j}].has_cate_num`]: res.data[i].has_cate_num
             })
           }
         }

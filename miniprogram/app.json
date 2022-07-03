@@ -20,7 +20,8 @@
     "pages/introduce/introduce",
     "pages/login/login",
     "pages/integral/integral",
-    "pages/resume/resume"
+    "pages/resume/resume",
+    "pages/poster/poster"
   ],
   "window": {
     "backgroundTextStyle": "light",

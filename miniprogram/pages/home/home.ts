@@ -112,7 +112,9 @@ Page({
       this.setData({ showgroup: value })
     })
     eventStore.onState('isVip', (value: any) => {
-      this.setData({ isVip: value })
+      if (value !== null) {
+        this.setData({ isVip: value, showSignBtn: !value })
+      }
     })
     eventStore.onState('isSign', (value: any) => {
       this.setData({ isSign: value })
@@ -211,8 +213,7 @@ Page({
         topicSum: topicSum,
         currentTime: `${yyyy}/${mm}/${dd}`,
         hideTip: hideTip,
-        titLoading: false,
-        showSignBtn: true
+        titLoading: false
       })
     })
   },

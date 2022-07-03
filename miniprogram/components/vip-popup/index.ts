@@ -12,7 +12,7 @@ Component({
     },
     desc: {
       type: String,
-      value: '升级VIP无积分限制，全部功能可用'
+      value: '开通VIP无积分限制，全部功能可用'
     }
   },
 

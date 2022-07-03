@@ -18,7 +18,7 @@ const eventStore = new HYEventStore({
     // 控制ios是否可以支付（）
     iosIsPay: false,
     // 是否vip用户
-    isVip: false,
+    isVip: null,
     // 是否新用户
     isNewUser: false,
     // 是否ios设备

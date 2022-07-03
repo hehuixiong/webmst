@@ -1,0 +1,44 @@
+<view class="poster-container">
+ <view class="banner">
+    <image mode="widthFix" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220703125400.png"></image>
+  </view>
+  <view class="button" data-img="https://s-gz-2804-hero-image.oss.dogecdn.com/20220703125400.png" bindtap="bindImage">生成海报，分享好友赚佣金</view>
+  <view class="title">我的收益，会员分成20%</view>
+  <view class="list">
+    <view class="item">
+      <view class="iconfont icon-yongjin"></view>
+      <view class="label">
+        <view class="tit">我的佣金</view>
+        <view class="num">0元</view>
+      </view>
+    </view>
+    <view class="item">
+      <view class="iconfont icon-dayonghu"></view>
+      <view class="label">
+        <view class="tit">我的推广</view>
+        <view class="num"><text>0人</text> <van-icon name="arrow" /></view>
+      </view>
+    </view>
+    <view class="item">
+      <view class="iconfont icon-xinzimingxi"></view>
+      <view class="label">
+        <view class="tit">交易明细</view>
+        <view class="num">0笔</view>
+      </view>
+    </view>
+  </view>
+  <view class="title">收益明细</view>
+  <view class="profit-list">
+    <view class="profit-item" wx:for="{{10}}" wx:key="index">
+      <view class="left">
+        <image mode="widthFix" src="/images/vip.png"></image>
+        <text>模拟**</text>
+        <text>永久VIP</text>
+      </view>
+      <view class="right">
+        <text>时间：2022/05/29 20:00:00</text>
+      </view>
+    </view>
+  </view>
+  <more-wrap loading="{{false}}" noMore="{{true}}"></more-wrap>
+</view>

@@ -23,9 +23,9 @@
           <view class="title-wrap">
             <view class="title">{{item.label}}</view>
             <view class="record">
-              <text>共 {{item.cate_num}} 题</text>
+              <text>共 {{item.cate_num||0}} 题</text>
               <text class="line">|</text>
-              <text>已练习 0 题</text>
+              <text>已练习 {{item.has_cate_num||0}} 题</text>
             </view>
           </view>
         </view>

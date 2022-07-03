@@ -100,6 +100,15 @@ Page({
       url: '/pages/collect/collect'
     })
   },
+  onPoster() {
+    if (!this.data.loginState) {
+      this.onLogin()
+      return 
+    }
+    wx.navigateTo({
+      url: '/pages/poster/poster'
+    })
+  },
   jumpVip() {
     wx.navigateTo({
       url: '/pages/vip/vip'
