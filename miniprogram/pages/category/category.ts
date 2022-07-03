@@ -1,6 +1,7 @@
 // pages/category/category.ts
 import { NAV_TYPES } from '../../utils/constant'
 const { getTopicCate } = require('../../api/index')
+import { eventStore } from '../../store/index'
 Page({
 
   /**
@@ -135,15 +136,21 @@ Page({
         id: null
       }
     ],
-    recordsCount: {},
-    recordsObj: {}
+    userInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getTopicCate()
+  },
+
+  setUserInfo() {
+    if (wx.getStorageSync('loginState')) {
+      eventStore.onState('userInfo', (value: any) => {
+        this.setData({ userInfo: value })
+      })
+    }
   },
 
   getTopicCate() {
@@ -172,21 +179,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    const storageRecords = wx.getStorageSync('recordsObj')
-    let day = wx.getStorageSync('recordsDay')
-    let topicNum = 0
-    Object.values(storageRecords).map((value: any) => {
-      topicNum += value.ids.length
-    })
-    let moduleNum = Object.keys(storageRecords).length
-    this.setData({
-      recordsCount: {
-        day: day,
-        topic: topicNum,
-        module: moduleNum
-      },
-      recordsObj: storageRecords
-    })
+    this.setUserInfo()
+    this.getTopicCate()
   },
 
   /**

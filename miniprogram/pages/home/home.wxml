@@ -138,7 +138,7 @@
     </view>
 
     <!-- 签到 -->
-    <view wx:if="{{!isVip}}" class="sign-in {{ !isSign ? 'animation' : '' }}" bindtap="todaySignin"><van-icon class="edit" name="edit" />积分签到</view>
+    <view wx:if="{{showSignBtn && !isVip}}" class="sign-in {{ !isSign ? 'animation' : '' }}" bindtap="todaySignin"><van-icon class="edit" name="edit" />积分签到</view>
     <sign-popup show="{{showSignin}}" jifen="{{configInfo.qd_jifen}}"></sign-popup>
   </view>
 </view>

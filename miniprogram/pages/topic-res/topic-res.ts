@@ -1,4 +1,3 @@
-const app = getApp()
 import { handleTime } from '../../utils/util'
 const { getTopicInfo, getCollectInfo, addCollect, deductIntegral } = require('../../api/index')
 // import { setWatcher } from '../../utils/watch'
@@ -46,37 +45,6 @@ Page({
     })
     this.setData({ id: Number(id), collectPage, search }, () => this.getTopicInfo())
     this.setIntegral()
-  },
-
-  /**
-   * 练习记录（本地缓存）
-   */
-  practiceRecords(type: any, id: any) {
-    const storageRecords = wx.getStorageSync('recordsObj')
-    let recordsObj: any = {}
-    let ids: any = storageRecords[type] && storageRecords[type].ids.length ? storageRecords[type].ids : []
-    ids.push(id)
-    recordsObj = Object.assign({}, storageRecords, {
-      [type]: {
-        ids: [...new Set(ids.map((id: any) => Number(id)))]
-      }
-    })
-    let date = new Date()
-    const yyyy = date.getFullYear()
-    const mm = date.getMonth() + 1
-    const dd = date.getDate()
-    let storageDay = wx.getStorageSync('recordsDay')
-    let yearMonthDay = yyyy + '-' + mm + '-' + dd
-    let storageYearMonthDay = wx.getStorageSync('yearMonthDay')
-    let recordsDay = 1
-    if (yearMonthDay !== storageYearMonthDay) {
-      recordsDay = ++storageDay
-    } else {
-      recordsDay = storageDay
-    }
-    wx.setStorageSync('recordsObj', recordsObj)
-    wx.setStorageSync('recordsDay', recordsDay)
-    wx.setStorageSync('yearMonthDay', yearMonthDay)
   },
 
   // watch: {
@@ -179,8 +147,8 @@ Page({
       is_collect: res.data.is_collect,
       loading: false
     })
+    // 设置当前题目
     this.setCurrentTopic()
-    this.practiceRecords(res.data.cate_name, this.data.id)
 
     // 扣除积分
     this.deductIntegral()

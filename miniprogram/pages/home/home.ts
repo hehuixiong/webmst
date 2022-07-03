@@ -102,7 +102,8 @@ Page({
     scrollable: false,
     showSignin: false,
     isSign: false,
-    configInfo: {}
+    configInfo: {},
+    showSignBtn: false
   },
   onLoad() {
     this.getTopicCate()
@@ -210,7 +211,8 @@ Page({
         topicSum: topicSum,
         currentTime: `${yyyy}/${mm}/${dd}`,
         hideTip: hideTip,
-        titLoading: false
+        titLoading: false,
+        showSignBtn: true
       })
     })
   },
