@@ -81,17 +81,25 @@ const eventStore = new HYEventStore({
                 code: code,
                 isIos: ctx.isIos ? 1 : 0
               }, user)).then((res: any) => {
-                wx.setStorageSync('token', res.data.token)
-                wx.setStorageSync('loginState', true)
-                wx.showToast({
-                  title: '登录成功',
-                  duration: 2000
-                })
-                if (callback) {
-                  console.log('我的页面会进来')
-                  callback && callback()
+                if (res.data.token) {
+                  wx.setStorageSync('token', res.data.token)
+                  wx.setStorageSync('loginState', true)
+                  wx.showToast({
+                    title: '登录成功',
+                    duration: 2000
+                  })
+                  if (callback) {
+                    console.log('我的页面会进来')
+                    callback && callback()
+                  } else {
+                    eventStore.dispatch('getUserInfo')
+                  }
                 } else {
-                  eventStore.dispatch('getUserInfo')
+                  wx.showToast({
+                    title: '登录异常，请联系客服处理',
+                    icon: 'none',
+                    duration: 2000
+                  })
                 }
               }).catch(() => {
                 wx.showToast({

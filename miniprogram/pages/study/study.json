@@ -4,6 +4,7 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "nav-bar": "/components/nav-bar/index",
-    "more-wrap": "/components/more-wrap/index"
+    "more-wrap": "/components/more-wrap/index",
+    "vip-popup": "/components/vip-popup/index"
   }
 }

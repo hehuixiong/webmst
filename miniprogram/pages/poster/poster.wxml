@@ -22,7 +22,7 @@
     <view class="item">
       <view class="iconfont icon-xinzimingxi"></view>
       <view class="label">
-        <view class="tit">交易明细</view>
+        <view class="tit">交易记录</view>
         <view class="num">0笔</view>
       </view>
     </view>

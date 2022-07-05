@@ -25,5 +25,11 @@
     </view>
   </block>
   <more-wrap loading="{{loading}}" noMore="{{noMore}}"></more-wrap>
-  <vip-popup show="{{vipShow}}"></vip-popup>
+  <vip-popup show="{{vipShow}}" bind:childFun="vipClose"></vip-popup>
+  <vip-popup
+    show="{{signShow}}"
+    title="今日未签到"
+    desc="去签到可以获取积分"
+    sign="{{true}}"
+  ></vip-popup>
 </view>

@@ -21,7 +21,8 @@
     "pages/login/login",
     "pages/integral/integral",
     "pages/resume/resume",
-    "pages/poster/poster"
+    "pages/poster/poster",
+    "pages/sign/sign"
   ],
   "window": {
     "backgroundTextStyle": "light",

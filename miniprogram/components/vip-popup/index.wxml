@@ -1,16 +1,18 @@
 <view class="vip-popup" wx:if="{{show}}" catchtouchmove="true">
-  <view class="vip-container">
+  <view class="vip-container {{ noTab ? 'no-tab' : '' }}">
     <view class="vip-content">
       <view class="header">
         <view class="header-bg"></view>
-        <image class="image" mode="widthFix" src="/images/vip.png"></image>
+        <image wx:if="{{!sign}}" class="image" mode="widthFix" src="/images/vip.png"></image>
       </view>
+      <image wx:if="{{sign}}" class="image sign" mode="widthFix" src="/images/sign.png"></image>
       <view class="content">
-        <view class="title">{{title}}</view>
+        <view class="title {{sign ? 'sign' : ''}}">{{title}}</view>
         <view class="desc">{{desc}}</view>
       </view>
     </view>
-    <view class="vip-button" bindtap="jumpVip"><text>去开通VIP</text><van-icon name="arrow" /></view>
+    <view wx:if="{{!sign}}" class="vip-button" bindtap="jumpVip"><text>去开通VIP</text><van-icon name="arrow" /></view>
+    <view wx:else class="vip-button" bindtap="goSign"><text>去签到</text><van-icon name="arrow" /></view>
     <van-icon class="cross" bindtap="close" name="cross" />
   </view>
 </view>

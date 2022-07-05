@@ -9,7 +9,7 @@
     <view class="study-item" wx:for="{{studyPageList}}" wx:key="index">
       <view class="sui-image">
         <text class="image-bg"></text>
-        <text class="ch">免费资源</text>
+        <text class="ch">视频资源</text>
         <text class="en">RESOURCES</text>
         <text class="before"></text>
         <text class="after"></text>
@@ -24,11 +24,17 @@
           </view>
           <view class="btns">
             <van-button plain icon="share-o" type="danger" size="small" open-type="share" data-title="{{item.title}}" bindtap="onShare"></van-button>
-            <van-button plain type="danger" size="small" bindtap="immediatelyGet" data-title="{{index+1}}. {{item.title}}" data-course="{{item.course}}" data-index="{{index}}"><text class="text">免费领取</text></van-button>
+            <van-button plain type="danger" size="small" bindtap="immediatelyGet" data-title="{{index+1}}. {{item.title}}" data-course="{{item.course}}" data-index="{{index}}"><text class="text">立即下载</text></van-button>
           </view>
         </view>
       </view>
     </view>
   </view>
   <more-wrap loading="{{loading}}" noMore="{{noMore}}"></more-wrap>
+  <vip-popup
+    show="{{vipShow}}"
+    title="您当前不是VIP"
+    desc="开通后即可下载该视频资料"
+    noTab="{{false}}"
+  ></vip-popup>
 </view>

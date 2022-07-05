@@ -13,6 +13,14 @@ Component({
     desc: {
       type: String,
       value: '开通VIP无积分限制，全部功能可用'
+    },
+    noTab: {
+      type: Boolean,
+      value: true
+    },
+    sign: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -31,10 +39,22 @@ Component({
       this.setData({
         show: false
       })
+      this.triggerEvent('childFun')
     },
     jumpVip() {
+      this.setData({
+        show: false
+      })
       wx.navigateTo({
         url: '/pages/vip/vip'
+      })
+    },
+    goSign() {
+      this.setData({
+        show: false
+      })
+      wx.navigateTo({
+        url: '/pages/sign/sign'
       })
     }
   }

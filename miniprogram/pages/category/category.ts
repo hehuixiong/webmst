@@ -52,7 +52,7 @@ Page({
         id: null
       },
       {
-        icon: 'icon-css',
+        icon: 'icon-xiaochengxu',
         label: '微信小程序',
         type: NAV_TYPES.miniprogram,
         id: null

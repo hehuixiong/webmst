@@ -65,31 +65,33 @@
           <view class="is-link"><van-icon name="arrow" /></view>
         </view>
       </button>
-      <!-- <button class="item" bindtap="onShare" open-type="share">
-        <view class="text-icon">
-          <text class="iconfont icon-my-fenxiang"></text>
-          <text class="text">分享小程序</text>
+      <button wx:if="{{showgroup}}">
+        <view class="item" hover-class="navigator-hover" bindtap="addGroup">
+          <view class="text-icon">
+            <text class="iconfont icon-xihuan"></text>
+            <text class="text">加入交流群</text>
+          </view>
+          <view class="is-link"><van-icon name="arrow" /></view>
         </view>
-        <view class="is-link"><van-icon name="arrow" /></view>
-      </button> -->
-      <button class="item" bindtap="addGroup" hover-class="navigator-hover" wx:if="{{showgroup}}">
-        <view class="text-icon">
-          <text class="iconfont icon-huore"></text>
-          <text class="text">加入交流群</text>
-        </view>
-        <view class="is-link"><van-icon name="arrow" /></view>
       </button>
-      <button class="item" bindtap="go" wx:else>
+      <button wx:else class="item" bindtap="go">
         <view class="text-icon">
           <text class="iconfont icon-gengduo"></text>
           <text class="text">更多功能</text>
         </view>
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>
-      <button class="item" bindtap="onRewardAuthor">
+      <button class="item" bindtap="onRewardAuthor" wx:if="{{showgroup}}">
         <view class="text-icon">
           <text class="iconfont icon-dianzan"></text>
           <text class="text">打赏支持</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
+      </button>
+      <button class="item" bindtap="onShare" open-type="share" wx:else>
+        <view class="text-icon">
+          <text class="iconfont icon-my-fenxiang"></text>
+          <text class="text">分享小程序</text>
         </view>
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>

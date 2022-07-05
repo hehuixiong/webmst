@@ -2,7 +2,7 @@
   <view class="sign-container">
     <view class="sign-content">
       <view class="header">
-        <image class="image" mode="widthFix" src="/images/sign-in.png"></image>
+        <image class="image" mode="widthFix" src="/images/sign.png"></image>
         <van-icon class="success1" name="success" />
         <van-icon class="success2" name="success" />
         <text class="circle"></text>

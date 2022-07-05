@@ -1,5 +1,5 @@
 // home.ts
-const { getTopicCate, getAdImage, qiandao } = require('../../api/index')
+const { getTopicCate, getAdImage } = require('../../api/index')
 const app = getApp()
 import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
@@ -102,7 +102,6 @@ Page({
     scrollable: false,
     showSignin: false,
     isSign: false,
-    configInfo: {},
     showSignBtn: false
   },
   onLoad() {
@@ -118,9 +117,6 @@ Page({
     })
     eventStore.onState('isSign', (value: any) => {
       this.setData({ isSign: value })
-    })
-    eventStore.onState('configInfo', (value: any) => {
-      this.setData({ configInfo: value })
     })
     eventStore.dispatch('setIsIos', app.globalSystemInfo && app.globalSystemInfo.ios)
   },
@@ -150,27 +146,8 @@ Page({
       eventStore.dispatch('login')
       return 
     }
-    // 是否已签到
-    if (this.data.isSign) {
-      wx.showToast({
-        title: '今日已经签到，不能重复获取积分',
-        icon: 'none',
-        duration: 2000
-      })
-      return
-    }
-    wx.showLoading({
-      title: '请稍等...'
-    })
-    qiandao().then((res: any) => {
-      if (res.code === 200) {
-        this.setData({
-          showSignin: true
-        })
-        eventStore.dispatch('getUserInfo')
-        wx.hideLoading()
-        return
-      }
+    wx.navigateTo({
+      url: '/pages/sign/sign'
     })
   },
   closeTip() {
@@ -178,9 +155,15 @@ Page({
     wx.setStorageSync('hideTip', true)
   },
   jumpVip() {
-    wx.navigateTo({
-      url: '/pages/vip/vip'
-    })
+    if (this.data.isNotice && !this.data.isVip) {
+      wx.navigateTo({
+        url: '/pages/vip/vip'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/category/category'
+      })
+    }
   },
   swiperChange(e: any) {
     if (!this.data.swiper.length) {
@@ -211,7 +194,7 @@ Page({
       const dd = date.getDate()
       this.setData({
         topicSum: topicSum,
-        currentTime: `${yyyy}/${mm}/${dd}`,
+        currentTime: `${yyyy}/${mm<=9?'0'+mm:mm}/${dd<=9?'0'+dd:dd}`,
         hideTip: hideTip,
         titLoading: false
       })

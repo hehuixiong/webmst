@@ -37,7 +37,9 @@ Component({
   data: {
     isVip: false,
     vipShow: false,
-    integral: 0
+    signShow: false,
+    integral: 0,
+    isSign: false
   },
 
   attached() {
@@ -46,6 +48,9 @@ Component({
     })
     eventStore.onState('integral', (value: any) => {
       this.setData({ integral: value })
+    })
+    eventStore.onState('isSign', (value: any) => {
+      this.setData({ isSign: value })
     })
   },
 
@@ -69,6 +74,13 @@ Component({
       wx.navigateTo({
         url: `/pages/topic-res/topic-res?id=${id}&search=${this.data.search}&collectPage=${this.data.collectPage}`
       })
+    },
+    vipClose() {
+      if (!this.data.isSign) {
+        this.setData({
+          signShow: true
+        })
+      }
     }
   }
 })

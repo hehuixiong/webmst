@@ -20,7 +20,9 @@
     flex-direction: column;
     position: relative;
     box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
-    transform: translateY(-80rpx);
+    &.no-tab{
+      transform: translateY(-80rpx);
+    }
     .vip-content{
       position: relative;
       .header{
@@ -48,6 +50,23 @@
           transform: translateX(-50%);
         }
       }
+      .sign::before{
+        width: 120rpx;
+        height: 120rpx;
+        background: #fef5cc;
+        position: absolute;
+        left: 30rpx;
+        top: 50rpx;
+        content: '';
+        z-index: -1;
+      }
+      .sign.image{
+        width: 180rpx;
+        position: absolute;
+        top: -96rpx;
+        left: 50%;
+        transform: translateX(-50%);
+      }
       .content{
         display: flex;
         flex-direction: column;
@@ -56,6 +75,23 @@
         padding-top: 50rpx;
         color: #444444;
         font-size: 28rpx;
+        .sign{
+          font-size: 34rpx;
+          position: relative;
+          color: #000;
+          margin-top: -10rpx;
+          &::before{
+            content: '';
+            position: absolute;
+            width: calc(100% + 20rpx);
+            left: -10rpx;
+            bottom: 0;
+            height: 18rpx;
+            transform: translateY(-24rpx);
+            background: #ef8432;
+            opacity: 0.6;
+          }
+        }
         .desc{
           margin-top: 2rpx;
         }
