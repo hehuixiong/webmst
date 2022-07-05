@@ -155,10 +155,13 @@ Page({
     wx.setStorageSync('hideTip', true)
   },
   jumpVip() {
+    wx.navigateTo({
+      url: '/pages/vip/vip'
+    })
+  },
+  onNotice() {
     if (this.data.isNotice && !this.data.isVip) {
-      wx.navigateTo({
-        url: '/pages/vip/vip'
-      })
+      this.jumpVip()
     } else {
       wx.navigateTo({
         url: '/pages/category/category'
