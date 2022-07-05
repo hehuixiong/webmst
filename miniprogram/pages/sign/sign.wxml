@@ -71,7 +71,7 @@
         <view class="button" bindtap="onIntegral">去关注</view>
       </view>
     </view>
-    <more-wrap loading="{{false}}" noMore="{{true}}}" moreText="更多任务，即将开启"></more-wrap>
+    <more-wrap loading="{{false}}" noMore="{{true}}}" showIcon="{{true}}" moreText="更多任务，即将开启"></more-wrap>
   </view>
   <sign-popup show="{{showSignin}}" jifen="{{configInfo.qd_jifen}}"></sign-popup>
 </view>

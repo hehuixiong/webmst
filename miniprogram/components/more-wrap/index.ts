@@ -15,6 +15,10 @@ Component({
     moreText: {
       type: String,
       value: '没有更多了~'
+    },
+    showIcon: {
+      type: Boolean,
+      value: false
     }
   },
 
