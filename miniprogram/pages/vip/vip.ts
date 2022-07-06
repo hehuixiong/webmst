@@ -1,6 +1,6 @@
 // pages/vip/vip.ts
 import { eventStore } from '../../store/index'
-const { getVipLevel, orderPay } = require('../../api/index')
+const { getVipLevel, orderPay, getAdImage } = require('../../api/index')
 const app = getApp()
 Page({
 
@@ -15,7 +15,8 @@ Page({
     configInfo: {},
     active: 3,
     loginState: false,
-    showgroup: false
+    showgroup: false,
+    vipText: ''
   },
 
   /**
@@ -24,6 +25,7 @@ Page({
   onLoad() {
     this.getVipLevel()
     this.setUserInfo()
+    this.getAdImage()
     eventStore.onState('iosIsPay', (value: any) => {
       this.setData({ iosIsPay: value })
     })
@@ -36,6 +38,17 @@ Page({
     if (app.globalSystemInfo && app.globalSystemInfo.ios) {
       this.setData({ isIos: true })
     }
+  },
+
+  getAdImage() {
+    getAdImage().then((res: any) => {
+      const vipTexts = res.data.filter((item: any) => (item.title === 'vipText'))
+      if (vipTexts.length) {
+        this.setData({
+          vipText: vipTexts[0].url
+        })
+      }
+    })
   },
 
   selectVip(e: any) {

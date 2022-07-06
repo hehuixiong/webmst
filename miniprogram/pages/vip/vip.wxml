@@ -33,8 +33,14 @@
       <view class="text" bindtap="copyWX">微信：{{configInfo.weixin}}</view>
       <image wx:if="{{!showgroup}}" src="{{configInfo.guanzhu}}" data-src="{{configInfo.guanzhu}}" bindtap="showImg" show-menu-by-longpress></image>
       <image wx:else src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220617082251.png" bindtap="showImg" show-menu-by-longpress></image>
-      <view class="text">长按添加管理员微信</view>
-      <view class="hint">【温馨提示】由于平台相关规则，苹果iOS手机用户<view style="white-space:pre-wrap"> </view>不支持在线支付，安卓手机用户不受影响</view>
+      <view class="text" wx:if="{{vipText}}">长按添加小助手微信</view>
+      <view class="text" wx:else>前端面试小助手</view>
+      <view class="hint" wx:if="{{vipText}}">
+        <rich-text nodes="{{vipText}}"></rich-text>
+      </view>
+      <view class="hint" wx:else>
+        【温馨提示】长按识别二维码，如无法识别二维码可以点击打开大图再识别
+      </view>
     </view>
   </view>
 </view>
