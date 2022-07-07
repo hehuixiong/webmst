@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 32rpx 16rpx 32rpx 16rpx;
+    padding: 32rpx 20rpx 32rpx 20rpx;
     border-bottom: 1px solid #f6f6f6;
     &.is-active{
       padding-bottom: 16rpx;
@@ -49,23 +49,33 @@
         align-items: center;
         .van-rate__item{
           padding-right: 0!important;
-          .van-rate__icon {
-            color: var(--rate-icon-full-color,#ee0a24);
-          }
         }
       }
-      .time{
+      .record{
         font-size: 24rpx;
-        color: #666666;
+        color: #999999;
         display: flex;
         align-items: center;
-        // text{
-        //   margin-left: 20rpx;
-        //   margin-right: 4rpx;
-        // }
-        // .iconfont{
-        //   font-size: 24rpx;
-        // }
+        .eye,.like{
+          color: #999999;
+        }
+        .eye{
+          font-size: 32rpx;
+          transform: translateY(2rpx);
+          margin-right: 4rpx;
+        }
+        .like{
+          margin-left: 12rpx;
+          margin-right: 4rpx;
+        }
+        &.is-active{
+          .like{
+            color: #ee0a24;
+          }
+          .num{
+            color: #ee0a24;
+          }
+        }
       }
     }
   }

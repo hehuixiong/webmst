@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "简历模板下载",
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "vip-popup": "/components/vip-popup/index"
   }
 }

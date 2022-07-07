@@ -36,8 +36,8 @@
   </view>
   <view class="home-notice">
     <van-notice-bar background="#f6f6f6" color="#ed6a0c" left-icon="volume-o" scrollable="{{scrollable}}" bindtap="jumpVip">
-      <text wx:if="{{isNotice}}">{{noticeText}}</text>
-      <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum || '--'}}题 <text class="iconfont icon-huomiao"></text></text>
+      <text wx:if="{{isNotice && !isVip}}">{{noticeText}}</text>
+      <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum || '?'}}题。 </text>
     </van-notice-bar>
   </view>
   <view class="home-card">
@@ -91,7 +91,7 @@
               </view>
               <view class="right">
                 <text class="text">{{item.label}}</text>
-                <text class="tag">共{{topicSum || '--'}}条</text>
+                <text class="tag">共{{topicSum || '?'}}条</text>
               </view>
             </view>
             <text class="icon-right-circle iconfont"></text>
@@ -102,8 +102,8 @@
                 <text class="iconfont {{item.icon}}"></text>
               </view>
               <view class="right">
-                <text class="text">{{item.label}} <text class="free" wx:if="{{item.id === 2 || item.id === 3}}">(免费开放)</text></text>
-                <text class="tag">共{{item.cate_num || '--'}}条</text>
+                <text class="text">{{item.label}}</text>
+                <text class="tag">共{{item.cate_num || '?'}}条</text>
               </view>
             </view>
             <text class="icon-right-circle iconfont"></text>
@@ -138,7 +138,6 @@
     </view>
 
     <!-- 签到 -->
-    <view class="sign-in" bindtap="todaySignin"><van-icon class="edit" name="edit" />今日签到</view>
-    <sign-popup show="{{showSignin}}"></sign-popup>
+    <view wx:if="{{showSignBtn}}" class="sign-in {{ !isSign ? 'animation' : '' }}" bindtap="todaySignin"><van-icon class="edit" name="edit" />签到积分</view>
   </view>
 </view>

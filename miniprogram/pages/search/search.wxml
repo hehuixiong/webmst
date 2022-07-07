@@ -15,7 +15,7 @@
     </view>
     <scroll-view scroll-x="true" class="scroll-view">
       <view class="history-list">
-        <view wx:for="{{historyData}}" wx:key="index" class="item" bindtap="onSearch" data-keyword="{{item}}">{{item}}</view>
+        <view wx:for="{{historyData}}" wx:key="index" class="item" bindtap="onSearch" data-keyword="{{item.search}}">{{item.search}}</view>
       </view>
     </scroll-view>
   </view>

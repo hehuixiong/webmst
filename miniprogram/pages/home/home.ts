@@ -1,5 +1,6 @@
 // home.ts
 const { getTopicCate, getAdImage } = require('../../api/index')
+const app = getApp()
 import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
 Page({
@@ -99,7 +100,9 @@ Page({
     isNotice: false,
     noticeText: '',
     scrollable: false,
-    showSignin: false
+    showSignin: false,
+    isSign: false,
+    showSignBtn: false
   },
   onLoad() {
     this.getTopicCate()
@@ -108,8 +111,14 @@ Page({
       this.setData({ showgroup: value })
     })
     eventStore.onState('isVip', (value: any) => {
-      this.setData({ isVip: value })
+      if (value !== null) {
+        this.setData({ isVip: value, showSignBtn: !value })
+      }
     })
+    eventStore.onState('isSign', (value: any) => {
+      this.setData({ isSign: value })
+    })
+    eventStore.dispatch('setIsIos', app.globalSystemInfo && app.globalSystemInfo.ios)
   },
   getAdImage() {
     getAdImage().then((res: any) => {
@@ -133,24 +142,28 @@ Page({
     })
   },
   todaySignin() {
-    wx.showLoading({
-      title: '请稍等...'
+    if (!wx.getStorageSync('loginState')) {
+      eventStore.dispatch('login')
+      return 
+    }
+    wx.navigateTo({
+      url: '/pages/sign/sign'
     })
-    setTimeout(() => {
-      this.setData({
-        showSignin: true
-      })
-      wx.hideLoading()
-    }, 300)
   },
   closeTip() {
     this.setData({ hideTip: true })
     wx.setStorageSync('hideTip', true)
   },
   jumpVip() {
-    wx.navigateTo({
-      url: '/pages/vip/vip'
-    })
+    if (this.data.isNotice && !this.data.isVip) {
+      wx.navigateTo({
+        url: '/pages/vip/vip'
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/category/category'
+      })
+    }
   },
   swiperChange(e: any) {
     if (!this.data.swiper.length) {
@@ -181,7 +194,7 @@ Page({
       const dd = date.getDate()
       this.setData({
         topicSum: topicSum,
-        currentTime: `${yyyy}/${mm}/${dd}`,
+        currentTime: `${yyyy}/${mm<=9?'0'+mm:mm}/${dd<=9?'0'+dd:dd}`,
         hideTip: hideTip,
         titLoading: false
       })

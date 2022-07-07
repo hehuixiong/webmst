@@ -4,7 +4,7 @@
       data="{{collectList}}"
       loading="{{loading}}"
       noMore="{{noMore}}"
-      is_collect="{{1}}"
+      collectPage="{{1}}"
     ></topic-list>
   </view>
   <view class="loading" style="margin-top: 30rpx;" wx:if="{{collectList.length === 0 && loading}}">

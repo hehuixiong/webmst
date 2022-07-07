@@ -10,7 +10,9 @@ Page({
     projectList: [],
     totalPage: 0,
     pageSize: 16,
-    page: 1
+    page: 1,
+    isVip: false,
+    vipShow: false
   },
 
   /**
@@ -27,6 +29,9 @@ Page({
     this.setData({
       totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
     })
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
+    })
     this.setCurrentPageData()
   },
 
@@ -37,6 +42,10 @@ Page({
     }
     const { id, index, title } = e.currentTarget.dataset
     const query = { id, index, title }
+    if (!this.data.isVip) {
+      this.setData({ vipShow: true })
+      return
+    }
     wx.navigateTo({
       url: `/pages/project-res/project-res?query=${JSON.stringify(query)}`
     })

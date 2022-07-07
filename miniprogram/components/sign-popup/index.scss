@@ -20,6 +20,7 @@
     flex-direction: column;
     position: relative;
     box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
+    transform: translateY(-80rpx);
     .sign-content{
       flex: 1;
       position: relative;
@@ -58,7 +59,7 @@
         &::before{
           width: 120rpx;
           height: 120rpx;
-          background: #fff;
+          background: #fef5cc;
           position: absolute;
           left: 30rpx;
           top: 50rpx;
@@ -129,7 +130,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: rgba($color: #000000, $alpha: 0.5);      .cross{
+      background: rgba($color: #000000, $alpha: 0.5);
+      .cross{
         font-size: 36rpx;
         color: #fff;
       }

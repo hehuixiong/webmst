@@ -6,6 +6,9 @@ Component({
   properties: {
     show: {
       type: Boolean
+    },
+    jifen: {
+      type: String
     }
   },
 

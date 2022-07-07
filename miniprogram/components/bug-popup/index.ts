@@ -1,4 +1,6 @@
 // components/bug-popup/index.ts
+const { setProblemBug } = require('../../api/index')
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -7,6 +9,9 @@ Component({
     show: {
       type: Boolean,
       value: false
+    },
+    topicId: {
+      type: Number
     }
   },
 
@@ -55,26 +60,24 @@ Component({
     },
     afterRead(event: any) {
       const { file } = event.detail
+      console.log(file.url)
       const _this = this
+      console.log(app)
       // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
       wx.uploadFile({
-        url: 'https://swoole.86yqy.com/api/admin/upload-image', // 仅为示例，非真实的接口地址
+        url: 'https://webmst.ithhx.cn/vehicle/index/upload_img', // 仅为示例，非真实的接口地址
         filePath: file.url,
-        name: 'image',
-        header: {
-          "content-type": "multipart/form-data"
-        },
+        name: 'file',
         formData: {
-          'business_type': 'company-image',
-          'image': file.url
+          'name': 'activity'
         },
         success(res) {
           // 上传完成需要更新 fileList
-          const { file_url }: any = JSON.parse(res.data)
+          const result = JSON.parse(res.data)
+          console.log(result?.data?.data?.img)
           const { fileList = [] }: any = _this.data
-          fileList.push({ ...file, url: 'https:' + file_url })
+          fileList.push({ ...file, url: result?.data?.data?.img })
           _this.setData({ fileList })
-          console.log(_this.data)
         }
       })
     },
@@ -98,14 +101,21 @@ Component({
       wx.showLoading({
         title: '请稍等...'
       })
-      const timer = setTimeout(() => {
+      const image: any = this.data.fileList.length && this.data.fileList[0]
+      console.log(image.url)
+      console.log(this.data)
+      setProblemBug({
+        id: this.data.topicId,
+        content: this.data.value,
+        type: this.data.active,
+        img: image.url
+      }).then(() => {
         wx.showToast({
           title: '感谢你的反馈',
           duration: 2000
         })
         this.onClose()
-        clearTimeout(timer)
-      }, 1000)
+      })
     }
   }
 })

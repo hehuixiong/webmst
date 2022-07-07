@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "签到送积分",
+  "usingComponents": {
+    "sign-popup": "/components/sign-popup/index",
+    "more-wrap": "/components/more-wrap/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

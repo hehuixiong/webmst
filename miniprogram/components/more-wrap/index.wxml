@@ -3,5 +3,5 @@
     <loading color="#7e68f3"></loading>
     <text style="margin-left: 10rpx">加载中...</text>
   </view>
-  <view wx:if="{{noMore}}">没有更多了~</view>
+  <view wx:if="{{noMore}}" class="more-text"><text class="iconfont icon-tishi" wx:if="{{showIcon}}"></text> {{moreText}}</view>
 </view>

@@ -13,6 +13,8 @@ export const NAV_TYPES = {
   programme: 'programme',
   // React.js
   reactJs: 'reactJs',
+  // 微信小程序
+  miniprogram: 'miniprogram',
   // Vue.js
   vueJs: 'vueJs',
   // 趣味题,
