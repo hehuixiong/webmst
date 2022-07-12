@@ -1,6 +1,9 @@
 // pages/sign/sign.ts
 const { qiandao, readVideo } = require('../../api/index')
 import { eventStore } from '../../store/index'
+// 在页面中定义激励视频广告
+let rewardedVideoAd: any = null
+let videoAdPushStatus = false
 Page({
 
   /**
@@ -32,6 +35,30 @@ Page({
     })
     if (!this.data.isSign) {
       this.qiandao()
+    }
+
+    this.showRewardedVideoAd()
+  },
+
+  showRewardedVideoAd() {
+    if (wx.createRewardedVideoAd) {
+      rewardedVideoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-92cc5ea0105da417'
+      })
+      rewardedVideoAd.onLoad(() => {
+        videoAdPushStatus = true
+        console.log('onload rewardedVideoAd')
+      })
+      rewardedVideoAd.onError((err: any) => {
+        console.log('onError rewardedVideoAd', err)
+      })
+      rewardedVideoAd.onClose((res: any) => {
+        console.log('onClose rewardedVideoAd', res)
+        if (res && res.isEnded) {
+          console.log('观看完成')
+          this.exeVideo()
+        }
+      })
     }
   },
 
@@ -67,11 +94,48 @@ Page({
     })
   },
 
-  onwatch() {
-    wx.showToast({
-      title: '暂未开放',
-      icon: 'none',
-      duration: 2000
+  exeVideo() {
+    wx.showLoading({
+      title: '请稍等...'
+    })
+    readVideo().then((res: any) => {
+      if (res.code === 200) {
+        const { video_jifen }: any = this.data.configInfo
+        wx.showToast({
+          title: `观看成功，获取${video_jifen}积分`,
+          icon: 'none',
+          duration: 2000
+        })
+        eventStore.dispatch('getUserInfo')
+        return
+      }
+    })
+  },
+
+  onVideo() {
+    if (this.data.isVideo) {
+      wx.showToast({
+        title: '今日已经观看，不能重复获取积分',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (rewardedVideoAd && videoAdPushStatus) {
+      rewardedVideoAd.show().catch(() => {
+        // 失败重试
+        rewardedVideoAd.load()
+          .then(() => rewardedVideoAd.show())
+          .catch(() => {
+            console.log('激励视频 广告显示失败')
+          })
+      })
+    }
+  },
+
+  goVip() {
+    wx.navigateTo({
+      url: '/pages/vip/vip'
     })
   },
 

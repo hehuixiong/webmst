@@ -1,4 +1,6 @@
 .sign-container{
+  padding-bottom: 180rpx;
+  box-sizing: border-box;
   .sign-header{
     background: #7e68f3;
     padding: 30rpx 30rpx 0;
@@ -135,6 +137,36 @@
           padding: 6rpx 30rpx;
         }
       }
+    }
+  }
+  .footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to right, #dfa254, #d17626);
+    border-radius: 40rpx 40rpx 0 0;
+  }
+  .go-vip{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx 40rpx 50rpx;
+    color: #fff;
+    .left{
+      font-weight: 500;
+      .tit{
+        font-size: 26rpx;
+        font-weight: 400;
+      }
+    }
+    .btn{
+      border-radius: 60rpx;
+      background: #fff;
+      padding: 8rpx 20rpx;
+      color: #d17626;
+      font-size: 28rpx;
+      font-weight: 500;
     }
   }
 }
