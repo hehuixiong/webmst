@@ -44,13 +44,13 @@
                 <view class="icon">
                   <van-icon class="star" name="star" />
                 </view>
-                +5
+                +{{configInfo.video_jifen}}
               </view>
             </view>
-            <view class="complete">完成0/1</view>
+            <view class="complete">完成{{isVideo?1:0}}/1</view>
           </view>
         </view>
-        <view class="button" bindtap="onwatch">去观看</view>
+        <view class="button" bindtap="onwatch">{{isVideo?'已完成':'去观看'}}</view>
       </view>
       <view class="sign-item">
         <view class="left">

@@ -102,7 +102,8 @@ Page({
     scrollable: false,
     showSignin: false,
     isSign: false,
-    showSignBtn: false
+    showSignBtn: false,
+    loginState: false
   },
   onLoad() {
     this.getTopicCate()
@@ -116,7 +117,7 @@ Page({
       }
     })
     eventStore.onState('isSign', (value: any) => {
-      this.setData({ isSign: value })
+      this.setData({ isSign: value, loginState: wx.getStorageSync('loginState') })
     })
     eventStore.dispatch('setIsIos', app.globalSystemInfo && app.globalSystemInfo.ios)
   },

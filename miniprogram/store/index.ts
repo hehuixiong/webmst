@@ -24,7 +24,9 @@ const eventStore = new HYEventStore({
     // 是否ios设备
     isIos: null,
     // 是否已签到
-    isSign: false
+    isSign: false,
+    // 是否已看视频
+    isVideo: false
   },
   actions: {
     async getConfig(ctx: any) {
@@ -42,6 +44,7 @@ const eventStore = new HYEventStore({
           console.log(res, '用户信息')
           ctx.isVip = res.data.vip_time !== ''
           ctx.isSign = Boolean(res.data.is_sign)
+          ctx.isVideo = Boolean(res.data.is_video)
           ctx.integral = res.data.jifen
           ctx.userInfo = res.data
           wx.setStorageSync('userInfo', res.data)

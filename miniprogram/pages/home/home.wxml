@@ -138,6 +138,6 @@
     </view>
 
     <!-- 签到 -->
-    <view wx:if="{{showSignBtn}}" class="sign-in {{ !isSign ? 'animation' : '' }}" bindtap="todaySignin"><van-icon class="edit" name="edit" />签到积分</view>
+    <view wx:if="{{showSignBtn || !loginState}}" class="sign-in {{ !isSign ? 'animation' : '' }}" bindtap="todaySignin"><van-icon class="edit" name="edit" />签到积分</view>
   </view>
 </view>

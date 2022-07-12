@@ -1,5 +1,5 @@
 // pages/sign/sign.ts
-const { qiandao } = require('../../api/index')
+const { qiandao, readVideo } = require('../../api/index')
 import { eventStore } from '../../store/index'
 Page({
 
@@ -9,6 +9,7 @@ Page({
   data: {
     showSignin: false,
     isSign: false,
+    isVideo: false,
     configInfo: {},
     integral: 0
   },
@@ -19,6 +20,9 @@ Page({
   onLoad() {
     eventStore.onState('isSign', (value: any) => {
       this.setData({ isSign: value })
+    })
+    eventStore.onState('isVideo', (value: any) => {
+      this.setData({ isVideo: value })
     })
     eventStore.onState('configInfo', (value: any) => {
       this.setData({ configInfo: value })
