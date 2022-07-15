@@ -156,8 +156,19 @@ Page({
     wx.setStorageSync('hideTip', true)
   },
   jumpVip() {
-    wx.navigateTo({
-      url: '/pages/vip/vip'
+    eventStore.onState('iosIsPay', (value: any) => {
+      if (value && app.globalSystemInfo && app.globalSystemInfo.ios) {
+        wx.openCustomerServiceChat({
+          extInfo: {
+            url: 'https://work.weixin.qq.com/kfid/kfcd822498b9774ec8f'
+          },
+          corpId: 'wwcd77693eaf9afee3'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      }
     })
   },
   onNotice() {
@@ -216,7 +227,6 @@ Page({
     })
   },
   onRoute(e: any) {
-    console.log(e, '111')
     const {
       to,
       needLogin
@@ -328,7 +338,7 @@ Page({
   },
   onShareTimeline() {
     return{
-      title: '哇，真的想不到！！！'
+      title: '前端面试小程序，悄悄分享给你！！！'
     }
   }
 })

@@ -1,6 +1,7 @@
 // pages/sign/sign.ts
 const { qiandao, readVideo } = require('../../api/index')
 import { eventStore } from '../../store/index'
+const app = getApp()
 // 在页面中定义激励视频广告
 let rewardedVideoAd: any = null
 let videoAdPushStatus = false
@@ -134,8 +135,19 @@ Page({
   },
 
   goVip() {
-    wx.navigateTo({
-      url: '/pages/vip/vip'
+    eventStore.onState('iosIsPay', (value: any) => {
+      if (value && app.globalSystemInfo && app.globalSystemInfo.ios) {
+        wx.openCustomerServiceChat({
+          extInfo: {
+            url: 'https://work.weixin.qq.com/kfid/kfcd822498b9774ec8f'
+          },
+          corpId: 'wwcd77693eaf9afee3'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      }
     })
   },
 

@@ -33,7 +33,7 @@ const eventStore = new HYEventStore({
       await getConfig().then((res: any) => {
         ctx.showgroup = res.data.jlq_open.toString() === '1'
         // ctx.topicVip = res.data.vip_open.toString() === '1'
-        // ctx.iosIsPay = res.ios_open.toString() === '1'
+        ctx.iosIsPay = res.data.ios_open.toString() === '1'
         ctx.configInfo = res.data
         wx.setStorageSync('configInfo', res.data)
       })

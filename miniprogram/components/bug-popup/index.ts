@@ -1,6 +1,5 @@
 // components/bug-popup/index.ts
 const { setProblemBug } = require('../../api/index')
-const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -62,7 +61,6 @@ Component({
       const { file } = event.detail
       console.log(file.url)
       const _this = this
-      console.log(app)
       // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
       wx.uploadFile({
         url: 'https://webmst.ithhx.cn/vehicle/index/upload_img', // 仅为示例，非真实的接口地址

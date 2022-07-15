@@ -104,14 +104,13 @@
         </view>
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>
-      <button open-type="contact">
-        <navigator class="item">
-          <view class="text-icon">
-            <text class="iconfont icon-kefu"></text>
-            <text class="text">联系客服</text>
-          </view>
-          <view class="is-link"><van-icon name="arrow" /></view>
-        </navigator>
+      <!-- <button open-type="contact"> -->
+      <button class="item" bindtap="contact">
+        <view class="text-icon">
+          <text class="iconfont icon-kefu"></text>
+          <text class="text">联系客服</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
       </button>
       <button wx:if="{{isVip}}" bindtap="onPoster">
         <navigator class="item">

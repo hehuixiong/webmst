@@ -1,5 +1,6 @@
 import { eventStore } from '../../store/index'
 let vipDate: any = null
+const app = getApp()
 Page({
   data: {
     userInfo: {},
@@ -110,8 +111,19 @@ Page({
     })
   },
   jumpVip() {
-    wx.navigateTo({
-      url: '/pages/vip/vip'
+    eventStore.onState('iosIsPay', (value: any) => {
+      if (value && app.globalSystemInfo && app.globalSystemInfo.ios) {
+        wx.openCustomerServiceChat({
+          extInfo: {
+            url: 'https://work.weixin.qq.com/kfid/kfcd822498b9774ec8f'
+          },
+          corpId: 'wwcd77693eaf9afee3'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      }
     })
   },
   addGroup() {
@@ -131,6 +143,14 @@ Page({
           console.log('用户点击取消')
         }
       }
+    })
+  },
+  contact() {
+    wx.openCustomerServiceChat({
+      extInfo: {
+        url: 'https://work.weixin.qq.com/kfid/kfce566bbbcf0dc5ebb'
+      },
+      corpId: 'wwcd77693eaf9afee3'
     })
   },
   onRewardAuthor() {

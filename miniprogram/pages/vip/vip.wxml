@@ -1,5 +1,5 @@
 <view class="vip-container">
-  <view class="vip-can-pay" wx:if="{{iosIsPay || !isIos}}">
+  <view class="vip-can-pay" wx:if="{{!isIos}}">
     <view class="vip-bg">
       <view class="vip-user">
         <view class="userinfo-avatar">
