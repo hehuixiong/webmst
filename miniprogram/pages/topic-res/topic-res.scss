@@ -149,6 +149,17 @@
         font-weight: bold;
         line-height: 36rpx;
       }
+      &.is-active{
+        .icon-bg{
+          background: rgba($color: #ee0a24, $alpha: 0.1);
+          .iconfont{
+            color: #ee0a24;
+          }
+        }
+        .text{
+          color: #ee0a24;
+        }
+      }
     }
     button{
       background: transparent;

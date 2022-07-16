@@ -1,6 +1,7 @@
 // pages/category/category.ts
 import { NAV_TYPES } from '../../utils/constant'
 const { getTopicCate } = require('../../api/index')
+import { eventStore } from '../../store/index'
 Page({
 
   /**
@@ -48,6 +49,12 @@ Page({
         icon: 'icon-reactjs',
         label: 'React.js',
         type: NAV_TYPES.reactJs,
+        id: null
+      },
+      {
+        icon: 'icon-xiaochengxu',
+        label: '微信小程序',
+        type: NAV_TYPES.miniprogram,
         id: null
       },
       {
@@ -129,28 +136,33 @@ Page({
         id: null
       }
     ],
-    recordsCount: {},
-    recordsObj: {}
+    userInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getTopicCate()
+  },
+
+  setUserInfo() {
+    if (wx.getStorageSync('loginState')) {
+      eventStore.dispatch('getUserInfo')
+      eventStore.onState('userInfo', (value: any) => {
+        this.setData({ userInfo: value })
+      })
+    }
   },
 
   getTopicCate() {
     getTopicCate().then((res: any) => {
       for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i].name === 'showgroup') {
-          this.setData({ showgroup: true })
-        }
         for (let j = 0; j < this.data.category.length; j++) {
           if (res.data[i].name === this.data.category[j].type) {
             this.setData({
               [`category[${j}].id`]: res.data[i].id,
-              [`category[${j}].cate_num`]: res.data[i].cate_num
+              [`category[${j}].cate_num`]: res.data[i].cate_num,
+              [`category[${j}].has_cate_num`]: res.data[i].has_cate_num
             })
           }
         }
@@ -169,21 +181,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    const storageRecords = wx.getStorageSync('recordsObj')
-    let day = wx.getStorageSync('recordsDay')
-    let topicNum = 0
-    Object.values(storageRecords).map((value: any) => {
-      topicNum += value.ids.length
-    })
-    let moduleNum = Object.keys(storageRecords).length
-    this.setData({
-      recordsCount: {
-        day: day,
-        topic: topicNum,
-        module: moduleNum
-      },
-      recordsObj: storageRecords
-    })
+    this.setUserInfo()
+    this.getTopicCate()
   },
 
   /**

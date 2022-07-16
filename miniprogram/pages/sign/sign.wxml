@@ -1,0 +1,86 @@
+<view class="sign-container">
+  <view class="sign-header">
+    <view class="sign-header-card">
+      <van-icon class="star-bg" name="star" />
+      <view class="images">
+        <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220705151115.png"></image>
+        <view class="jifen">
+          <view>{{integral}}</view>
+          <view class="icon">
+            <van-icon class="star" name="star" />
+          </view>
+        </view>
+      </view>
+      <view class="btn" bindtap="qiandao">{{isSign?'今日已签到':'签到'}}</view>
+    </view>
+  </view>
+  <view class="sign-content">
+    <view class="sign-list">
+      <view class="sign-item">
+        <view class="left">
+          <view class="iconfont icon-qiandao"></view>
+          <view class="text">
+            <view class="title">
+              <view>今日签到</view>
+              <view class="num">
+                <view class="icon">
+                  <van-icon class="star" name="star" />
+                </view>
+                <van-icon class="plus" name="plus" />{{configInfo.qd_jifen}}
+              </view>
+            </view>
+            <view class="complete">完成{{isSign?1:0}}/1</view>
+          </view>
+        </view>
+        <view class="button" bindtap="qiandao">{{isSign?'已完成':'去完成'}}</view>
+      </view>
+      <view class="sign-item">
+        <view class="left">
+          <view class="iconfont icon-shipin"></view>
+          <view class="text">
+            <view class="title">
+              <view>观看完整视频</view>
+              <view class="num">
+                <view class="icon">
+                  <van-icon class="star" name="star" />
+                </view>
+                <van-icon class="plus" name="plus" />{{configInfo.video_jifen}}
+              </view>
+            </view>
+            <view class="complete">完成{{isVideo?1:0}}/1</view>
+          </view>
+        </view>
+        <view class="button" bindtap="onVideo">{{isVideo?'已完成':'去观看'}}</view>
+      </view>
+      <view class="sign-item">
+        <view class="left">
+          <view class="iconfont icon-guanzhu"></view>
+          <view class="text">
+            <view class="title">
+              <view>关注公众号</view>
+              <view class="num">
+                <view class="icon">
+                  <van-icon class="star" name="star" />
+                </view>
+                <van-icon class="plus" name="plus" />{{configInfo.dh_jifen}}
+              </view>
+            </view>
+            <view class="complete">完成0/1</view>
+          </view>
+        </view>
+        <view class="button" bindtap="onIntegral">去关注</view>
+      </view>
+    </view>
+    <more-wrap loading="{{false}}" noMore="{{true}}" showIcon="{{true}}" moreText="更多任务，即将开启"></more-wrap>
+  </view>
+  <view class="footer" bindtap="goVip">
+    <view class="go-vip">
+      <view class="left">
+        <view class="tit">不想获取积分？</view>
+        <view>购买会员，全部功能可用</view>
+      </view>
+      <view class="btn">开通会员</view>
+    </view>
+  </view>
+  <sign-popup show="{{showSignin}}" jifen="{{configInfo.qd_jifen}}"></sign-popup>
+</view>

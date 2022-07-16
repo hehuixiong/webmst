@@ -1,18 +1,54 @@
 // pages/integral/integral.ts
+const { duihuanma } = require('../../api/index')
+import { eventStore } from '../../store/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    value: ''
+    value: '',
+    configInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    eventStore.onState('configInfo', (value: any) => {
+      this.setData({ configInfo: value })
+    })
+  },
 
+  submit() {
+    if (!this.data.value) {
+      wx.showToast({
+        title: '请输入兑换码',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    wx.showLoading({
+      title: '请稍等...'
+    })
+    duihuanma({
+      code: this.data.value
+    }).then(() => {
+      wx.showToast({
+        title: '兑换成功',
+        duration: 2000
+      })
+      this.setData({
+        value: ''
+      })
+    })
+  },
+
+  bindInput(e: any) {
+    this.setData({
+      [e.currentTarget.dataset.key]: e.detail.value
+    })
   },
 
   /**

@@ -1,15 +1,15 @@
 <view class="category-container">
   <view class="category-header">
     <view class="header-item">
-      <text class="number">{{recordsCount.day || 0}}</text>
+      <text class="number">{{userInfo.use_day || 0}}</text>
       <text>已练习天数</text>
     </view>
     <view class="header-item">
-      <text class="number">{{recordsCount.topic || 0}}</text>
+      <text class="number">{{userInfo.use_problem || 0}}</text>
       <text>已练习题目</text>
     </view>
     <view class="header-item">
-      <text class="number">{{recordsCount.module || 0}}</text>
+      <text class="number">{{userInfo.use_cate || 0}}</text>
       <text>已练习模块</text>
     </view>
   </view>
@@ -21,11 +21,11 @@
             <text class="iconfont {{item.icon}}"></text>
           </view>
           <view class="title-wrap">
-            <view class="title">{{item.label}} <text class="free" wx:if="{{item.id === 2 || item.id === 3}}">(免费开放)</text> </view>
+            <view class="title">{{item.label}}</view>
             <view class="record">
-              <text>共 {{item.cate_num}} 题</text>
+              <text>共 {{item.cate_num||'?'}} 题</text>
               <text class="line">|</text>
-              <text>已练习 {{recordsObj[item.type].ids.length || 0}} 题</text>
+              <text>已练习 {{item.has_cate_num||0}} 题</text>
             </view>
           </view>
         </view>

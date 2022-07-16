@@ -80,7 +80,8 @@ Page({
         download: '链接: https://pan.baidu.com/s/1WDHHZ1Ip8gPCO93jkRmtLg?pwd=uihq 提取码: uihq'
       }
     ],
-    isVip: false
+    isVip: false,
+    vipShow: false
   },
 
   /**
@@ -119,23 +120,11 @@ Page({
       eventStore.dispatch('login')
       return 
     }
-    let { download } = e.currentTarget.dataset
     if (!this.data.isVip) {
-      wx.showModal({
-        title: '友情提示',
-        content: '你还不是VIP哦，开通VIP免费下载',
-        confirmText: '去开通',
-        cancelText: '下次再说',
-        success (res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/vip/vip'
-            })
-          }
-        }
-      })
+      this.setData({ vipShow: true })
       return
     }
+    let { download } = e.currentTarget.dataset
     this.getLink(download)
   },
 

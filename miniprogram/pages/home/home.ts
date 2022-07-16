@@ -1,5 +1,6 @@
 // home.ts
 const { getTopicCate, getAdImage } = require('../../api/index')
+const app = getApp()
 import { NAV_TYPES } from '../../utils/constant'
 import { eventStore } from '../../store/index'
 Page({
@@ -99,7 +100,10 @@ Page({
     isNotice: false,
     noticeText: '',
     scrollable: false,
-    showSignin: false
+    showSignin: false,
+    isSign: false,
+    showSignBtn: false,
+    loginState: false
   },
   onLoad() {
     this.getTopicCate()
@@ -108,8 +112,14 @@ Page({
       this.setData({ showgroup: value })
     })
     eventStore.onState('isVip', (value: any) => {
-      this.setData({ isVip: value })
+      if (value !== null) {
+        this.setData({ isVip: value, showSignBtn: !value })
+      }
     })
+    eventStore.onState('isSign', (value: any) => {
+      this.setData({ isSign: value, loginState: wx.getStorageSync('loginState') })
+    })
+    eventStore.dispatch('setIsIos', app.globalSystemInfo && app.globalSystemInfo.ios)
   },
   getAdImage() {
     getAdImage().then((res: any) => {
@@ -133,24 +143,42 @@ Page({
     })
   },
   todaySignin() {
-    wx.showLoading({
-      title: '请稍等...'
+    if (!wx.getStorageSync('loginState')) {
+      eventStore.dispatch('login')
+      return 
+    }
+    wx.navigateTo({
+      url: '/pages/sign/sign'
     })
-    setTimeout(() => {
-      this.setData({
-        showSignin: true
-      })
-      wx.hideLoading()
-    }, 300)
   },
   closeTip() {
     this.setData({ hideTip: true })
     wx.setStorageSync('hideTip', true)
   },
   jumpVip() {
-    wx.navigateTo({
-      url: '/pages/vip/vip'
+    eventStore.onState('iosIsPay', (value: any) => {
+      if (value && app.globalSystemInfo && app.globalSystemInfo.ios) {
+        wx.openCustomerServiceChat({
+          extInfo: {
+            url: 'https://work.weixin.qq.com/kfid/kfcd822498b9774ec8f'
+          },
+          corpId: 'wwcd77693eaf9afee3'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      }
     })
+  },
+  onNotice() {
+    if (this.data.isNotice && !this.data.isVip) {
+      this.jumpVip()
+    } else {
+      wx.navigateTo({
+        url: '/pages/category/category'
+      })
+    }
   },
   swiperChange(e: any) {
     if (!this.data.swiper.length) {
@@ -181,7 +209,7 @@ Page({
       const dd = date.getDate()
       this.setData({
         topicSum: topicSum,
-        currentTime: `${yyyy}/${mm}/${dd}`,
+        currentTime: `${yyyy}/${mm<=9?'0'+mm:mm}/${dd<=9?'0'+dd:dd}`,
         hideTip: hideTip,
         titLoading: false
       })
@@ -199,7 +227,6 @@ Page({
     })
   },
   onRoute(e: any) {
-    console.log(e, '111')
     const {
       to,
       needLogin
@@ -311,7 +338,7 @@ Page({
   },
   onShareTimeline() {
     return{
-      title: '哇，真的想不到！！！'
+      title: '前端面试小程序，悄悄分享给你！！！'
     }
   }
 })

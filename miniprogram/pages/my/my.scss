@@ -93,6 +93,11 @@
         .number{
           margin-top: 8rpx;
           font-size: 28rpx;
+          display: flex;
+          align-items: center;
+          .icon-fuzhi{
+            margin-left: 4rpx;
+          }
         }
         .no-tag{
           background: #fff;
@@ -169,6 +174,12 @@
         }
         .text-icon{
           flex: 1;
+          display: flex;
+          align-items: center;
+          .iconfont{
+            font-size: 38rpx;
+            margin-right: 20rpx;
+          }
           .text{
             color: #333333;
             font-size: 30rpx;
@@ -178,6 +189,7 @@
           flex: 0 0 auto;
           .van-icon{
             color: #999999;
+            font-size: 34rpx;
           }
         }
       }
@@ -189,7 +201,7 @@
         padding: 32rpx 24rpx 32rpx 32rpx;
         position: relative;
         .integral{
-          color: #6b3e10;
+          color: #ed6a0c;
           font-size: 28rpx;
           position: absolute;
           right: 70rpx;

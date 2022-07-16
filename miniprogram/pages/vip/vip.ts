@@ -9,25 +9,29 @@ Page({
    */
   data: {
     vipList: [],
-    iosIsPay: false,
     isIos: false,
     userInfo: {},
+    configInfo: {},
     active: 3,
-    loginState: false
+    loginState: false,
+    showgroup: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getVipLevel()
-    this.setUserInfo()
-    eventStore.onState('iosIsPay', (value: any) => {
-      this.setData({ iosIsPay: value })
-    })
     if (app.globalSystemInfo && app.globalSystemInfo.ios) {
       this.setData({ isIos: true })
     }
+    eventStore.onState('configInfo', (value: any) => {
+      this.setData({ configInfo: value })
+    })
+    eventStore.onState('showgroup', (value: any) => {
+      this.setData({ showgroup: value })
+    })
+    this.getVipLevel()
+    this.setUserInfo()
   },
 
   selectVip(e: any) {

@@ -241,10 +241,6 @@
             flex-direction: column;
             margin-left: 24rpx;
             align-items: flex-start;
-            .free{
-              font-size: 20rpx;
-              color: #999999;
-            }
           }
           .tag{
             background: #eff2fe;
@@ -272,19 +268,41 @@
       position: fixed;
       right: 20rpx;
       bottom: 40rpx;
-      background: #7e68f3;
       border-radius: 60rpx;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28rpx;
+      font-size: 30rpx;
       text-shadow: 2px 2px 2px #28178a;
       font-weight: 500;
-      padding: 14rpx 20rpx;
-      box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
+      padding: 12rpx 20rpx 14rpx 20rpx;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      background: #7e68f3;
+      background: linear-gradient(-45deg, #7e68f3 50%, #4e6ef2 60%, #7e68f3 70%);
+      background-size: 600% 100%;
+      box-sizing: border-box;
+      &.animation{
+        animation-delay: 0s;
+        animation-timing-function: linear;
+        animation: myBreath 1s linear infinite;
+      }
       .edit{
         font-size: 34rpx;
+      }
+    }
+    @keyframes myBreath {
+      0%{
+          transform: scale(0.88);
+          background-position-x: 400%;
+      }
+      50%{
+          transform: scale(100%);
+          background-position-x: 0%;
+      }
+      100%{
+          transform: scale(0.88);
+          background-position-x: -400%;
       }
     }
   }

@@ -1,5 +1,4 @@
 import { eventStore } from '../../store/index'
-const { login } = require('../../api/index')
 Page({
 
   /**

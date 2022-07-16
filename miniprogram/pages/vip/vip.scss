@@ -13,8 +13,8 @@
       width: 200%;
       box-sizing: border-box;
       height: 350rpx;
-      margin-left: -375rpx;
       margin-top: -150rpx;
+      margin-left: calc((-200% + 100%) / 2);
       .vip-user{
         width: 710rpx;
         height: 150rpx;
@@ -168,6 +168,9 @@
       .text{
         font-size: 28rpx;
         line-height: 68rpx;
+        &.red{
+          color: #ff0000;
+        }
       }
       image{
         width: 288rpx;
