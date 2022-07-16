@@ -71,6 +71,13 @@ Page({
   },
 
   qiandao() {
+    // wx.requestSubscribeMessage({
+    //   tmplIds: ['MSx0OIM1NyyKmJOS8Ef9_dbS84FGya9F-CETLBSfMKw'],
+    //   success: (res: any) => {
+    //     console.log(res)
+    //   }
+    // })
+    // return
     // 是否已签到
     if (this.data.isSign) {
       wx.showToast({
