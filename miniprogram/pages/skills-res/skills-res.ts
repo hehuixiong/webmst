@@ -126,16 +126,5 @@ Page({
    */
   onReachBottom() {
 
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-    const query = { id: this.data.id, index: this.data.index, title: this.data.title }
-    return{
-      title: '大厂前端面试题，悄悄分享给你！',
-      path: `/pages/skills-res/skills-res?query=${JSON.stringify(query)}`
-    }
   }
 })

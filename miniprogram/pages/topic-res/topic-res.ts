@@ -30,12 +30,13 @@ Page({
     showAnswer: false,
     isNewUser: false,
     is_collect: 0,
-    integral: 0
+    integral: 0,
+    is_share: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ id, collectPage, search }: any) {
+  onLoad({ id, collectPage, search, is_share }: any) {
     // setWatcher(this)
     eventStore.onState('isVip', (value: any) => {
       this.setData({ isVip: value })
@@ -43,7 +44,7 @@ Page({
     eventStore.onState('isNewUser', (value: any) => {
       this.setData({ isNewUser: value })
     })
-    this.setData({ id: Number(id), collectPage, search }, () => this.getTopicInfo())
+    this.setData({ id: Number(id), collectPage, search, is_share }, () => this.getTopicInfo())
     this.setIntegral()
   },
 
@@ -62,7 +63,7 @@ Page({
     this.setData({ loading: true })
 
     // 无积分或非vip不能查看题目
-    if (+this.data.integral <= 0 && !this.data.isVip) {
+    if (+this.data.integral <= 0 && !this.data.isVip && !this.data.is_share) {
       wx.showToast({
         title: '积分已消耗完毕，开通VIP全部功能可用',
         icon: 'none',
@@ -154,7 +155,7 @@ Page({
     this.deductIntegral()
   },
   deductIntegral() {
-    if (!this.data.isVip) {
+    if (!this.data.isVip && !this.data.is_share) {
       deductIntegral({
         jifen: 1,
         id: this.data.id
@@ -299,7 +300,7 @@ Page({
   onShareAppMessage() {
     return{
       title: this.data.currentTitle,
-      path: `/pages/topic-res/topic-res?id${this.data.id}`
+      path: `/pages/topic-res/topic-res?id=${this.data.id}&is_share=1`
     }
   }
 })

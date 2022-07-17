@@ -187,15 +187,5 @@ Page({
    */
   onReachBottom() {
 
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-    return{
-      title: '大厂前端面试题，悄悄分享给你！',
-      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220427140039.png'
-    }
   }
 })

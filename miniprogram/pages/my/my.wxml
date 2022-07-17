@@ -31,6 +31,7 @@
           <view class="number" catchtap="copyUID" data-uid="{{userInfo.timeStamp}}">用户ID：{{userInfo.timeStamp}}<text class="iconfont icon-fuzhi"></text></view>
         </view>
       </block>
+      <image class="bg" mode="widthFix" src="/images/bg.png"></image>
     </view>
   </view>
   <view class="group-container">
