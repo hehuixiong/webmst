@@ -28,8 +28,8 @@
     <button size="mini" type="primary" bindtap="submit">立即兑换</button>
   </view>
   <view class="official-account">
+    <view class="text red">关注公众号回复888 获取兑换码</view>
+    <image src="{{configInfo.gzh_img}}" data-src="{{configInfo.gzh_img}}" bindtap="showImg" show-menu-by-longpress></image>
     <view class="text">长按识别二维码</view>
-    <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" data-src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220521072318.png" bindtap="showImg" show-menu-by-longpress></image>
-    <view class="text red">关注公众号回复【888】获取兑换码</view>
   </view>
 </view>

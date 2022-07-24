@@ -168,6 +168,9 @@
       .text{
         font-size: 28rpx;
         line-height: 68rpx;
+        &.red{
+          color: #ff0000;
+        }
       }
       image{
         width: 288rpx;

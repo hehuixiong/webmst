@@ -31,6 +31,7 @@
           <view class="number" catchtap="copyUID" data-uid="{{userInfo.timeStamp}}">用户ID：{{userInfo.timeStamp}}<text class="iconfont icon-fuzhi"></text></view>
         </view>
       </block>
+      <image class="bg" mode="widthFix" src="/images/bg.png"></image>
     </view>
   </view>
   <view class="group-container">
@@ -104,14 +105,13 @@
         </view>
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>
-      <button open-type="contact">
-        <navigator class="item">
-          <view class="text-icon">
-            <text class="iconfont icon-kefu"></text>
-            <text class="text">联系客服</text>
-          </view>
-          <view class="is-link"><van-icon name="arrow" /></view>
-        </navigator>
+      <!-- <button open-type="contact"> -->
+      <button class="item" bindtap="contact">
+        <view class="text-icon">
+          <text class="iconfont icon-kefu"></text>
+          <text class="text">联系客服</text>
+        </view>
+        <view class="is-link"><van-icon name="arrow" /></view>
       </button>
       <button wx:if="{{isVip}}" bindtap="onPoster">
         <navigator class="item">

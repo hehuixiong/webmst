@@ -1,5 +1,6 @@
 import { eventStore } from '../../store/index'
 let vipDate: any = null
+const app = getApp()
 Page({
   data: {
     userInfo: {},
@@ -110,8 +111,19 @@ Page({
     })
   },
   jumpVip() {
-    wx.navigateTo({
-      url: '/pages/vip/vip'
+    eventStore.onState('iosIsPay', (value: any) => {
+      if (value && app.globalSystemInfo && app.globalSystemInfo.ios) {
+        wx.openCustomerServiceChat({
+          extInfo: {
+            url: 'https://work.weixin.qq.com/kfid/kfcd822498b9774ec8f'
+          },
+          corpId: 'wwcd77693eaf9afee3'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      }
     })
   },
   addGroup() {
@@ -133,6 +145,14 @@ Page({
       }
     })
   },
+  contact() {
+    wx.openCustomerServiceChat({
+      extInfo: {
+        url: 'https://work.weixin.qq.com/kfid/kfce566bbbcf0dc5ebb'
+      },
+      corpId: 'wwcd77693eaf9afee3'
+    })
+  },
   onRewardAuthor() {
     if (!this.data.loginState) {
       this.onLogin()
@@ -140,14 +160,5 @@ Page({
     }
     this.setData({ rewardShow: true })
   },
-  onShare() {},
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-    return{
-      title: '大厂前端面试题，悄悄分享给你！',
-      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220427140039.png'
-    }
-  }
+  onShare() {}
 })

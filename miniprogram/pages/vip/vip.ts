@@ -9,7 +9,6 @@ Page({
    */
   data: {
     vipList: [],
-    iosIsPay: false,
     isIos: false,
     userInfo: {},
     configInfo: {},
@@ -22,20 +21,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getVipLevel()
-    this.setUserInfo()
-    eventStore.onState('iosIsPay', (value: any) => {
-      this.setData({ iosIsPay: value })
-    })
+    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
+      this.setData({ isIos: true })
+    }
     eventStore.onState('configInfo', (value: any) => {
       this.setData({ configInfo: value })
     })
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
     })
-    if (app.globalSystemInfo && app.globalSystemInfo.ios) {
-      this.setData({ isIos: true })
-    }
+    this.getVipLevel()
+    this.setUserInfo()
   },
 
   selectVip(e: any) {
@@ -191,15 +187,5 @@ Page({
    */
   onReachBottom() {
 
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-    return{
-      title: '大厂前端面试题，悄悄分享给你！',
-      imageUrl: 'https://s-gz-2804-hero-image.oss.dogecdn.com/20220427140039.png'
-    }
   }
 })

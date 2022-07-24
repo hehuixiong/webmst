@@ -35,7 +35,7 @@
     </swiper>
   </view>
   <view class="home-notice">
-    <van-notice-bar background="#f6f6f6" color="#ed6a0c" left-icon="volume-o" scrollable="{{scrollable}}" bindtap="jumpVip">
+    <van-notice-bar background="#f6f6f6" color="#ed6a0c" left-icon="volume-o" scrollable="{{scrollable}}" bindtap="onNotice">
       <text wx:if="{{isNotice && !isVip}}">{{noticeText}}</text>
       <text wx:else>截止{{currentTime}}，共录入面试题：{{topicSum || '?'}}题。 </text>
     </van-notice-bar>
@@ -138,6 +138,6 @@
     </view>
 
     <!-- 签到 -->
-    <view wx:if="{{showSignBtn}}" class="sign-in {{ !isSign ? 'animation' : '' }}" bindtap="todaySignin"><van-icon class="edit" name="edit" />签到积分</view>
+    <view wx:if="{{showSignBtn || !loginState}}" class="sign-in {{ !isSign ? 'animation' : '' }}" bindtap="todaySignin"><van-icon class="edit" name="edit" />签到积分</view>
   </view>
 </view>

@@ -23,12 +23,12 @@
     <view class="answer-container" wx:if="{{showAnswer}}">
       <view class="title-wrapper">
         <view class="title"><text class="iconfont icon-yulanxinxi"></text> 答案解析</view>
-        <view class="bug" bindtap="onBug"><text class="iconfont icon-bug"></text> 纠错</view>
+        <view class="bug" bindtap="onBug" wx:if="{{!is_share}}"><text class="iconfont icon-bug"></text> 纠错</view>
       </view>
       <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
       <view wx:else class="zhengli">正在整理中...</view>
     </view>
-    <view class="sidebar">
+    <view class="sidebar" wx:if="{{!is_share}}">
       <view class="sidebar-item {{is_collect ? 'is-active': ''}}" bindtap="addCollect">
         <text class="icon-bg">
           <text class="iconfont icon-shoucang"></text>

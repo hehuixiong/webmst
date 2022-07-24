@@ -1,6 +1,10 @@
 // pages/sign/sign.ts
-const { qiandao } = require('../../api/index')
+const { qiandao, readVideo } = require('../../api/index')
 import { eventStore } from '../../store/index'
+const app = getApp()
+// 在页面中定义激励视频广告
+let rewardedVideoAd: any = null
+let videoAdPushStatus = false
 Page({
 
   /**
@@ -9,6 +13,7 @@ Page({
   data: {
     showSignin: false,
     isSign: false,
+    isVideo: false,
     configInfo: {},
     integral: 0
   },
@@ -20,6 +25,9 @@ Page({
     eventStore.onState('isSign', (value: any) => {
       this.setData({ isSign: value })
     })
+    eventStore.onState('isVideo', (value: any) => {
+      this.setData({ isVideo: value })
+    })
     eventStore.onState('configInfo', (value: any) => {
       this.setData({ configInfo: value })
     })
@@ -28,6 +36,30 @@ Page({
     })
     if (!this.data.isSign) {
       this.qiandao()
+    }
+
+    this.showRewardedVideoAd()
+  },
+
+  showRewardedVideoAd() {
+    if (wx.createRewardedVideoAd) {
+      rewardedVideoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-92cc5ea0105da417'
+      })
+      rewardedVideoAd.onLoad(() => {
+        videoAdPushStatus = true
+        console.log('onload rewardedVideoAd')
+      })
+      rewardedVideoAd.onError((err: any) => {
+        console.log('onError rewardedVideoAd', err)
+      })
+      rewardedVideoAd.onClose((res: any) => {
+        console.log('onClose rewardedVideoAd', res)
+        if (res && res.isEnded) {
+          console.log('观看完成')
+          this.exeVideo()
+        }
+      })
     }
   },
 
@@ -39,6 +71,13 @@ Page({
   },
 
   qiandao() {
+    // wx.requestSubscribeMessage({
+    //   tmplIds: ['MSx0OIM1NyyKmJOS8Ef9_dbS84FGya9F-CETLBSfMKw'],
+    //   success: (res: any) => {
+    //     console.log(res)
+    //   }
+    // })
+    // return
     // 是否已签到
     if (this.data.isSign) {
       wx.showToast({
@@ -63,11 +102,59 @@ Page({
     })
   },
 
-  onwatch() {
-    wx.showToast({
-      title: '暂未开放',
-      icon: 'none',
-      duration: 2000
+  exeVideo() {
+    wx.showLoading({
+      title: '请稍等...'
+    })
+    readVideo().then((res: any) => {
+      if (res.code === 200) {
+        const { video_jifen }: any = this.data.configInfo
+        wx.showToast({
+          title: `观看成功，获取${video_jifen}积分`,
+          icon: 'none',
+          duration: 2000
+        })
+        eventStore.dispatch('getUserInfo')
+        return
+      }
+    })
+  },
+
+  onVideo() {
+    if (this.data.isVideo) {
+      wx.showToast({
+        title: '今日已经观看，不能重复获取积分',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (rewardedVideoAd && videoAdPushStatus) {
+      rewardedVideoAd.show().catch(() => {
+        // 失败重试
+        rewardedVideoAd.load()
+          .then(() => rewardedVideoAd.show())
+          .catch(() => {
+            console.log('激励视频 广告显示失败')
+          })
+      })
+    }
+  },
+
+  goVip() {
+    eventStore.onState('iosIsPay', (value: any) => {
+      if (value && app.globalSystemInfo && app.globalSystemInfo.ios) {
+        wx.openCustomerServiceChat({
+          extInfo: {
+            url: 'https://work.weixin.qq.com/kfid/kfcd822498b9774ec8f'
+          },
+          corpId: 'wwcd77693eaf9afee3'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      }
     })
   },
 
@@ -109,13 +196,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
 
   }
 })

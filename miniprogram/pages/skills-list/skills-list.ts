@@ -118,14 +118,5 @@ Page({
       this.setCurrentPageData()
       clearTimeout(timer)
     }, Math.floor(Math.random() * (500 - 100) + 100))
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-    return{
-      title: '大厂前端面试题，悄悄分享给你！'
-    }
   }
 })

@@ -1,3 +1,5 @@
+const app = getApp()
+import { eventStore } from '../../store/index'
 Component({
   /**
    * 组件的属性列表
@@ -28,7 +30,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    isIos: false
   },
 
   /**
@@ -45,8 +47,19 @@ Component({
       this.setData({
         show: false
       })
-      wx.navigateTo({
-        url: '/pages/vip/vip'
+      eventStore.onState('iosIsPay', (value: any) => {
+        if (value && app.globalSystemInfo && app.globalSystemInfo.ios) {
+          wx.openCustomerServiceChat({
+            extInfo: {
+              url: 'https://work.weixin.qq.com/kfid/kfcd822498b9774ec8f'
+            },
+            corpId: 'wwcd77693eaf9afee3'
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/vip/vip'
+          })
+        }
       })
     },
     goSign() {

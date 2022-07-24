@@ -102,7 +102,8 @@ Page({
     scrollable: false,
     showSignin: false,
     isSign: false,
-    showSignBtn: false
+    showSignBtn: false,
+    loginState: false
   },
   onLoad() {
     this.getTopicCate()
@@ -116,7 +117,7 @@ Page({
       }
     })
     eventStore.onState('isSign', (value: any) => {
-      this.setData({ isSign: value })
+      this.setData({ isSign: value, loginState: wx.getStorageSync('loginState') })
     })
     eventStore.dispatch('setIsIos', app.globalSystemInfo && app.globalSystemInfo.ios)
   },
@@ -155,10 +156,24 @@ Page({
     wx.setStorageSync('hideTip', true)
   },
   jumpVip() {
+    eventStore.onState('iosIsPay', (value: any) => {
+      if (value && app.globalSystemInfo && app.globalSystemInfo.ios) {
+        wx.openCustomerServiceChat({
+          extInfo: {
+            url: 'https://work.weixin.qq.com/kfid/kfcd822498b9774ec8f'
+          },
+          corpId: 'wwcd77693eaf9afee3'
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/vip/vip'
+        })
+      }
+    })
+  },
+  onNotice() {
     if (this.data.isNotice && !this.data.isVip) {
-      wx.navigateTo({
-        url: '/pages/vip/vip'
-      })
+      this.jumpVip()
     } else {
       wx.navigateTo({
         url: '/pages/category/category'
@@ -212,7 +227,6 @@ Page({
     })
   },
   onRoute(e: any) {
-    console.log(e, '111')
     const {
       to,
       needLogin
@@ -324,7 +338,7 @@ Page({
   },
   onShareTimeline() {
     return{
-      title: '哇，真的想不到！！！'
+      title: '前端面试小程序，悄悄分享给你！！！'
     }
   }
 })

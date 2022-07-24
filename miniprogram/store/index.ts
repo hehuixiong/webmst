@@ -24,14 +24,16 @@ const eventStore = new HYEventStore({
     // 是否ios设备
     isIos: null,
     // 是否已签到
-    isSign: false
+    isSign: false,
+    // 是否已看视频
+    isVideo: false
   },
   actions: {
     async getConfig(ctx: any) {
       await getConfig().then((res: any) => {
         ctx.showgroup = res.data.jlq_open.toString() === '1'
         // ctx.topicVip = res.data.vip_open.toString() === '1'
-        // ctx.iosIsPay = res.ios_open.toString() === '1'
+        ctx.iosIsPay = res.data.ios_open.toString() === '1'
         ctx.configInfo = res.data
         wx.setStorageSync('configInfo', res.data)
       })
@@ -42,6 +44,7 @@ const eventStore = new HYEventStore({
           console.log(res, '用户信息')
           ctx.isVip = res.data.vip_time !== ''
           ctx.isSign = Boolean(res.data.is_sign)
+          ctx.isVideo = Boolean(res.data.is_video)
           ctx.integral = res.data.jifen
           ctx.userInfo = res.data
           wx.setStorageSync('userInfo', res.data)
