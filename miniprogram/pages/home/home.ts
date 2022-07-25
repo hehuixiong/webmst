@@ -70,7 +70,7 @@ Page({
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220102.png',
-        label: '企业真题',
+        label: '面经合集',
         to: '/pages/face-list/face-list'
       },
       {
