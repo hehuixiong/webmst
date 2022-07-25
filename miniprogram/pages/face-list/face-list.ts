@@ -29,7 +29,7 @@ Page({
 
   getContList() {
     this.setData({ loading: true })
-    getContList({ cate_id: 2 }).then((res: any) => {
+    getContList({ cate_id: 2, page: this.data.page }).then((res: any) => {
       if (res.code === 200) {
         const faceList: any = [...this.data.faceList, ...res.data.list]
         this.setData({

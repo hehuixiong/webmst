@@ -7,7 +7,7 @@
       <text>介绍</text>
     </view>
     <view class="content">
-      <htmltowxml wx:if="{{content}}" linenums="{{false}}" highlightStyle="dracula" showLoading="{{true}}" text="{{content}}" />
+      <htmltowxml wx:if="{{content}}" linenums="{{false}}" highlightStyle="default" showLoading="{{true}}" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" text="{{content}}" />
     </view>
   </view>
   <view class="loading" wx:else>

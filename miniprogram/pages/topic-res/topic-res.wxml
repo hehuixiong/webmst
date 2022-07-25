@@ -4,8 +4,8 @@
     <!-- <ad wx:if="{{!loading && !isVip}}" unit-id="adunit-652e155c1dc4626a"></ad> -->
     <view class="topic-container">
       <view class="title">第{{topicIndex}}题：{{title}}</view>
-      <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{topic}}" />
-      <htmltowxml wx:if="{{choice}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{choice}}" />
+      <htmltowxml wx:if="{{topic}}" linenums="{{false}}" highlightStyle="default" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{topic}}" />
+      <htmltowxml wx:if="{{choice}}" linenums="{{false}}" highlightStyle="default" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{choice}}" />
       <view class="difficulty">
         <view class="level">
           <text>难度：</text>
@@ -25,7 +25,7 @@
         <view class="title"><text class="iconfont icon-yulanxinxi"></text> 答案解析</view>
         <view class="bug" bindtap="onBug" wx:if="{{!is_share}}"><text class="iconfont icon-bug"></text> 纠错</view>
       </view>
-      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="dracula" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
+      <htmltowxml wx:if="{{answer}}" linenums="{{false}}" highlightStyle="default" highlightLanguages="{{['html','js','php','css','cpp','ruby']}}" showLoading="{{true}}" text="{{answer}}" />
       <view wx:else class="zhengli">正在整理中...</view>
     </view>
     <view class="sidebar" wx:if="{{!is_share}}">

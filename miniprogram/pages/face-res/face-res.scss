@@ -31,9 +31,6 @@
         color: #333333!important;
         font-size: 30rpx!important;
         padding: 0!important;
-        .wxml-span{
-          color: #333333!important;
-        }
         .wxml-li-text {
           overflow: hidden!important;
           line-height: 48rpx!important;
@@ -69,5 +66,30 @@
       font-size: 26rpx;
       color: #666666;
     }
+  }
+}
+
+.html2wxml{
+  color: #333333!important;
+  font-size: 28rpx!important;
+  .wxml-li-text {
+    overflow: hidden!important;
+  }
+  .wxml-pre{
+    margin-bottom: 20rpx!important;
+    font-size: 24rpx!important;
+  }
+  
+  .hljs-style-tomorrow{
+    color: #24292f!important;
+  }
+  .wxml-code{
+    border: none!important;
+  }
+  .wxml-li-text{
+    line-height: 46rpx!important;
+  }
+  .wxml-img{
+    width: 100%!important;
   }
 }
