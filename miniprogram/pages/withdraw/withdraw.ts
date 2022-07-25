@@ -60,7 +60,7 @@ Page({
     wx.showLoading({
       title: '请稍等...'
     })
-    withdraw({ price: 2.99 }).then((res: any) => {
+    withdraw({ price: amount }).then((res: any) => {
       if (res.code === 200) {
         wx.navigateTo({
           url: `/pages/withdraw-success/withdraw-success?amount=${amount}`
