@@ -70,7 +70,7 @@ Page({
       },
       {
         url: 'https://s-gz-2804-hero-image.oss.dogecdn.com/icons/20220501220102.png',
-        label: '面经合集',
+        label: '企业真题',
         to: '/pages/face-list/face-list'
       },
       {
@@ -103,23 +103,62 @@ Page({
     showSignin: false,
     isSign: false,
     showSignBtn: false,
-    loginState: false
+    loginState: false,
+    showAdv: false
   },
-  onLoad() {
+  onLoad({ scene }: any) {
     this.getTopicCate()
     this.getAdImage()
+    // 获取uid写入缓存
+    if (scene) {
+      eventStore.dispatch('setPid', scene)
+    }
+    eventStore.dispatch('setIsIos', app.globalSystemInfo && app.globalSystemInfo.ios)
     eventStore.onState('showgroup', (value: any) => {
       this.setData({ showgroup: value })
     })
     eventStore.onState('isVip', (value: any) => {
       if (value !== null) {
-        this.setData({ isVip: value, showSignBtn: !value })
+        this.setData({
+          isVip: value, 
+          showSignBtn: !value
+        })
       }
     })
     eventStore.onState('isSign', (value: any) => {
-      this.setData({ isSign: value, loginState: wx.getStorageSync('loginState') })
+      this.setData({
+        isSign: value,
+        loginState: wx.getStorageSync('loginState')
+      })
     })
-    eventStore.dispatch('setIsIos', app.globalSystemInfo && app.globalSystemInfo.ios)
+
+    /**
+     * 显示广告
+     * 规则：
+     *   1、vip可显示
+     *   2、推广员可显示
+     *   3、一天内出现一次
+     */
+    let is_promoter = 0
+    let isVip = this.data.isVip
+    let myDate = new Date();
+    let myYear = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+    let myMonth = myDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+    let myToday = myDate.getDate(); //获取当前日(1-31)
+    let currDate = myYear + '-' + myMonth + '-' + myToday
+
+    let getStorageDate = wx.getStorageSync('currDate')
+    console.log(getStorageDate)
+
+    eventStore.onState('userInfo', (value: any) => {
+      is_promoter = value.is_promoter
+    })
+    if ((isVip || Boolean(is_promoter)) && getStorageDate !== currDate) {
+      this.setData({
+        showAdv: true
+      })
+      wx.setStorageSync('currDate', currDate)
+    }
   },
   getAdImage() {
     getAdImage().then((res: any) => {

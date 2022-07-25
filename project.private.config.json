@@ -10,8 +10,8 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/integral/integral",
-          "query": "",
+          "pathName": "pages/home/home",
+          "query": "scene=51",
           "launchMode": "default",
           "scene": null
         }

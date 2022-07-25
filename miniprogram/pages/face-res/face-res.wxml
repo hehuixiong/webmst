@@ -1,0 +1,27 @@
+<view class="face-res-container">
+  <view class="face-res-title">
+    <view class="title">{{title}}</view>
+  </view>
+  <view class="face-res-content" wx:if="{{!loading}}">
+    <view class="tag-wrapper">
+      <text>介绍</text>
+    </view>
+    <view class="content">
+      <htmltowxml wx:if="{{content}}" linenums="{{false}}" highlightStyle="dracula" showLoading="{{true}}" text="{{content}}" />
+    </view>
+  </view>
+  <view class="loading" wx:else>
+    <loading color="#7e68f3"></loading><text>加载中...</text>
+  </view>
+  <view class="other">*部分分析整理自网络资源</view>
+  <!-- <view class="page-turning">
+    <view class="page-item" wx:if="{{!first}}" bindtap="prevPiece">
+      <view class="go">上一篇</view>
+      <view>{{ previous.title }}</view>
+    </view>
+    <view class="page-item" wx:if="{{!last}}" bindtap="nextPiece">
+      <view class="go">下一篇</view>
+      <view>{{ later.title }}</view>
+    </view>
+  </view> -->
+</view>

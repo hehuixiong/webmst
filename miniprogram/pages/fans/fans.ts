@@ -1,62 +1,44 @@
-import { eventStore } from '../../store/index'
-const { getContList } = require('../../api/index')
+// pages/fans/fans.ts
+const { getTuiUser } = require('../../api/index')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    projectList: [],
-    isVip: false,
-    vipShow: false,
+    tuiUser: [],
     page: 1,
     pageTotal: 0,
     noMore: false,
     loading: false,
     pageSize: 20,
+    empty: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getContList()
-    eventStore.onState('isVip', (value: any) => {
-      this.setData({ isVip: value })
-    })
+    this.getTuiUser()
   },
 
-  getContList() {
+  getTuiUser() {
     this.setData({ loading: true })
-    getContList({ cate_id: 1 }).then((res: any) => {
+    getTuiUser({ page: this.data.page }).then((res: any) => {
+      console.log(res)
       if (res.code === 200) {
-        const projectList: any = [...this.data.projectList, ...res.data.list]
+        const tuiUser: any = [...this.data.tuiUser, ...res.data.list]
         this.setData({
           pageTotal: Math.ceil(res.data.pageTotal / this.data.pageSize),
-          projectList: projectList,
+          tuiUser: tuiUser,
           loading: false
         })
         this.setData({
           pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,
-          noMore: this.data.projectList.length === res.data.pageTotal,
+          noMore: this.data.tuiUser.length === res.data.pageTotal,
           empty: res.data.pageTotal === 0
         })
       }
-    })
-  },
-
-  goSkip(e: any) {
-    if (!wx.getStorageSync('loginState')) {
-      eventStore.dispatch('login')
-      return
-    }
-    const { id } = e.currentTarget.dataset
-    if (!this.data.isVip) {
-      this.setData({ vipShow: true })
-      return
-    }
-    wx.navigateTo({
-      url: `/pages/project-res/project-res?id=${id}`
     })
   },
 
@@ -110,6 +92,6 @@ Page({
     this.setData({
       page: ++page
     })
-    this.getContList()
+    this.getTuiUser()
   }
 })

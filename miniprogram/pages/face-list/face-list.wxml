@@ -1,19 +1,16 @@
 <view class="face-container">
   <view class="msg">以下数据来源于网络及互联网网友共享投稿</view>
   <view class="face-list">
-    <block wx:for="{{facePageList}}" wx:key="index">
-      <navigator class="face-item" url="" bindtap="go">
+    <block wx:for="{{faceList}}" wx:key="index">
+      <view class="face-item" hover-class="navigator-hover" bindtap="goSkip" data-id="{{item.id}}">
         <view class="tag-wrapper">
-          <view class="tag" wx:if="{{item.status === 0}}" style="color: #fc494b;background: #ffe4e4;">未通过</view>
-          <view class="tag" wx:if="{{item.status === 1}}" style="color: #4fc08d;background: #ebfff0;">已通过</view>
-          <view class="tag" wx:if="{{item.status === 2}}" style="color: #2c95ff;background: #e7f3ff;">OFFER</view>
-          <view class="tag" wx:if="{{item.status === 3}}" style="color: #f07b45;background: #fff4ee;">等消息</view>
+          <view class="tag">第{{index+1}}条</view>
+          <view class="date">{{item.create_time}}</view>
         </view>
         <view class="content">
           <view class="title">{{item.title}}</view>
-          <view class="date">{{item.date}}</view>
         </view>
-      </navigator>
+      </view>
     </block>
   </view>
   <more-wrap loading="{{loading}}" noMore="{{noMore}}"></more-wrap>

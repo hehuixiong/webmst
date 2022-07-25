@@ -1,44 +1,73 @@
 <view class="poster-container">
  <view class="banner">
-    <image mode="widthFix" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220703125400.png"></image>
+    <image mode="widthFix" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220724100600.jpg"></image>
   </view>
-  <view class="button" data-img="https://s-gz-2804-hero-image.oss.dogecdn.com/20220703125400.png" bindtap="bindImage">生成海报，分享好友赚佣金</view>
-  <view class="title">我的收益，会员分成20%</view>
+  <view class="button" bindtap="formSubmit">生成海报，分享好友赚佣金</view>
+  <view class="title">邀请好友成为会员，每单最高得 <text class="price"><text class="symbol">￥</text>{{jiangli}}</text> 现金奖励</view>
   <view class="list">
-    <view class="item">
+    <view class="item" bindtap="onWithdraw" hover-class="navigator-hover">
       <view class="iconfont icon-yongjin"></view>
       <view class="label">
         <view class="tit">我的佣金</view>
-        <view class="num">0元</view>
+        <view class="num"><text>{{userInfo.amount}}元</text>
       </view>
+      <van-icon class="arrow" name="arrow" /></view>
     </view>
-    <view class="item">
+    <view class="item" bindtap="onFans" hover-class="navigator-hover">
       <view class="iconfont icon-dayonghu"></view>
       <view class="label">
         <view class="tit">我的推广</view>
-        <view class="num"><text>0人</text> <van-icon name="arrow" /></view>
+        <view class="num"><text>{{userInfo.promoter_man}}人</text>
       </view>
+      <van-icon class="arrow" name="arrow" /></view>
     </view>
     <view class="item">
       <view class="iconfont icon-xinzimingxi"></view>
       <view class="label">
         <view class="tit">交易记录</view>
-        <view class="num">0笔</view>
+        <view class="num">{{userInfo.promoter_num}}笔</view>
       </view>
     </view>
   </view>
   <view class="title">收益明细</view>
-  <view class="profit-list">
-    <view class="profit-item" wx:for="{{10}}" wx:key="index">
-      <view class="left">
-        <image mode="widthFix" src="/images/vip.png"></image>
-        <text>模拟**</text>
-        <text>永久VIP</text>
+  <view class="profit-list" wx:if="{{tuiList.length}}">
+    <view class="profit-item" wx:for="{{tuiList}}" wx:key="index">
+      <view class="images">
+        <image mode="widthFix" src="{{item.head_pic}}"></image>
       </view>
-      <view class="right">
-        <text>时间：2022/05/29 20:00:00</text>
+      <view class="content">
+        <view class="tit">
+          <text class="nickname">{{item.nick_name}}</text>
+          <text class="timer">{{item.create_time}}</text>
+        </view>
+        <view class="vip">
+          <text>{{item.note}}</text>
+          <text class="price"><text class="symbol">￥</text>{{item.amount}}</text>
+        </view>
       </view>
     </view>
   </view>
-  <more-wrap loading="{{false}}" noMore="{{true}}"></more-wrap>
+  <more-wrap loading="{{loading}}" noMore="{{noMore}}" moreText="{{moreText}}"></more-wrap>
+</view>
+
+<view class="imagePathBox" hidden="{{maskHidden == false}}" catchtouchmove="{{true}}">
+  <image src="{{shareImagePath}}" class="shengcheng" ></image>
+  <view class="save-photo">
+    <button class="item" open-type="share">
+      <text class="icons green">
+        <text class="iconfont icon-weixin"></text>
+      </text>
+      <text class="text">微信好友</text>
+    </button>
+    <view class="item" bindtap="save">
+      <text class="icons grey">
+        <text class="iconfont icon-xiazai"></text>
+      </text>
+      <text class="text">保存图片</text>
+    </view>
+  </view>
+</view>
+<view hidden="{{maskHidden == false}}" class="mask" catchtouchmove="{{true}}"></view>
+<view class="canvas-box">
+  <canvas  style="width:375px;height:670px;position:fixed;top:9999px" id="mycanvas" canvas-id="mycanvas"/>
 </view>

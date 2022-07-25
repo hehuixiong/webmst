@@ -1,8 +1,8 @@
 <view class="project-container">
   <view class="msg">以下数据来源于网络及互联网网友共享投稿</view>
   <view class="project-list">
-    <block wx:for="{{projectPageList}}" wx:key="index">
-      <view class="project-item" hover-class="navigator-hover" bindtap="goSkip" data-title="{{item.title}}" data-id="{{item.id}}" data-index="{{index}}">
+    <block wx:for="{{projectList}}" wx:key="index">
+      <view class="project-item" hover-class="navigator-hover" bindtap="goSkip" data-id="{{item.id}}">
         <view class="tag">第{{index + 1}}条</view>
         <view class="title">{{item.title}}</view>
       </view>

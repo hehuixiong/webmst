@@ -6,6 +6,7 @@
   "usingComponents": {
     "van-notice-bar": "@vant/weapp/notice-bar/index",
     "nav-bar": "/components/nav-bar/index",
+    "adv-popup": "/components/adv-popup/index",
     "van-icon": "@vant/weapp/icon/index"
   }
 }

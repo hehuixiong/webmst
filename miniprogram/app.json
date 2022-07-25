@@ -22,7 +22,10 @@
     "pages/integral/integral",
     "pages/resume/resume",
     "pages/poster/poster",
-    "pages/sign/sign"
+    "pages/sign/sign",
+    "pages/fans/fans",
+    "pages/withdraw/withdraw",
+    "pages/withdraw-success/withdraw-success"
   ],
   "window": {
     "backgroundTextStyle": "light",

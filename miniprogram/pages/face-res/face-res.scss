@@ -1,1 +1,73 @@
-/* pages/face-res/face-res.wxss */
+.face-res-container{
+  padding: 0 0 220rpx;
+  overflow: hidden;
+  background: #f6f6f6;
+  box-sizing: border-box;
+  min-height: 100vh;
+  .face-res-title{
+    background: #fff;
+    padding: 30rpx 20rpx;
+    .title{
+      font-size: 32rpx;
+      font-weight: bold;
+      color: #333333;
+    }
+  }
+  .face-res-content{
+    background: #fff;
+    margin-top: 20rpx;
+    padding-top: 20rpx;
+    .tag-wrapper{
+      padding: 10rpx 80rpx 10rpx 20rpx;
+      color: #fff;
+      background: #7e68f3;
+      border-radius: 0 40rpx 40rpx 0;
+      font-size: 28rpx;
+      width: 80rpx;
+    }
+    .content{
+      padding: 40rpx 20rpx;
+      .html2wxml--html2wxml {
+        color: #333333!important;
+        font-size: 30rpx!important;
+        padding: 0!important;
+        .wxml-span{
+          color: #333333!important;
+        }
+        .wxml-li-text {
+          overflow: hidden!important;
+          line-height: 48rpx!important;
+        }
+      }
+    }
+  }
+  .other{
+    font-size: 22rpx;
+    color: #b1b1b1;
+    margin-top: 20rpx;
+    margin-left: 20rpx;
+  }
+  .page-turning{
+    padding: 40rpx 20rpx;
+    .page-item{
+      color: #999999;
+      margin-bottom: 30rpx;
+      font-size: 28rpx;
+      .go{
+        color: #333333;
+        margin-bottom: 4rpx;
+      }
+    }
+  }
+  .loading{
+    padding-top: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text{
+      margin-left: 20rpx;
+      font-size: 26rpx;
+      color: #666666;
+    }
+  }
+}

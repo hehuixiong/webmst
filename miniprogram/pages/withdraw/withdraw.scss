@@ -1,0 +1,126 @@
+.withdraw-container{
+  padding-top: 20rpx;
+  background: #f6f6f6;
+  min-height: 100vh;
+  box-sizing: border-box;
+  .withdraw-card{
+    display: flex;
+    margin: 0 10rpx 0;
+    border-radius: 30rpx;
+    .card{
+      color: #ffffff;
+      font-size: 30rpx;
+      flex: 1;
+      margin: 0 10rpx;
+      border-radius: 20rpx;
+      height: 160rpx;
+      padding: 26rpx 40rpx;
+      box-sizing: border-box;
+      position: relative;
+      box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
+      .text{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .title{
+          font-size: 32rpx;
+          color: #fff;
+          font-weight: 500;
+        }
+        .price{
+          font-size: 40rpx;
+          font-weight: bold;
+          .symbol{
+            font-size: 28rpx;
+          }
+        }
+      }
+      .icon-wrap{
+        position: absolute;
+        bottom: 66rpx;
+        right: 66rpx;
+        width: 50rpx;
+        height: 50rpx;
+        .iconfont{
+          font-size: 100rpx;
+          opacity: 0.2;
+        }
+      }
+    }
+    .card1{
+      background: #ecc180;
+      color: #ffffff;
+    }
+    .card2{
+      background: #9383ee;
+      color: #ffffff;
+    }
+  }
+  .content{
+    padding-bottom: 240rpx;
+  }
+  .withdraw-list{
+    padding: 0 20rpx;
+    background: #fff;
+    margin-top: 20rpx;
+    border-radius: 20rpx 20rpx 0 0;
+    .withdraw-item{
+      border-bottom: 1px solid #f6f6f6;
+      padding: 16rpx 0;
+      &:last-child{
+        border-bottom: none;
+      }
+      .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .price{
+          font-size: 40rpx;
+          color: #ff3d3d;
+        }
+        .shouru{
+          color: #333;
+        }
+      }
+      .status{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .blue{
+          color: #2e79f4;
+        }
+        .green{
+          color: #4ba330;
+        }
+        .red{
+          color: #fa3d33;
+        }
+        .create_time{
+          color: #999999;
+        }
+      }
+    }
+  }
+  .withdraw-btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 60rpx 60rpx 0 0;
+    padding: 40rpx 20rpx 0;
+    padding-bottom: constant(safe-area-inset-bottom);//兼容 IOS<11.2
+    padding-bottom: env(safe-area-inset-bottom);//兼容 IOS>11.2
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4rpx 20rpx 0 rgb(0 0 0 / 10%);
+    .btn{
+      margin-bottom: 30rpx;
+      border: #fa3d33 solid 1px;
+      line-height: 74rpx;
+      border-radius: 60rpx;
+      text-align: center;
+      font-size: 32rpx;
+      color: #fa3d33;
+    }
+  }
+}

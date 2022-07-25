@@ -1,57 +1,63 @@
 // pages/face-list/face-list.ts
 import { eventStore } from '../../store/index'
-const localFaceList = require("../../data/faceList")
+const { getContList } = require('../../api/index')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    facePageList: [],
     faceList: [],
-    totalPage: 0,
-    pageSize: 16,
-    noMore: false,
+    isVip: false,
+    vipShow: false,
     page: 1,
+    pageTotal: 0,
+    noMore: false,
+    loading: false,
+    pageSize: 20
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const faceList: any = [...localFaceList.data]
-    this.setData({
-      faceList: faceList
-    })
-    this.setData({
-      totalPage: Math.ceil(this.data.faceList.length / this.data.pageSize)
-    })
-    this.setData({
-      totalPage: this.data.totalPage === 0 ? 1 : this.data.totalPage
-    })
-    this.setCurrentPageData()
-  },
-
-  /**
-   * 处理分页
-   */
-  setCurrentPageData() {
-    let begin = (this.data.page - 1) * this.data.pageSize
-    let end = this.data.page * this.data.pageSize
-    this.setData({
-      facePageList: [...this.data.facePageList, ...this.data.faceList.slice(begin, end)],
-      loading: false
+    this.getContList()
+    eventStore.onState('isVip', (value: any) => {
+      this.setData({ isVip: value })
     })
   },
 
-  go() {
+  getContList() {
+    this.setData({ loading: true })
+    getContList({ cate_id: 2 }).then((res: any) => {
+      if (res.code === 200) {
+        const faceList: any = [...this.data.faceList, ...res.data.list]
+        this.setData({
+          pageTotal: Math.ceil(res.data.pageTotal / this.data.pageSize),
+          faceList: faceList,
+          loading: false
+        })
+        this.setData({
+          pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,
+          noMore: this.data.faceList.length === res.data.pageTotal,
+          empty: res.data.pageTotal === 0
+        })
+      }
+    })
+  },
+
+  goSkip(e: any) {
     if (!wx.getStorageSync('loginState')) {
       eventStore.dispatch('login')
       return
     }
-    wx.showToast({
-      title: '开发中，敬请期待',
-      icon: 'none'
+    const { id } = e.currentTarget.dataset
+    if (!this.data.isVip) {
+      this.setData({ vipShow: true })
+      return
+    }
+    wx.navigateTo({
+      url: `/pages/face-res/face-res?id=${id}`
     })
   },
 
@@ -94,7 +100,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    if(this.data.page == this.data.totalPage) {
+    if(this.data.page == this.data.pageTotal) {
       this.setData({
         noMore: true
       })
@@ -103,12 +109,8 @@ Page({
 
     let { page } = this.data
     this.setData({
-      page: ++page,
-      loading: true
+      page: ++page
     })
-    const timer = setTimeout(() => {
-      this.setCurrentPageData()
-      clearTimeout(timer)
-    }, Math.floor(Math.random() * (500 - 100) + 100))
+    this.getContList()
   }
 })

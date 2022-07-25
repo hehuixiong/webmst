@@ -22,5 +22,11 @@ module.exports = {
   deductIntegral: (params) => request('vehicle/user/use_jifen', 'POST', params),
   setProblemBug: (params) => request('vehicle/user/set_problem_err', 'POST', params),
   duihuanma: (params) => request('vehicle/user/duihuanma', 'POST', params),
-  getConfig: (params) => request('vehicle/index/get_info', 'POST', params)
+  getConfig: (params) => request('vehicle/index/get_info', 'POST', params),
+  getTuiList: (params) => request('vehicle/user/tui_list', 'POST', params),
+  getTuiUser: (params) => request('vehicle/user/tui_user', 'POST', params),
+  getCashList: (params) => request('vehicle/user/cash_list', 'POST', params),
+  withdraw: (params) => request('vehicle/user/cash', 'POST', params),
+  getContList: (params) => request('vehicle/index/get_content_list', 'POST', params),
+  getContDetail: (params) => request('vehicle/index/get_content_detail', 'POST', params),
 }

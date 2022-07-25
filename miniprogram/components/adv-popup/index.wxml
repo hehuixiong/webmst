@@ -1,0 +1,15 @@
+<van-popup
+  show="{{ show }}"
+  custom-style="background: none;"
+>
+  <view class="popup-wrap">
+    <view class="popup-content">
+      <view class="close">
+        <van-icon class="cross" bindtap="close" name="cross" />
+      </view>
+      <view class="img-wrap">
+        <image mode="widthFix" bindtap="go" src="{{adv_image}}"></image>
+      </view>
+    </view>
+  </view>
+</van-popup>

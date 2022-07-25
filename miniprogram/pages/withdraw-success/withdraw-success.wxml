@@ -1,0 +1,16 @@
+<view class="withdraw-success">
+  <view class="success-container">
+    <view>
+      <text class="iconfont icon-success"></text>
+    </view>
+    <view class="title">提现申请已提交</view>
+    <!-- <view class="desc">提现后48小时内会有客服人员处理，若未能及时处理，请联系客服人员</view> -->
+    <view class="desc">请联系客服人员确认提现记录，24小时内到账，工作时间（09:30 - 18:00）</view>
+    <view class="line"></view>
+    <view class="price">
+      <view class="label">提现金额</view>
+      <view class="value">{{amount}}元</view>
+    </view>
+  </view>
+  <view class="lianxikefu" bindtap="lianxikefu">联系客服</view>
+</view>

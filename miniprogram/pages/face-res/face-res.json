@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "面经合集详情",
-  "usingComponents": {}
+  "navigationBarTitleText": "企业真题详情",
+  "usingComponents": {
+    "htmltowxml": "plugin://htmltowxml/view",
+    "loading": "/components/loading/index"
+  }
 }

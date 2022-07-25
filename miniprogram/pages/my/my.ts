@@ -37,7 +37,7 @@ Page({
           this.setData({ vipType: value.vip })
           vipDate = value.vip_time
         }
-        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(5, 15) : '' } })
+        this.setData({ userInfo: { avatarUrl: value.head_pic, nickName: value.nick_name, timeStamp: value.open_id ? value.open_id.slice(5, 15) : '', is_promoter: value.is_promoter } })
       })
       eventStore.onState('integral', (value: any) => {
         this.setData({ integral: value })
@@ -73,6 +73,11 @@ Page({
           }
         })
       }
+    })
+  },
+  onFans() {
+    wx.navigateTo({
+      url: '/pages/fans/fans'
     })
   },
   go() {

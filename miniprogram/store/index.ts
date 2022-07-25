@@ -26,7 +26,9 @@ const eventStore = new HYEventStore({
     // 是否已签到
     isSign: false,
     // 是否已看视频
-    isVideo: false
+    isVideo: false,
+    // 推广id
+    pid: wx.getStorageSync('pid') || ''
   },
   actions: {
     async getConfig(ctx: any) {
@@ -62,6 +64,10 @@ const eventStore = new HYEventStore({
         console.log('未登录')
       }
     },
+    setPid(ctx: any, pid: any) {
+      ctx.pid = pid
+      wx.setStorageSync('pid', pid)
+    },
     setIsIos(ctx: any, isIos: any) {
       ctx.isIos = isIos
     },
@@ -82,7 +88,8 @@ const eventStore = new HYEventStore({
               })
               login(Object.assign({
                 code: code,
-                isIos: ctx.isIos ? 1 : 0
+                isIos: ctx.isIos ? 1 : 0,
+                pid: ctx.pid
               }, user)).then((res: any) => {
                 if (res.data.token) {
                   wx.setStorageSync('token', res.data.token)

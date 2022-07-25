@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "分享赚佣金",
-  "navigationBarBackgroundColor": "#515ef6",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "more-wrap": "/components/more-wrap/index",

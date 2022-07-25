@@ -1,62 +1,72 @@
+// pages/withdraw/withdraw.ts
 import { eventStore } from '../../store/index'
-const { getContList } = require('../../api/index')
+const { getCashList, withdraw } = require('../../api/index')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    projectList: [],
-    isVip: false,
-    vipShow: false,
+    userInfo: {},
+    totalAmount: 0,
+    cashList: [],
     page: 1,
     pageTotal: 0,
     noMore: false,
     loading: false,
-    pageSize: 20,
+    pageSize: 20
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getContList()
-    eventStore.onState('isVip', (value: any) => {
-      this.setData({ isVip: value })
+    eventStore.onState('userInfo', (value: any) => {
+      const totalAmount: any = (+value.amount + +value.cash_amount).toFixed(2)
+      this.setData({ userInfo: value, totalAmount  })
     })
   },
 
-  getContList() {
+  getCashList() {
     this.setData({ loading: true })
-    getContList({ cate_id: 1 }).then((res: any) => {
+    getCashList({ page: this.data.page }).then((res: any) => {
+      console.log(res)
       if (res.code === 200) {
-        const projectList: any = [...this.data.projectList, ...res.data.list]
+        const cashList: any = [...this.data.cashList, ...res.data.list]
         this.setData({
           pageTotal: Math.ceil(res.data.pageTotal / this.data.pageSize),
-          projectList: projectList,
+          cashList: cashList,
           loading: false
         })
         this.setData({
           pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,
-          noMore: this.data.projectList.length === res.data.pageTotal,
-          empty: res.data.pageTotal === 0
+          noMore: this.data.cashList.length === res.data.pageTotal
         })
       }
     })
   },
 
-  goSkip(e: any) {
-    if (!wx.getStorageSync('loginState')) {
-      eventStore.dispatch('login')
+  withdraw() {
+    const { amount }: any = this.data.userInfo
+    if (amount <= 0) {
+      wx.showToast({
+        title: '余额不足，快去推广吧~',
+        icon: 'none',
+        duration: 2000
+      })
       return
     }
-    const { id } = e.currentTarget.dataset
-    if (!this.data.isVip) {
-      this.setData({ vipShow: true })
-      return
-    }
-    wx.navigateTo({
-      url: `/pages/project-res/project-res?id=${id}`
+    wx.showLoading({
+      title: '请稍等...'
+    })
+    withdraw({ price: 2.99 }).then((res: any) => {
+      if (res.code === 200) {
+        wx.navigateTo({
+          url: `/pages/withdraw-success/withdraw-success?amount=${amount}`
+        })
+        wx.hideLoading()
+      }
     })
   },
 
@@ -71,7 +81,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.setData({ page: 1, cashList: [] })
+    this.getCashList()
+    eventStore.dispatch('getUserInfo')
   },
 
   /**
@@ -110,6 +122,7 @@ Page({
     this.setData({
       page: ++page
     })
-    this.getContList()
+    console.log(page)
+    this.getCashList()
   }
 })

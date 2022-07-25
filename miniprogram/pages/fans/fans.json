@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "企业真题",
+  "navigationBarTitleText": "推广明细",
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "more-wrap": "/components/more-wrap/index"

@@ -1,35 +1,26 @@
-const { getContDetail } = require('../../api/index')
+// pages/withdraw-success/withdraw-success.ts
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    loading: false,
-    title: '',
-    content: ''
+    amount: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad({ id }: any) {
-    this.getContDetail(id)
+  onLoad({ amount }: any) {
+    this.setData({ amount })
   },
 
-  getContDetail(id: any) {
-    wx.showLoading({
-      title: '数据加载中...'
-    })
-    getContDetail({ id }).then((res: any) => {
-      if (res.code === 200) {
-        console.log(res)
-        this.setData({
-          title: res.data.title,
-          content: res.data.content
-        })
-        wx.hideLoading()
-      }
+  lianxikefu() {
+    wx.openCustomerServiceChat({
+      extInfo: {
+        url: 'https://work.weixin.qq.com/kfid/kfc01710cfde30f5ee9'
+      },
+      corpId: 'wwcd77693eaf9afee3'
     })
   },
 

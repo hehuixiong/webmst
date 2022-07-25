@@ -113,7 +113,7 @@
         </view>
         <view class="is-link"><van-icon name="arrow" /></view>
       </button>
-      <button wx:if="{{isVip}}" bindtap="onPoster">
+      <button wx:if="{{isVip || userInfo.is_promoter}}" bindtap="onPoster">
         <navigator class="item">
           <view class="text-icon">
             <text class="iconfont icon-tupian"></text>
@@ -122,7 +122,7 @@
           <view class="is-link"><van-icon name="arrow" /></view>
         </navigator>
       </button>
-      <button wx:if="{{isVip}}" bindtap="go">
+      <button wx:if="{{isVip || userInfo.is_promoter}}" bindtap="onFans">
         <navigator class="item">
           <view class="text-icon">
             <text class="iconfont icon-huiyuan"></text>
