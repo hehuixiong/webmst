@@ -9,9 +9,5 @@
     </block>
   </view>
   <more-wrap loading="{{loading}}" noMore="{{noMore}}"></more-wrap>
-  <vip-popup
-    show="{{vipShow}}"
-    title="您当前不是VIP"
-    desc="开通后即可查看该项目经验"
-  ></vip-popup>
+  <vip-popup show="{{vipShow}}"></vip-popup>
 </view>

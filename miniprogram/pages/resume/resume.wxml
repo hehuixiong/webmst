@@ -13,9 +13,5 @@
       </view>
     </view>
   </view>
-  <vip-popup
-    show="{{vipShow}}"
-    title="您当前不是VIP"
-    desc="开通后即可下载该简历模板"
-  ></vip-popup>
+  <vip-popup show="{{vipShow}}"></vip-popup>
 </view>

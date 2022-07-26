@@ -16,7 +16,5 @@
   <more-wrap loading="{{loading}}" noMore="{{noMore}}"></more-wrap>
   <vip-popup
     show="{{vipShow}}"
-    title="您当前不是VIP"
-    desc="开通后即可查看该面经合集"
   ></vip-popup>
 </view>

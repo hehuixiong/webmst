@@ -1,5 +1,5 @@
 .poster-container{
-  padding: 20rpx 20rpx 80rpx;
+  padding: 0 0 80rpx;
   background: #f6f6f6;
   min-height: 100vh;
   box-sizing: border-box;
@@ -7,11 +7,10 @@
     width: 100%;
     image{
       width: 100%;
-      border-radius: 20rpx;
     }
   }
   .button{
-    width: 600rpx;
+    width: 680rpx;
     height: 80rpx;
     color: #ffffff;
     font-size: 32rpx;
@@ -21,13 +20,16 @@
     margin: 40rpx auto 60rpx;
     background: #515ef6;
   }
+  .poster-content{
+    padding: 0 20rpx;
+  }
   .title{
     position: relative;
     padding-left: 20rpx;
     margin: 30rpx 0;
     .price{
       color: #ef7e42;
-      font-size: 32rpx;
+      font-size: 36rpx;
       font-weight: 500;
       .symbol{
         font-size: 24rpx;
@@ -106,9 +108,9 @@
         justify-content: center;
         align-items: center;
         image{
-          width: 100rpx;
-          height: 100rpx;
-          border-radius: 50%;
+          width: 90rpx;
+          height: 90rpx;
+          border-radius: 10rpx;
         }
       }
       .content{
@@ -127,17 +129,21 @@
             text-overflow:ellipsis;
             overflow: hidden;
           }
+          .timer{
+            color: #999999;
+            font-size: 26rpx;
+          }
         }
         .vip{
           display: flex;
           justify-content: space-between;
           margin-top: 6rpx;
+          .note{
+            color: #666666;
+          }
           .price{
             color: #ef7e42;
-            font-size: 34rpx;
-            .symbol{
-              font-size: 24rpx;
-            }
+            font-size: 30rpx;
           }
         }
       }

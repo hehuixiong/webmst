@@ -154,10 +154,13 @@ Page({
       is_promoter = value.is_promoter
     })
     if ((isVip || Boolean(is_promoter)) && getStorageDate !== currDate) {
-      this.setData({
-        showAdv: true
-      })
-      wx.setStorageSync('currDate', currDate)
+      const timer = setTimeout(() => {
+        this.setData({
+          showAdv: true
+        })
+        wx.setStorageSync('currDate', currDate)
+        clearTimeout(timer)
+      }, 500)
     }
   },
   getAdImage() {

@@ -3,204 +3,209 @@ import { numFormat } from '../../utils/util'
 import { eventStore } from '../../store/index'
 const list = [
   {
+    title: 'Vue2.5-2.6-3.0开发去哪儿网App从零基础入门到实战（最新版）',
+    count: '2.0k',
+    course: 'https://pan.baidu.com/s/15SGOF67wtePir-PVcIwqeA?pwd=be44'
+  },
+  {
     title: '最强大、最牛逼的javascript视频教程',
-    count: 1662,
-    course: '链接: https://pan.baidu.com/s/14VmfWoEu8Gbi61ypqZFJ6A?pwd=ws6n 提取码: ws6n'
+    count: '1.6k',
+    course: 'https://pan.baidu.com/s/14VmfWoEu8Gbi61ypqZFJ6A?pwd=ws6n'
   },
   {
     title: '珠峰2020 JavaScript培训VIP精品课程价值14800',
     count: 985,
-    course: '链接: https://pan.baidu.com/s/1043Y89gnDxXf2LM0ruRjdw?pwd=vgn1 提取码: vgn1'
+    course: 'https://pan.baidu.com/s/1043Y89gnDxXf2LM0ruRjdw?pwd=vgn1'
   },
   {
     title: '兄弟L24集 微信开发VIP教程PHP',
     count: 123,
-    course: '链接: https://pan.baidu.com/s/1nQgonnwihzL9OraosCbJCQ?pwd=gb5e 提取码: gb5e'
+    course: 'https://pan.baidu.com/s/1nQgonnwihzL9OraosCbJCQ?pwd=gb5e'
   },
   {
     title: '四大维度解锁 Webpack 3.0 前端工程化',
     count: 445,
-    course: '链接: https://pan.baidu.com/s/1PPEvGrxjIBisfq9KK3dlWA?pwd=6bof 提取码: 6bof'
+    course: 'https://pan.baidu.com/s/1PPEvGrxjIBisfq9KK3dlWA?pwd=6bof'
   },
   {
     title: '视频-理论结合案例，带你打造短视频百万粉丝号',
     count: 563,
-    course: '链接: https://pan.baidu.com/s/1N2ELx5EPRXyi5gkeKVGgDQ?pwd=mau1 提取码: mau1'
+    course: 'https://pan.baidu.com/s/1N2ELx5EPRXyi5gkeKVGgDQ?pwd=mau1'
   },
   {
     title: '尚硅谷Vue硅谷外卖项目视频',
     count: 344,
-    course: '链接: https://pan.baidu.com/s/1N2ELx5EPRXyi5gkeKVGgDQ?pwd=mau1 提取码: mau1'
+    course: 'https://pan.baidu.com/s/1N2ELx5EPRXyi5gkeKVGgDQ?pwd=mau1'
   },
   {
     title: '尚硅谷VUE核心技术视频',
     count: 665,
-    course: '链接: https://pan.baidu.com/s/1nUU_AL9WFIEmOf9L1ieJtg?pwd=dv0k 提取码: dv0k'
+    course: 'https://pan.baidu.com/s/1nUU_AL9WFIEmOf9L1ieJtg?pwd=dv0k'
   },
   {
     title: '全网首个微信小程序开发视频教程',
     count: 776,
-    course: '链接: https://pan.baidu.com/s/19h-aVimUm321Hf7zJ2wziw?pwd=9w7i 提取码: 9w7i'
+    course: 'https://pan.baidu.com/s/19h-aVimUm321Hf7zJ2wziw?pwd=9w7i'
   },
   {
     title: '慕课网 - vue.js高仿饿了么（1-13章全）',
     count: 234,
-    course: '链接: https://pan.baidu.com/s/168jBG90zJxKiNh_dIjiqVA?pwd=n0dr 提取码: n0dr'
+    course: 'https://pan.baidu.com/s/168jBG90zJxKiNh_dIjiqVA?pwd=n0dr'
   },
   {
     title: '极客学院 微信小程序进阶实战之分答应用开发',
-    count: 1231,
-    course: '链接: https://pan.baidu.com/s/1FlLd4esqQ7gYf6KnlfZoJQ?pwd=gc5j 提取码: gc5j'
+    count: '1.2k',
+    course: 'https://pan.baidu.com/s/1FlLd4esqQ7gYf6KnlfZoJQ?pwd=gc5j'
   },
   {
     title: '基于TypeScript从零重构axios(14章完整版) - 2021年',
-    count: 1456,
-    course: '链接: https://pan.baidu.com/s/1FlLd4esqQ7gYf6KnlfZoJQ?pwd=gc5j 提取码: gc5j'
+    count: '1.4k',
+    course: 'https://pan.baidu.com/s/1FlLd4esqQ7gYf6KnlfZoJQ?pwd=gc5j'
   },
   {
     title: '黑马微信小程序在线课堂',
     count: 334,
-    course: '链接: https://pan.baidu.com/s/1FlLd4esqQ7gYf6KnlfZoJQ?pwd=gc5j 提取码: gc5j'
+    course: 'https://pan.baidu.com/s/1FlLd4esqQ7gYf6KnlfZoJQ?pwd=gc5j'
   },
   {
     title: '黑马程序员前端视频',
     count: 764,
-    course: '链接: https://pan.baidu.com/s/1S6g7ROk5xkl59_VkySkp1w?pwd=4lq9 提取码: 4lq9'
+    course: 'https://pan.baidu.com/s/1S6g7ROk5xkl59_VkySkp1w?pwd=4lq9'
   },
   {
     title: '黑马程序员 WEB前端开发第14期视频教程_2020.12',
     count: 224,
-    course: '链接: https://pan.baidu.com/s/1S6g7ROk5xkl59_VkySkp1w?pwd=4lq9 提取码: 4lq9'
+    course: 'https://pan.baidu.com/s/1S6g7ROk5xkl59_VkySkp1w?pwd=4lq9'
   },
   {
     title: '【教程】极客学院小程序视频教程（店主推荐）',
     count: 786,
-    course: '链接: https://pan.baidu.com/s/11lx8szhIEHTBENRjGCPhGA?pwd=tfb5 提取码: tfb5'
+    course: 'https://pan.baidu.com/s/11lx8szhIEHTBENRjGCPhGA?pwd=tfb5'
   },
   {
     title: '前端vue框架从0到1',
-    count: 1841,
-    course: '链接: https://pan.baidu.com/s/171178b1K2FH6hfL1VLUirw?pwd=fsww 提取码: fsww'
+    count: '1.8k',
+    course: 'https://pan.baidu.com/s/171178b1K2FH6hfL1VLUirw?pwd=fsww'
   },
   {
     title: 'vuejs2.0带你入门Vue2.0及学习实战项目',
-    count: 1358,
-    course: '链接: https://pan.baidu.com/s/19XUKN67YCARnsYrJ2yEj-A?pwd=c65g 提取码: c65g'
+    count: '1.3k',
+    course: 'https://pan.baidu.com/s/19XUKN67YCARnsYrJ2yEj-A?pwd=c65g'
   },
   {
     title: 'vue2构建工具教程',
     count: 535,
-    course: '链接: https://pan.baidu.com/s/1VYRh3kUw40g9CaInTasiKQ?pwd=3nqn 提取码: 3nqn'
+    course: 'https://pan.baidu.com/s/1VYRh3kUw40g9CaInTasiKQ?pwd=3nqn'
   },
   {
     title: 'vue.js视频教程合集',
     count: 468,
-    course: '链接: https://pan.baidu.com/s/1EM_chLeixblxa28uv37JyA?pwd=8lho 提取码: 8lho'
+    course: 'https://pan.baidu.com/s/1EM_chLeixblxa28uv37JyA?pwd=8lho'
   },
   {
     title: 'Vue 高级实战-开发移动端音乐WebApp',
-    count: 1678,
-    course: '链接: https://pan.baidu.com/s/1x8YwWy2yBVPEWKUAWjb4pQ?pwd=d1il 提取码: d1il'
+    count: '1.6k',
+    course: 'https://pan.baidu.com/s/1x8YwWy2yBVPEWKUAWjb4pQ?pwd=d1il'
   },
   {
     title: '千锋_前端教程_ReactNative项目之美食App（2020首发）',
     count: 446,
-    course: '链接: https://pan.baidu.com/s/1icPlglUeOGYZM4wPZKKVXw?pwd=oeqg 提取码: oeqg'
+    course: 'https://pan.baidu.com/s/1icPlglUeOGYZM4wPZKKVXw?pwd=oeqg'
   },
   {
     title: 'MUI视频教程',
     count: 499,
-    course: '链接: https://pan.baidu.com/s/1sFQoxzSKgQxMWzdKuXgeSw?pwd=e3ui 提取码: e3ui'
+    course: 'https://pan.baidu.com/s/1sFQoxzSKgQxMWzdKuXgeSw?pwd=e3ui'
   },
   {
     title: 'ThinkPHP5.0+微信小程序商城 构建全栈应用完整版',
     count: 775,
-    course: '链接: https://pan.baidu.com/s/1IoLxhF30MPDCffvECcoemA?pwd=oifv 提取码: oifv'
+    course: 'https://pan.baidu.com/s/1IoLxhF30MPDCffvECcoemA?pwd=oifv'
   },
   {
     title: '撩课学院 Vue2.x+Node.js 拼多多商城项目实战',
     count: 115,
-    course: '链接: https://pan.baidu.com/s/1Pax6KccXAF7QjKVoL06TxQ?pwd=viju 提取码: viju'
+    course: 'https://pan.baidu.com/s/1Pax6KccXAF7QjKVoL06TxQ?pwd=viju'
   },
   {
     title: 'JavaScript 设计模式精讲',
     count: 981,
-    course: '链接: https://pan.baidu.com/s/17Fms6_jzRzzhoLw8JmAOlg?pwd=58ks 提取码: 58ks'
+    course: 'https://pan.baidu.com/s/17Fms6_jzRzzhoLw8JmAOlg?pwd=58ks'
   },
   {
     title: 'es6从入门到实战视频',
-    count: 1289,
-    course: '链接: https://pan.baidu.com/s/1Zor0xHn-WpijeYzn1nGQAQ?pwd=wdb4 提取码: wdb4'
+    count: '1.2k',
+    course: 'https://pan.baidu.com/s/1Zor0xHn-WpijeYzn1nGQAQ?pwd=wdb4'
   },
   {
     title: 'ECMAScript6编程艺术',
     count: 588,
-    course: '链接: https://pan.baidu.com/s/1m7Ytb26yi9wf82ZyKznJug?pwd=qftb 提取码: qftb'
+    course: 'https://pan.baidu.com/s/1m7Ytb26yi9wf82ZyKznJug?pwd=qftb'
   },
   {
     title: 'CSDN Javascript - ES6 实战视频课程',
     count: 843,
-    course: '链接: https://pan.baidu.com/s/10BJdV6gg9G8BWIUiBGuI9g?pwd=6c2v 提取码: 6c2v'
+    course: 'https://pan.baidu.com/s/10BJdV6gg9G8BWIUiBGuI9g?pwd=6c2v'
   },
   {
     title: '北盟网 SEO-网站搜索引擎优化视频教程',
     count: 985,
-    course: '链接: https://pan.baidu.com/s/1EtGt150BR87kXZwRdYVTLw?pwd=kbb5 提取码: kbb5'
+    course: 'https://pan.baidu.com/s/1EtGt150BR87kXZwRdYVTLw?pwd=kbb5'
   },
   {
     title: '2020VUE服务器端渲染-NUXT实战视频（14集）',
     count: 166,
-    course: '链接: https://pan.baidu.com/s/1xgVKfbc0NoZ7Y5pa47BciA?pwd=p5e9 提取码: p5e9'
+    course: 'https://pan.baidu.com/s/1xgVKfbc0NoZ7Y5pa47BciA?pwd=p5e9'
   },
   {
     title: '开课吧Web全栈架构师第九期',
     count: 764,
-    course: '链接: https://pan.baidu.com/s/1XG3K7sRUYoJgguoLq3UYAw?pwd=j7pb 提取码: j7pb'
+    course: 'https://pan.baidu.com/s/1XG3K7sRUYoJgguoLq3UYAw?pwd=j7pb'
   },
   {
     title: 'uni-app商业级应用实战[next学院]',
     count: 336,
-    course: '链接: https://pan.baidu.com/s/1muuRPYFldYWNWyR6-Y_2Zw?pwd=kgwd 提取码: kgwd'
+    course: 'https://pan.baidu.com/s/1muuRPYFldYWNWyR6-Y_2Zw?pwd=kgwd'
   },
   {
     title: '网易云课堂 - uni-app实战仿糗事百科app开发',
     count: 935,
-    course: '链接: https://pan.baidu.com/s/1N2XEbp0fH97fRfadOHo1PA?pwd=4jqf 提取码: 4jqf'
+    course: 'https://pan.baidu.com/s/1N2XEbp0fH97fRfadOHo1PA?pwd=4jqf'
   },
   {
     title: '小程序云开发 数据库实战',
     count: 369,
-    course: '链接: https://pan.baidu.com/s/1SZqTH5e_-xCGXiAmQO470g?pwd=h506 提取码: h506'
+    course: 'https://pan.baidu.com/s/1SZqTH5e_-xCGXiAmQO470g?pwd=h506'
   },
   {
     title: '仿腾讯云课堂Vue项目',
-    count: 1468,
-    course: '链接: https://pan.baidu.com/s/11vzAvdZ3HP8qKTOO8uM3Pg?pwd=vq51 提取码: vq51'
+    count: '1.4k',
+    course: 'https://pan.baidu.com/s/11vzAvdZ3HP8qKTOO8uM3Pg?pwd=vq51'
   },
   {
     title: '尚硅谷webpack教程（新版）',
     count: 559,
-    course: '链接: https://pan.baidu.com/s/1_vmiHkVF7K5RVRShxrKong?pwd=kwup 提取码: kwup'
+    course: 'https://pan.baidu.com/s/1_vmiHkVF7K5RVRShxrKong?pwd=kwup'
   },
   {
     title: '网易云课堂 - uni-app实战社区交友类app开发',
     count: 885,
-    course: '链接: https://pan.baidu.com/s/1J1ws6O1N5O6cr265p_YGxg?pwd=va6n 提取码: va6n'
+    course: 'https://pan.baidu.com/s/1J1ws6O1N5O6cr265p_YGxg?pwd=va6n'
   },
   {
     title: '纯正商业级应用-微信小程序开发实战',
     count: 557,
-    course: '链接: https://pan.baidu.com/s/1snQHkkyaTtff6CvBG0kzwA?pwd=1173 提取码: 1173'
+    course: 'https://pan.baidu.com/s/1snQHkkyaTtff6CvBG0kzwA?pwd=1173'
   },
   {
     title: '[实战]前端JavaScript面试技巧',
     count: 449,
-    course: '链接: https://pan.baidu.com/s/1bypOQsnpOJOBNJBViAAfrA?pwd=pacw 提取码: pacw'
+    course: 'https://pan.baidu.com/s/1bypOQsnpOJOBNJBViAAfrA?pwd=pacw'
   },
   {
     title: 'Vue全家桶+SSR+Koa2全栈开发美团网',
     count: 663,
-    course: '链接: https://pan.baidu.com/s/1afNk9M7gX8oDrSI-GcGmQw?pwd=hr93 提取码: hr93'
+    course: 'https://pan.baidu.com/s/1afNk9M7gX8oDrSI-GcGmQw?pwd=hr93'
   },
   {
     title: 'vue3.2+elementPlus快速上手(提供vue3.2学习文档)',
@@ -209,12 +214,12 @@ const list = [
   },
   {
     title: '前端项目/vue项目实战/vue+element-ui/vue经典案例分享/紧贴实战的vue经典案例',
-    count: 1477,
+    count: '1.4k',
     course: '链接：https://www.bilibili.com/video/BV1QU4y1E7qo?spm_id_from=333.337.search-card.all.click'
   },
   {
     title: '2022最新WEB前端面试题大汇总前端面试必备',
-    count: 1311,
+    count: '1.3k',
     course: '链接：https://www.bilibili.com/video/BV1Xa411z7Hc?spm_id_from=333.337.search-card.all.click'
   },
   {

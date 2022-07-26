@@ -10,11 +10,11 @@ Component({
     },
     title: {
       type: String,
-      value: '积分消耗完毕'
+      value: '您当前不是VIP'
     },
     desc: {
       type: String,
-      value: '开通VIP无积分限制，全部功能可用'
+      value: '开通后即可查看所有功能'
     },
     noTab: {
       type: Boolean,

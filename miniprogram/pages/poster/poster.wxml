@@ -1,53 +1,55 @@
 <view class="poster-container">
- <view class="banner">
+  <view class="banner">
     <image mode="widthFix" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220724100600.jpg"></image>
   </view>
   <view class="button" bindtap="formSubmit">生成海报，分享好友赚佣金</view>
-  <view class="title">邀请好友成为会员，每单最高得 <text class="price"><text class="symbol">￥</text>{{jiangli}}</text> 现金奖励</view>
-  <view class="list">
-    <view class="item" bindtap="onWithdraw" hover-class="navigator-hover">
-      <view class="iconfont icon-yongjin"></view>
-      <view class="label">
-        <view class="tit">我的佣金</view>
-        <view class="num"><text>{{userInfo.amount}}元</text>
-      </view>
-      <van-icon class="arrow" name="arrow" /></view>
-    </view>
-    <view class="item" bindtap="onFans" hover-class="navigator-hover">
-      <view class="iconfont icon-dayonghu"></view>
-      <view class="label">
-        <view class="tit">我的推广</view>
-        <view class="num"><text>{{userInfo.promoter_man}}人</text>
-      </view>
-      <van-icon class="arrow" name="arrow" /></view>
-    </view>
-    <view class="item">
-      <view class="iconfont icon-xinzimingxi"></view>
-      <view class="label">
-        <view class="tit">交易记录</view>
-        <view class="num">{{userInfo.promoter_num}}笔</view>
-      </view>
-    </view>
-  </view>
-  <view class="title">收益明细</view>
-  <view class="profit-list" wx:if="{{tuiList.length}}">
-    <view class="profit-item" wx:for="{{tuiList}}" wx:key="index">
-      <view class="images">
-        <image mode="widthFix" src="{{item.head_pic}}"></image>
-      </view>
-      <view class="content">
-        <view class="tit">
-          <text class="nickname">{{item.nick_name}}</text>
-          <text class="timer">{{item.create_time}}</text>
+  <view class="poster-content">
+    <view class="title">邀请好友成为会员，每单最高得 <text class="price"><text class="symbol">￥</text>{{jiangli}}</text> 现金奖励</view>
+    <view class="list">
+      <view class="item" bindtap="onWithdraw" hover-class="navigator-hover">
+        <view class="iconfont icon-yongjin"></view>
+        <view class="label">
+          <view class="tit">我的佣金</view>
+          <view class="num"><text>{{userInfo.amount}}元</text>
         </view>
-        <view class="vip">
-          <text>{{item.note}}</text>
-          <text class="price"><text class="symbol">￥</text>{{item.amount}}</text>
+        <van-icon class="arrow" name="arrow" /></view>
+      </view>
+      <view class="item" bindtap="onFans" hover-class="navigator-hover">
+        <view class="iconfont icon-dayonghu"></view>
+        <view class="label">
+          <view class="tit">我的推广</view>
+          <view class="num"><text>{{userInfo.promoter_man}}人</text>
+        </view>
+        <van-icon class="arrow" name="arrow" /></view>
+      </view>
+      <view class="item">
+        <view class="iconfont icon-xinzimingxi"></view>
+        <view class="label">
+          <view class="tit">交易记录</view>
+          <view class="num">{{userInfo.promoter_num}}笔</view>
         </view>
       </view>
     </view>
+    <view class="title">收益明细</view>
+    <view class="profit-list" wx:if="{{tuiList.length}}">
+      <view class="profit-item" wx:for="{{tuiList}}" wx:key="index">
+        <view class="images">
+          <image mode="widthFix" src="{{item.head_pic}}"></image>
+        </view>
+        <view class="content">
+          <view class="tit">
+            <text class="nickname">{{item.nick_name}}</text>
+            <text class="timer">{{item.create_time}}</text>
+          </view>
+          <view class="vip">
+            <text class="note">{{item.note}}</text>
+            <text class="price">+{{item.amount}}元</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <more-wrap loading="{{loading}}" noMore="{{noMore}}" moreText="{{moreText}}"></more-wrap>
   </view>
-  <more-wrap loading="{{loading}}" noMore="{{noMore}}" moreText="{{moreText}}"></more-wrap>
 </view>
 
 <view class="imagePathBox" hidden="{{maskHidden == false}}" catchtouchmove="{{true}}">

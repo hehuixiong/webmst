@@ -25,7 +25,12 @@
     </view>
   </block>
   <more-wrap loading="{{loading}}" noMore="{{noMore}}"></more-wrap>
-  <vip-popup show="{{vipShow}}" bind:childFun="vipClose"></vip-popup>
+  <vip-popup
+    show="{{vipShow}}"
+    title="积分消耗完毕"
+    desc="开通VIP无积分限制，全部功能可用"
+    bind:childFun="vipClose"
+  ></vip-popup>
   <vip-popup
     show="{{signShow}}"
     title="今日未签到"
