@@ -130,7 +130,7 @@ Page({
         id: null
       },
       {
-        icon: 'icon-daixuanze',
+        icon: 'icon-shenhefangshixuanze',
         label: '选择题',
         type: NAV_TYPES.choice,
         id: null
