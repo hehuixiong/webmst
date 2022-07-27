@@ -8,7 +8,7 @@ Page({
    */
   data: {
     userInfo: {},
-    jiangli: 0,
+    jiangli: {},
     qtsheBackground: '',
     shareImagePath: '',
     maskHidden: false,
@@ -21,7 +21,8 @@ Page({
     noMore: false,
     loading: false,
     pageSize: 20,
-    moreText: '人家也是有底线的哦~'
+    moreText: '人家也是有底线的哦~',
+    show: false
   },
 
   /**
@@ -34,15 +35,36 @@ Page({
     })
     eventStore.onState('configInfo', (value: any) => {
       getVipLevel().then((res: any) => {
-        const newArr = res.data.filter((item: any) => item.title === '永久VIP')
-        if (newArr.length) {
-          this.setData({
-            jiangli: Number(value.jiangli) * newArr[0].price / 100
-          })
+        let jiangli: any = {}
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].title === '永久VIP') {
+            jiangli.yongjiu = Number(value.jiangli) * res.data[i].price / 100
+          }
+          if (res.data[i].title === '年度VIP') {
+            jiangli.niandu = Number(value.jiangli) * res.data[i].price / 100
+          }
+          if (res.data[i].title === '月度VIP') {
+            jiangli.yuedu = Number(value.jiangli) * res.data[i].price / 100
+          }
         }
+        this.setData({
+          jiangli: jiangli
+        })
       })
     })
     console.log(wx.getSystemInfo)
+  },
+
+  showrule() {
+    this.setData({
+      show: true
+    })
+  },
+
+  close() {
+    this.setData({
+      show: false
+    })
   },
 
   /**

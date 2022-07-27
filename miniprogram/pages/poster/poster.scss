@@ -27,6 +27,8 @@
     position: relative;
     padding-left: 20rpx;
     margin: 30rpx 0;
+    display: flex;
+    align-items: center;
     .price{
       color: #ef7e42;
       font-size: 36rpx;
@@ -45,6 +47,17 @@
       width: 8rpx;
       border-radius: 20rpx;
       background: #515ef6;
+    }
+    .scope{
+      position: relative;
+      &::before{
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 40rpx;
+      }
     }
   }
   .list{
@@ -78,6 +91,7 @@
           justify-content: space-between;
           align-items: center;
           font-size: 26rpx;
+          font-weight: 500;
         }
       }
       .arrow{
@@ -86,6 +100,7 @@
         top: 50%;
         transform: translateY(-50%);
         color: #ef7e42;
+        font-size: 34rpx;
       }
     }
   }
@@ -147,6 +162,57 @@
           }
         }
       }
+    }
+  }
+}
+
+.popup-wrap{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .content-wrap{
+    width: 100%;
+    height: 100%;
+    padding: 0 30rpx 30rpx 36rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    .title{
+      text-align: center;
+      font-size: 38rpx;
+      line-height: 100rpx;
+    }
+    .content{
+      overflow-y: auto;
+      height: 100%;
+      .item{
+        padding: 12rpx 0;
+        .price{
+          font-size: 34rpx;
+          color: #ef7e42;
+          .symbol{
+            font-size: 26rpx;
+          }
+        }
+      }
+    }
+  }
+  .close{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -120rpx;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    width: 58rpx;
+    height: 58rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba($color: #000000, $alpha: 0.5);
+    .cross{
+      font-size: 36rpx;
+      color: #fff;
     }
   }
 }
