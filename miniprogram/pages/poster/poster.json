@@ -1,11 +1,11 @@
 {
-  "navigationBarTitleText": "分享赚佣金",
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "我的返现海报",
+  "navigationStyle":"custom",
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "more-wrap": "/components/more-wrap/index",
     "van-icon": "@vant/weapp/icon/index",
+    "nav-bar": "/components/nav-bar/index",
     "van-popup": "@vant/weapp/popup/index"
   }
 }

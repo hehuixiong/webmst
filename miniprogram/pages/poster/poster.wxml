@@ -1,10 +1,17 @@
 <view class="poster-container">
+  <nav-bar
+    id="navBar"
+    customHeight="{{0}}"
+    background="none"
+    isBack="{{true}}"
+    style="position: fixed;z-index: 99999;"
+  ></nav-bar>
   <view class="banner">
-    <image mode="widthFix" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220724100600.jpg"></image>
+    <image mode="widthFix" src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220729114901.png"></image>
   </view>
-  <view class="button" bindtap="formSubmit">生成海报，分享好友赚佣金</view>
+  <view class="button" bindtap="formSubmit">点击生成海报，分享好友赚佣金</view>
   <view class="poster-content">
-    <view class="title">邀请好友成为VIP，每单可得<text class="price"><text class="symbol">￥</text>{{jiangli.yongjiu}}</text>佣金奖励 <view bindtap="showrule" class="scope"><van-icon style="font-size: 34rpx;margin-left: 6rpx;color: #666;transform: translateY(2rpx);" name="info-o" /></view></view>
+    <view class="title">邀请好友成为VIP，每单可得<text class="price"><text class="symbol">￥</text>{{jiangli.yongjiu}}</text>现金红包 <view bindtap="showrule" class="scope"><van-icon style="font-size: 34rpx;margin-left: 6rpx;color: #666;transform: translateY(2rpx);" name="info" /></view></view>
     <view class="list">
       <view class="item" bindtap="onWithdraw" hover-class="navigator-hover">
         <view class="iconfont icon-yongjin"></view>
@@ -22,15 +29,8 @@
         </view>
         <van-icon class="arrow" name="arrow" /></view>
       </view>
-      <view class="item">
-        <view class="iconfont icon-xinzimingxi"></view>
-        <view class="label">
-          <view class="tit">交易记录</view>
-          <view class="num">{{userInfo.promoter_num}}笔</view>
-        </view>
-      </view>
     </view>
-    <view class="title">收益明细</view>
+    <view class="title">收益明细<text class="info" wx:if="{{userInfo.promoter_num > 0}}">({{userInfo.promoter_num}}笔)</text></view>
     <view class="profit-list" wx:if="{{tuiList.length}}">
       <view class="profit-item" wx:for="{{tuiList}}" wx:key="index">
         <view class="images">
@@ -55,16 +55,16 @@
 <!-- 规则 -->
 <van-popup
   show="{{ show }}"
-  custom-style="border-radius: 30rpx;width: 80%;height: 60%;overflow: inherit;margin-top: -80rpx;"
+  custom-style="border-radius: 30rpx;width: 82%;height: 60%;overflow: inherit;margin-top: -80rpx;"
 >
   <view class="popup-wrap">
     <view class="content-wrap">
       <view class="title">返现规则</view>
       <view class="content">
-        <view class="item">1.邀请好友成为永久VIP，每单可得<text class="price"><text class="symbol">￥</text>{{jiangli.yongjiu}}</text>佣金奖励。</view>
-        <view class="item">2.邀请好友成为年度VIP，每单可得<text class="price"><text class="symbol">￥</text>{{jiangli.niandu}}</text>佣金奖励。</view>
-        <view class="item">3.邀请好友成为月度VIP，每单可得<text class="price"><text class="symbol">￥</text>{{jiangli.yuedu}}</text>佣金奖励。</view>
-        <view class="item">4.邀请新注册的用户有效，已注册用户无法获取佣金奖励。</view>
+        <view class="item">1.邀请好友成为永久VIP，每单可得<text class="price"><text class="symbol">￥</text>{{jiangli.yongjiu}}</text>现金红包。</view>
+        <view class="item">2.邀请好友成为年度VIP，每单可得<text class="price"><text class="symbol">￥</text>{{jiangli.niandu}}</text>现金红包。</view>
+        <view class="item">3.邀请好友成为月度VIP，每单可得<text class="price"><text class="symbol">￥</text>{{jiangli.yuedu}}</text>现金红包。</view>
+        <view class="item">4.邀请新注册的用户有效，已注册用户无法获取现金红包。</view>
         <view class="item">5.生成海报，邀请微信好友或者保存海报分享好友与朋友圈奖励有效。</view>
         <view class="item">6.每个用户可参与该活动不限次，直到活动结束为止。</view>
         <view class="item">7.提现须知：提现采用客服人员发放奖励模式，请与客服人员核对提现记录，确保准时发放。</view>

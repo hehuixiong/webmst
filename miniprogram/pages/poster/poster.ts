@@ -21,7 +21,7 @@ Page({
     noMore: false,
     loading: false,
     pageSize: 20,
-    moreText: '人家也是有底线的哦~',
+    moreText: '没有更多了~',
     show: false
   },
 

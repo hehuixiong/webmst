@@ -10,7 +10,7 @@
       </view>
     </view>
   </view>
-  <more-wrap wx:if="{{!empty}}" loading="{{loading}}" noMore="{{noMore}}" moreText="人家也是有底线的哦~"></more-wrap>
+  <more-wrap wx:if="{{!empty}}" loading="{{loading}}" noMore="{{noMore}}"></more-wrap>
   <view class="no_data" wx:if="{{empty && !loading}}">
     <image src="https://s-gz-2804-hero-image.oss.dogecdn.com/20220430162300.png" mode="widthFix"></image>
     <view>亲，暂无推广明细哦~</view>

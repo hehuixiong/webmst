@@ -34,7 +34,7 @@
         </view>
       </view>
     </view>
-    <more-wrap loading="{{loading}}" noMore="{{noMore}}" moreText="人家也是有底线的哦~"></more-wrap>
+    <more-wrap loading="{{loading}}" noMore="{{noMore}}" moreText="{{moreText}}"></more-wrap>
   </view>
   <view class="withdraw-btn">
     <view class="placeholder"></view>

@@ -32,6 +32,10 @@ Component({
     hideTip: {
       type: Boolean,
       value: true
+    },
+    isBack: {
+      type: Boolean,
+      value: false
     }
   },
   created: function () {
@@ -51,6 +55,11 @@ Component({
   },
 
   methods: {
+    goBack() {
+      wx.navigateBack({
+        delta: 1
+      })
+    },
     // 阻止滚动穿透
     preventDefault() {
       return

@@ -15,7 +15,8 @@ Page({
     pageTotal: 0,
     noMore: false,
     loading: false,
-    pageSize: 20
+    pageSize: 20,
+    moreText: '没有更多了~'
   },
 
   /**
@@ -43,6 +44,11 @@ Page({
           pageTotal: this.data.pageTotal === 0 ? 1 : this.data.pageTotal,
           noMore: this.data.cashList.length === res.data.pageTotal
         })
+        if (this.data.cashList.length === 0) {
+          this.setData({
+            moreText: '亲，暂无提现记录哦~'
+          })
+        }
       }
     })
   },

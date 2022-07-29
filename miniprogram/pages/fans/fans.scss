@@ -5,17 +5,16 @@
   .fans-list{
     display: flex;
     flex-direction: column;
+    background: #fff;
     .fans-item{
       display: flex;
       justify-content: space-between;
       font-size: 28rpx;
       line-height: 100rpx;
-      background: #fff;
-      border-radius: 20rpx;
-      margin-bottom: 20rpx;
-      padding: 0 20rpx;
+      margin: 0 20rpx;
+      border-bottom: 1px solid #f6f6f6;
       &:last-child{
-        margin-bottom: 0;
+        border-bottom: none;
       }
       .left{
         display: flex;
